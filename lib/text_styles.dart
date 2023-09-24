@@ -9,6 +9,11 @@ class TextStyles {
     textStyle: const TextStyle(overflow: TextOverflow.ellipsis),
   );
 
+  static final n10 = _default.copyWith(
+    fontWeight: FontWeight.normal,
+    fontSize: 10,
+  );
+
   static final n12 = _default.copyWith(
     fontWeight: FontWeight.normal,
     fontSize: 12,
@@ -27,6 +32,11 @@ class TextStyles {
   static final b12 = _default.copyWith(
     fontWeight: FontWeight.bold,
     fontSize: 12,
+  );
+
+  static final b14 = _default.copyWith(
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
   );
 
   static final b16 = _default.copyWith(

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
@@ -13,12 +12,14 @@ class InspectionListPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: const PrimaryAppBar(title: ''),
       body: ListView.separated(
         itemCount: 10,
         itemBuilder: (context, index) {
           return InspectionListItem(
             key: ValueKey(index),
+            onTap: () => Navigator.of(context).push(InspectionPage.route()),
           );
         },
         separatorBuilder: (context, index) {

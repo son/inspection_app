@@ -3,6 +3,7 @@ import 'package:inspection_app/text_styles.dart';
 
 class SectionItem extends StatelessWidget {
   const SectionItem({super.key, required this.title, required this.child});
+
   final String title;
   final Widget child;
 
@@ -14,9 +15,8 @@ class SectionItem extends StatelessWidget {
           title,
           style: TextStyles.n14,
         ),
-        const Spacer(),
-        child,
         const SizedBox(width: 16),
+        Expanded(child: child),
       ],
     );
   }

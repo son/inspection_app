@@ -3,12 +3,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/text_styles.dart';
 
 class InspectionListItem extends HookConsumerWidget {
-  const InspectionListItem({super.key});
+  const InspectionListItem({super.key, required this.onTap});
+
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         color: Colors.white,
         padding: const EdgeInsets.all(12),
