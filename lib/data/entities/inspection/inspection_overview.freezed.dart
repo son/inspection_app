@@ -26,6 +26,7 @@ mixin _$InspectionOverview {
   String get clientName => throw _privateConstructorUsedError;
   String get witnessName => throw _privateConstructorUsedError;
   User get inspector => throw _privateConstructorUsedError;
+  Building get building => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,10 +46,12 @@ abstract class $InspectionOverviewCopyWith<$Res> {
       HousingType housingType,
       String clientName,
       String witnessName,
-      User inspector});
+      User inspector,
+      Building building});
 
   $ScheduleCopyWith<$Res> get schedule;
   $UserCopyWith<$Res> get inspector;
+  $BuildingCopyWith<$Res> get building;
 }
 
 /// @nodoc
@@ -70,6 +73,7 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
     Object? clientName = null,
     Object? witnessName = null,
     Object? inspector = null,
+    Object? building = null,
   }) {
     return _then(_value.copyWith(
       schedule: null == schedule
@@ -96,6 +100,10 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
           ? _value.inspector
           : inspector // ignore: cast_nullable_to_non_nullable
               as User,
+      building: null == building
+          ? _value.building
+          : building // ignore: cast_nullable_to_non_nullable
+              as Building,
     ) as $Val);
   }
 
@@ -114,6 +122,14 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
       return _then(_value.copyWith(inspector: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BuildingCopyWith<$Res> get building {
+    return $BuildingCopyWith<$Res>(_value.building, (value) {
+      return _then(_value.copyWith(building: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -130,12 +146,15 @@ abstract class _$$_InspectionOverviewCopyWith<$Res>
       HousingType housingType,
       String clientName,
       String witnessName,
-      User inspector});
+      User inspector,
+      Building building});
 
   @override
   $ScheduleCopyWith<$Res> get schedule;
   @override
   $UserCopyWith<$Res> get inspector;
+  @override
+  $BuildingCopyWith<$Res> get building;
 }
 
 /// @nodoc
@@ -155,6 +174,7 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
     Object? clientName = null,
     Object? witnessName = null,
     Object? inspector = null,
+    Object? building = null,
   }) {
     return _then(_$_InspectionOverview(
       schedule: null == schedule
@@ -181,6 +201,10 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
           ? _value.inspector
           : inspector // ignore: cast_nullable_to_non_nullable
               as User,
+      building: null == building
+          ? _value.building
+          : building // ignore: cast_nullable_to_non_nullable
+              as Building,
     ));
   }
 }
@@ -189,12 +213,13 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_InspectionOverview extends _InspectionOverview {
   const _$_InspectionOverview(
-      {this.schedule = Schedule.empty,
+      {this.schedule = const Schedule(),
       this.weather = Weather.unknown,
-      this.housingType = HousingType.none,
+      this.housingType = HousingType.detached,
       this.clientName = '',
       this.witnessName = '',
-      this.inspector = User.empty})
+      this.inspector = const User(id: ''),
+      this.building = const Building()})
       : super._();
 
   factory _$_InspectionOverview.fromJson(Map<String, dynamic> json) =>
@@ -218,10 +243,13 @@ class _$_InspectionOverview extends _InspectionOverview {
   @override
   @JsonKey()
   final User inspector;
+  @override
+  @JsonKey()
+  final Building building;
 
   @override
   String toString() {
-    return 'InspectionOverview(schedule: $schedule, weather: $weather, housingType: $housingType, clientName: $clientName, witnessName: $witnessName, inspector: $inspector)';
+    return 'InspectionOverview(schedule: $schedule, weather: $weather, housingType: $housingType, clientName: $clientName, witnessName: $witnessName, inspector: $inspector, building: $building)';
   }
 
   @override
@@ -239,13 +267,15 @@ class _$_InspectionOverview extends _InspectionOverview {
             (identical(other.witnessName, witnessName) ||
                 other.witnessName == witnessName) &&
             (identical(other.inspector, inspector) ||
-                other.inspector == inspector));
+                other.inspector == inspector) &&
+            (identical(other.building, building) ||
+                other.building == building));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, schedule, weather, housingType,
-      clientName, witnessName, inspector);
+      clientName, witnessName, inspector, building);
 
   @JsonKey(ignore: true)
   @override
@@ -269,7 +299,8 @@ abstract class _InspectionOverview extends InspectionOverview {
       final HousingType housingType,
       final String clientName,
       final String witnessName,
-      final User inspector}) = _$_InspectionOverview;
+      final User inspector,
+      final Building building}) = _$_InspectionOverview;
   const _InspectionOverview._() : super._();
 
   factory _InspectionOverview.fromJson(Map<String, dynamic> json) =
@@ -287,6 +318,8 @@ abstract class _InspectionOverview extends InspectionOverview {
   String get witnessName;
   @override
   User get inspector;
+  @override
+  Building get building;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionOverviewCopyWith<_$_InspectionOverview> get copyWith =>

@@ -135,7 +135,7 @@ class _$_Inspection extends _Inspection {
   const _$_Inspection(
       {required this.id,
       this.createdAt,
-      this.overview = InspectionOverview.empty})
+      this.overview = const InspectionOverview()})
       : super._();
 
   factory _$_Inspection.fromJson(Map<String, dynamic> json) =>

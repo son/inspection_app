@@ -1,5 +1,4 @@
 name: inspection_app
-description: A new Flutter project.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -15,6 +14,7 @@ dependencies:
   flutter_hooks: ^0.20.1
   hooks_riverpod: ^2.1.1
   google_fonts: ^6.0.0
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:inspection_app/data/entities/building/building.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 
 part 'inspection.freezed.dart';
@@ -11,9 +12,11 @@ class Inspection with _$Inspection {
   const factory Inspection({
     required String id,
     DateTime? createdAt,
-    @Default(InspectionOverview.empty) InspectionOverview overview,
+    @Default(InspectionOverview()) InspectionOverview overview,
   }) = _Inspection;
 
   factory Inspection.fromJson(Map<String, dynamic> json) =>
       _$InspectionFromJson(json);
+
+  static const empty = Inspection(id: '');
 }

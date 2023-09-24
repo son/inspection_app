@@ -10,18 +10,21 @@ _$_InspectionOverview _$$_InspectionOverviewFromJson(
         Map<String, dynamic> json) =>
     _$_InspectionOverview(
       schedule: json['schedule'] == null
-          ? Schedule.empty
+          ? const Schedule()
           : Schedule.fromJson(json['schedule'] as Map<String, dynamic>),
       weather: $enumDecodeNullable(_$WeatherEnumMap, json['weather']) ??
           Weather.unknown,
       housingType:
           $enumDecodeNullable(_$HousingTypeEnumMap, json['housingType']) ??
-              HousingType.none,
+              HousingType.detached,
       clientName: json['clientName'] as String? ?? '',
       witnessName: json['witnessName'] as String? ?? '',
       inspector: json['inspector'] == null
-          ? User.empty
+          ? const User(id: '')
           : User.fromJson(json['inspector'] as Map<String, dynamic>),
+      building: json['building'] == null
+          ? const Building()
+          : Building.fromJson(json['building'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_InspectionOverviewToJson(
@@ -33,6 +36,7 @@ Map<String, dynamic> _$$_InspectionOverviewToJson(
       'clientName': instance.clientName,
       'witnessName': instance.witnessName,
       'inspector': instance.inspector,
+      'building': instance.building,
     };
 
 const _$WeatherEnumMap = {
@@ -44,7 +48,6 @@ const _$WeatherEnumMap = {
 };
 
 const _$HousingTypeEnumMap = {
-  HousingType.none: 'none',
   HousingType.detached: 'detached',
   HousingType.apartmentUnits: 'apartmentUnits',
   HousingType.apartmentBuilding: 'apartmentBuilding',

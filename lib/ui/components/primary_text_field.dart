@@ -6,10 +6,12 @@ class PrimaryTextField extends StatelessWidget {
     super.key,
     required this.onChange,
     this.hintText = '',
+    this.fixedText = '',
   });
 
   final Function(String) onChange;
   final String hintText;
+  final String fixedText;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +19,8 @@ class PrimaryTextField extends StatelessWidget {
       borderSide: BorderSide(color: Colors.white),
     );
 
-    return TextField(
-      style: const TextStyle(
-        fontSize: 14,
-      ),
+    final child = TextField(
+      style: TextStyles.n14,
       maxLines: 1,
       minLines: 1,
       onChanged: onChange,
@@ -40,5 +40,22 @@ class PrimaryTextField extends StatelessWidget {
         filled: true,
       ),
     );
+
+    if (fixedText.isNotEmpty) {
+      return Row(
+        children: [
+          Expanded(
+            child: child,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            fixedText,
+            style: TextStyles.n14,
+          ),
+        ],
+      );
+    }
+
+    return child;
   }
 }

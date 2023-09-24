@@ -13,7 +13,7 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['createdAt'] as String),
       overview: json['overview'] == null
-          ? InspectionOverview.empty
+          ? const InspectionOverview()
           : InspectionOverview.fromJson(
               json['overview'] as Map<String, dynamic>),
     );

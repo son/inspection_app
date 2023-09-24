@@ -214,7 +214,7 @@ class __$$_BuildingCopyWithImpl<$Res>
 class _$_Building extends _Building {
   const _$_Building(
       {this.name = '',
-      this.structureType = StructureType.none,
+      this.structureType = StructureType.wooden,
       this.totalFloorArea = 0.0,
       this.floor = const Floor(),
       this.address = const Address(),
@@ -417,7 +417,7 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
 /// @nodoc
 @JsonSerializable()
 class _$_Floor extends _Floor {
-  const _$_Floor({this.ground = 0, this.underground = 0}) : super._();
+  const _$_Floor({this.ground = 1, this.underground = 0}) : super._();
 
   factory _$_Floor.fromJson(Map<String, dynamic> json) =>
       _$$_FloorFromJson(json);

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:inspection_app/data/entities/building/building.dart';
 
 import '../user/user.dart';
 
@@ -10,18 +11,17 @@ class InspectionOverview with _$InspectionOverview {
   const InspectionOverview._();
 
   const factory InspectionOverview({
-    @Default(Schedule.empty) Schedule schedule,
+    @Default(Schedule()) Schedule schedule,
     @Default(Weather.unknown) Weather weather,
-    @Default(HousingType.none) HousingType housingType,
+    @Default(HousingType.detached) HousingType housingType,
     @Default('') String clientName,
     @Default('') String witnessName,
-    @Default(User.empty) User inspector,
+    @Default(User(id: '')) User inspector,
+    @Default(Building()) Building building,
   }) = _InspectionOverview;
 
   factory InspectionOverview.fromJson(Map<String, dynamic> json) =>
       _$InspectionOverviewFromJson(json);
-
-  static const empty = InspectionOverview._();
 }
 
 enum Weather {
@@ -32,16 +32,17 @@ enum Weather {
   snowy(name: '雪');
 
   const Weather({required this.name});
+
   final String name;
 }
 
 enum HousingType {
-  none(name: ''),
   detached(name: '一戸建ての住宅'),
   apartmentUnits(name: '（共同住宅など）住戸型'),
   apartmentBuilding(name: '（共同住宅など）住棟型');
 
   const HousingType({required this.name});
+
   final String name;
   static const title = '調査の区分';
 }
@@ -57,6 +58,4 @@ class Schedule with _$Schedule {
 
   factory Schedule.fromJson(Map<String, dynamic> json) =>
       _$ScheduleFromJson(json);
-
-  static const empty = Schedule._();
 }

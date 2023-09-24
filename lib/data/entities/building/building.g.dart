@@ -10,7 +10,7 @@ _$_Building _$$_BuildingFromJson(Map<String, dynamic> json) => _$_Building(
       name: json['name'] as String? ?? '',
       structureType:
           $enumDecodeNullable(_$StructureTypeEnumMap, json['structureType']) ??
-              StructureType.none,
+              StructureType.wooden,
       totalFloorArea: (json['totalFloorArea'] as num?)?.toDouble() ?? 0.0,
       floor: json['floor'] == null
           ? const Floor()
@@ -38,7 +38,6 @@ Map<String, dynamic> _$$_BuildingToJson(_$_Building instance) =>
     };
 
 const _$StructureTypeEnumMap = {
-  StructureType.none: 'none',
   StructureType.wooden: 'wooden',
   StructureType.steel: 'steel',
   StructureType.reinforcedConcrete: 'reinforcedConcrete',
@@ -47,7 +46,7 @@ const _$StructureTypeEnumMap = {
 };
 
 _$_Floor _$$_FloorFromJson(Map<String, dynamic> json) => _$_Floor(
-      ground: json['ground'] as int? ?? 0,
+      ground: json['ground'] as int? ?? 1,
       underground: json['underground'] as int? ?? 0,
     );
 

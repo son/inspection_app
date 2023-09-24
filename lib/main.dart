@@ -17,6 +17,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: false,
+        scaffoldBackgroundColor: const Color(0xFFF2F7FF),
         colorScheme: const ColorScheme.light(
           background: Colors.white,
         ),
