@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
+import 'package:inspection_app/data/entities/values/prefecture.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/text_styles.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
@@ -38,6 +39,7 @@ class InspectionPage extends HookConsumerWidget {
         ],
       ),
       body: SingleChildScrollView(
+        clipBehavior: Clip.none,
         padding: EdgeInsets.only(
           top: MediaQuery.paddingOf(context).top + kToolbarHeight + 16,
           left: 16,
@@ -99,9 +101,22 @@ class InspectionPage extends HookConsumerWidget {
                 ),
                 SectionItem(
                   title: '都道府県',
-                  child: PrimaryTextField(
-                    hintText: 'xx県',
-                    onChange: (text) {},
+                  child: DropdownField<String>(
+                    value: SelectionItem(
+                      value: inspection.overview.building.prefecture,
+                      name: inspection.overview.building.prefecture,
+                    ),
+                    all: PREFECTURES
+                        .map((value) => SelectionItem(
+                              value: value,
+                              name: value,
+                            ))
+                        .toList(),
+                    onSelect: (value) {
+                      ref
+                          .read(inspectionProvider.notifier)
+                          .updatePrefecture(value);
+                    },
                   ),
                 ),
                 SectionItem(
@@ -183,10 +198,11 @@ class InspectionPage extends HookConsumerWidget {
                   title: '階数',
                   child: Row(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 100,
                         child: DropdownField<int>(
+                          leftText: '地上 ',
                           value: SelectionItem(
                             value: inspection.overview.building.floor.ground,
                             name:
@@ -208,6 +224,7 @@ class InspectionPage extends HookConsumerWidget {
                       SizedBox(
                         width: 100,
                         child: DropdownField<int>(
+                          leftText: '地下 ',
                           value: SelectionItem(
                             value:
                                 inspection.overview.building.floor.underground,
@@ -230,7 +247,98 @@ class InspectionPage extends HookConsumerWidget {
                     ],
                   ),
                 ),
+                SectionItem(
+                  axis: Axis.vertical,
+                  title: '調査所見',
+                  child: PrimaryTextField(
+                    textAlign: TextAlign.start,
+                    maxLines: 100,
+                    onChange: (text) {},
+                  ),
+                ),
+                // TODO: 建築時期
+                // SectionItem(
+                //   title: '建築時期',
+                //   child: Row(
+                //     children: [
+                //       const Spacer(),
+                //       SizedBox(
+                //         width: 100,
+                //         child: DropdownField<int>(
+                //           rightText: '年',
+                //           value: SelectionItem(
+                //             value: inspection.overview.building.floor.ground,
+                //             name:
+                //                 '${inspection.overview.building.floor.ground} 階',
+                //           ),
+                //           all: List.generate(63, (index) => index + 1)
+                //               .map((value) => SelectionItem(
+                //                     value: value,
+                //                     name: '$value 階',
+                //                   ))
+                //               .toList(),
+                //           onSelect: (value) {
+                //             ref
+                //                 .read(inspectionProvider.notifier)
+                //                 .updateGround(value);
+                //           },
+                //         ),
+                //       ),
+                //       SizedBox(
+                //         width: 100,
+                //         child: DropdownField<int>(
+                //           value: SelectionItem(
+                //             value:
+                //                 inspection.overview.building.floor.underground,
+                //             name:
+                //                 '${inspection.overview.building.floor.underground} 月',
+                //           ),
+                //           all: List.generate(4, (index) => index)
+                //               .map((value) => SelectionItem(
+                //                     value: value,
+                //                     name: '$value 月',
+                //                   ))
+                //               .toList(),
+                //           onSelect: (value) {
+                //             ref
+                //                 .read(inspectionProvider.notifier)
+                //                 .updateUnderGround(value);
+                //           },
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
+            ),
+            const SizedBox(height: 16),
+            Section(
+              title: '調査時の状況',
+              children: [
+                SectionItem(
+                  title: '天候',
+                  child: DropdownField<Weather>(
+                    value: SelectionItem(
+                      value: inspection.overview.weather,
+                      name: inspection.overview.weather.name,
+                    ),
+                    all: Weather.values
+                        .map((value) => SelectionItem(
+                              value: value,
+                              name: value.name,
+                            ))
+                        .toList(),
+                    onSelect: (weather) {
+                      ref
+                          .read(inspectionProvider.notifier)
+                          .updateWeather(weather);
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.paddingOf(context).bottom,
             ),
           ],
         ),

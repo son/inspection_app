@@ -14,7 +14,7 @@ class Building with _$Building {
     @Default(0.0) double totalFloorArea,
     @Default(Floor()) Floor floor,
     @Default(Address()) Address address,
-    @Default('') String prefecture,
+    @Default('東京都') String prefecture,
     @Default('') String findings,
     DateTime? builtAt,
   }) = _Building;

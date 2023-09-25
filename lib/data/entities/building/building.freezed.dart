@@ -218,7 +218,7 @@ class _$_Building extends _Building {
       this.totalFloorArea = 0.0,
       this.floor = const Floor(),
       this.address = const Address(),
-      this.prefecture = '',
+      this.prefecture = '東京都',
       this.findings = '',
       this.builtAt})
       : super._();

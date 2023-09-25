@@ -1,4 +1,6 @@
-const prefectures = [
+// ignore_for_file: constant_identifier_names
+
+const PREFECTURES = [
   '北海道',
   '青森県',
   '岩手県',

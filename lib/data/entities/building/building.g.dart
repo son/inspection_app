@@ -18,7 +18,7 @@ _$_Building _$$_BuildingFromJson(Map<String, dynamic> json) => _$_Building(
       address: json['address'] == null
           ? const Address()
           : Address.fromJson(json['address'] as Map<String, dynamic>),
-      prefecture: json['prefecture'] as String? ?? '',
+      prefecture: json['prefecture'] as String? ?? '東京都',
       findings: json['findings'] as String? ?? '',
       builtAt: json['builtAt'] == null
           ? null

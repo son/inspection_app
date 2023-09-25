@@ -7,11 +7,15 @@ class PrimaryTextField extends StatelessWidget {
     required this.onChange,
     this.hintText = '',
     this.fixedText = '',
+    this.maxLines = 1,
+    this.textAlign = TextAlign.end,
   });
 
   final Function(String) onChange;
   final String hintText;
   final String fixedText;
+  final int maxLines;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +25,11 @@ class PrimaryTextField extends StatelessWidget {
 
     final child = TextField(
       style: TextStyles.n14,
-      maxLines: 1,
+      maxLines: maxLines,
       minLines: 1,
       onChanged: onChange,
       cursorColor: Colors.blueAccent,
-      textAlign: TextAlign.end,
+      textAlign: textAlign,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyles.n12.copyWith(color: Colors.grey),

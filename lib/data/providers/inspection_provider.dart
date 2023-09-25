@@ -12,6 +12,14 @@ class InspectionNotifier extends StateNotifier<Inspection> {
   InspectionNotifier({required this.ref}) : super(Inspection.empty);
   final Ref ref;
 
+  void updatePrefecture(String prefecture) {
+    state = state.copyWith(
+      overview: state.overview.copyWith(
+        building: state.overview.building.copyWith(prefecture: prefecture),
+      ),
+    );
+  }
+
   void updateHousingType(HousingType type) {
     state = state.copyWith(
       overview: state.overview.copyWith(housingType: type),
@@ -46,5 +54,9 @@ class InspectionNotifier extends StateNotifier<Inspection> {
         ),
       ),
     );
+  }
+
+  void updateWeather(Weather weather) {
+    state = state.copyWith(overview: state.overview.copyWith(weather: weather));
   }
 }

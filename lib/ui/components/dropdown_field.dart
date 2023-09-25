@@ -9,11 +9,15 @@ class DropdownField<T> extends StatelessWidget {
     required this.value,
     required this.all,
     required this.onSelect,
+    this.leftText = '',
+    this.rightText = '',
   });
 
   final SelectionItem<T> value;
   final List<SelectionItem<T>> all;
   final Function(T) onSelect;
+  final String leftText;
+  final String rightText;
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +60,12 @@ class DropdownField<T> extends StatelessWidget {
           selectedMenuItemBuilder: (context, widget) {
             return Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  height: 0.3,
-                  width: double.infinity,
-                  color: Colors.grey,
-                ),
+                if (value != all.first)
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    height: 1,
+                    color: Colors.grey,
+                  ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 12,
@@ -70,9 +74,9 @@ class DropdownField<T> extends StatelessWidget {
                   child: Row(
                     children: [
                       const Icon(
-                        Icons.check,
+                        Icons.check_rounded,
                         color: Colors.black87,
-                        size: 24,
+                        size: 20,
                       ),
                       const SizedBox(width: 8),
                       Text(
@@ -92,7 +96,7 @@ class DropdownField<T> extends StatelessWidget {
                 (value) => Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    value.name,
+                    '$leftText${value.name}$rightText',
                     style: TextStyles.n14,
                   ),
                 ),
