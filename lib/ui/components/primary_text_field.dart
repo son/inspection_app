@@ -5,12 +5,14 @@ class PrimaryTextField extends StatelessWidget {
   const PrimaryTextField({
     super.key,
     required this.onChange,
+    this.controller,
     this.hintText = '',
     this.fixedText = '',
     this.maxLines = 1,
     this.textAlign = TextAlign.end,
   });
 
+  final TextEditingController? controller;
   final Function(String) onChange;
   final String hintText;
   final String fixedText;

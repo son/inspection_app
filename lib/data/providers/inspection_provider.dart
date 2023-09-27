@@ -59,4 +59,36 @@ class InspectionNotifier extends StateNotifier<Inspection> {
   void updateWeather(Weather weather) {
     state = state.copyWith(overview: state.overview.copyWith(weather: weather));
   }
+
+  void updateCreatedAt(DateTime createdAt) {
+    state = state.copyWith(createdAt: createdAt);
+  }
+
+  void updateSchedule(Schedule schedule) {
+    state = state.copyWith(
+      overview: state.overview.copyWith(schedule: schedule),
+    );
+  }
+
+  void updateLifeline(Lifeline lifeline) {
+    state = state.copyWith(
+      overview: state.overview.copyWith(lifeline: lifeline),
+    );
+  }
+
+  void updateRepairing(Repairing repairing) {
+    state = state.copyWith(
+      overview: state.overview.copyWith(
+        building: state.overview.building.copyWith(repairing: repairing),
+      ),
+    );
+  }
+
+  void updateRenovation(Renovation renovation) {
+    state = state.copyWith(
+      overview: state.overview.copyWith(
+        building: state.overview.building.copyWith(renovation: renovation),
+      ),
+    );
+  }
 }

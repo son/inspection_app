@@ -25,6 +25,9 @@ _$_InspectionOverview _$$_InspectionOverviewFromJson(
       building: json['building'] == null
           ? const Building()
           : Building.fromJson(json['building'] as Map<String, dynamic>),
+      lifeline: json['lifeline'] == null
+          ? const Lifeline()
+          : Lifeline.fromJson(json['lifeline'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_InspectionOverviewToJson(
@@ -37,6 +40,7 @@ Map<String, dynamic> _$$_InspectionOverviewToJson(
       'witnessName': instance.witnessName,
       'inspector': instance.inspector,
       'building': instance.building,
+      'lifeline': instance.lifeline,
     };
 
 const _$WeatherEnumMap = {
@@ -66,4 +70,17 @@ Map<String, dynamic> _$$_ScheduleToJson(_$_Schedule instance) =>
     <String, dynamic>{
       'startedAt': instance.startedAt?.toIso8601String(),
       'endedAt': instance.endedAt?.toIso8601String(),
+    };
+
+_$_Lifeline _$$_LifelineFromJson(Map<String, dynamic> json) => _$_Lifeline(
+      water: json['water'] as bool? ?? false,
+      electricity: json['electricity'] as bool? ?? false,
+      gas: json['gas'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$_LifelineToJson(_$_Lifeline instance) =>
+    <String, dynamic>{
+      'water': instance.water,
+      'electricity': instance.electricity,
+      'gas': instance.gas,
     };

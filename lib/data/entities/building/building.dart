@@ -15,6 +15,8 @@ class Building with _$Building {
     @Default(Floor()) Floor floor,
     @Default(Address()) Address address,
     @Default('東京都') String prefecture,
+    @Default(Repairing()) Repairing repairing,
+    @Default(Renovation()) Renovation renovation,
     @Default('') String findings,
     DateTime? builtAt,
   }) = _Building;
@@ -46,4 +48,31 @@ class Floor with _$Floor {
   }) = _Floor;
 
   factory Floor.fromJson(Map<String, dynamic> json) => _$FloorFromJson(json);
+}
+
+@freezed
+class Repairing with _$Repairing {
+  const Repairing._();
+
+  const factory Repairing({
+    @Default(false) bool repaired,
+    @Default('') String parts,
+    @Default('') String remarks,
+  }) = _Repairing;
+
+  factory Repairing.fromJson(Map<String, dynamic> json) =>
+      _$RepairingFromJson(json);
+}
+
+@freezed
+class Renovation with _$Renovation {
+  const Renovation._();
+
+  const factory Renovation({
+    @Default(false) bool renovating,
+    @Default('') String parts,
+  }) = _Renovation;
+
+  factory Renovation.fromJson(Map<String, dynamic> json) =>
+      _$RenovationFromJson(json);
 }
