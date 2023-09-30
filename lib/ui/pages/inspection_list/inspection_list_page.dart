@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
-import '../../../text_styles.dart';
+import '../../components/text_styles.dart';
 import 'children/inspection_list_item.dart';
 
 class InspectionListPage extends HookConsumerWidget {

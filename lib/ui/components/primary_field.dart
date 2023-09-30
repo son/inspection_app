@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inspection_app/text_styles.dart';
+import 'package:inspection_app/ui/components/text_styles.dart';
 
 class PrimaryField extends StatelessWidget {
   const PrimaryField({

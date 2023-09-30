@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inspection_app/text_styles.dart';
+import 'package:inspection_app/ui/components/text_styles.dart';
 
 class CreateButton extends StatelessWidget {
   const CreateButton({super.key, required this.onTap});
+
   final Function() onTap;
 
   @override

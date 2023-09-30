@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/text_styles.dart';
+import 'package:inspection_app/ui/components/text_styles.dart';
 
 class InspectionListItem extends HookConsumerWidget {
   const InspectionListItem({super.key, required this.onTap});

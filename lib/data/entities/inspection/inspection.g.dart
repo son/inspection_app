@@ -16,6 +16,14 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
           ? const InspectionOverview()
           : InspectionOverview.fromJson(
               json['overview'] as Map<String, dynamic>),
+      photos: (json['photos'] as List<dynamic>?)
+              ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Photo>[],
+      blueprints: (json['blueprints'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
     );
 
 Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
@@ -23,4 +31,6 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
       'id': instance.id,
       'createdAt': instance.createdAt?.toIso8601String(),
       'overview': instance.overview,
+      'photos': instance.photos,
+      'blueprints': instance.blueprints,
     };

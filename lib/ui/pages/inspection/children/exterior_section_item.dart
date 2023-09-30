@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/ui/pages/image/images_page.dart';
 import 'package:inspection_app/ui/pages/inspection/children/image_item.dart';
 
-class BlueprintsSectionItem extends HookConsumerWidget {
-  const BlueprintsSectionItem({super.key});
+class ExteriorSectionItem extends HookConsumerWidget {
+  const ExteriorSectionItem({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

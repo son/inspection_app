@@ -23,6 +23,8 @@ mixin _$Inspection {
   String get id => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   InspectionOverview get overview => throw _privateConstructorUsedError;
+  List<Photo> get photos => throw _privateConstructorUsedError;
+  List<String> get blueprints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,12 @@ abstract class $InspectionCopyWith<$Res> {
           Inspection value, $Res Function(Inspection) then) =
       _$InspectionCopyWithImpl<$Res, Inspection>;
   @useResult
-  $Res call({String id, DateTime? createdAt, InspectionOverview overview});
+  $Res call(
+      {String id,
+      DateTime? createdAt,
+      InspectionOverview overview,
+      List<Photo> photos,
+      List<String> blueprints});
 
   $InspectionOverviewCopyWith<$Res> get overview;
 }
@@ -57,6 +64,8 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
     Object? id = null,
     Object? createdAt = freezed,
     Object? overview = null,
+    Object? photos = null,
+    Object? blueprints = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -71,6 +80,14 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as InspectionOverview,
+      photos: null == photos
+          ? _value.photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<Photo>,
+      blueprints: null == blueprints
+          ? _value.blueprints
+          : blueprints // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 
@@ -91,7 +108,12 @@ abstract class _$$_InspectionCopyWith<$Res>
       __$$_InspectionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, DateTime? createdAt, InspectionOverview overview});
+  $Res call(
+      {String id,
+      DateTime? createdAt,
+      InspectionOverview overview,
+      List<Photo> photos,
+      List<String> blueprints});
 
   @override
   $InspectionOverviewCopyWith<$Res> get overview;
@@ -111,6 +133,8 @@ class __$$_InspectionCopyWithImpl<$Res>
     Object? id = null,
     Object? createdAt = freezed,
     Object? overview = null,
+    Object? photos = null,
+    Object? blueprints = null,
   }) {
     return _then(_$_Inspection(
       id: null == id
@@ -125,6 +149,14 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as InspectionOverview,
+      photos: null == photos
+          ? _value._photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<Photo>,
+      blueprints: null == blueprints
+          ? _value._blueprints
+          : blueprints // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -135,8 +167,12 @@ class _$_Inspection extends _Inspection {
   const _$_Inspection(
       {required this.id,
       this.createdAt,
-      this.overview = const InspectionOverview()})
-      : super._();
+      this.overview = const InspectionOverview(),
+      final List<Photo> photos = const <Photo>[],
+      final List<String> blueprints = const <String>[]})
+      : _photos = photos,
+        _blueprints = blueprints,
+        super._();
 
   factory _$_Inspection.fromJson(Map<String, dynamic> json) =>
       _$$_InspectionFromJson(json);
@@ -148,10 +184,27 @@ class _$_Inspection extends _Inspection {
   @override
   @JsonKey()
   final InspectionOverview overview;
+  final List<Photo> _photos;
+  @override
+  @JsonKey()
+  List<Photo> get photos {
+    if (_photos is EqualUnmodifiableListView) return _photos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_photos);
+  }
+
+  final List<String> _blueprints;
+  @override
+  @JsonKey()
+  List<String> get blueprints {
+    if (_blueprints is EqualUnmodifiableListView) return _blueprints;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_blueprints);
+  }
 
   @override
   String toString() {
-    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview)';
+    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints)';
   }
 
   @override
@@ -163,12 +216,21 @@ class _$_Inspection extends _Inspection {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.overview, overview) ||
-                other.overview == overview));
+                other.overview == overview) &&
+            const DeepCollectionEquality().equals(other._photos, _photos) &&
+            const DeepCollectionEquality()
+                .equals(other._blueprints, _blueprints));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, overview);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      overview,
+      const DeepCollectionEquality().hash(_photos),
+      const DeepCollectionEquality().hash(_blueprints));
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +250,9 @@ abstract class _Inspection extends Inspection {
   const factory _Inspection(
       {required final String id,
       final DateTime? createdAt,
-      final InspectionOverview overview}) = _$_Inspection;
+      final InspectionOverview overview,
+      final List<Photo> photos,
+      final List<String> blueprints}) = _$_Inspection;
   const _Inspection._() : super._();
 
   factory _Inspection.fromJson(Map<String, dynamic> json) =
@@ -200,6 +264,10 @@ abstract class _Inspection extends Inspection {
   DateTime? get createdAt;
   @override
   InspectionOverview get overview;
+  @override
+  List<Photo> get photos;
+  @override
+  List<String> get blueprints;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionCopyWith<_$_Inspection> get copyWith =>

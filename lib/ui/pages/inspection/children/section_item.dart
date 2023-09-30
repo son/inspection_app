@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:inspection_app/text_styles.dart';
+import 'package:inspection_app/ui/components/text_styles.dart';
 
 class SectionItem extends StatelessWidget {
   const SectionItem({
@@ -17,6 +17,7 @@ class SectionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     if (axis == Axis.vertical) {
       return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16),

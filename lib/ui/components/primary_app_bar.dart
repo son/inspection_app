@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:inspection_app/text_styles.dart';
+import 'package:inspection_app/ui/components/text_styles.dart';
 
 class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PrimaryAppBar({
     super.key,
-    required this.title,
+    this.title = '',
     this.actions = const [],
+    this.leading,
+    this.brightness = Brightness.light,
   });
 
   final String title;
   final List<Widget> actions;
+  final Widget? leading;
+  final Brightness brightness;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -19,9 +23,9 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.light, // for iOS
-        statusBarIconBrightness: Brightness.light, // for Android
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarBrightness: brightness, // for iOS
+        statusBarIconBrightness: brightness, // for Android
       ),
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.black87,
@@ -29,6 +33,7 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: TextStyles.b16,
       ),
+      leading: leading,
       actions: actions,
     );
   }

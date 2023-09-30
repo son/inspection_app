@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:inspection_app/data/entities/building/building.dart';
-import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
+import 'package:inspection_app/data/entities/photo/photo.dart';
+
+import 'inspection_overview.dart';
 
 part 'inspection.freezed.dart';
 part 'inspection.g.dart';
@@ -13,6 +14,8 @@ class Inspection with _$Inspection {
     required String id,
     DateTime? createdAt,
     @Default(InspectionOverview()) InspectionOverview overview,
+    @Default(<Photo>[]) List<Photo> photos,
+    @Default(<String>[]) List<String> blueprints,
   }) = _Inspection;
 
   factory Inspection.fromJson(Map<String, dynamic> json) =>

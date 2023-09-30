@@ -8,12 +8,13 @@ import 'package:inspection_app/data/entities/selection_item/selection_item.dart'
 import 'package:inspection_app/data/entities/values/prefecture.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/data/utils/date_utils.dart';
-import 'package:inspection_app/text_styles.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/primary_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
+import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/children/blueprints_section_item.dart';
+import 'package:inspection_app/ui/pages/inspection/children/exterior_section_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
 
@@ -31,7 +32,6 @@ class InspectionPage extends HookConsumerWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PrimaryAppBar(
-        title: '',
         actions: [
           TextButton(
             onPressed: () {},
@@ -40,10 +40,16 @@ class InspectionPage extends HookConsumerWidget {
               style: TextStyles.n16.copyWith(color: Colors.red),
             ),
           ),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'PDF',
+              style: TextStyles.n16.copyWith(color: Colors.blue),
+            ),
+          ),
         ],
       ),
       body: ListView(
-        clipBehavior: Clip.none,
         padding: EdgeInsets.only(
           top: MediaQuery.paddingOf(context).top + kToolbarHeight + 16,
           left: 16,
@@ -586,7 +592,17 @@ class InspectionPage extends HookConsumerWidget {
                 title: '設計図書（建物配置図・平面図・立面図など）',
                 child: BlueprintsSectionItem(),
               ),
+              SectionItem(
+                axis: Axis.vertical,
+                title: '外観、現況写真の撮影',
+                child: ExteriorSectionItem(),
+              ),
             ],
+          ),
+          const SizedBox(height: 16),
+          const Section(
+            title: '外回りの調査',
+            children: [],
           ),
           SizedBox(
             height: MediaQuery.paddingOf(context).bottom,
