@@ -1,60 +1,37 @@
+import 'package:collection/collection.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 
-class DropdownField<T> extends StatelessWidget {
-  const DropdownField({
+class MultiDropdownField<T> extends StatelessWidget {
+  const MultiDropdownField({
     super.key,
-    required this.value,
+    required this.values,
     required this.all,
     required this.onSelect,
     this.leftText = '',
     this.rightText = '',
-    this.color = Colors.black87,
   });
 
-  final SelectionItem<T> value;
+  final List<SelectionItem<T>> values;
   final List<SelectionItem<T>> all;
-  final Function(T) onSelect;
+  final Function(List<T>) onSelect;
   final String leftText;
   final String rightText;
-  final Color color;
-
-  static DropdownField result({
-    required Result result,
-    required Function(Result) onSelect,
-  }) {
-    return DropdownField<Result>(
-      color: switch (result) {
-        Result.none => Colors.grey,
-        Result.passed => Colors.blue,
-        Result.failure => Colors.red,
-      },
-      value: SelectionItem(
-        value: result,
-        name: result.label,
-      ),
-      all: Result.values
-          .map((value) => SelectionItem(
-                value: value,
-                name: value.label,
-              ))
-          .toList(),
-      onSelect: onSelect,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
         isExpanded: true,
-        value: value,
+        value: values.isEmpty ? null : values.last,
         onChanged: (SelectionItem<T>? value) {
           if (value?.value == null) return;
-          onSelect(value!.value);
+          final raws = values.map((e) => e.value).toList();
+          values.contains(value)
+              ? onSelect([...raws]..remove(value!.value))
+              : onSelect([...raws, value!.value]);
         },
         iconStyleData: const IconStyleData(
           icon: Icon(
@@ -83,48 +60,15 @@ class DropdownField<T> extends StatelessWidget {
             ],
           ),
         ),
-        menuItemStyleData: MenuItemStyleData(
-          selectedMenuItemBuilder: (context, widget) {
-            return Column(
-              children: [
-                if (value != all.first)
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    height: 1,
-                    color: Colors.grey,
-                  ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 16,
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.check_rounded,
-                        color: Colors.black87,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        value.name,
-                        style: TextStyles.n14,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
         selectedItemBuilder: (context) {
           return all
               .map(
                 (value) => Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    '$leftText${value.name}$rightText',
-                    style: TextStyles.n14.copyWith(color: color),
+                    '$leftText${values.map((e) => e.name).sorted().join('、')}$rightText',
+                    style: TextStyles.n14,
+                    maxLines: 2,
                   ),
                 ),
               )
@@ -147,7 +91,16 @@ class DropdownField<T> extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const SizedBox(width: 32),
+                      if (values.contains(item)) ...[
+                        const Icon(
+                          Icons.check_rounded,
+                          color: Colors.black87,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
+                      ] else ...[
+                        const SizedBox(width: 32),
+                      ],
                       Text(
                         item.name,
                         style: TextStyles.n14,

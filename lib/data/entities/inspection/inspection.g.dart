@@ -24,6 +24,9 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const <String>[],
+      foundation: json['foundation'] == null
+          ? const Foundation()
+          : Foundation.fromJson(json['foundation'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
@@ -33,4 +36,5 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
       'overview': instance.overview,
       'photos': instance.photos,
       'blueprints': instance.blueprints,
+      'foundation': instance.foundation,
     };

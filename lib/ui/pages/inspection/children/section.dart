@@ -10,11 +10,13 @@ class Section extends HookConsumerWidget {
     required this.title,
     this.caption,
     required this.children,
+    this.padding = const EdgeInsets.all(16),
   });
 
   final String title;
   final String? caption;
   final List<Widget> children;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,10 +27,7 @@ class Section extends HookConsumerWidget {
         expanded.value = !expanded.value;
       },
       child: Container(
-        padding: EdgeInsets.only(
-          left: 16,
-          top: 16,
-          right: 16,
+        padding: padding.copyWith(
           bottom: expanded.value ? 0 : 16,
         ),
         decoration: BoxDecoration(

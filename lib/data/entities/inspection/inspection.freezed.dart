@@ -25,6 +25,7 @@ mixin _$Inspection {
   InspectionOverview get overview => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
   List<String> get blueprints => throw _privateConstructorUsedError;
+  Foundation get foundation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,9 +44,11 @@ abstract class $InspectionCopyWith<$Res> {
       DateTime? createdAt,
       InspectionOverview overview,
       List<Photo> photos,
-      List<String> blueprints});
+      List<String> blueprints,
+      Foundation foundation});
 
   $InspectionOverviewCopyWith<$Res> get overview;
+  $FoundationCopyWith<$Res> get foundation;
 }
 
 /// @nodoc
@@ -66,6 +69,7 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
     Object? overview = null,
     Object? photos = null,
     Object? blueprints = null,
+    Object? foundation = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -88,6 +92,10 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.blueprints
           : blueprints // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      foundation: null == foundation
+          ? _value.foundation
+          : foundation // ignore: cast_nullable_to_non_nullable
+              as Foundation,
     ) as $Val);
   }
 
@@ -96,6 +104,14 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
   $InspectionOverviewCopyWith<$Res> get overview {
     return $InspectionOverviewCopyWith<$Res>(_value.overview, (value) {
       return _then(_value.copyWith(overview: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FoundationCopyWith<$Res> get foundation {
+    return $FoundationCopyWith<$Res>(_value.foundation, (value) {
+      return _then(_value.copyWith(foundation: value) as $Val);
     });
   }
 }
@@ -113,10 +129,13 @@ abstract class _$$_InspectionCopyWith<$Res>
       DateTime? createdAt,
       InspectionOverview overview,
       List<Photo> photos,
-      List<String> blueprints});
+      List<String> blueprints,
+      Foundation foundation});
 
   @override
   $InspectionOverviewCopyWith<$Res> get overview;
+  @override
+  $FoundationCopyWith<$Res> get foundation;
 }
 
 /// @nodoc
@@ -135,6 +154,7 @@ class __$$_InspectionCopyWithImpl<$Res>
     Object? overview = null,
     Object? photos = null,
     Object? blueprints = null,
+    Object? foundation = null,
   }) {
     return _then(_$_Inspection(
       id: null == id
@@ -157,6 +177,10 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value._blueprints
           : blueprints // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      foundation: null == foundation
+          ? _value.foundation
+          : foundation // ignore: cast_nullable_to_non_nullable
+              as Foundation,
     ));
   }
 }
@@ -169,7 +193,8 @@ class _$_Inspection extends _Inspection {
       this.createdAt,
       this.overview = const InspectionOverview(),
       final List<Photo> photos = const <Photo>[],
-      final List<String> blueprints = const <String>[]})
+      final List<String> blueprints = const <String>[],
+      this.foundation = const Foundation()})
       : _photos = photos,
         _blueprints = blueprints,
         super._();
@@ -203,8 +228,12 @@ class _$_Inspection extends _Inspection {
   }
 
   @override
+  @JsonKey()
+  final Foundation foundation;
+
+  @override
   String toString() {
-    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints)';
+    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation)';
   }
 
   @override
@@ -219,7 +248,9 @@ class _$_Inspection extends _Inspection {
                 other.overview == overview) &&
             const DeepCollectionEquality().equals(other._photos, _photos) &&
             const DeepCollectionEquality()
-                .equals(other._blueprints, _blueprints));
+                .equals(other._blueprints, _blueprints) &&
+            (identical(other.foundation, foundation) ||
+                other.foundation == foundation));
   }
 
   @JsonKey(ignore: true)
@@ -230,7 +261,8 @@ class _$_Inspection extends _Inspection {
       createdAt,
       overview,
       const DeepCollectionEquality().hash(_photos),
-      const DeepCollectionEquality().hash(_blueprints));
+      const DeepCollectionEquality().hash(_blueprints),
+      foundation);
 
   @JsonKey(ignore: true)
   @override
@@ -252,7 +284,8 @@ abstract class _Inspection extends Inspection {
       final DateTime? createdAt,
       final InspectionOverview overview,
       final List<Photo> photos,
-      final List<String> blueprints}) = _$_Inspection;
+      final List<String> blueprints,
+      final Foundation foundation}) = _$_Inspection;
   const _Inspection._() : super._();
 
   factory _Inspection.fromJson(Map<String, dynamic> json) =
@@ -268,6 +301,8 @@ abstract class _Inspection extends Inspection {
   List<Photo> get photos;
   @override
   List<String> get blueprints;
+  @override
+  Foundation get foundation;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionCopyWith<_$_Inspection> get copyWith =>

@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
+import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 
@@ -90,5 +91,9 @@ class InspectionNotifier extends StateNotifier<Inspection> {
         building: state.overview.building.copyWith(renovation: renovation),
       ),
     );
+  }
+
+  void updateFoundation(Foundation foundation) {
+    state = state.copyWith(foundation: foundation);
   }
 }
