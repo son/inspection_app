@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
+import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
@@ -12,11 +13,13 @@ import 'package:inspection_app/data/utils/date_utils.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
+import 'package:inspection_app/ui/components/primary_check_field.dart';
 import 'package:inspection_app/ui/components/primary_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/children/blueprints_section_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/exterior_section_item.dart';
+import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
@@ -608,6 +611,16 @@ class InspectionPage extends HookConsumerWidget {
           const SizedBox(height: 16),
           Section(
             title: '基礎',
+            actions: [
+              MenuButton(
+                onTapAllPassed: () {
+                  print('sss');
+                },
+                onTapNotApplicable: () {
+                  print('sss');
+                },
+              ),
+            ],
             children: [
               SectionItem(
                 axis: Axis.horizontal,
@@ -803,11 +816,23 @@ class InspectionPage extends HookConsumerWidget {
                   ),
                 ),
                 SectionItem(
-                  axis: Axis.horizontal,
-                  title: '　最大欠損深さ',
-                  child: PrimaryTextField(
-                    fixedText: 'mm',
-                    onChange: (text) {},
+                  axis: Axis.vertical,
+                  title: '　問題箇所詳細',
+                  child: PrimaryCheckList(
+                    all: DAMAGE_DETAILS,
+                    selecteds: inspection
+                        .foundation.concreteDeterioration.details
+                        .toSet(),
+                    onSelect: (selecteds) {
+                      final concreteDeterioration = inspection
+                          .foundation.concreteDeterioration
+                          .copyWith(details: selecteds.toList());
+                      final foundation = inspection.foundation.copyWith(
+                          concreteDeterioration: concreteDeterioration);
+                      ref
+                          .read(inspectionProvider.notifier)
+                          .updateFoundation(foundation);
+                    },
                   ),
                 ),
                 SectionItem(
@@ -862,14 +887,6 @@ class InspectionPage extends HookConsumerWidget {
                           .read(inspectionProvider.notifier)
                           .updateFoundation(foundation);
                     },
-                  ),
-                ),
-                SectionItem(
-                  axis: Axis.horizontal,
-                  title: '　最大欠損深さ',
-                  child: PrimaryTextField(
-                    fixedText: 'mm',
-                    onChange: (text) {},
                   ),
                 ),
                 SectionItem(
@@ -928,14 +945,6 @@ class InspectionPage extends HookConsumerWidget {
                   ),
                 ),
                 SectionItem(
-                  axis: Axis.horizontal,
-                  title: '　最大欠損深さ',
-                  child: PrimaryTextField(
-                    fixedText: 'mm',
-                    onChange: (text) {},
-                  ),
-                ),
-                SectionItem(
                   axis: Axis.vertical,
                   title: '　写真',
                   child: PhotoCaptionsItem(
@@ -981,6 +990,16 @@ class InspectionPage extends HookConsumerWidget {
           const SizedBox(height: 16),
           Section(
             title: '外壁',
+            actions: [
+              MenuButton(
+                onTapAllPassed: () {
+                  print('sss');
+                },
+                onTapNotApplicable: () {
+                  print('sss');
+                },
+              ),
+            ],
             children: [
               SectionItem(
                 axis: Axis.vertical,
@@ -992,6 +1011,16 @@ class InspectionPage extends HookConsumerWidget {
           const SizedBox(height: 16),
           Section(
             title: '屋根',
+            actions: [
+              MenuButton(
+                onTapAllPassed: () {
+                  print('sss');
+                },
+                onTapNotApplicable: () {
+                  print('sss');
+                },
+              ),
+            ],
             children: [
               SectionItem(
                 axis: Axis.vertical,

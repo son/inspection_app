@@ -23,7 +23,6 @@ class PhotoCaptionsItem extends StatelessWidget {
         return Column(
           children: [
             _AddItem(
-              size: size,
               onTap: onTapAdd,
             ),
             ...photos
@@ -97,9 +96,8 @@ class _Item extends StatelessWidget {
 }
 
 class _AddItem extends StatelessWidget {
-  const _AddItem({required this.size, required this.onTap});
+  const _AddItem({required this.onTap});
 
-  final double size;
   final Function() onTap;
 
   @override
@@ -110,28 +108,18 @@ class _AddItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: size,
-              width: size,
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Center(
-                child: Icon(
-                  Icons.add_rounded,
-                  color: Colors.white,
-                  size: 40,
-                ),
-              ),
+            const Icon(
+              Icons.add_rounded,
+              color: Colors.blue,
+              size: 20,
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 4),
             Text(
               'タップして画像と説明を追加する',
               style: TextStyles.n14.copyWith(
-                color: Colors.grey,
+                color: Colors.blue,
               ),
             ),
           ],

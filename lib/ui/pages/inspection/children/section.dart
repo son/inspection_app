@@ -11,12 +11,14 @@ class Section extends HookConsumerWidget {
     this.caption,
     required this.children,
     this.padding = const EdgeInsets.all(16),
+    this.actions = const [],
   });
 
   final String title;
   final String? caption;
   final List<Widget> children;
   final EdgeInsets padding;
+  final List<Widget> actions;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,6 +56,10 @@ class Section extends HookConsumerWidget {
                   ],
                 ),
                 const Spacer(),
+                if (actions.isNotEmpty) ...[
+                  ...actions.interleave(const SizedBox(width: 8)).toList(),
+                  const SizedBox(width: 8),
+                ],
                 Container(
                   decoration: const ShapeDecoration(
                     shape: StadiumBorder(),

@@ -16,23 +16,26 @@ class PrimaryCheckList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: all
-          .map<Widget>((title) => _Item(
-                title: title,
-                selected: selecteds.contains(title),
-                onTap: () {
-                  selecteds.contains(title)
-                      ? onSelect({...selecteds}..remove(title))
-                      : onSelect({...selecteds, title});
-                },
-              ))
-          .toList()
-          .interleave(Container(
-            height: 0.3,
-            width: double.infinity,
-            color: Colors.white,
-          )),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      child: Column(
+        children: all
+            .map<Widget>((title) => _Item(
+                  title: title,
+                  selected: selecteds.contains(title),
+                  onTap: () {
+                    selecteds.contains(title)
+                        ? onSelect({...selecteds}..remove(title))
+                        : onSelect({...selecteds, title});
+                  },
+                ))
+            .toList()
+            .interleave(Container(
+              height: 0.3,
+              width: double.infinity,
+              color: Colors.white,
+            )),
+      ),
     );
   }
 }
@@ -56,6 +59,7 @@ class _Item extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Icon(
               selected ? Icons.check_circle_rounded : Icons.circle_outlined,

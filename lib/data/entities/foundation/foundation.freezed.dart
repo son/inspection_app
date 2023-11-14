@@ -391,6 +391,7 @@ mixin _$Damage {
   List<Direction> get directions => throw _privateConstructorUsedError;
   double get max => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
+  List<String> get details => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -406,7 +407,8 @@ abstract class $DamageCopyWith<$Res> {
       {Result result,
       List<Direction> directions,
       double max,
-      List<Photo> photos});
+      List<Photo> photos,
+      List<String> details});
 }
 
 /// @nodoc
@@ -426,6 +428,7 @@ class _$DamageCopyWithImpl<$Res, $Val extends Damage>
     Object? directions = null,
     Object? max = null,
     Object? photos = null,
+    Object? details = null,
   }) {
     return _then(_value.copyWith(
       result: null == result
@@ -444,6 +447,10 @@ class _$DamageCopyWithImpl<$Res, $Val extends Damage>
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
               as List<Photo>,
+      details: null == details
+          ? _value.details
+          : details // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -458,7 +465,8 @@ abstract class _$$_DamageCopyWith<$Res> implements $DamageCopyWith<$Res> {
       {Result result,
       List<Direction> directions,
       double max,
-      List<Photo> photos});
+      List<Photo> photos,
+      List<String> details});
 }
 
 /// @nodoc
@@ -475,6 +483,7 @@ class __$$_DamageCopyWithImpl<$Res>
     Object? directions = null,
     Object? max = null,
     Object? photos = null,
+    Object? details = null,
   }) {
     return _then(_$_Damage(
       result: null == result
@@ -493,6 +502,10 @@ class __$$_DamageCopyWithImpl<$Res>
           ? _value._photos
           : photos // ignore: cast_nullable_to_non_nullable
               as List<Photo>,
+      details: null == details
+          ? _value._details
+          : details // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -504,9 +517,11 @@ class _$_Damage extends _Damage {
       {this.result = Result.none,
       final List<Direction> directions = const <Direction>[],
       this.max = 0.0,
-      final List<Photo> photos = const <Photo>[]})
+      final List<Photo> photos = const <Photo>[],
+      final List<String> details = const <String>[]})
       : _directions = directions,
         _photos = photos,
+        _details = details,
         super._();
 
   factory _$_Damage.fromJson(Map<String, dynamic> json) =>
@@ -536,9 +551,18 @@ class _$_Damage extends _Damage {
     return EqualUnmodifiableListView(_photos);
   }
 
+  final List<String> _details;
+  @override
+  @JsonKey()
+  List<String> get details {
+    if (_details is EqualUnmodifiableListView) return _details;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_details);
+  }
+
   @override
   String toString() {
-    return 'Damage(result: $result, directions: $directions, max: $max, photos: $photos)';
+    return 'Damage(result: $result, directions: $directions, max: $max, photos: $photos, details: $details)';
   }
 
   @override
@@ -550,7 +574,8 @@ class _$_Damage extends _Damage {
             const DeepCollectionEquality()
                 .equals(other._directions, _directions) &&
             (identical(other.max, max) || other.max == max) &&
-            const DeepCollectionEquality().equals(other._photos, _photos));
+            const DeepCollectionEquality().equals(other._photos, _photos) &&
+            const DeepCollectionEquality().equals(other._details, _details));
   }
 
   @JsonKey(ignore: true)
@@ -560,7 +585,8 @@ class _$_Damage extends _Damage {
       result,
       const DeepCollectionEquality().hash(_directions),
       max,
-      const DeepCollectionEquality().hash(_photos));
+      const DeepCollectionEquality().hash(_photos),
+      const DeepCollectionEquality().hash(_details));
 
   @JsonKey(ignore: true)
   @override
@@ -581,7 +607,8 @@ abstract class _Damage extends Damage {
       {final Result result,
       final List<Direction> directions,
       final double max,
-      final List<Photo> photos}) = _$_Damage;
+      final List<Photo> photos,
+      final List<String> details}) = _$_Damage;
   const _Damage._() : super._();
 
   factory _Damage.fromJson(Map<String, dynamic> json) = _$_Damage.fromJson;
@@ -594,6 +621,8 @@ abstract class _Damage extends Damage {
   double get max;
   @override
   List<Photo> get photos;
+  @override
+  List<String> get details;
   @override
   @JsonKey(ignore: true)
   _$$_DamageCopyWith<_$_Damage> get copyWith =>
