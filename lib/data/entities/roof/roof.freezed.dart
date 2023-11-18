@@ -20,7 +20,7 @@ Roof _$RoofFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Roof {
-  String get necessity => throw _privateConstructorUsedError;
+  Necessity get necessity => throw _privateConstructorUsedError;
   Damage get damage => throw _privateConstructorUsedError;
   Damage get waterProofLayerDamage => throw _privateConstructorUsedError;
   Coverage get coverage => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $RoofCopyWith<$Res> {
       _$RoofCopyWithImpl<$Res, Roof>;
   @useResult
   $Res call(
-      {String necessity,
+      {Necessity necessity,
       Damage damage,
       Damage waterProofLayerDamage,
       Coverage coverage,
@@ -70,7 +70,7 @@ class _$RoofCopyWithImpl<$Res, $Val extends Roof>
       necessity: null == necessity
           ? _value.necessity
           : necessity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Necessity,
       damage: null == damage
           ? _value.damage
           : damage // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$$_RoofCopyWith<$Res> implements $RoofCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String necessity,
+      {Necessity necessity,
       Damage damage,
       Damage waterProofLayerDamage,
       Coverage coverage,
@@ -145,7 +145,7 @@ class __$$_RoofCopyWithImpl<$Res> extends _$RoofCopyWithImpl<$Res, _$_Roof>
       necessity: null == necessity
           ? _value.necessity
           : necessity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Necessity,
       damage: null == damage
           ? _value.damage
           : damage // ignore: cast_nullable_to_non_nullable
@@ -170,7 +170,7 @@ class __$$_RoofCopyWithImpl<$Res> extends _$RoofCopyWithImpl<$Res, _$_Roof>
 @JsonSerializable()
 class _$_Roof extends _Roof {
   const _$_Roof(
-      {this.necessity = '',
+      {this.necessity = Necessity.detached,
       this.damage = const Damage(),
       this.waterProofLayerDamage = const Damage(),
       this.coverage = Coverage.almost,
@@ -181,7 +181,7 @@ class _$_Roof extends _Roof {
 
   @override
   @JsonKey()
-  final String necessity;
+  final Necessity necessity;
   @override
   @JsonKey()
   final Damage damage;
@@ -236,7 +236,7 @@ class _$_Roof extends _Roof {
 
 abstract class _Roof extends Roof {
   const factory _Roof(
-      {final String necessity,
+      {final Necessity necessity,
       final Damage damage,
       final Damage waterProofLayerDamage,
       final Coverage coverage,
@@ -246,7 +246,7 @@ abstract class _Roof extends Roof {
   factory _Roof.fromJson(Map<String, dynamic> json) = _$_Roof.fromJson;
 
   @override
-  String get necessity;
+  Necessity get necessity;
   @override
   Damage get damage;
   @override

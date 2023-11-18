@@ -10,7 +10,7 @@ class Roof with _$Roof {
   const Roof._();
 
   const factory Roof({
-    @Default('') String necessity,
+    @Default(Necessity.detached) Necessity necessity,
     @Default(Damage()) Damage damage,
     @Default(Damage()) Damage waterProofLayerDamage,
     @Default(Coverage.almost) Coverage coverage,

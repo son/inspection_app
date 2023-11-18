@@ -938,8 +938,8 @@ class OuterWallSection extends HookConsumerWidget {
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
             value: SelectionItem(
-              value: inspection.foundation.coverage,
-              name: inspection.foundation.coverage.label,
+              value: inspection.outerWall.coverage,
+              name: inspection.outerWall.coverage.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(
@@ -948,11 +948,9 @@ class OuterWallSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (coverage) {
-              final foundation =
-                  inspection.foundation.copyWith(coverage: coverage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateFoundation(foundation);
+              final outerWall =
+                  inspection.outerWall.copyWith(coverage: coverage);
+              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
             },
           ),
         ),

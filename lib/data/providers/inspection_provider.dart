@@ -4,6 +4,8 @@ import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
+import 'package:inspection_app/data/entities/result.dart';
+import 'package:inspection_app/data/entities/roof/roof.dart';
 
 final inspectionProvider =
     StateNotifierProvider<InspectionNotifier, Inspection>(
@@ -13,6 +15,12 @@ final inspectionProvider =
 class InspectionNotifier extends StateNotifier<Inspection> {
   InspectionNotifier({required this.ref}) : super(Inspection.empty);
   final Ref ref;
+
+  void updateNecessity(Necessity necessity) {
+    state = state.copyWith(
+      roof: state.roof.copyWith(necessity: necessity),
+    );
+  }
 
   void updatePrefecture(String prefecture) {
     state = state.copyWith(
@@ -100,5 +108,9 @@ class InspectionNotifier extends StateNotifier<Inspection> {
 
   void updateOuterWall(OuterWall outerWall) {
     state = state.copyWith(outerWall: outerWall);
+  }
+
+  void updateRoof(Roof roof) {
+    state = state.copyWith(roof: roof);
   }
 }

@@ -7,7 +7,8 @@ part of 'roof.dart';
 // **************************************************************************
 
 _$_Roof _$$_RoofFromJson(Map<String, dynamic> json) => _$_Roof(
-      necessity: json['necessity'] as String? ?? '',
+      necessity: $enumDecodeNullable(_$NecessityEnumMap, json['necessity']) ??
+          Necessity.detached,
       damage: json['damage'] == null
           ? const Damage()
           : Damage.fromJson(json['damage'] as Map<String, dynamic>),
@@ -21,12 +22,19 @@ _$_Roof _$$_RoofFromJson(Map<String, dynamic> json) => _$_Roof(
     );
 
 Map<String, dynamic> _$$_RoofToJson(_$_Roof instance) => <String, dynamic>{
-      'necessity': instance.necessity,
+      'necessity': _$NecessityEnumMap[instance.necessity]!,
       'damage': instance.damage,
       'waterProofLayerDamage': instance.waterProofLayerDamage,
       'coverage': _$CoverageEnumMap[instance.coverage]!,
       'remarks': instance.remarks,
     };
+
+const _$NecessityEnumMap = {
+  Necessity.detached: 'detached',
+  Necessity.apartmentUnitsPlan: 'apartmentUnitsPlan',
+  Necessity.apartmentUnitsNoPlan: 'apartmentUnitsNoPlan',
+  Necessity.apartmentBuilding: 'apartmentBuilding',
+};
 
 const _$CoverageEnumMap = {
   Coverage.almost: 'almost',

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 enum Result {
   none(label: '未調査'),
   passed(label: '問題なし'),
@@ -31,3 +33,21 @@ enum Coverage {
 
   final String label;
 }
+
+enum Necessity {
+  detached(label: '一戸建ての住宅'),
+  apartmentUnitsPlan(label: '共同/住戸型：長期修繕計画あり'),
+  apartmentUnitsNoPlan(label: '共同/住戸型：長期修繕計画なし'),
+  apartmentBuilding(label: '共同/住棟型');
+
+  const Necessity({required this.label});
+
+  final String label;
+}
+
+const NECESSITY = [
+  '一戸建ての住宅',
+  '共同/住戸型：長期修繕計画あり',
+  '共同/住戸型：長期修繕計画なし',
+  '共同/住棟型',
+];
