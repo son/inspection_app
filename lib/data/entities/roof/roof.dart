@@ -1,0 +1,21 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:inspection_app/data/entities/damage/damage.dart';
+import 'package:inspection_app/data/entities/result.dart';
+
+part 'roof.freezed.dart';
+part 'roof.g.dart';
+
+@freezed
+class Roof with _$Roof {
+  const Roof._();
+
+  const factory Roof({
+    @Default('') String necessity,
+    @Default(Damage()) Damage damage,
+    @Default(Damage()) Damage waterProofLayerDamage,
+    @Default(Coverage.almost) Coverage coverage,
+    @Default('') String remarks,
+  }) = _Roof;
+
+  factory Roof.fromJson(Map<String, dynamic> json) => _$RoofFromJson(json);
+}

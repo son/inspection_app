@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:inspection_app/data/entities/photo/photo.dart';
+import 'package:inspection_app/data/entities/damage/damage.dart';
 import 'package:inspection_app/data/entities/result.dart';
 
 part 'foundation.freezed.dart';
@@ -23,20 +23,3 @@ class Foundation with _$Foundation {
   factory Foundation.fromJson(Map<String, dynamic> json) =>
       _$FoundationFromJson(json);
 }
-
-@freezed
-class Damage with _$Damage {
-  const Damage._();
-
-  const factory Damage({
-    @Default(Result.none) Result result,
-    @Default(<Direction>[]) List<Direction> directions,
-    @Default(0.0) double max,
-    @Default(<Photo>[]) List<Photo> photos,
-    @Default(<String>[]) List<String> details,
-  }) = _Damage;
-
-  factory Damage.fromJson(Map<String, dynamic> json) => _$DamageFromJson(json);
-}
-
-const DAMAGE_DETAILS = {'広範囲に及ぶひび割れ', '広範囲に及ぶ欠損'};

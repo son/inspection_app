@@ -26,6 +26,8 @@ mixin _$Inspection {
   List<Photo> get photos => throw _privateConstructorUsedError;
   List<String> get blueprints => throw _privateConstructorUsedError;
   Foundation get foundation => throw _privateConstructorUsedError;
+  OuterWall get outerWall => throw _privateConstructorUsedError;
+  Roof get roof => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,10 +47,14 @@ abstract class $InspectionCopyWith<$Res> {
       InspectionOverview overview,
       List<Photo> photos,
       List<String> blueprints,
-      Foundation foundation});
+      Foundation foundation,
+      OuterWall outerWall,
+      Roof roof});
 
   $InspectionOverviewCopyWith<$Res> get overview;
   $FoundationCopyWith<$Res> get foundation;
+  $OuterWallCopyWith<$Res> get outerWall;
+  $RoofCopyWith<$Res> get roof;
 }
 
 /// @nodoc
@@ -70,6 +76,8 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
     Object? photos = null,
     Object? blueprints = null,
     Object? foundation = null,
+    Object? outerWall = null,
+    Object? roof = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -96,6 +104,14 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.foundation
           : foundation // ignore: cast_nullable_to_non_nullable
               as Foundation,
+      outerWall: null == outerWall
+          ? _value.outerWall
+          : outerWall // ignore: cast_nullable_to_non_nullable
+              as OuterWall,
+      roof: null == roof
+          ? _value.roof
+          : roof // ignore: cast_nullable_to_non_nullable
+              as Roof,
     ) as $Val);
   }
 
@@ -114,6 +130,22 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
       return _then(_value.copyWith(foundation: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OuterWallCopyWith<$Res> get outerWall {
+    return $OuterWallCopyWith<$Res>(_value.outerWall, (value) {
+      return _then(_value.copyWith(outerWall: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RoofCopyWith<$Res> get roof {
+    return $RoofCopyWith<$Res>(_value.roof, (value) {
+      return _then(_value.copyWith(roof: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -130,12 +162,18 @@ abstract class _$$_InspectionCopyWith<$Res>
       InspectionOverview overview,
       List<Photo> photos,
       List<String> blueprints,
-      Foundation foundation});
+      Foundation foundation,
+      OuterWall outerWall,
+      Roof roof});
 
   @override
   $InspectionOverviewCopyWith<$Res> get overview;
   @override
   $FoundationCopyWith<$Res> get foundation;
+  @override
+  $OuterWallCopyWith<$Res> get outerWall;
+  @override
+  $RoofCopyWith<$Res> get roof;
 }
 
 /// @nodoc
@@ -155,6 +193,8 @@ class __$$_InspectionCopyWithImpl<$Res>
     Object? photos = null,
     Object? blueprints = null,
     Object? foundation = null,
+    Object? outerWall = null,
+    Object? roof = null,
   }) {
     return _then(_$_Inspection(
       id: null == id
@@ -181,6 +221,14 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.foundation
           : foundation // ignore: cast_nullable_to_non_nullable
               as Foundation,
+      outerWall: null == outerWall
+          ? _value.outerWall
+          : outerWall // ignore: cast_nullable_to_non_nullable
+              as OuterWall,
+      roof: null == roof
+          ? _value.roof
+          : roof // ignore: cast_nullable_to_non_nullable
+              as Roof,
     ));
   }
 }
@@ -194,7 +242,9 @@ class _$_Inspection extends _Inspection {
       this.overview = const InspectionOverview(),
       final List<Photo> photos = const <Photo>[],
       final List<String> blueprints = const <String>[],
-      this.foundation = const Foundation()})
+      this.foundation = const Foundation(),
+      this.outerWall = const OuterWall(),
+      this.roof = const Roof()})
       : _photos = photos,
         _blueprints = blueprints,
         super._();
@@ -230,10 +280,16 @@ class _$_Inspection extends _Inspection {
   @override
   @JsonKey()
   final Foundation foundation;
+  @override
+  @JsonKey()
+  final OuterWall outerWall;
+  @override
+  @JsonKey()
+  final Roof roof;
 
   @override
   String toString() {
-    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation)';
+    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof)';
   }
 
   @override
@@ -250,7 +306,10 @@ class _$_Inspection extends _Inspection {
             const DeepCollectionEquality()
                 .equals(other._blueprints, _blueprints) &&
             (identical(other.foundation, foundation) ||
-                other.foundation == foundation));
+                other.foundation == foundation) &&
+            (identical(other.outerWall, outerWall) ||
+                other.outerWall == outerWall) &&
+            (identical(other.roof, roof) || other.roof == roof));
   }
 
   @JsonKey(ignore: true)
@@ -262,7 +321,9 @@ class _$_Inspection extends _Inspection {
       overview,
       const DeepCollectionEquality().hash(_photos),
       const DeepCollectionEquality().hash(_blueprints),
-      foundation);
+      foundation,
+      outerWall,
+      roof);
 
   @JsonKey(ignore: true)
   @override
@@ -285,7 +346,9 @@ abstract class _Inspection extends Inspection {
       final InspectionOverview overview,
       final List<Photo> photos,
       final List<String> blueprints,
-      final Foundation foundation}) = _$_Inspection;
+      final Foundation foundation,
+      final OuterWall outerWall,
+      final Roof roof}) = _$_Inspection;
   const _Inspection._() : super._();
 
   factory _Inspection.fromJson(Map<String, dynamic> json) =
@@ -303,6 +366,10 @@ abstract class _Inspection extends Inspection {
   List<String> get blueprints;
   @override
   Foundation get foundation;
+  @override
+  OuterWall get outerWall;
+  @override
+  Roof get roof;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionCopyWith<_$_Inspection> get copyWith =>

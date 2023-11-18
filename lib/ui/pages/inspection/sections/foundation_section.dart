@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/data/entities/foundation/foundation.dart';
+import 'package:inspection_app/data/entities/damage/damage.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';

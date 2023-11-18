@@ -3,6 +3,7 @@ import 'package:inspection_app/data/entities/building/building.dart';
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
+import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
 
 final inspectionProvider =
     StateNotifierProvider<InspectionNotifier, Inspection>(
@@ -95,5 +96,9 @@ class InspectionNotifier extends StateNotifier<Inspection> {
 
   void updateFoundation(Foundation foundation) {
     state = state.copyWith(foundation: foundation);
+  }
+
+  void updateOuterWall(OuterWall outerWall) {
+    state = state.copyWith(outerWall: outerWall);
   }
 }

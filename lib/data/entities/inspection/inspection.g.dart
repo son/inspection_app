@@ -27,6 +27,12 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
       foundation: json['foundation'] == null
           ? const Foundation()
           : Foundation.fromJson(json['foundation'] as Map<String, dynamic>),
+      outerWall: json['outerWall'] == null
+          ? const OuterWall()
+          : OuterWall.fromJson(json['outerWall'] as Map<String, dynamic>),
+      roof: json['roof'] == null
+          ? const Roof()
+          : Roof.fromJson(json['roof'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
@@ -37,4 +43,6 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
       'photos': instance.photos,
       'blueprints': instance.blueprints,
       'foundation': instance.foundation,
+      'outerWall': instance.outerWall,
+      'roof': instance.roof,
     };
