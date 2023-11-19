@@ -33,6 +33,35 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
       roof: json['roof'] == null
           ? const Roof()
           : Roof.fromJson(json['roof'] as Map<String, dynamic>),
+      balcony: json['balcony'] == null
+          ? const Balcony()
+          : Balcony.fromJson(json['balcony'] as Map<String, dynamic>),
+      innerWall: json['innerWall'] == null
+          ? const InnerWall()
+          : InnerWall.fromJson(json['innerWall'] as Map<String, dynamic>),
+      ceiling: json['ceiling'] == null
+          ? const Ceiling()
+          : Ceiling.fromJson(json['ceiling'] as Map<String, dynamic>),
+      roofFrame: json['roofFrame'] == null
+          ? const RoofFrame()
+          : RoofFrame.fromJson(json['roofFrame'] as Map<String, dynamic>),
+      pillarAndBeam: json['pillarAndBeam'] == null
+          ? const PillarAndBeam()
+          : PillarAndBeam.fromJson(
+              json['pillarAndBeam'] as Map<String, dynamic>),
+      baseAndFloorFraming: json['baseAndFloorFraming'] == null
+          ? const BaseAndFloorFraming()
+          : BaseAndFloorFraming.fromJson(
+              json['baseAndFloorFraming'] as Map<String, dynamic>),
+      floor: json['floor'] == null
+          ? const Floor()
+          : Floor.fromJson(json['floor'] as Map<String, dynamic>),
+      antDamage: json['antDamage'] == null
+          ? const AntDamage()
+          : AntDamage.fromJson(json['antDamage'] as Map<String, dynamic>),
+      corrosion: json['corrosion'] == null
+          ? const Corrosion()
+          : Corrosion.fromJson(json['corrosion'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
@@ -45,4 +74,13 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
       'foundation': instance.foundation,
       'outerWall': instance.outerWall,
       'roof': instance.roof,
+      'balcony': instance.balcony,
+      'innerWall': instance.innerWall,
+      'ceiling': instance.ceiling,
+      'roofFrame': instance.roofFrame,
+      'pillarAndBeam': instance.pillarAndBeam,
+      'baseAndFloorFraming': instance.baseAndFloorFraming,
+      'floor': instance.floor,
+      'antDamage': instance.antDamage,
+      'corrosion': instance.corrosion,
     };

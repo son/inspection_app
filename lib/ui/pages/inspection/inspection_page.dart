@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/balcony_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/ceiling_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/inner_wall_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/roof_frame_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_section.dart';
 
 import 'children/section_title.dart';
@@ -52,6 +56,8 @@ class InspectionPage extends HookConsumerWidget {
           bottom: 16,
         ),
         children: [
+          const SectionTitle(title: '基本情報'),
+          const SizedBox(height: 16),
           const OverviewSection(),
           const SizedBox(height: 16),
           const AddressSection(),
@@ -71,6 +77,16 @@ class InspectionPage extends HookConsumerWidget {
           const OuterWallSection(),
           const SizedBox(height: 16),
           const RoofSection(),
+          const SizedBox(height: 32),
+          const SectionTitle(title: '室内の調査'),
+          const SizedBox(height: 16),
+          const BalconySection(),
+          const SizedBox(height: 16),
+          const InnerWallSection(),
+          const SizedBox(height: 16),
+          const CeilingSection(),
+          const SizedBox(height: 16),
+          const RoofFrameSection(),
           SizedBox(height: MediaQuery.paddingOf(context).bottom),
         ],
       ),

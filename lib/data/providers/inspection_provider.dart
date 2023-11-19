@@ -1,11 +1,15 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/balcony/balcony.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
+import 'package:inspection_app/data/entities/ceiling/ceiling.dart';
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
+import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
 import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
+import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 
 final inspectionProvider =
     StateNotifierProvider<InspectionNotifier, Inspection>(
@@ -112,5 +116,21 @@ class InspectionNotifier extends StateNotifier<Inspection> {
 
   void updateRoof(Roof roof) {
     state = state.copyWith(roof: roof);
+  }
+
+  void updateBalcony(Balcony balcony) {
+    state = state.copyWith(balcony: balcony);
+  }
+
+  void updateInnerWall(InnerWall innerWall) {
+    state = state.copyWith(innerWall: innerWall);
+  }
+
+  void updateCeiling(Ceiling ceiling) {
+    state = state.copyWith(ceiling: ceiling);
+  }
+
+  void updateRoofFrame(RoofFrame roofFrame) {
+    state = state.copyWith(roofFrame: roofFrame);
   }
 }

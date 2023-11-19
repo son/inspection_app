@@ -28,6 +28,16 @@ mixin _$Inspection {
   Foundation get foundation => throw _privateConstructorUsedError;
   OuterWall get outerWall => throw _privateConstructorUsedError;
   Roof get roof => throw _privateConstructorUsedError;
+  Balcony get balcony => throw _privateConstructorUsedError;
+  InnerWall get innerWall => throw _privateConstructorUsedError;
+  Ceiling get ceiling => throw _privateConstructorUsedError;
+  RoofFrame get roofFrame => throw _privateConstructorUsedError;
+  PillarAndBeam get pillarAndBeam => throw _privateConstructorUsedError;
+  BaseAndFloorFraming get baseAndFloorFraming =>
+      throw _privateConstructorUsedError;
+  Floor get floor => throw _privateConstructorUsedError;
+  AntDamage get antDamage => throw _privateConstructorUsedError;
+  Corrosion get corrosion => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,12 +59,30 @@ abstract class $InspectionCopyWith<$Res> {
       List<String> blueprints,
       Foundation foundation,
       OuterWall outerWall,
-      Roof roof});
+      Roof roof,
+      Balcony balcony,
+      InnerWall innerWall,
+      Ceiling ceiling,
+      RoofFrame roofFrame,
+      PillarAndBeam pillarAndBeam,
+      BaseAndFloorFraming baseAndFloorFraming,
+      Floor floor,
+      AntDamage antDamage,
+      Corrosion corrosion});
 
   $InspectionOverviewCopyWith<$Res> get overview;
   $FoundationCopyWith<$Res> get foundation;
   $OuterWallCopyWith<$Res> get outerWall;
   $RoofCopyWith<$Res> get roof;
+  $BalconyCopyWith<$Res> get balcony;
+  $InnerWallCopyWith<$Res> get innerWall;
+  $CeilingCopyWith<$Res> get ceiling;
+  $RoofFrameCopyWith<$Res> get roofFrame;
+  $PillarAndBeamCopyWith<$Res> get pillarAndBeam;
+  $BaseAndFloorFramingCopyWith<$Res> get baseAndFloorFraming;
+  $FloorCopyWith<$Res> get floor;
+  $AntDamageCopyWith<$Res> get antDamage;
+  $CorrosionCopyWith<$Res> get corrosion;
 }
 
 /// @nodoc
@@ -78,6 +106,15 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
     Object? foundation = null,
     Object? outerWall = null,
     Object? roof = null,
+    Object? balcony = null,
+    Object? innerWall = null,
+    Object? ceiling = null,
+    Object? roofFrame = null,
+    Object? pillarAndBeam = null,
+    Object? baseAndFloorFraming = null,
+    Object? floor = null,
+    Object? antDamage = null,
+    Object? corrosion = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -112,6 +149,42 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.roof
           : roof // ignore: cast_nullable_to_non_nullable
               as Roof,
+      balcony: null == balcony
+          ? _value.balcony
+          : balcony // ignore: cast_nullable_to_non_nullable
+              as Balcony,
+      innerWall: null == innerWall
+          ? _value.innerWall
+          : innerWall // ignore: cast_nullable_to_non_nullable
+              as InnerWall,
+      ceiling: null == ceiling
+          ? _value.ceiling
+          : ceiling // ignore: cast_nullable_to_non_nullable
+              as Ceiling,
+      roofFrame: null == roofFrame
+          ? _value.roofFrame
+          : roofFrame // ignore: cast_nullable_to_non_nullable
+              as RoofFrame,
+      pillarAndBeam: null == pillarAndBeam
+          ? _value.pillarAndBeam
+          : pillarAndBeam // ignore: cast_nullable_to_non_nullable
+              as PillarAndBeam,
+      baseAndFloorFraming: null == baseAndFloorFraming
+          ? _value.baseAndFloorFraming
+          : baseAndFloorFraming // ignore: cast_nullable_to_non_nullable
+              as BaseAndFloorFraming,
+      floor: null == floor
+          ? _value.floor
+          : floor // ignore: cast_nullable_to_non_nullable
+              as Floor,
+      antDamage: null == antDamage
+          ? _value.antDamage
+          : antDamage // ignore: cast_nullable_to_non_nullable
+              as AntDamage,
+      corrosion: null == corrosion
+          ? _value.corrosion
+          : corrosion // ignore: cast_nullable_to_non_nullable
+              as Corrosion,
     ) as $Val);
   }
 
@@ -146,6 +219,79 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
       return _then(_value.copyWith(roof: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BalconyCopyWith<$Res> get balcony {
+    return $BalconyCopyWith<$Res>(_value.balcony, (value) {
+      return _then(_value.copyWith(balcony: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InnerWallCopyWith<$Res> get innerWall {
+    return $InnerWallCopyWith<$Res>(_value.innerWall, (value) {
+      return _then(_value.copyWith(innerWall: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CeilingCopyWith<$Res> get ceiling {
+    return $CeilingCopyWith<$Res>(_value.ceiling, (value) {
+      return _then(_value.copyWith(ceiling: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RoofFrameCopyWith<$Res> get roofFrame {
+    return $RoofFrameCopyWith<$Res>(_value.roofFrame, (value) {
+      return _then(_value.copyWith(roofFrame: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PillarAndBeamCopyWith<$Res> get pillarAndBeam {
+    return $PillarAndBeamCopyWith<$Res>(_value.pillarAndBeam, (value) {
+      return _then(_value.copyWith(pillarAndBeam: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BaseAndFloorFramingCopyWith<$Res> get baseAndFloorFraming {
+    return $BaseAndFloorFramingCopyWith<$Res>(_value.baseAndFloorFraming,
+        (value) {
+      return _then(_value.copyWith(baseAndFloorFraming: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FloorCopyWith<$Res> get floor {
+    return $FloorCopyWith<$Res>(_value.floor, (value) {
+      return _then(_value.copyWith(floor: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AntDamageCopyWith<$Res> get antDamage {
+    return $AntDamageCopyWith<$Res>(_value.antDamage, (value) {
+      return _then(_value.copyWith(antDamage: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CorrosionCopyWith<$Res> get corrosion {
+    return $CorrosionCopyWith<$Res>(_value.corrosion, (value) {
+      return _then(_value.copyWith(corrosion: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -164,7 +310,16 @@ abstract class _$$_InspectionCopyWith<$Res>
       List<String> blueprints,
       Foundation foundation,
       OuterWall outerWall,
-      Roof roof});
+      Roof roof,
+      Balcony balcony,
+      InnerWall innerWall,
+      Ceiling ceiling,
+      RoofFrame roofFrame,
+      PillarAndBeam pillarAndBeam,
+      BaseAndFloorFraming baseAndFloorFraming,
+      Floor floor,
+      AntDamage antDamage,
+      Corrosion corrosion});
 
   @override
   $InspectionOverviewCopyWith<$Res> get overview;
@@ -174,6 +329,24 @@ abstract class _$$_InspectionCopyWith<$Res>
   $OuterWallCopyWith<$Res> get outerWall;
   @override
   $RoofCopyWith<$Res> get roof;
+  @override
+  $BalconyCopyWith<$Res> get balcony;
+  @override
+  $InnerWallCopyWith<$Res> get innerWall;
+  @override
+  $CeilingCopyWith<$Res> get ceiling;
+  @override
+  $RoofFrameCopyWith<$Res> get roofFrame;
+  @override
+  $PillarAndBeamCopyWith<$Res> get pillarAndBeam;
+  @override
+  $BaseAndFloorFramingCopyWith<$Res> get baseAndFloorFraming;
+  @override
+  $FloorCopyWith<$Res> get floor;
+  @override
+  $AntDamageCopyWith<$Res> get antDamage;
+  @override
+  $CorrosionCopyWith<$Res> get corrosion;
 }
 
 /// @nodoc
@@ -195,6 +368,15 @@ class __$$_InspectionCopyWithImpl<$Res>
     Object? foundation = null,
     Object? outerWall = null,
     Object? roof = null,
+    Object? balcony = null,
+    Object? innerWall = null,
+    Object? ceiling = null,
+    Object? roofFrame = null,
+    Object? pillarAndBeam = null,
+    Object? baseAndFloorFraming = null,
+    Object? floor = null,
+    Object? antDamage = null,
+    Object? corrosion = null,
   }) {
     return _then(_$_Inspection(
       id: null == id
@@ -229,6 +411,42 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.roof
           : roof // ignore: cast_nullable_to_non_nullable
               as Roof,
+      balcony: null == balcony
+          ? _value.balcony
+          : balcony // ignore: cast_nullable_to_non_nullable
+              as Balcony,
+      innerWall: null == innerWall
+          ? _value.innerWall
+          : innerWall // ignore: cast_nullable_to_non_nullable
+              as InnerWall,
+      ceiling: null == ceiling
+          ? _value.ceiling
+          : ceiling // ignore: cast_nullable_to_non_nullable
+              as Ceiling,
+      roofFrame: null == roofFrame
+          ? _value.roofFrame
+          : roofFrame // ignore: cast_nullable_to_non_nullable
+              as RoofFrame,
+      pillarAndBeam: null == pillarAndBeam
+          ? _value.pillarAndBeam
+          : pillarAndBeam // ignore: cast_nullable_to_non_nullable
+              as PillarAndBeam,
+      baseAndFloorFraming: null == baseAndFloorFraming
+          ? _value.baseAndFloorFraming
+          : baseAndFloorFraming // ignore: cast_nullable_to_non_nullable
+              as BaseAndFloorFraming,
+      floor: null == floor
+          ? _value.floor
+          : floor // ignore: cast_nullable_to_non_nullable
+              as Floor,
+      antDamage: null == antDamage
+          ? _value.antDamage
+          : antDamage // ignore: cast_nullable_to_non_nullable
+              as AntDamage,
+      corrosion: null == corrosion
+          ? _value.corrosion
+          : corrosion // ignore: cast_nullable_to_non_nullable
+              as Corrosion,
     ));
   }
 }
@@ -244,7 +462,16 @@ class _$_Inspection extends _Inspection {
       final List<String> blueprints = const <String>[],
       this.foundation = const Foundation(),
       this.outerWall = const OuterWall(),
-      this.roof = const Roof()})
+      this.roof = const Roof(),
+      this.balcony = const Balcony(),
+      this.innerWall = const InnerWall(),
+      this.ceiling = const Ceiling(),
+      this.roofFrame = const RoofFrame(),
+      this.pillarAndBeam = const PillarAndBeam(),
+      this.baseAndFloorFraming = const BaseAndFloorFraming(),
+      this.floor = const Floor(),
+      this.antDamage = const AntDamage(),
+      this.corrosion = const Corrosion()})
       : _photos = photos,
         _blueprints = blueprints,
         super._();
@@ -286,10 +513,37 @@ class _$_Inspection extends _Inspection {
   @override
   @JsonKey()
   final Roof roof;
+  @override
+  @JsonKey()
+  final Balcony balcony;
+  @override
+  @JsonKey()
+  final InnerWall innerWall;
+  @override
+  @JsonKey()
+  final Ceiling ceiling;
+  @override
+  @JsonKey()
+  final RoofFrame roofFrame;
+  @override
+  @JsonKey()
+  final PillarAndBeam pillarAndBeam;
+  @override
+  @JsonKey()
+  final BaseAndFloorFraming baseAndFloorFraming;
+  @override
+  @JsonKey()
+  final Floor floor;
+  @override
+  @JsonKey()
+  final AntDamage antDamage;
+  @override
+  @JsonKey()
+  final Corrosion corrosion;
 
   @override
   String toString() {
-    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof)';
+    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion)';
   }
 
   @override
@@ -309,7 +563,22 @@ class _$_Inspection extends _Inspection {
                 other.foundation == foundation) &&
             (identical(other.outerWall, outerWall) ||
                 other.outerWall == outerWall) &&
-            (identical(other.roof, roof) || other.roof == roof));
+            (identical(other.roof, roof) || other.roof == roof) &&
+            (identical(other.balcony, balcony) || other.balcony == balcony) &&
+            (identical(other.innerWall, innerWall) ||
+                other.innerWall == innerWall) &&
+            (identical(other.ceiling, ceiling) || other.ceiling == ceiling) &&
+            (identical(other.roofFrame, roofFrame) ||
+                other.roofFrame == roofFrame) &&
+            (identical(other.pillarAndBeam, pillarAndBeam) ||
+                other.pillarAndBeam == pillarAndBeam) &&
+            (identical(other.baseAndFloorFraming, baseAndFloorFraming) ||
+                other.baseAndFloorFraming == baseAndFloorFraming) &&
+            (identical(other.floor, floor) || other.floor == floor) &&
+            (identical(other.antDamage, antDamage) ||
+                other.antDamage == antDamage) &&
+            (identical(other.corrosion, corrosion) ||
+                other.corrosion == corrosion));
   }
 
   @JsonKey(ignore: true)
@@ -323,7 +592,16 @@ class _$_Inspection extends _Inspection {
       const DeepCollectionEquality().hash(_blueprints),
       foundation,
       outerWall,
-      roof);
+      roof,
+      balcony,
+      innerWall,
+      ceiling,
+      roofFrame,
+      pillarAndBeam,
+      baseAndFloorFraming,
+      floor,
+      antDamage,
+      corrosion);
 
   @JsonKey(ignore: true)
   @override
@@ -348,7 +626,16 @@ abstract class _Inspection extends Inspection {
       final List<String> blueprints,
       final Foundation foundation,
       final OuterWall outerWall,
-      final Roof roof}) = _$_Inspection;
+      final Roof roof,
+      final Balcony balcony,
+      final InnerWall innerWall,
+      final Ceiling ceiling,
+      final RoofFrame roofFrame,
+      final PillarAndBeam pillarAndBeam,
+      final BaseAndFloorFraming baseAndFloorFraming,
+      final Floor floor,
+      final AntDamage antDamage,
+      final Corrosion corrosion}) = _$_Inspection;
   const _Inspection._() : super._();
 
   factory _Inspection.fromJson(Map<String, dynamic> json) =
@@ -370,6 +657,24 @@ abstract class _Inspection extends Inspection {
   OuterWall get outerWall;
   @override
   Roof get roof;
+  @override
+  Balcony get balcony;
+  @override
+  InnerWall get innerWall;
+  @override
+  Ceiling get ceiling;
+  @override
+  RoofFrame get roofFrame;
+  @override
+  PillarAndBeam get pillarAndBeam;
+  @override
+  BaseAndFloorFraming get baseAndFloorFraming;
+  @override
+  Floor get floor;
+  @override
+  AntDamage get antDamage;
+  @override
+  Corrosion get corrosion;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionCopyWith<_$_Inspection> get copyWith =>
