@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/balcony_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/base_and_floor_framing_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ceiling_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/corrosion_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/floor_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/inner_wall_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/pillar_and_beam_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_frame_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_section.dart';
 
@@ -87,6 +92,16 @@ class InspectionPage extends HookConsumerWidget {
           CeilingSection(),
           SizedBox(height: 16),
           RoofFrameSection(),
+          SizedBox(height: 16),
+          PillarAndBeamSection(),
+          SizedBox(height: 16),
+          BaseAndFloorFramingSection(),
+          SizedBox(height: 16),
+          FloorSection(),
+          SizedBox(height: 16),
+          AntDamageSection(),
+          SizedBox(height: 16),
+          CorrosionSection(),
         ],
       ),
     );

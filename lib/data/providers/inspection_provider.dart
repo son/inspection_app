@@ -1,12 +1,17 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/ant_damage/ant_damage.dart';
 import 'package:inspection_app/data/entities/balcony/balcony.dart';
+import 'package:inspection_app/data/entities/base_and_floor_framing/base_and_floor_framing.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
 import 'package:inspection_app/data/entities/ceiling/ceiling.dart';
+import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
+import 'package:inspection_app/data/entities/floor/floor.dart' as f;
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
 import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
+import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
@@ -132,5 +137,25 @@ class InspectionNotifier extends StateNotifier<Inspection> {
 
   void updateRoofFrame(RoofFrame roofFrame) {
     state = state.copyWith(roofFrame: roofFrame);
+  }
+
+  void updatePillarAndBeam(PillarAndBeam pillarAndBeam) {
+    state = state.copyWith(pillarAndBeam: pillarAndBeam);
+  }
+
+  void updateBaseAndFloorFraming(BaseAndFloorFraming baseAndFloorFraming) {
+    state = state.copyWith(baseAndFloorFraming: baseAndFloorFraming);
+  }
+
+  void updateFloor(f.Floor floor) {
+    state = state.copyWith(floor: floor);
+  }
+
+  void updateAntDamage(AntDamage antDamage) {
+    state = state.copyWith(antDamage: antDamage);
+  }
+
+  void updateCorrosion(Corrosion corrosion) {
+    state = state.copyWith(corrosion: corrosion);
   }
 }
