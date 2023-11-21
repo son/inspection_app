@@ -102,6 +102,9 @@ class InspectionPage extends HookConsumerWidget {
           AntDamageSection(),
           SizedBox(height: 16),
           CorrosionSection(),
+          SizedBox(height: 32),
+          SectionTitle(title: '設備の調査'),
+          SizedBox(height: 16),
         ],
       ),
     );
