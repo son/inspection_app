@@ -26,8 +26,8 @@ _$_InspectionOverview _$$_InspectionOverviewFromJson(
           ? const Building()
           : Building.fromJson(json['building'] as Map<String, dynamic>),
       lifeline: json['lifeline'] == null
-          ? const Lifeline()
-          : Lifeline.fromJson(json['lifeline'] as Map<String, dynamic>),
+          ? const Lifelines()
+          : Lifelines.fromJson(json['lifeline'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_InspectionOverviewToJson(
@@ -72,13 +72,13 @@ Map<String, dynamic> _$$_ScheduleToJson(_$_Schedule instance) =>
       'endedAt': instance.endedAt?.toIso8601String(),
     };
 
-_$_Lifeline _$$_LifelineFromJson(Map<String, dynamic> json) => _$_Lifeline(
+_$_Lifelines _$$_LifelinesFromJson(Map<String, dynamic> json) => _$_Lifelines(
       water: json['water'] as bool? ?? false,
       electricity: json['electricity'] as bool? ?? false,
       gas: json['gas'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_LifelineToJson(_$_Lifeline instance) =>
+Map<String, dynamic> _$$_LifelinesToJson(_$_Lifelines instance) =>
     <String, dynamic>{
       'water': instance.water,
       'electricity': instance.electricity,

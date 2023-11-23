@@ -136,7 +136,7 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              ref.read(inspectionProvider.notifier).updateLifeline(
+              ref.read(inspectionProvider.notifier).updateLifelines(
                   inspection.overview.lifeline.copyWith(electricity: isOn));
             },
           ),
@@ -155,7 +155,7 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              ref.read(inspectionProvider.notifier).updateLifeline(
+              ref.read(inspectionProvider.notifier).updateLifelines(
                   inspection.overview.lifeline.copyWith(water: isOn));
             },
           ),
@@ -174,7 +174,7 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              ref.read(inspectionProvider.notifier).updateLifeline(
+              ref.read(inspectionProvider.notifier).updateLifelines(
                   inspection.overview.lifeline.copyWith(gas: isOn));
             },
           ),

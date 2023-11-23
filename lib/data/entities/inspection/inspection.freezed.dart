@@ -38,6 +38,12 @@ mixin _$Inspection {
   Floor get floor => throw _privateConstructorUsedError;
   AntDamage get antDamage => throw _privateConstructorUsedError;
   Corrosion get corrosion => throw _privateConstructorUsedError;
+  Piping get piping => throw _privateConstructorUsedError;
+  Lifeline get lifeline => throw _privateConstructorUsedError;
+  Rebar get rebar => throw _privateConstructorUsedError;
+  Concrete get concrete => throw _privateConstructorUsedError;
+  EarthquakeResistant get earthquakeResistant =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,7 +74,12 @@ abstract class $InspectionCopyWith<$Res> {
       BaseAndFloorFraming baseAndFloorFraming,
       Floor floor,
       AntDamage antDamage,
-      Corrosion corrosion});
+      Corrosion corrosion,
+      Piping piping,
+      Lifeline lifeline,
+      Rebar rebar,
+      Concrete concrete,
+      EarthquakeResistant earthquakeResistant});
 
   $InspectionOverviewCopyWith<$Res> get overview;
   $FoundationCopyWith<$Res> get foundation;
@@ -83,6 +94,11 @@ abstract class $InspectionCopyWith<$Res> {
   $FloorCopyWith<$Res> get floor;
   $AntDamageCopyWith<$Res> get antDamage;
   $CorrosionCopyWith<$Res> get corrosion;
+  $PipingCopyWith<$Res> get piping;
+  $LifelineCopyWith<$Res> get lifeline;
+  $RebarCopyWith<$Res> get rebar;
+  $ConcreteCopyWith<$Res> get concrete;
+  $EarthquakeResistantCopyWith<$Res> get earthquakeResistant;
 }
 
 /// @nodoc
@@ -115,6 +131,11 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
     Object? floor = null,
     Object? antDamage = null,
     Object? corrosion = null,
+    Object? piping = null,
+    Object? lifeline = null,
+    Object? rebar = null,
+    Object? concrete = null,
+    Object? earthquakeResistant = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -185,6 +206,26 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.corrosion
           : corrosion // ignore: cast_nullable_to_non_nullable
               as Corrosion,
+      piping: null == piping
+          ? _value.piping
+          : piping // ignore: cast_nullable_to_non_nullable
+              as Piping,
+      lifeline: null == lifeline
+          ? _value.lifeline
+          : lifeline // ignore: cast_nullable_to_non_nullable
+              as Lifeline,
+      rebar: null == rebar
+          ? _value.rebar
+          : rebar // ignore: cast_nullable_to_non_nullable
+              as Rebar,
+      concrete: null == concrete
+          ? _value.concrete
+          : concrete // ignore: cast_nullable_to_non_nullable
+              as Concrete,
+      earthquakeResistant: null == earthquakeResistant
+          ? _value.earthquakeResistant
+          : earthquakeResistant // ignore: cast_nullable_to_non_nullable
+              as EarthquakeResistant,
     ) as $Val);
   }
 
@@ -292,6 +333,47 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
       return _then(_value.copyWith(corrosion: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PipingCopyWith<$Res> get piping {
+    return $PipingCopyWith<$Res>(_value.piping, (value) {
+      return _then(_value.copyWith(piping: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LifelineCopyWith<$Res> get lifeline {
+    return $LifelineCopyWith<$Res>(_value.lifeline, (value) {
+      return _then(_value.copyWith(lifeline: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RebarCopyWith<$Res> get rebar {
+    return $RebarCopyWith<$Res>(_value.rebar, (value) {
+      return _then(_value.copyWith(rebar: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConcreteCopyWith<$Res> get concrete {
+    return $ConcreteCopyWith<$Res>(_value.concrete, (value) {
+      return _then(_value.copyWith(concrete: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EarthquakeResistantCopyWith<$Res> get earthquakeResistant {
+    return $EarthquakeResistantCopyWith<$Res>(_value.earthquakeResistant,
+        (value) {
+      return _then(_value.copyWith(earthquakeResistant: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -319,7 +401,12 @@ abstract class _$$_InspectionCopyWith<$Res>
       BaseAndFloorFraming baseAndFloorFraming,
       Floor floor,
       AntDamage antDamage,
-      Corrosion corrosion});
+      Corrosion corrosion,
+      Piping piping,
+      Lifeline lifeline,
+      Rebar rebar,
+      Concrete concrete,
+      EarthquakeResistant earthquakeResistant});
 
   @override
   $InspectionOverviewCopyWith<$Res> get overview;
@@ -347,6 +434,16 @@ abstract class _$$_InspectionCopyWith<$Res>
   $AntDamageCopyWith<$Res> get antDamage;
   @override
   $CorrosionCopyWith<$Res> get corrosion;
+  @override
+  $PipingCopyWith<$Res> get piping;
+  @override
+  $LifelineCopyWith<$Res> get lifeline;
+  @override
+  $RebarCopyWith<$Res> get rebar;
+  @override
+  $ConcreteCopyWith<$Res> get concrete;
+  @override
+  $EarthquakeResistantCopyWith<$Res> get earthquakeResistant;
 }
 
 /// @nodoc
@@ -377,6 +474,11 @@ class __$$_InspectionCopyWithImpl<$Res>
     Object? floor = null,
     Object? antDamage = null,
     Object? corrosion = null,
+    Object? piping = null,
+    Object? lifeline = null,
+    Object? rebar = null,
+    Object? concrete = null,
+    Object? earthquakeResistant = null,
   }) {
     return _then(_$_Inspection(
       id: null == id
@@ -447,6 +549,26 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.corrosion
           : corrosion // ignore: cast_nullable_to_non_nullable
               as Corrosion,
+      piping: null == piping
+          ? _value.piping
+          : piping // ignore: cast_nullable_to_non_nullable
+              as Piping,
+      lifeline: null == lifeline
+          ? _value.lifeline
+          : lifeline // ignore: cast_nullable_to_non_nullable
+              as Lifeline,
+      rebar: null == rebar
+          ? _value.rebar
+          : rebar // ignore: cast_nullable_to_non_nullable
+              as Rebar,
+      concrete: null == concrete
+          ? _value.concrete
+          : concrete // ignore: cast_nullable_to_non_nullable
+              as Concrete,
+      earthquakeResistant: null == earthquakeResistant
+          ? _value.earthquakeResistant
+          : earthquakeResistant // ignore: cast_nullable_to_non_nullable
+              as EarthquakeResistant,
     ));
   }
 }
@@ -471,7 +593,12 @@ class _$_Inspection extends _Inspection {
       this.baseAndFloorFraming = const BaseAndFloorFraming(),
       this.floor = const Floor(),
       this.antDamage = const AntDamage(),
-      this.corrosion = const Corrosion()})
+      this.corrosion = const Corrosion(),
+      this.piping = const Piping(),
+      this.lifeline = const Lifeline(),
+      this.rebar = const Rebar(),
+      this.concrete = const Concrete(),
+      this.earthquakeResistant = const EarthquakeResistant()})
       : _photos = photos,
         _blueprints = blueprints,
         super._();
@@ -540,10 +667,25 @@ class _$_Inspection extends _Inspection {
   @override
   @JsonKey()
   final Corrosion corrosion;
+  @override
+  @JsonKey()
+  final Piping piping;
+  @override
+  @JsonKey()
+  final Lifeline lifeline;
+  @override
+  @JsonKey()
+  final Rebar rebar;
+  @override
+  @JsonKey()
+  final Concrete concrete;
+  @override
+  @JsonKey()
+  final EarthquakeResistant earthquakeResistant;
 
   @override
   String toString() {
-    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion)';
+    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
   }
 
   @override
@@ -578,30 +720,44 @@ class _$_Inspection extends _Inspection {
             (identical(other.antDamage, antDamage) ||
                 other.antDamage == antDamage) &&
             (identical(other.corrosion, corrosion) ||
-                other.corrosion == corrosion));
+                other.corrosion == corrosion) &&
+            (identical(other.piping, piping) || other.piping == piping) &&
+            (identical(other.lifeline, lifeline) ||
+                other.lifeline == lifeline) &&
+            (identical(other.rebar, rebar) || other.rebar == rebar) &&
+            (identical(other.concrete, concrete) ||
+                other.concrete == concrete) &&
+            (identical(other.earthquakeResistant, earthquakeResistant) ||
+                other.earthquakeResistant == earthquakeResistant));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      createdAt,
-      overview,
-      const DeepCollectionEquality().hash(_photos),
-      const DeepCollectionEquality().hash(_blueprints),
-      foundation,
-      outerWall,
-      roof,
-      balcony,
-      innerWall,
-      ceiling,
-      roofFrame,
-      pillarAndBeam,
-      baseAndFloorFraming,
-      floor,
-      antDamage,
-      corrosion);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        createdAt,
+        overview,
+        const DeepCollectionEquality().hash(_photos),
+        const DeepCollectionEquality().hash(_blueprints),
+        foundation,
+        outerWall,
+        roof,
+        balcony,
+        innerWall,
+        ceiling,
+        roofFrame,
+        pillarAndBeam,
+        baseAndFloorFraming,
+        floor,
+        antDamage,
+        corrosion,
+        piping,
+        lifeline,
+        rebar,
+        concrete,
+        earthquakeResistant
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -635,7 +791,12 @@ abstract class _Inspection extends Inspection {
       final BaseAndFloorFraming baseAndFloorFraming,
       final Floor floor,
       final AntDamage antDamage,
-      final Corrosion corrosion}) = _$_Inspection;
+      final Corrosion corrosion,
+      final Piping piping,
+      final Lifeline lifeline,
+      final Rebar rebar,
+      final Concrete concrete,
+      final EarthquakeResistant earthquakeResistant}) = _$_Inspection;
   const _Inspection._() : super._();
 
   factory _Inspection.fromJson(Map<String, dynamic> json) =
@@ -675,6 +836,16 @@ abstract class _Inspection extends Inspection {
   AntDamage get antDamage;
   @override
   Corrosion get corrosion;
+  @override
+  Piping get piping;
+  @override
+  Lifeline get lifeline;
+  @override
+  Rebar get rebar;
+  @override
+  Concrete get concrete;
+  @override
+  EarthquakeResistant get earthquakeResistant;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionCopyWith<_$_Inspection> get copyWith =>

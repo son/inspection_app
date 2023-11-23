@@ -18,7 +18,7 @@ class InspectionOverview with _$InspectionOverview {
     @Default('') String witnessName,
     @Default(User(id: '')) User inspector,
     @Default(Building()) Building building,
-    @Default(Lifeline()) Lifeline lifeline,
+    @Default(Lifelines()) Lifelines lifeline,
   }) = _InspectionOverview;
 
   factory InspectionOverview.fromJson(Map<String, dynamic> json) =>
@@ -62,15 +62,15 @@ class Schedule with _$Schedule {
 }
 
 @freezed
-class Lifeline with _$Lifeline {
-  const Lifeline._();
+class Lifelines with _$Lifelines {
+  const Lifelines._();
 
-  const factory Lifeline({
+  const factory Lifelines({
     @Default(false) bool water,
     @Default(false) bool electricity,
     @Default(false) bool gas,
-  }) = _Lifeline;
+  }) = _Lifelines;
 
-  factory Lifeline.fromJson(Map<String, dynamic> json) =>
-      _$LifelineFromJson(json);
+  factory Lifelines.fromJson(Map<String, dynamic> json) =>
+      _$LifelinesFromJson(json);
 }

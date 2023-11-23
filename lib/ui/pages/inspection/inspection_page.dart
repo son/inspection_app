@@ -7,10 +7,14 @@ import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.d
 import 'package:inspection_app/ui/pages/inspection/sections/balcony_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/base_and_floor_framing_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ceiling_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/concrete_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/corrosion_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/floor_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/inner_wall_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/lifeline_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/pillar_and_beam_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/piping_section.dart';
+import 'package:inspection_app/ui/pages/inspection/sections/rebar_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_frame_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_section.dart';
 
@@ -18,6 +22,7 @@ import 'children/section_title.dart';
 import 'sections/address_section.dart';
 import 'sections/context_section.dart';
 import 'sections/detail_section.dart';
+import 'sections/earthquake_resistant_section.dart';
 import 'sections/foundation_section.dart';
 import 'sections/image_section.dart';
 import 'sections/outer_wall_section.dart';
@@ -105,6 +110,17 @@ class InspectionPage extends HookConsumerWidget {
           SizedBox(height: 32),
           SectionTitle(title: '設備の調査'),
           SizedBox(height: 16),
+          PipingSection(),
+          SizedBox(height: 16),
+          LifelineSection(),
+          SizedBox(height: 32),
+          SectionTitle(title: 'その他の調査'),
+          SizedBox(height: 16),
+          RebarSection(),
+          SizedBox(height: 16),
+          ConcreteSection(),
+          SizedBox(height: 16),
+          EarthquakeResistantSection(),
         ],
       ),
     );

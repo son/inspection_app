@@ -62,6 +62,22 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
       corrosion: json['corrosion'] == null
           ? const Corrosion()
           : Corrosion.fromJson(json['corrosion'] as Map<String, dynamic>),
+      piping: json['piping'] == null
+          ? const Piping()
+          : Piping.fromJson(json['piping'] as Map<String, dynamic>),
+      lifeline: json['lifeline'] == null
+          ? const Lifeline()
+          : Lifeline.fromJson(json['lifeline'] as Map<String, dynamic>),
+      rebar: json['rebar'] == null
+          ? const Rebar()
+          : Rebar.fromJson(json['rebar'] as Map<String, dynamic>),
+      concrete: json['concrete'] == null
+          ? const Concrete()
+          : Concrete.fromJson(json['concrete'] as Map<String, dynamic>),
+      earthquakeResistant: json['earthquakeResistant'] == null
+          ? const EarthquakeResistant()
+          : EarthquakeResistant.fromJson(
+              json['earthquakeResistant'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
@@ -83,4 +99,9 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
       'floor': instance.floor,
       'antDamage': instance.antDamage,
       'corrosion': instance.corrosion,
+      'piping': instance.piping,
+      'lifeline': instance.lifeline,
+      'rebar': instance.rebar,
+      'concrete': instance.concrete,
+      'earthquakeResistant': instance.earthquakeResistant,
     };

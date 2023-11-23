@@ -27,7 +27,7 @@ mixin _$InspectionOverview {
   String get witnessName => throw _privateConstructorUsedError;
   User get inspector => throw _privateConstructorUsedError;
   Building get building => throw _privateConstructorUsedError;
-  Lifeline get lifeline => throw _privateConstructorUsedError;
+  Lifelines get lifeline => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,12 +49,12 @@ abstract class $InspectionOverviewCopyWith<$Res> {
       String witnessName,
       User inspector,
       Building building,
-      Lifeline lifeline});
+      Lifelines lifeline});
 
   $ScheduleCopyWith<$Res> get schedule;
   $UserCopyWith<$Res> get inspector;
   $BuildingCopyWith<$Res> get building;
-  $LifelineCopyWith<$Res> get lifeline;
+  $LifelinesCopyWith<$Res> get lifeline;
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
       lifeline: null == lifeline
           ? _value.lifeline
           : lifeline // ignore: cast_nullable_to_non_nullable
-              as Lifeline,
+              as Lifelines,
     ) as $Val);
   }
 
@@ -141,8 +141,8 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
 
   @override
   @pragma('vm:prefer-inline')
-  $LifelineCopyWith<$Res> get lifeline {
-    return $LifelineCopyWith<$Res>(_value.lifeline, (value) {
+  $LifelinesCopyWith<$Res> get lifeline {
+    return $LifelinesCopyWith<$Res>(_value.lifeline, (value) {
       return _then(_value.copyWith(lifeline: value) as $Val);
     });
   }
@@ -164,7 +164,7 @@ abstract class _$$_InspectionOverviewCopyWith<$Res>
       String witnessName,
       User inspector,
       Building building,
-      Lifeline lifeline});
+      Lifelines lifeline});
 
   @override
   $ScheduleCopyWith<$Res> get schedule;
@@ -173,7 +173,7 @@ abstract class _$$_InspectionOverviewCopyWith<$Res>
   @override
   $BuildingCopyWith<$Res> get building;
   @override
-  $LifelineCopyWith<$Res> get lifeline;
+  $LifelinesCopyWith<$Res> get lifeline;
 }
 
 /// @nodoc
@@ -228,7 +228,7 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
       lifeline: null == lifeline
           ? _value.lifeline
           : lifeline // ignore: cast_nullable_to_non_nullable
-              as Lifeline,
+              as Lifelines,
     ));
   }
 }
@@ -244,7 +244,7 @@ class _$_InspectionOverview extends _InspectionOverview {
       this.witnessName = '',
       this.inspector = const User(id: ''),
       this.building = const Building(),
-      this.lifeline = const Lifeline()})
+      this.lifeline = const Lifelines()})
       : super._();
 
   factory _$_InspectionOverview.fromJson(Map<String, dynamic> json) =>
@@ -273,7 +273,7 @@ class _$_InspectionOverview extends _InspectionOverview {
   final Building building;
   @override
   @JsonKey()
-  final Lifeline lifeline;
+  final Lifelines lifeline;
 
   @override
   String toString() {
@@ -331,7 +331,7 @@ abstract class _InspectionOverview extends InspectionOverview {
       final String witnessName,
       final User inspector,
       final Building building,
-      final Lifeline lifeline}) = _$_InspectionOverview;
+      final Lifelines lifeline}) = _$_InspectionOverview;
   const _InspectionOverview._() : super._();
 
   factory _InspectionOverview.fromJson(Map<String, dynamic> json) =
@@ -352,7 +352,7 @@ abstract class _InspectionOverview extends InspectionOverview {
   @override
   Building get building;
   @override
-  Lifeline get lifeline;
+  Lifelines get lifeline;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionOverviewCopyWith<_$_InspectionOverview> get copyWith =>
@@ -511,34 +511,34 @@ abstract class _Schedule extends Schedule {
       throw _privateConstructorUsedError;
 }
 
-Lifeline _$LifelineFromJson(Map<String, dynamic> json) {
-  return _Lifeline.fromJson(json);
+Lifelines _$LifelinesFromJson(Map<String, dynamic> json) {
+  return _Lifelines.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Lifeline {
+mixin _$Lifelines {
   bool get water => throw _privateConstructorUsedError;
   bool get electricity => throw _privateConstructorUsedError;
   bool get gas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LifelineCopyWith<Lifeline> get copyWith =>
+  $LifelinesCopyWith<Lifelines> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LifelineCopyWith<$Res> {
-  factory $LifelineCopyWith(Lifeline value, $Res Function(Lifeline) then) =
-      _$LifelineCopyWithImpl<$Res, Lifeline>;
+abstract class $LifelinesCopyWith<$Res> {
+  factory $LifelinesCopyWith(Lifelines value, $Res Function(Lifelines) then) =
+      _$LifelinesCopyWithImpl<$Res, Lifelines>;
   @useResult
   $Res call({bool water, bool electricity, bool gas});
 }
 
 /// @nodoc
-class _$LifelineCopyWithImpl<$Res, $Val extends Lifeline>
-    implements $LifelineCopyWith<$Res> {
-  _$LifelineCopyWithImpl(this._value, this._then);
+class _$LifelinesCopyWithImpl<$Res, $Val extends Lifelines>
+    implements $LifelinesCopyWith<$Res> {
+  _$LifelinesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -570,21 +570,21 @@ class _$LifelineCopyWithImpl<$Res, $Val extends Lifeline>
 }
 
 /// @nodoc
-abstract class _$$_LifelineCopyWith<$Res> implements $LifelineCopyWith<$Res> {
-  factory _$$_LifelineCopyWith(
-          _$_Lifeline value, $Res Function(_$_Lifeline) then) =
-      __$$_LifelineCopyWithImpl<$Res>;
+abstract class _$$_LifelinesCopyWith<$Res> implements $LifelinesCopyWith<$Res> {
+  factory _$$_LifelinesCopyWith(
+          _$_Lifelines value, $Res Function(_$_Lifelines) then) =
+      __$$_LifelinesCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool water, bool electricity, bool gas});
 }
 
 /// @nodoc
-class __$$_LifelineCopyWithImpl<$Res>
-    extends _$LifelineCopyWithImpl<$Res, _$_Lifeline>
-    implements _$$_LifelineCopyWith<$Res> {
-  __$$_LifelineCopyWithImpl(
-      _$_Lifeline _value, $Res Function(_$_Lifeline) _then)
+class __$$_LifelinesCopyWithImpl<$Res>
+    extends _$LifelinesCopyWithImpl<$Res, _$_Lifelines>
+    implements _$$_LifelinesCopyWith<$Res> {
+  __$$_LifelinesCopyWithImpl(
+      _$_Lifelines _value, $Res Function(_$_Lifelines) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -594,7 +594,7 @@ class __$$_LifelineCopyWithImpl<$Res>
     Object? electricity = null,
     Object? gas = null,
   }) {
-    return _then(_$_Lifeline(
+    return _then(_$_Lifelines(
       water: null == water
           ? _value.water
           : water // ignore: cast_nullable_to_non_nullable
@@ -613,13 +613,13 @@ class __$$_LifelineCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Lifeline extends _Lifeline {
-  const _$_Lifeline(
+class _$_Lifelines extends _Lifelines {
+  const _$_Lifelines(
       {this.water = false, this.electricity = false, this.gas = false})
       : super._();
 
-  factory _$_Lifeline.fromJson(Map<String, dynamic> json) =>
-      _$$_LifelineFromJson(json);
+  factory _$_Lifelines.fromJson(Map<String, dynamic> json) =>
+      _$$_LifelinesFromJson(json);
 
   @override
   @JsonKey()
@@ -633,14 +633,14 @@ class _$_Lifeline extends _Lifeline {
 
   @override
   String toString() {
-    return 'Lifeline(water: $water, electricity: $electricity, gas: $gas)';
+    return 'Lifelines(water: $water, electricity: $electricity, gas: $gas)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Lifeline &&
+            other is _$_Lifelines &&
             (identical(other.water, water) || other.water == water) &&
             (identical(other.electricity, electricity) ||
                 other.electricity == electricity) &&
@@ -654,23 +654,26 @@ class _$_Lifeline extends _Lifeline {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LifelineCopyWith<_$_Lifeline> get copyWith =>
-      __$$_LifelineCopyWithImpl<_$_Lifeline>(this, _$identity);
+  _$$_LifelinesCopyWith<_$_Lifelines> get copyWith =>
+      __$$_LifelinesCopyWithImpl<_$_Lifelines>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LifelineToJson(
+    return _$$_LifelinesToJson(
       this,
     );
   }
 }
 
-abstract class _Lifeline extends Lifeline {
-  const factory _Lifeline(
-      {final bool water, final bool electricity, final bool gas}) = _$_Lifeline;
-  const _Lifeline._() : super._();
+abstract class _Lifelines extends Lifelines {
+  const factory _Lifelines(
+      {final bool water,
+      final bool electricity,
+      final bool gas}) = _$_Lifelines;
+  const _Lifelines._() : super._();
 
-  factory _Lifeline.fromJson(Map<String, dynamic> json) = _$_Lifeline.fromJson;
+  factory _Lifelines.fromJson(Map<String, dynamic> json) =
+      _$_Lifelines.fromJson;
 
   @override
   bool get water;
@@ -680,6 +683,6 @@ abstract class _Lifeline extends Lifeline {
   bool get gas;
   @override
   @JsonKey(ignore: true)
-  _$$_LifelineCopyWith<_$_Lifeline> get copyWith =>
+  _$$_LifelinesCopyWith<_$_Lifelines> get copyWith =>
       throw _privateConstructorUsedError;
 }

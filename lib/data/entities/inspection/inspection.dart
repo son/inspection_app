@@ -3,13 +3,18 @@ import 'package:inspection_app/data/entities/ant_damage/ant_damage.dart';
 import 'package:inspection_app/data/entities/balcony/balcony.dart';
 import 'package:inspection_app/data/entities/base_and_floor_framing/base_and_floor_framing.dart';
 import 'package:inspection_app/data/entities/ceiling/ceiling.dart';
+import 'package:inspection_app/data/entities/concrete/concrete.dart';
 import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
+import 'package:inspection_app/data/entities/earthquake_resistant/earthquake_resistant.dart';
 import 'package:inspection_app/data/entities/floor/floor.dart';
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
+import 'package:inspection_app/data/entities/lifeline/lifeline.dart';
 import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
 import 'package:inspection_app/data/entities/photo/photo.dart';
 import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dart';
+import 'package:inspection_app/data/entities/piping/piping.dart';
+import 'package:inspection_app/data/entities/rebar/rebar.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 
@@ -40,6 +45,11 @@ class Inspection with _$Inspection {
     @Default(Floor()) Floor floor,
     @Default(AntDamage()) AntDamage antDamage,
     @Default(Corrosion()) Corrosion corrosion,
+    @Default(Piping()) Piping piping,
+    @Default(Lifeline()) Lifeline lifeline,
+    @Default(Rebar()) Rebar rebar,
+    @Default(Concrete()) Concrete concrete,
+    @Default(EarthquakeResistant()) EarthquakeResistant earthquakeResistant,
   }) = _Inspection;
 
   factory Inspection.fromJson(Map<String, dynamic> json) =>

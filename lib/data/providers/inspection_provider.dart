@@ -4,21 +4,26 @@ import 'package:inspection_app/data/entities/balcony/balcony.dart';
 import 'package:inspection_app/data/entities/base_and_floor_framing/base_and_floor_framing.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
 import 'package:inspection_app/data/entities/ceiling/ceiling.dart';
+import 'package:inspection_app/data/entities/concrete/concrete.dart';
 import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
+import 'package:inspection_app/data/entities/earthquake_resistant/earthquake_resistant.dart';
 import 'package:inspection_app/data/entities/floor/floor.dart' as f;
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
 import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
+import 'package:inspection_app/data/entities/lifeline/lifeline.dart';
 import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
 import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dart';
+import 'package:inspection_app/data/entities/piping/piping.dart';
+import 'package:inspection_app/data/entities/rebar/rebar.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 
 final inspectionProvider =
-    StateNotifierProvider<InspectionNotifier, Inspection>(
-  (ref) => InspectionNotifier(ref: ref),
+StateNotifierProvider<InspectionNotifier, Inspection>(
+      (ref) => InspectionNotifier(ref: ref),
 );
 
 class InspectionNotifier extends StateNotifier<Inspection> {
@@ -89,7 +94,7 @@ class InspectionNotifier extends StateNotifier<Inspection> {
     );
   }
 
-  void updateLifeline(Lifeline lifeline) {
+  void updateLifelines(Lifelines lifeline) {
     state = state.copyWith(
       overview: state.overview.copyWith(lifeline: lifeline),
     );
@@ -157,5 +162,25 @@ class InspectionNotifier extends StateNotifier<Inspection> {
 
   void updateCorrosion(Corrosion corrosion) {
     state = state.copyWith(corrosion: corrosion);
+  }
+
+  void updatePiping(Piping piping) {
+    state = state.copyWith(piping: piping);
+  }
+
+  void updateLifeline(Lifeline lifeline) {
+    state = state.copyWith(lifeline: lifeline);
+  }
+
+  void updateRebar(Rebar rebar) {
+    state = state.copyWith(rebar: rebar);
+  }
+
+  void updateConcrete(Concrete concrete) {
+    state = state.copyWith(concrete: concrete);
+  }
+
+  void updateEarthquakeResistant(EarthquakeResistant earthquakeResistant) {
+    state = state.copyWith(earthquakeResistant: earthquakeResistant);
   }
 }
