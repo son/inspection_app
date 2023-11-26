@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/address/address.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/entities/values/prefecture.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -21,15 +23,43 @@ class AddressSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '住所標記方法',
-          child: PrimaryTextField(
-            onChange: (text) {},
+          child: DropdownField<AddressType>(
+            value: SelectionItem(
+              value: inspection.overview.building.address.addressType,
+              name: inspection.overview.building.address.addressType.label,
+            ),
+            all: AddressType.values
+                .map((value) => SelectionItem(
+                      value: value,
+                      name: value.label,
+                    ))
+                .toList(),
+            onSelect: (addressType) {
+              final address = inspection.overview.building.address
+                  .copyWith(addressType: addressType);
+              final building =
+                  inspection.overview.building.copyWith(address: address);
+              final overview = inspection.overview.copyWith(building: building);
+              controller.updateOverview(overview);
+            },
           ),
         ),
         SectionItem(
           title: '郵便番号',
           child: PrimaryTextField(
-            hintText: 'xxx-xxxx',
-            onChange: (text) {},
+            hintText: 'xxxxxxx (ハイフンなし)',
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            keyboardType: const TextInputType.numberWithOptions(
+              decimal: true,
+            ),
+            onChange: (text) {
+              final address =
+                  inspection.overview.building.address.copyWith(postCode: text);
+              final building =
+                  inspection.overview.building.copyWith(address: address);
+              final overview = inspection.overview.copyWith(building: building);
+              controller.updateOverview(overview);
+            },
           ),
         ),
         SectionItem(
@@ -54,22 +84,44 @@ class AddressSection extends HookConsumerWidget {
           title: '市区町村・番地',
           child: PrimaryTextField(
             hintText: '市区町村　番地',
-            onChange: (text) {},
+            onChange: (text) {
+              final address = inspection.overview.building.address
+                  .copyWith(municipality: text);
+              final building =
+                  inspection.overview.building.copyWith(address: address);
+              final overview = inspection.overview.copyWith(building: building);
+              controller.updateOverview(overview);
+            },
           ),
         ),
         SectionItem(
           title: '建物名',
           child: PrimaryTextField(
             hintText: 'マンションなどの名称',
-            onChange: (text) {},
+            initialText: inspection.overview.building.name,
+            onChange: (text) {
+              final address = inspection.overview.building.address
+                  .copyWith(buildingName: text);
+              final building =
+                  inspection.overview.building.copyWith(address: address);
+              final overview = inspection.overview.copyWith(building: building);
+              controller.updateOverview(overview);
+            },
           ),
         ),
         SectionItem(
           title: '部屋番号',
           child: PrimaryTextField(
-            hintText: '',
             fixedText: '号室',
-            onChange: (text) {},
+            initialText: inspection.overview.building.address.roomNumber,
+            onChange: (text) {
+              final address = inspection.overview.building.address
+                  .copyWith(roomNumber: text);
+              final building =
+                  inspection.overview.building.copyWith(address: address);
+              final overview = inspection.overview.copyWith(building: building);
+              controller.updateOverview(overview);
+            },
           ),
         ),
       ],

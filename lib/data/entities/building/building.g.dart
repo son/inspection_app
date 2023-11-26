@@ -67,6 +67,7 @@ _$_Repairing _$$_RepairingFromJson(Map<String, dynamic> json) => _$_Repairing(
       repaired: json['repaired'] as bool? ?? false,
       parts: json['parts'] as String? ?? '',
       remarks: json['remarks'] as String? ?? '',
+      method: json['method'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_RepairingToJson(_$_Repairing instance) =>
@@ -74,6 +75,7 @@ Map<String, dynamic> _$$_RepairingToJson(_$_Repairing instance) =>
       'repaired': instance.repaired,
       'parts': instance.parts,
       'remarks': instance.remarks,
+      'method': instance.method,
     };
 
 _$_Renovation _$$_RenovationFromJson(Map<String, dynamic> json) =>

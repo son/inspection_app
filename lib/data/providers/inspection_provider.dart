@@ -22,8 +22,8 @@ import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 
 final inspectionProvider =
-StateNotifierProvider<InspectionNotifier, Inspection>(
-      (ref) => InspectionNotifier(ref: ref),
+    StateNotifierProvider<InspectionNotifier, Inspection>(
+  (ref) => InspectionNotifier(ref: ref),
 );
 
 class InspectionNotifier extends StateNotifier<Inspection> {
@@ -78,6 +78,10 @@ class InspectionNotifier extends StateNotifier<Inspection> {
         ),
       ),
     );
+  }
+
+  void updateOverview(InspectionOverview overview) {
+    state = state.copyWith(overview: overview);
   }
 
   void updateWeather(Weather weather) {

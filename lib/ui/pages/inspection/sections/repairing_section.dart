@@ -45,7 +45,12 @@ class RepairingSection extends HookConsumerWidget {
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              onChange: (text) {},
+              initialText: inspection.overview.building.repairing.parts,
+              onChange: (text) {
+                controller.updateRepairing(inspection
+                    .overview.building.repairing
+                    .copyWith(parts: text));
+              },
             ),
           ),
           SectionItem(
@@ -54,7 +59,12 @@ class RepairingSection extends HookConsumerWidget {
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              onChange: (text) {},
+              initialText: inspection.overview.building.repairing.method,
+              onChange: (text) {
+                controller.updateRepairing(inspection
+                    .overview.building.repairing
+                    .copyWith(method: text));
+              },
             ),
           ),
         ],
@@ -87,7 +97,12 @@ class RepairingSection extends HookConsumerWidget {
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              onChange: (text) {},
+              initialText: inspection.overview.building.renovation.parts,
+              onChange: (text) {
+                final renovation = inspection.overview.building.renovation
+                    .copyWith(parts: text);
+                controller.updateRenovation(renovation);
+              },
             ),
           ),
       ],

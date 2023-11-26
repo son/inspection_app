@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
@@ -60,8 +61,20 @@ class DetailSection extends HookConsumerWidget {
         SectionItem(
           title: '延床面積',
           child: PrimaryTextField(
-            onChange: (text) {},
+            initialText: inspection.overview.building.totalFloorArea.toString(),
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            keyboardType: const TextInputType.numberWithOptions(
+              decimal: true,
+            ),
             fixedText: '㎡',
+            onChange: (text) {
+              final totalFloorArea = double.tryParse(text);
+              if (totalFloorArea == null) return;
+              final building = inspection.overview.building
+                  .copyWith(totalFloorArea: totalFloorArea);
+              final overview = inspection.overview.copyWith(building: building);
+              controller.updateOverview(overview);
+            },
           ),
         ),
         SectionItem(
@@ -115,8 +128,14 @@ class DetailSection extends HookConsumerWidget {
           title: '調査所見',
           child: PrimaryTextField(
             textAlign: TextAlign.start,
+            initialText: inspection.overview.building.findings,
             maxLines: 100,
-            onChange: (text) {},
+            onChange: (text) {
+              final building =
+                  inspection.overview.building.copyWith(findings: text);
+              final overview = inspection.overview.copyWith(building: building);
+              controller.updateOverview(overview);
+            },
           ),
         ),
         // TODO: 建築時期

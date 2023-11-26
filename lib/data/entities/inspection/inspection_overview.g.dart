@@ -28,6 +28,7 @@ _$_InspectionOverview _$$_InspectionOverviewFromJson(
       lifeline: json['lifeline'] == null
           ? const Lifelines()
           : Lifelines.fromJson(json['lifeline'] as Map<String, dynamic>),
+      findings: json['findings'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_InspectionOverviewToJson(
@@ -41,6 +42,7 @@ Map<String, dynamic> _$$_InspectionOverviewToJson(
       'inspector': instance.inspector,
       'building': instance.building,
       'lifeline': instance.lifeline,
+      'findings': instance.findings,
     };
 
 const _$WeatherEnumMap = {

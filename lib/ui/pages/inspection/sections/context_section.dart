@@ -186,7 +186,11 @@ class ContextSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.overview.findings,
+            onChange: (text) {
+              controller
+                  .updateOverview(inspection.overview.copyWith(findings: text));
+            },
           ),
         ),
       ],

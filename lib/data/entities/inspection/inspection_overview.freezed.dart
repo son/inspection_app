@@ -28,6 +28,7 @@ mixin _$InspectionOverview {
   User get inspector => throw _privateConstructorUsedError;
   Building get building => throw _privateConstructorUsedError;
   Lifelines get lifeline => throw _privateConstructorUsedError;
+  String get findings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +50,8 @@ abstract class $InspectionOverviewCopyWith<$Res> {
       String witnessName,
       User inspector,
       Building building,
-      Lifelines lifeline});
+      Lifelines lifeline,
+      String findings});
 
   $ScheduleCopyWith<$Res> get schedule;
   $UserCopyWith<$Res> get inspector;
@@ -78,6 +80,7 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
     Object? inspector = null,
     Object? building = null,
     Object? lifeline = null,
+    Object? findings = null,
   }) {
     return _then(_value.copyWith(
       schedule: null == schedule
@@ -112,6 +115,10 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
           ? _value.lifeline
           : lifeline // ignore: cast_nullable_to_non_nullable
               as Lifelines,
+      findings: null == findings
+          ? _value.findings
+          : findings // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -164,7 +171,8 @@ abstract class _$$_InspectionOverviewCopyWith<$Res>
       String witnessName,
       User inspector,
       Building building,
-      Lifelines lifeline});
+      Lifelines lifeline,
+      String findings});
 
   @override
   $ScheduleCopyWith<$Res> get schedule;
@@ -195,6 +203,7 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
     Object? inspector = null,
     Object? building = null,
     Object? lifeline = null,
+    Object? findings = null,
   }) {
     return _then(_$_InspectionOverview(
       schedule: null == schedule
@@ -229,6 +238,10 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
           ? _value.lifeline
           : lifeline // ignore: cast_nullable_to_non_nullable
               as Lifelines,
+      findings: null == findings
+          ? _value.findings
+          : findings // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -244,7 +257,8 @@ class _$_InspectionOverview extends _InspectionOverview {
       this.witnessName = '',
       this.inspector = const User(id: ''),
       this.building = const Building(),
-      this.lifeline = const Lifelines()})
+      this.lifeline = const Lifelines(),
+      this.findings = ''})
       : super._();
 
   factory _$_InspectionOverview.fromJson(Map<String, dynamic> json) =>
@@ -274,10 +288,13 @@ class _$_InspectionOverview extends _InspectionOverview {
   @override
   @JsonKey()
   final Lifelines lifeline;
+  @override
+  @JsonKey()
+  final String findings;
 
   @override
   String toString() {
-    return 'InspectionOverview(schedule: $schedule, weather: $weather, housingType: $housingType, clientName: $clientName, witnessName: $witnessName, inspector: $inspector, building: $building, lifeline: $lifeline)';
+    return 'InspectionOverview(schedule: $schedule, weather: $weather, housingType: $housingType, clientName: $clientName, witnessName: $witnessName, inspector: $inspector, building: $building, lifeline: $lifeline, findings: $findings)';
   }
 
   @override
@@ -299,13 +316,15 @@ class _$_InspectionOverview extends _InspectionOverview {
             (identical(other.building, building) ||
                 other.building == building) &&
             (identical(other.lifeline, lifeline) ||
-                other.lifeline == lifeline));
+                other.lifeline == lifeline) &&
+            (identical(other.findings, findings) ||
+                other.findings == findings));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, schedule, weather, housingType,
-      clientName, witnessName, inspector, building, lifeline);
+      clientName, witnessName, inspector, building, lifeline, findings);
 
   @JsonKey(ignore: true)
   @override
@@ -331,7 +350,8 @@ abstract class _InspectionOverview extends InspectionOverview {
       final String witnessName,
       final User inspector,
       final Building building,
-      final Lifelines lifeline}) = _$_InspectionOverview;
+      final Lifelines lifeline,
+      final String findings}) = _$_InspectionOverview;
   const _InspectionOverview._() : super._();
 
   factory _InspectionOverview.fromJson(Map<String, dynamic> json) =
@@ -353,6 +373,8 @@ abstract class _InspectionOverview extends InspectionOverview {
   Building get building;
   @override
   Lifelines get lifeline;
+  @override
+  String get findings;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionOverviewCopyWith<_$_InspectionOverview> get copyWith =>

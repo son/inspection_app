@@ -58,6 +58,7 @@ class Repairing with _$Repairing {
     @Default(false) bool repaired,
     @Default('') String parts,
     @Default('') String remarks,
+    @Default('') String method,
   }) = _Repairing;
 
   factory Repairing.fromJson(Map<String, dynamic> json) =>

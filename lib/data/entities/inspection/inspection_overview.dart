@@ -19,6 +19,7 @@ class InspectionOverview with _$InspectionOverview {
     @Default(User(id: '')) User inspector,
     @Default(Building()) Building building,
     @Default(Lifelines()) Lifelines lifeline,
+    @Default('') String findings,
   }) = _InspectionOverview;
 
   factory InspectionOverview.fromJson(Map<String, dynamic> json) =>

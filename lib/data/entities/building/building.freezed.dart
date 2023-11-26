@@ -563,6 +563,7 @@ mixin _$Repairing {
   bool get repaired => throw _privateConstructorUsedError;
   String get parts => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
+  String get method => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -575,7 +576,7 @@ abstract class $RepairingCopyWith<$Res> {
   factory $RepairingCopyWith(Repairing value, $Res Function(Repairing) then) =
       _$RepairingCopyWithImpl<$Res, Repairing>;
   @useResult
-  $Res call({bool repaired, String parts, String remarks});
+  $Res call({bool repaired, String parts, String remarks, String method});
 }
 
 /// @nodoc
@@ -594,6 +595,7 @@ class _$RepairingCopyWithImpl<$Res, $Val extends Repairing>
     Object? repaired = null,
     Object? parts = null,
     Object? remarks = null,
+    Object? method = null,
   }) {
     return _then(_value.copyWith(
       repaired: null == repaired
@@ -608,6 +610,10 @@ class _$RepairingCopyWithImpl<$Res, $Val extends Repairing>
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
               as String,
+      method: null == method
+          ? _value.method
+          : method // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -619,7 +625,7 @@ abstract class _$$_RepairingCopyWith<$Res> implements $RepairingCopyWith<$Res> {
       __$$_RepairingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool repaired, String parts, String remarks});
+  $Res call({bool repaired, String parts, String remarks, String method});
 }
 
 /// @nodoc
@@ -636,6 +642,7 @@ class __$$_RepairingCopyWithImpl<$Res>
     Object? repaired = null,
     Object? parts = null,
     Object? remarks = null,
+    Object? method = null,
   }) {
     return _then(_$_Repairing(
       repaired: null == repaired
@@ -650,6 +657,10 @@ class __$$_RepairingCopyWithImpl<$Res>
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
               as String,
+      method: null == method
+          ? _value.method
+          : method // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -658,7 +669,10 @@ class __$$_RepairingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Repairing extends _Repairing {
   const _$_Repairing(
-      {this.repaired = false, this.parts = '', this.remarks = ''})
+      {this.repaired = false,
+      this.parts = '',
+      this.remarks = '',
+      this.method = ''})
       : super._();
 
   factory _$_Repairing.fromJson(Map<String, dynamic> json) =>
@@ -673,10 +687,13 @@ class _$_Repairing extends _Repairing {
   @override
   @JsonKey()
   final String remarks;
+  @override
+  @JsonKey()
+  final String method;
 
   @override
   String toString() {
-    return 'Repairing(repaired: $repaired, parts: $parts, remarks: $remarks)';
+    return 'Repairing(repaired: $repaired, parts: $parts, remarks: $remarks, method: $method)';
   }
 
   @override
@@ -687,12 +704,14 @@ class _$_Repairing extends _Repairing {
             (identical(other.repaired, repaired) ||
                 other.repaired == repaired) &&
             (identical(other.parts, parts) || other.parts == parts) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.method, method) || other.method == method));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, repaired, parts, remarks);
+  int get hashCode =>
+      Object.hash(runtimeType, repaired, parts, remarks, method);
 
   @JsonKey(ignore: true)
   @override
@@ -712,7 +731,8 @@ abstract class _Repairing extends Repairing {
   const factory _Repairing(
       {final bool repaired,
       final String parts,
-      final String remarks}) = _$_Repairing;
+      final String remarks,
+      final String method}) = _$_Repairing;
   const _Repairing._() : super._();
 
   factory _Repairing.fromJson(Map<String, dynamic> json) =
@@ -724,6 +744,8 @@ abstract class _Repairing extends Repairing {
   String get parts;
   @override
   String get remarks;
+  @override
+  String get method;
   @override
   @JsonKey(ignore: true)
   _$$_RepairingCopyWith<_$_Repairing> get copyWith =>
