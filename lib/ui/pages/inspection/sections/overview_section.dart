@@ -31,7 +31,7 @@ class OverviewSection extends HookConsumerWidget {
           child: PrimaryTextField(
             hintText: '建物名称',
             fixedText: '様邸',
-            initialText: inspection.overview.building.name,
+            initialText: inspection.overview.building.name ?? '',
             onChange: (text) {
               final building =
                   inspection.overview.building.copyWith(name: text);
@@ -44,7 +44,7 @@ class OverviewSection extends HookConsumerWidget {
           title: '調査依頼主',
           child: PrimaryTextField(
             hintText: '会社名・担当者名',
-            initialText: inspection.overview.clientName,
+            initialText: inspection.overview.clientName ?? '',
             onChange: (text) {
               final overview = inspection.overview.copyWith(clientName: text);
               controller.updateOverview(overview);
@@ -54,7 +54,7 @@ class OverviewSection extends HookConsumerWidget {
         SectionItem(
           title: '調査立合者',
           child: PrimaryTextField(
-            initialText: inspection.overview.witnessName,
+            initialText: inspection.overview.witnessName ?? '',
             hintText: '会社名・担当者名',
             onChange: (text) {
               final overview = inspection.overview.copyWith(witnessName: text);

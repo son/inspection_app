@@ -9,6 +9,7 @@ class PrimaryTextField extends HookConsumerWidget {
     super.key,
     required this.onChange,
     this.initialText = '',
+    this.leftText = '',
     this.hintText = '',
     this.fixedText = '',
     this.maxLines = 1,
@@ -19,6 +20,7 @@ class PrimaryTextField extends HookConsumerWidget {
 
   final String initialText;
   final Function(String) onChange;
+  final String leftText;
   final String hintText;
   final String fixedText;
   final int maxLines;
@@ -66,7 +68,16 @@ class PrimaryTextField extends HookConsumerWidget {
 
     if (fixedText.isNotEmpty) {
       return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          if (leftText.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Text(
+                leftText,
+                style: TextStyles.n14,
+              ),
+            ),
           Expanded(
             child: child,
           ),

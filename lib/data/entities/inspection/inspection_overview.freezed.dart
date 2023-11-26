@@ -21,11 +21,10 @@ InspectionOverview _$InspectionOverviewFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$InspectionOverview {
   Schedule get schedule => throw _privateConstructorUsedError;
-  Weather get weather => throw _privateConstructorUsedError;
-  HousingType get housingType => throw _privateConstructorUsedError;
-  String get clientName => throw _privateConstructorUsedError;
-  String get witnessName => throw _privateConstructorUsedError;
-  User get inspector => throw _privateConstructorUsedError;
+  Weather? get weather => throw _privateConstructorUsedError;
+  HousingType? get housingType => throw _privateConstructorUsedError;
+  String? get clientName => throw _privateConstructorUsedError;
+  String? get witnessName => throw _privateConstructorUsedError;
   Building get building => throw _privateConstructorUsedError;
   Lifelines get lifeline => throw _privateConstructorUsedError;
   String get findings => throw _privateConstructorUsedError;
@@ -44,17 +43,15 @@ abstract class $InspectionOverviewCopyWith<$Res> {
   @useResult
   $Res call(
       {Schedule schedule,
-      Weather weather,
-      HousingType housingType,
-      String clientName,
-      String witnessName,
-      User inspector,
+      Weather? weather,
+      HousingType? housingType,
+      String? clientName,
+      String? witnessName,
       Building building,
       Lifelines lifeline,
       String findings});
 
   $ScheduleCopyWith<$Res> get schedule;
-  $UserCopyWith<$Res> get inspector;
   $BuildingCopyWith<$Res> get building;
   $LifelinesCopyWith<$Res> get lifeline;
 }
@@ -73,11 +70,10 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
   @override
   $Res call({
     Object? schedule = null,
-    Object? weather = null,
-    Object? housingType = null,
-    Object? clientName = null,
-    Object? witnessName = null,
-    Object? inspector = null,
+    Object? weather = freezed,
+    Object? housingType = freezed,
+    Object? clientName = freezed,
+    Object? witnessName = freezed,
     Object? building = null,
     Object? lifeline = null,
     Object? findings = null,
@@ -87,26 +83,22 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as Schedule,
-      weather: null == weather
+      weather: freezed == weather
           ? _value.weather
           : weather // ignore: cast_nullable_to_non_nullable
-              as Weather,
-      housingType: null == housingType
+              as Weather?,
+      housingType: freezed == housingType
           ? _value.housingType
           : housingType // ignore: cast_nullable_to_non_nullable
-              as HousingType,
-      clientName: null == clientName
+              as HousingType?,
+      clientName: freezed == clientName
           ? _value.clientName
           : clientName // ignore: cast_nullable_to_non_nullable
-              as String,
-      witnessName: null == witnessName
+              as String?,
+      witnessName: freezed == witnessName
           ? _value.witnessName
           : witnessName // ignore: cast_nullable_to_non_nullable
-              as String,
-      inspector: null == inspector
-          ? _value.inspector
-          : inspector // ignore: cast_nullable_to_non_nullable
-              as User,
+              as String?,
       building: null == building
           ? _value.building
           : building // ignore: cast_nullable_to_non_nullable
@@ -127,14 +119,6 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
   $ScheduleCopyWith<$Res> get schedule {
     return $ScheduleCopyWith<$Res>(_value.schedule, (value) {
       return _then(_value.copyWith(schedule: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get inspector {
-    return $UserCopyWith<$Res>(_value.inspector, (value) {
-      return _then(_value.copyWith(inspector: value) as $Val);
     });
   }
 
@@ -165,19 +149,16 @@ abstract class _$$_InspectionOverviewCopyWith<$Res>
   @useResult
   $Res call(
       {Schedule schedule,
-      Weather weather,
-      HousingType housingType,
-      String clientName,
-      String witnessName,
-      User inspector,
+      Weather? weather,
+      HousingType? housingType,
+      String? clientName,
+      String? witnessName,
       Building building,
       Lifelines lifeline,
       String findings});
 
   @override
   $ScheduleCopyWith<$Res> get schedule;
-  @override
-  $UserCopyWith<$Res> get inspector;
   @override
   $BuildingCopyWith<$Res> get building;
   @override
@@ -196,11 +177,10 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
   @override
   $Res call({
     Object? schedule = null,
-    Object? weather = null,
-    Object? housingType = null,
-    Object? clientName = null,
-    Object? witnessName = null,
-    Object? inspector = null,
+    Object? weather = freezed,
+    Object? housingType = freezed,
+    Object? clientName = freezed,
+    Object? witnessName = freezed,
     Object? building = null,
     Object? lifeline = null,
     Object? findings = null,
@@ -210,26 +190,22 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as Schedule,
-      weather: null == weather
+      weather: freezed == weather
           ? _value.weather
           : weather // ignore: cast_nullable_to_non_nullable
-              as Weather,
-      housingType: null == housingType
+              as Weather?,
+      housingType: freezed == housingType
           ? _value.housingType
           : housingType // ignore: cast_nullable_to_non_nullable
-              as HousingType,
-      clientName: null == clientName
+              as HousingType?,
+      clientName: freezed == clientName
           ? _value.clientName
           : clientName // ignore: cast_nullable_to_non_nullable
-              as String,
-      witnessName: null == witnessName
+              as String?,
+      witnessName: freezed == witnessName
           ? _value.witnessName
           : witnessName // ignore: cast_nullable_to_non_nullable
-              as String,
-      inspector: null == inspector
-          ? _value.inspector
-          : inspector // ignore: cast_nullable_to_non_nullable
-              as User,
+              as String?,
       building: null == building
           ? _value.building
           : building // ignore: cast_nullable_to_non_nullable
@@ -251,11 +227,10 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
 class _$_InspectionOverview extends _InspectionOverview {
   const _$_InspectionOverview(
       {this.schedule = const Schedule(),
-      this.weather = Weather.unknown,
-      this.housingType = HousingType.detached,
-      this.clientName = '',
-      this.witnessName = '',
-      this.inspector = const User(id: ''),
+      this.weather,
+      this.housingType,
+      this.clientName,
+      this.witnessName,
       this.building = const Building(),
       this.lifeline = const Lifelines(),
       this.findings = ''})
@@ -268,20 +243,13 @@ class _$_InspectionOverview extends _InspectionOverview {
   @JsonKey()
   final Schedule schedule;
   @override
-  @JsonKey()
-  final Weather weather;
+  final Weather? weather;
   @override
-  @JsonKey()
-  final HousingType housingType;
+  final HousingType? housingType;
   @override
-  @JsonKey()
-  final String clientName;
+  final String? clientName;
   @override
-  @JsonKey()
-  final String witnessName;
-  @override
-  @JsonKey()
-  final User inspector;
+  final String? witnessName;
   @override
   @JsonKey()
   final Building building;
@@ -294,7 +262,7 @@ class _$_InspectionOverview extends _InspectionOverview {
 
   @override
   String toString() {
-    return 'InspectionOverview(schedule: $schedule, weather: $weather, housingType: $housingType, clientName: $clientName, witnessName: $witnessName, inspector: $inspector, building: $building, lifeline: $lifeline, findings: $findings)';
+    return 'InspectionOverview(schedule: $schedule, weather: $weather, housingType: $housingType, clientName: $clientName, witnessName: $witnessName, building: $building, lifeline: $lifeline, findings: $findings)';
   }
 
   @override
@@ -311,8 +279,6 @@ class _$_InspectionOverview extends _InspectionOverview {
                 other.clientName == clientName) &&
             (identical(other.witnessName, witnessName) ||
                 other.witnessName == witnessName) &&
-            (identical(other.inspector, inspector) ||
-                other.inspector == inspector) &&
             (identical(other.building, building) ||
                 other.building == building) &&
             (identical(other.lifeline, lifeline) ||
@@ -324,7 +290,7 @@ class _$_InspectionOverview extends _InspectionOverview {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, schedule, weather, housingType,
-      clientName, witnessName, inspector, building, lifeline, findings);
+      clientName, witnessName, building, lifeline, findings);
 
   @JsonKey(ignore: true)
   @override
@@ -344,11 +310,10 @@ class _$_InspectionOverview extends _InspectionOverview {
 abstract class _InspectionOverview extends InspectionOverview {
   const factory _InspectionOverview(
       {final Schedule schedule,
-      final Weather weather,
-      final HousingType housingType,
-      final String clientName,
-      final String witnessName,
-      final User inspector,
+      final Weather? weather,
+      final HousingType? housingType,
+      final String? clientName,
+      final String? witnessName,
       final Building building,
       final Lifelines lifeline,
       final String findings}) = _$_InspectionOverview;
@@ -360,15 +325,13 @@ abstract class _InspectionOverview extends InspectionOverview {
   @override
   Schedule get schedule;
   @override
-  Weather get weather;
+  Weather? get weather;
   @override
-  HousingType get housingType;
+  HousingType? get housingType;
   @override
-  String get clientName;
+  String? get clientName;
   @override
-  String get witnessName;
-  @override
-  User get inspector;
+  String? get witnessName;
   @override
   Building get building;
   @override
@@ -539,9 +502,9 @@ Lifelines _$LifelinesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Lifelines {
-  bool get water => throw _privateConstructorUsedError;
-  bool get electricity => throw _privateConstructorUsedError;
-  bool get gas => throw _privateConstructorUsedError;
+  bool? get water => throw _privateConstructorUsedError;
+  bool? get electricity => throw _privateConstructorUsedError;
+  bool? get gas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -554,7 +517,7 @@ abstract class $LifelinesCopyWith<$Res> {
   factory $LifelinesCopyWith(Lifelines value, $Res Function(Lifelines) then) =
       _$LifelinesCopyWithImpl<$Res, Lifelines>;
   @useResult
-  $Res call({bool water, bool electricity, bool gas});
+  $Res call({bool? water, bool? electricity, bool? gas});
 }
 
 /// @nodoc
@@ -570,23 +533,23 @@ class _$LifelinesCopyWithImpl<$Res, $Val extends Lifelines>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? water = null,
-    Object? electricity = null,
-    Object? gas = null,
+    Object? water = freezed,
+    Object? electricity = freezed,
+    Object? gas = freezed,
   }) {
     return _then(_value.copyWith(
-      water: null == water
+      water: freezed == water
           ? _value.water
           : water // ignore: cast_nullable_to_non_nullable
-              as bool,
-      electricity: null == electricity
+              as bool?,
+      electricity: freezed == electricity
           ? _value.electricity
           : electricity // ignore: cast_nullable_to_non_nullable
-              as bool,
-      gas: null == gas
+              as bool?,
+      gas: freezed == gas
           ? _value.gas
           : gas // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -598,7 +561,7 @@ abstract class _$$_LifelinesCopyWith<$Res> implements $LifelinesCopyWith<$Res> {
       __$$_LifelinesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool water, bool electricity, bool gas});
+  $Res call({bool? water, bool? electricity, bool? gas});
 }
 
 /// @nodoc
@@ -612,23 +575,23 @@ class __$$_LifelinesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? water = null,
-    Object? electricity = null,
-    Object? gas = null,
+    Object? water = freezed,
+    Object? electricity = freezed,
+    Object? gas = freezed,
   }) {
     return _then(_$_Lifelines(
-      water: null == water
+      water: freezed == water
           ? _value.water
           : water // ignore: cast_nullable_to_non_nullable
-              as bool,
-      electricity: null == electricity
+              as bool?,
+      electricity: freezed == electricity
           ? _value.electricity
           : electricity // ignore: cast_nullable_to_non_nullable
-              as bool,
-      gas: null == gas
+              as bool?,
+      gas: freezed == gas
           ? _value.gas
           : gas // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -636,22 +599,17 @@ class __$$_LifelinesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Lifelines extends _Lifelines {
-  const _$_Lifelines(
-      {this.water = false, this.electricity = false, this.gas = false})
-      : super._();
+  const _$_Lifelines({this.water, this.electricity, this.gas}) : super._();
 
   factory _$_Lifelines.fromJson(Map<String, dynamic> json) =>
       _$$_LifelinesFromJson(json);
 
   @override
-  @JsonKey()
-  final bool water;
+  final bool? water;
   @override
-  @JsonKey()
-  final bool electricity;
+  final bool? electricity;
   @override
-  @JsonKey()
-  final bool gas;
+  final bool? gas;
 
   @override
   String toString() {
@@ -689,20 +647,20 @@ class _$_Lifelines extends _Lifelines {
 
 abstract class _Lifelines extends Lifelines {
   const factory _Lifelines(
-      {final bool water,
-      final bool electricity,
-      final bool gas}) = _$_Lifelines;
+      {final bool? water,
+      final bool? electricity,
+      final bool? gas}) = _$_Lifelines;
   const _Lifelines._() : super._();
 
   factory _Lifelines.fromJson(Map<String, dynamic> json) =
       _$_Lifelines.fromJson;
 
   @override
-  bool get water;
+  bool? get water;
   @override
-  bool get electricity;
+  bool? get electricity;
   @override
-  bool get gas;
+  bool? get gas;
   @override
   @JsonKey(ignore: true)
   _$$_LifelinesCopyWith<_$_Lifelines> get copyWith =>

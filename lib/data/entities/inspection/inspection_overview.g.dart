@@ -12,16 +12,11 @@ _$_InspectionOverview _$$_InspectionOverviewFromJson(
       schedule: json['schedule'] == null
           ? const Schedule()
           : Schedule.fromJson(json['schedule'] as Map<String, dynamic>),
-      weather: $enumDecodeNullable(_$WeatherEnumMap, json['weather']) ??
-          Weather.unknown,
+      weather: $enumDecodeNullable(_$WeatherEnumMap, json['weather']),
       housingType:
-          $enumDecodeNullable(_$HousingTypeEnumMap, json['housingType']) ??
-              HousingType.detached,
-      clientName: json['clientName'] as String? ?? '',
-      witnessName: json['witnessName'] as String? ?? '',
-      inspector: json['inspector'] == null
-          ? const User(id: '')
-          : User.fromJson(json['inspector'] as Map<String, dynamic>),
+          $enumDecodeNullable(_$HousingTypeEnumMap, json['housingType']),
+      clientName: json['clientName'] as String?,
+      witnessName: json['witnessName'] as String?,
       building: json['building'] == null
           ? const Building()
           : Building.fromJson(json['building'] as Map<String, dynamic>),
@@ -35,11 +30,10 @@ Map<String, dynamic> _$$_InspectionOverviewToJson(
         _$_InspectionOverview instance) =>
     <String, dynamic>{
       'schedule': instance.schedule,
-      'weather': _$WeatherEnumMap[instance.weather]!,
-      'housingType': _$HousingTypeEnumMap[instance.housingType]!,
+      'weather': _$WeatherEnumMap[instance.weather],
+      'housingType': _$HousingTypeEnumMap[instance.housingType],
       'clientName': instance.clientName,
       'witnessName': instance.witnessName,
-      'inspector': instance.inspector,
       'building': instance.building,
       'lifeline': instance.lifeline,
       'findings': instance.findings,
@@ -75,9 +69,9 @@ Map<String, dynamic> _$$_ScheduleToJson(_$_Schedule instance) =>
     };
 
 _$_Lifelines _$$_LifelinesFromJson(Map<String, dynamic> json) => _$_Lifelines(
-      water: json['water'] as bool? ?? false,
-      electricity: json['electricity'] as bool? ?? false,
-      gas: json['gas'] as bool? ?? false,
+      water: json['water'] as bool?,
+      electricity: json['electricity'] as bool?,
+      gas: json['gas'] as bool?,
     );
 
 Map<String, dynamic> _$$_LifelinesToJson(_$_Lifelines instance) =>

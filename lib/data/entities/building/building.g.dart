@@ -7,18 +7,17 @@ part of 'building.dart';
 // **************************************************************************
 
 _$_Building _$$_BuildingFromJson(Map<String, dynamic> json) => _$_Building(
-      name: json['name'] as String? ?? '',
+      name: json['name'] as String?,
       structureType:
-          $enumDecodeNullable(_$StructureTypeEnumMap, json['structureType']) ??
-              StructureType.wooden,
-      totalFloorArea: (json['totalFloorArea'] as num?)?.toDouble() ?? 0.0,
+          $enumDecodeNullable(_$StructureTypeEnumMap, json['structureType']),
+      totalFloorArea: (json['totalFloorArea'] as num?)?.toDouble(),
       floor: json['floor'] == null
           ? const Floor()
           : Floor.fromJson(json['floor'] as Map<String, dynamic>),
       address: json['address'] == null
           ? const Address()
           : Address.fromJson(json['address'] as Map<String, dynamic>),
-      prefecture: json['prefecture'] as String? ?? '東京都',
+      prefecture: json['prefecture'] as String?,
       repairing: json['repairing'] == null
           ? const Repairing()
           : Repairing.fromJson(json['repairing'] as Map<String, dynamic>),
@@ -34,7 +33,7 @@ _$_Building _$$_BuildingFromJson(Map<String, dynamic> json) => _$_Building(
 Map<String, dynamic> _$$_BuildingToJson(_$_Building instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'structureType': _$StructureTypeEnumMap[instance.structureType]!,
+      'structureType': _$StructureTypeEnumMap[instance.structureType],
       'totalFloorArea': instance.totalFloorArea,
       'floor': instance.floor,
       'address': instance.address,
@@ -54,8 +53,8 @@ const _$StructureTypeEnumMap = {
 };
 
 _$_Floor _$$_FloorFromJson(Map<String, dynamic> json) => _$_Floor(
-      ground: json['ground'] as int? ?? 1,
-      underground: json['underground'] as int? ?? 0,
+      ground: json['ground'] as int?,
+      underground: json['underground'] as int?,
     );
 
 Map<String, dynamic> _$$_FloorToJson(_$_Floor instance) => <String, dynamic>{
@@ -64,7 +63,7 @@ Map<String, dynamic> _$$_FloorToJson(_$_Floor instance) => <String, dynamic>{
     };
 
 _$_Repairing _$$_RepairingFromJson(Map<String, dynamic> json) => _$_Repairing(
-      repaired: json['repaired'] as bool? ?? false,
+      repaired: json['repaired'] as bool?,
       parts: json['parts'] as String? ?? '',
       remarks: json['remarks'] as String? ?? '',
       method: json['method'] as String? ?? '',
@@ -80,7 +79,7 @@ Map<String, dynamic> _$$_RepairingToJson(_$_Repairing instance) =>
 
 _$_Renovation _$$_RenovationFromJson(Map<String, dynamic> json) =>
     _$_Renovation(
-      renovating: json['renovating'] as bool? ?? false,
+      renovating: json['renovating'] as bool?,
       parts: json['parts'] as String? ?? '',
     );
 

@@ -21,11 +21,17 @@ class RepairingSection extends HookConsumerWidget {
         SectionItem(
           title: '修理履歴',
           child: DropdownField<bool>(
-            value: SelectionItem(
-              value: inspection.overview.building.repairing.repaired,
-              name:
-                  inspection.overview.building.repairing.repaired ? 'あり' : 'なし',
-            ),
+            value: () {
+              if (inspection.overview.building.repairing.repaired == null) {
+                return null;
+              }
+              return SelectionItem(
+                value: inspection.overview.building.repairing.repaired!,
+                name: inspection.overview.building.repairing.repaired!
+                    ? 'あり'
+                    : 'なし',
+              );
+            }(),
             all: [true, false]
                 .map((value) => SelectionItem(
                       value: value,
@@ -38,7 +44,7 @@ class RepairingSection extends HookConsumerWidget {
             },
           ),
         ),
-        if (inspection.overview.building.repairing.repaired) ...[
+        if (inspection.overview.building.repairing.repaired ?? false) ...[
           SectionItem(
             axis: Axis.vertical,
             title: '部分',
@@ -71,12 +77,17 @@ class RepairingSection extends HookConsumerWidget {
         SectionItem(
           title: '調査時のリフォーム工事',
           child: DropdownField<bool>(
-            value: SelectionItem(
-              value: inspection.overview.building.renovation.renovating,
-              name: inspection.overview.building.renovation.renovating
-                  ? '工事中'
-                  : '工事中ではない',
-            ),
+            value: () {
+              if (inspection.overview.building.renovation.renovating == null) {
+                return null;
+              }
+              return SelectionItem(
+                value: inspection.overview.building.renovation.renovating!,
+                name: inspection.overview.building.renovation.renovating!
+                    ? '工事中'
+                    : '工事中ではない',
+              );
+            }(),
             all: [true, false]
                 .map((value) => SelectionItem(
                       value: value,
@@ -90,7 +101,7 @@ class RepairingSection extends HookConsumerWidget {
             },
           ),
         ),
-        if (inspection.overview.building.renovation.renovating)
+        if (inspection.overview.building.renovation.renovating ?? false)
           SectionItem(
             axis: Axis.vertical,
             title: '部分',

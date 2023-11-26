@@ -25,9 +25,9 @@ class DetailSection extends HookConsumerWidget {
         SectionItem(
           title: '調査区分',
           child: DropdownField<HousingType>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.overview.housingType,
-              name: inspection.overview.housingType.name,
+              name: inspection.overview.housingType?.name,
             ),
             all: HousingType.values
                 .map((value) => SelectionItem(
@@ -43,9 +43,9 @@ class DetailSection extends HookConsumerWidget {
         SectionItem(
           title: '構造種別',
           child: DropdownField<StructureType>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.overview.building.structureType,
-              name: inspection.overview.building.structureType.name,
+              name: inspection.overview.building.structureType?.name,
             ),
             all: StructureType.values
                 .map((value) => SelectionItem(
@@ -84,39 +84,42 @@ class DetailSection extends HookConsumerWidget {
               const Spacer(),
               SizedBox(
                 width: 100,
-                child: DropdownField<int>(
-                  leftText: '地上 ',
-                  value: SelectionItem(
-                    value: inspection.overview.building.floor.ground,
-                    name: '${inspection.overview.building.floor.ground} 階',
+                child: PrimaryTextField(
+                  initialText:
+                      inspection.overview.building.floor.ground?.toString() ??
+                          '',
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
                   ),
-                  all: List.generate(63, (index) => index + 1)
-                      .map((value) => SelectionItem(
-                            value: value,
-                            name: '$value 階',
-                          ))
-                      .toList(),
-                  onSelect: (value) {
-                    controller.updateGround(value);
+                  leftText: '地上',
+                  hintText: 'x',
+                  fixedText: '階',
+                  onChange: (text) {
+                    final ground = int.tryParse(text);
+                    if (ground == null) return;
+                    controller.updateGround(ground);
                   },
                 ),
               ),
+              const SizedBox(width: 32),
               SizedBox(
                 width: 100,
-                child: DropdownField<int>(
-                  leftText: '地下 ',
-                  value: SelectionItem(
-                    value: inspection.overview.building.floor.underground,
-                    name: '${inspection.overview.building.floor.underground} 階',
+                child: PrimaryTextField(
+                  initialText: inspection.overview.building.floor.underground
+                          ?.toString() ??
+                      '',
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
                   ),
-                  all: List.generate(4, (index) => index)
-                      .map((value) => SelectionItem(
-                            value: value,
-                            name: '$value 階',
-                          ))
-                      .toList(),
-                  onSelect: (value) {
-                    controller.updateUnderGround(value);
+                  hintText: 'x',
+                  leftText: '地下',
+                  fixedText: '階',
+                  onChange: (text) {
+                    final underground = int.tryParse(text);
+                    if (underground == null) return;
+                    controller.updateUnderGround(underground);
                   },
                 ),
               ),

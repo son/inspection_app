@@ -22,8 +22,12 @@ class PrimaryField extends StatelessWidget {
           children: [
             const Spacer(),
             Text(
-              text,
-              style: TextStyles.n14,
+              text.isNotEmpty ? text : '未入力',
+              style: text.isNotEmpty
+                  ? TextStyles.n14
+                  : TextStyles.n14.copyWith(
+                      color: Colors.grey,
+                    ),
               textAlign: TextAlign.end,
             ),
             const Icon(

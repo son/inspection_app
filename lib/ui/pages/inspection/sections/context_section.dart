@@ -26,9 +26,9 @@ class ContextSection extends HookConsumerWidget {
         SectionItem(
           title: '天候',
           child: DropdownField<Weather>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.overview.weather,
-              name: inspection.overview.weather.name,
+              name: inspection.overview.weather?.name,
             ),
             all: Weather.values
                 .map((value) => SelectionItem(
@@ -44,7 +44,7 @@ class ContextSection extends HookConsumerWidget {
         SectionItem(
           title: '報告書作成日',
           child: PrimaryField(
-            text: inspection.createdAt?.ymd() ?? '-',
+            text: inspection.createdAt?.ymd() ?? '',
             onTap: () async {
               final date = await DatePicker.showDatePicker(
                 context,
@@ -61,7 +61,7 @@ class ContextSection extends HookConsumerWidget {
         SectionItem(
           title: '調査日',
           child: PrimaryField(
-            text: inspection.overview.schedule.startedAt?.ymd() ?? '-',
+            text: inspection.overview.schedule.startedAt?.ymd() ?? '',
             onTap: () async {
               final date = await DatePicker.showDatePicker(
                 context,
@@ -82,7 +82,7 @@ class ContextSection extends HookConsumerWidget {
             children: [
               Expanded(
                 child: PrimaryField(
-                  text: inspection.overview.schedule.startedAt?.hm() ?? '-',
+                  text: inspection.overview.schedule.startedAt?.hm() ?? '',
                   onTap: () async {
                     final date = await DatePicker.showTimePicker(
                       context,
@@ -105,7 +105,7 @@ class ContextSection extends HookConsumerWidget {
               SizedBox(
                 width: 80,
                 child: PrimaryField(
-                  text: inspection.overview.schedule.endedAt?.hm() ?? '-',
+                  text: inspection.overview.schedule.endedAt?.hm() ?? '',
                   onTap: () async {
                     final date = await DatePicker.showTimePicker(
                       context,
@@ -126,10 +126,14 @@ class ContextSection extends HookConsumerWidget {
         SectionItem(
           title: '電気',
           child: DropdownField<bool>(
-            value: SelectionItem(
-              value: inspection.overview.lifeline.electricity,
-              name: inspection.overview.lifeline.electricity ? '通電あり' : '通電なし',
-            ),
+            value: () {
+              if (inspection.overview.lifeline.electricity == null) return null;
+              return SelectionItem(
+                value: inspection.overview.lifeline.electricity!,
+                name:
+                    inspection.overview.lifeline.electricity! ? '通電あり' : '通電なし',
+              );
+            }(),
             all: [false, true]
                 .map((value) => SelectionItem(
                       value: value,
@@ -145,10 +149,13 @@ class ContextSection extends HookConsumerWidget {
         SectionItem(
           title: '水道',
           child: DropdownField<bool>(
-            value: SelectionItem(
-              value: inspection.overview.lifeline.electricity,
-              name: inspection.overview.lifeline.electricity ? '開栓あり' : '開栓なし',
-            ),
+            value: () {
+              if (inspection.overview.lifeline.water == null) return null;
+              return SelectionItem(
+                value: inspection.overview.lifeline.water!,
+                name: inspection.overview.lifeline.water! ? '開栓あり' : '開栓なし',
+              );
+            }(),
             all: [false, true]
                 .map((value) => SelectionItem(
                       value: value,
@@ -164,10 +171,13 @@ class ContextSection extends HookConsumerWidget {
         SectionItem(
           title: 'ガス',
           child: DropdownField<bool>(
-            value: SelectionItem(
-              value: inspection.overview.lifeline.electricity,
-              name: inspection.overview.lifeline.electricity ? '開栓あり' : '開栓なし',
-            ),
+            value: () {
+              if (inspection.overview.lifeline.gas == null) return null;
+              return SelectionItem(
+                value: inspection.overview.lifeline.gas!,
+                name: inspection.overview.lifeline.gas! ? '開栓あり' : '開栓なし',
+              );
+            }(),
             all: [false, true]
                 .map((value) => SelectionItem(
                       value: value,

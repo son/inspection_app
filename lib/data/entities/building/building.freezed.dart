@@ -20,12 +20,12 @@ Building _$BuildingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Building {
-  String get name => throw _privateConstructorUsedError;
-  StructureType get structureType => throw _privateConstructorUsedError;
-  double get totalFloorArea => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  StructureType? get structureType => throw _privateConstructorUsedError;
+  double? get totalFloorArea => throw _privateConstructorUsedError;
   Floor get floor => throw _privateConstructorUsedError;
   Address get address => throw _privateConstructorUsedError;
-  String get prefecture => throw _privateConstructorUsedError;
+  String? get prefecture => throw _privateConstructorUsedError;
   Repairing get repairing => throw _privateConstructorUsedError;
   Renovation get renovation => throw _privateConstructorUsedError;
   String get findings => throw _privateConstructorUsedError;
@@ -43,12 +43,12 @@ abstract class $BuildingCopyWith<$Res> {
       _$BuildingCopyWithImpl<$Res, Building>;
   @useResult
   $Res call(
-      {String name,
-      StructureType structureType,
-      double totalFloorArea,
+      {String? name,
+      StructureType? structureType,
+      double? totalFloorArea,
       Floor floor,
       Address address,
-      String prefecture,
+      String? prefecture,
       Repairing repairing,
       Renovation renovation,
       String findings,
@@ -73,30 +73,30 @@ class _$BuildingCopyWithImpl<$Res, $Val extends Building>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? structureType = null,
-    Object? totalFloorArea = null,
+    Object? name = freezed,
+    Object? structureType = freezed,
+    Object? totalFloorArea = freezed,
     Object? floor = null,
     Object? address = null,
-    Object? prefecture = null,
+    Object? prefecture = freezed,
     Object? repairing = null,
     Object? renovation = null,
     Object? findings = null,
     Object? builtAt = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      structureType: null == structureType
+              as String?,
+      structureType: freezed == structureType
           ? _value.structureType
           : structureType // ignore: cast_nullable_to_non_nullable
-              as StructureType,
-      totalFloorArea: null == totalFloorArea
+              as StructureType?,
+      totalFloorArea: freezed == totalFloorArea
           ? _value.totalFloorArea
           : totalFloorArea // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
@@ -105,10 +105,10 @@ class _$BuildingCopyWithImpl<$Res, $Val extends Building>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      prefecture: null == prefecture
+      prefecture: freezed == prefecture
           ? _value.prefecture
           : prefecture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       repairing: null == repairing
           ? _value.repairing
           : repairing // ignore: cast_nullable_to_non_nullable
@@ -169,12 +169,12 @@ abstract class _$$_BuildingCopyWith<$Res> implements $BuildingCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
-      StructureType structureType,
-      double totalFloorArea,
+      {String? name,
+      StructureType? structureType,
+      double? totalFloorArea,
       Floor floor,
       Address address,
-      String prefecture,
+      String? prefecture,
       Repairing repairing,
       Renovation renovation,
       String findings,
@@ -201,30 +201,30 @@ class __$$_BuildingCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? structureType = null,
-    Object? totalFloorArea = null,
+    Object? name = freezed,
+    Object? structureType = freezed,
+    Object? totalFloorArea = freezed,
     Object? floor = null,
     Object? address = null,
-    Object? prefecture = null,
+    Object? prefecture = freezed,
     Object? repairing = null,
     Object? renovation = null,
     Object? findings = null,
     Object? builtAt = freezed,
   }) {
     return _then(_$_Building(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      structureType: null == structureType
+              as String?,
+      structureType: freezed == structureType
           ? _value.structureType
           : structureType // ignore: cast_nullable_to_non_nullable
-              as StructureType,
-      totalFloorArea: null == totalFloorArea
+              as StructureType?,
+      totalFloorArea: freezed == totalFloorArea
           ? _value.totalFloorArea
           : totalFloorArea // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
@@ -233,10 +233,10 @@ class __$$_BuildingCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      prefecture: null == prefecture
+      prefecture: freezed == prefecture
           ? _value.prefecture
           : prefecture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       repairing: null == repairing
           ? _value.repairing
           : repairing // ignore: cast_nullable_to_non_nullable
@@ -261,12 +261,12 @@ class __$$_BuildingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Building extends _Building {
   const _$_Building(
-      {this.name = '',
-      this.structureType = StructureType.wooden,
-      this.totalFloorArea = 0.0,
+      {this.name,
+      this.structureType,
+      this.totalFloorArea,
       this.floor = const Floor(),
       this.address = const Address(),
-      this.prefecture = '東京都',
+      this.prefecture,
       this.repairing = const Repairing(),
       this.renovation = const Renovation(),
       this.findings = '',
@@ -277,14 +277,11 @@ class _$_Building extends _Building {
       _$$_BuildingFromJson(json);
 
   @override
-  @JsonKey()
-  final String name;
+  final String? name;
   @override
-  @JsonKey()
-  final StructureType structureType;
+  final StructureType? structureType;
   @override
-  @JsonKey()
-  final double totalFloorArea;
+  final double? totalFloorArea;
   @override
   @JsonKey()
   final Floor floor;
@@ -292,8 +289,7 @@ class _$_Building extends _Building {
   @JsonKey()
   final Address address;
   @override
-  @JsonKey()
-  final String prefecture;
+  final String? prefecture;
   @override
   @JsonKey()
   final Repairing repairing;
@@ -365,12 +361,12 @@ class _$_Building extends _Building {
 
 abstract class _Building extends Building {
   const factory _Building(
-      {final String name,
-      final StructureType structureType,
-      final double totalFloorArea,
+      {final String? name,
+      final StructureType? structureType,
+      final double? totalFloorArea,
       final Floor floor,
       final Address address,
-      final String prefecture,
+      final String? prefecture,
       final Repairing repairing,
       final Renovation renovation,
       final String findings,
@@ -380,17 +376,17 @@ abstract class _Building extends Building {
   factory _Building.fromJson(Map<String, dynamic> json) = _$_Building.fromJson;
 
   @override
-  String get name;
+  String? get name;
   @override
-  StructureType get structureType;
+  StructureType? get structureType;
   @override
-  double get totalFloorArea;
+  double? get totalFloorArea;
   @override
   Floor get floor;
   @override
   Address get address;
   @override
-  String get prefecture;
+  String? get prefecture;
   @override
   Repairing get repairing;
   @override
@@ -411,8 +407,8 @@ Floor _$FloorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Floor {
-  int get ground => throw _privateConstructorUsedError;
-  int get underground => throw _privateConstructorUsedError;
+  int? get ground => throw _privateConstructorUsedError;
+  int? get underground => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -424,7 +420,7 @@ abstract class $FloorCopyWith<$Res> {
   factory $FloorCopyWith(Floor value, $Res Function(Floor) then) =
       _$FloorCopyWithImpl<$Res, Floor>;
   @useResult
-  $Res call({int ground, int underground});
+  $Res call({int? ground, int? underground});
 }
 
 /// @nodoc
@@ -440,18 +436,18 @@ class _$FloorCopyWithImpl<$Res, $Val extends Floor>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ground = null,
-    Object? underground = null,
+    Object? ground = freezed,
+    Object? underground = freezed,
   }) {
     return _then(_value.copyWith(
-      ground: null == ground
+      ground: freezed == ground
           ? _value.ground
           : ground // ignore: cast_nullable_to_non_nullable
-              as int,
-      underground: null == underground
+              as int?,
+      underground: freezed == underground
           ? _value.underground
           : underground // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -462,7 +458,7 @@ abstract class _$$_FloorCopyWith<$Res> implements $FloorCopyWith<$Res> {
       __$$_FloorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int ground, int underground});
+  $Res call({int? ground, int? underground});
 }
 
 /// @nodoc
@@ -474,18 +470,18 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ground = null,
-    Object? underground = null,
+    Object? ground = freezed,
+    Object? underground = freezed,
   }) {
     return _then(_$_Floor(
-      ground: null == ground
+      ground: freezed == ground
           ? _value.ground
           : ground // ignore: cast_nullable_to_non_nullable
-              as int,
-      underground: null == underground
+              as int?,
+      underground: freezed == underground
           ? _value.underground
           : underground // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -493,17 +489,15 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
 /// @nodoc
 @JsonSerializable()
 class _$_Floor extends _Floor {
-  const _$_Floor({this.ground = 1, this.underground = 0}) : super._();
+  const _$_Floor({this.ground, this.underground}) : super._();
 
   factory _$_Floor.fromJson(Map<String, dynamic> json) =>
       _$$_FloorFromJson(json);
 
   @override
-  @JsonKey()
-  final int ground;
+  final int? ground;
   @override
-  @JsonKey()
-  final int underground;
+  final int? underground;
 
   @override
   String toString() {
@@ -539,15 +533,15 @@ class _$_Floor extends _Floor {
 }
 
 abstract class _Floor extends Floor {
-  const factory _Floor({final int ground, final int underground}) = _$_Floor;
+  const factory _Floor({final int? ground, final int? underground}) = _$_Floor;
   const _Floor._() : super._();
 
   factory _Floor.fromJson(Map<String, dynamic> json) = _$_Floor.fromJson;
 
   @override
-  int get ground;
+  int? get ground;
   @override
-  int get underground;
+  int? get underground;
   @override
   @JsonKey(ignore: true)
   _$$_FloorCopyWith<_$_Floor> get copyWith =>
@@ -560,7 +554,7 @@ Repairing _$RepairingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Repairing {
-  bool get repaired => throw _privateConstructorUsedError;
+  bool? get repaired => throw _privateConstructorUsedError;
   String get parts => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
   String get method => throw _privateConstructorUsedError;
@@ -576,7 +570,7 @@ abstract class $RepairingCopyWith<$Res> {
   factory $RepairingCopyWith(Repairing value, $Res Function(Repairing) then) =
       _$RepairingCopyWithImpl<$Res, Repairing>;
   @useResult
-  $Res call({bool repaired, String parts, String remarks, String method});
+  $Res call({bool? repaired, String parts, String remarks, String method});
 }
 
 /// @nodoc
@@ -592,16 +586,16 @@ class _$RepairingCopyWithImpl<$Res, $Val extends Repairing>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? repaired = null,
+    Object? repaired = freezed,
     Object? parts = null,
     Object? remarks = null,
     Object? method = null,
   }) {
     return _then(_value.copyWith(
-      repaired: null == repaired
+      repaired: freezed == repaired
           ? _value.repaired
           : repaired // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       parts: null == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
@@ -625,7 +619,7 @@ abstract class _$$_RepairingCopyWith<$Res> implements $RepairingCopyWith<$Res> {
       __$$_RepairingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool repaired, String parts, String remarks, String method});
+  $Res call({bool? repaired, String parts, String remarks, String method});
 }
 
 /// @nodoc
@@ -639,16 +633,16 @@ class __$$_RepairingCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? repaired = null,
+    Object? repaired = freezed,
     Object? parts = null,
     Object? remarks = null,
     Object? method = null,
   }) {
     return _then(_$_Repairing(
-      repaired: null == repaired
+      repaired: freezed == repaired
           ? _value.repaired
           : repaired // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       parts: null == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
@@ -669,18 +663,14 @@ class __$$_RepairingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Repairing extends _Repairing {
   const _$_Repairing(
-      {this.repaired = false,
-      this.parts = '',
-      this.remarks = '',
-      this.method = ''})
+      {this.repaired, this.parts = '', this.remarks = '', this.method = ''})
       : super._();
 
   factory _$_Repairing.fromJson(Map<String, dynamic> json) =>
       _$$_RepairingFromJson(json);
 
   @override
-  @JsonKey()
-  final bool repaired;
+  final bool? repaired;
   @override
   @JsonKey()
   final String parts;
@@ -729,7 +719,7 @@ class _$_Repairing extends _Repairing {
 
 abstract class _Repairing extends Repairing {
   const factory _Repairing(
-      {final bool repaired,
+      {final bool? repaired,
       final String parts,
       final String remarks,
       final String method}) = _$_Repairing;
@@ -739,7 +729,7 @@ abstract class _Repairing extends Repairing {
       _$_Repairing.fromJson;
 
   @override
-  bool get repaired;
+  bool? get repaired;
   @override
   String get parts;
   @override
@@ -758,7 +748,7 @@ Renovation _$RenovationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Renovation {
-  bool get renovating => throw _privateConstructorUsedError;
+  bool? get renovating => throw _privateConstructorUsedError;
   String get parts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -773,7 +763,7 @@ abstract class $RenovationCopyWith<$Res> {
           Renovation value, $Res Function(Renovation) then) =
       _$RenovationCopyWithImpl<$Res, Renovation>;
   @useResult
-  $Res call({bool renovating, String parts});
+  $Res call({bool? renovating, String parts});
 }
 
 /// @nodoc
@@ -789,14 +779,14 @@ class _$RenovationCopyWithImpl<$Res, $Val extends Renovation>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? renovating = null,
+    Object? renovating = freezed,
     Object? parts = null,
   }) {
     return _then(_value.copyWith(
-      renovating: null == renovating
+      renovating: freezed == renovating
           ? _value.renovating
           : renovating // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       parts: null == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
@@ -813,7 +803,7 @@ abstract class _$$_RenovationCopyWith<$Res>
       __$$_RenovationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool renovating, String parts});
+  $Res call({bool? renovating, String parts});
 }
 
 /// @nodoc
@@ -827,14 +817,14 @@ class __$$_RenovationCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? renovating = null,
+    Object? renovating = freezed,
     Object? parts = null,
   }) {
     return _then(_$_Renovation(
-      renovating: null == renovating
+      renovating: freezed == renovating
           ? _value.renovating
           : renovating // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       parts: null == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
@@ -846,14 +836,13 @@ class __$$_RenovationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Renovation extends _Renovation {
-  const _$_Renovation({this.renovating = false, this.parts = ''}) : super._();
+  const _$_Renovation({this.renovating, this.parts = ''}) : super._();
 
   factory _$_Renovation.fromJson(Map<String, dynamic> json) =>
       _$$_RenovationFromJson(json);
 
   @override
-  @JsonKey()
-  final bool renovating;
+  final bool? renovating;
   @override
   @JsonKey()
   final String parts;
@@ -892,7 +881,7 @@ class _$_Renovation extends _Renovation {
 }
 
 abstract class _Renovation extends Renovation {
-  const factory _Renovation({final bool renovating, final String parts}) =
+  const factory _Renovation({final bool? renovating, final String parts}) =
       _$_Renovation;
   const _Renovation._() : super._();
 
@@ -900,7 +889,7 @@ abstract class _Renovation extends Renovation {
       _$_Renovation.fromJson;
 
   @override
-  bool get renovating;
+  bool? get renovating;
   @override
   String get parts;
   @override

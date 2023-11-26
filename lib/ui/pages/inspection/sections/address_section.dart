@@ -100,7 +100,7 @@ class AddressSection extends HookConsumerWidget {
           title: '建物名',
           child: PrimaryTextField(
             hintText: 'マンションなどの名称',
-            initialText: inspection.overview.building.name,
+            initialText: inspection.overview.building.name ?? '',
             onChange: (text) {
               final address = inspection.overview.building.address
                   .copyWith(buildingName: text);

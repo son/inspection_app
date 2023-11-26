@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
 
-import '../user/user.dart';
-
 part 'inspection_overview.freezed.dart';
 part 'inspection_overview.g.dart';
 
@@ -12,11 +10,10 @@ class InspectionOverview with _$InspectionOverview {
 
   const factory InspectionOverview({
     @Default(Schedule()) Schedule schedule,
-    @Default(Weather.unknown) Weather weather,
-    @Default(HousingType.detached) HousingType housingType,
-    @Default('') String clientName,
-    @Default('') String witnessName,
-    @Default(User(id: '')) User inspector,
+    Weather? weather,
+    HousingType? housingType,
+    String? clientName,
+    String? witnessName,
     @Default(Building()) Building building,
     @Default(Lifelines()) Lifelines lifeline,
     @Default('') String findings,
@@ -67,9 +64,9 @@ class Lifelines with _$Lifelines {
   const Lifelines._();
 
   const factory Lifelines({
-    @Default(false) bool water,
-    @Default(false) bool electricity,
-    @Default(false) bool gas,
+    bool? water,
+    bool? electricity,
+    bool? gas,
   }) = _Lifelines;
 
   factory Lifelines.fromJson(Map<String, dynamic> json) =>
