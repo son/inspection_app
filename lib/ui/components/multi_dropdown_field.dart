@@ -26,6 +26,13 @@ class MultiDropdownField<T> extends StatelessWidget {
       child: DropdownButton2(
         isExpanded: true,
         value: values.isEmpty ? null : values.last,
+        hint: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            '未入力',
+            style: TextStyles.n14.copyWith(color: Colors.grey),
+          ),
+        ),
         onChanged: (SelectionItem<T>? value) {
           if (value?.value == null) return;
           final raws = values.map((e) => e.value).toList();

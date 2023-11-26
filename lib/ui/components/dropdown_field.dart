@@ -62,7 +62,7 @@ class DropdownField<T> extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Text(
             unselectedText,
-            style: TextStyles.n14.copyWith(color: Colors.black26),
+            style: TextStyles.n14.copyWith(color: Colors.grey),
           ),
         ),
         iconStyleData: const IconStyleData(

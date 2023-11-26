@@ -40,10 +40,7 @@ class FoundationSection extends HookConsumerWidget {
           title: '仕上げ',
           child: MultiDropdownField<String>(
             values: inspection.foundation.finishings
-                .map((e) => SelectionItem(
-                      value: e,
-                      name: e,
-                    ))
+                .map((e) => SelectionItem(value: e, name: e))
                 .toList(),
             all: ['コンクリート', 'モルタル、その他塗り', 'その他']
                 .map((value) => SelectionItem(
