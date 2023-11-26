@@ -12,6 +12,7 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
+      udId: json['udId'] as String?,
       overview: json['overview'] == null
           ? const InspectionOverview()
           : InspectionOverview.fromJson(
@@ -84,6 +85,7 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createdAt': instance.createdAt?.toIso8601String(),
+      'udId': instance.udId,
       'overview': instance.overview,
       'photos': instance.photos,
       'blueprints': instance.blueprints,

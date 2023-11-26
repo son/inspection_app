@@ -22,6 +22,7 @@ Inspection _$InspectionFromJson(Map<String, dynamic> json) {
 mixin _$Inspection {
   String get id => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  String? get udId => throw _privateConstructorUsedError;
   InspectionOverview get overview => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
   List<String> get blueprints => throw _privateConstructorUsedError;
@@ -60,6 +61,7 @@ abstract class $InspectionCopyWith<$Res> {
   $Res call(
       {String id,
       DateTime? createdAt,
+      String? udId,
       InspectionOverview overview,
       List<Photo> photos,
       List<String> blueprints,
@@ -116,6 +118,7 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
   $Res call({
     Object? id = null,
     Object? createdAt = freezed,
+    Object? udId = freezed,
     Object? overview = null,
     Object? photos = null,
     Object? blueprints = null,
@@ -146,6 +149,10 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      udId: freezed == udId
+          ? _value.udId
+          : udId // ignore: cast_nullable_to_non_nullable
+              as String?,
       overview: null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -387,6 +394,7 @@ abstract class _$$_InspectionCopyWith<$Res>
   $Res call(
       {String id,
       DateTime? createdAt,
+      String? udId,
       InspectionOverview overview,
       List<Photo> photos,
       List<String> blueprints,
@@ -459,6 +467,7 @@ class __$$_InspectionCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? createdAt = freezed,
+    Object? udId = freezed,
     Object? overview = null,
     Object? photos = null,
     Object? blueprints = null,
@@ -489,6 +498,10 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      udId: freezed == udId
+          ? _value.udId
+          : udId // ignore: cast_nullable_to_non_nullable
+              as String?,
       overview: null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -579,6 +592,7 @@ class _$_Inspection extends _Inspection {
   const _$_Inspection(
       {required this.id,
       this.createdAt,
+      this.udId,
       this.overview = const InspectionOverview(),
       final List<Photo> photos = const <Photo>[],
       final List<String> blueprints = const <String>[],
@@ -610,6 +624,8 @@ class _$_Inspection extends _Inspection {
   final String id;
   @override
   final DateTime? createdAt;
+  @override
+  final String? udId;
   @override
   @JsonKey()
   final InspectionOverview overview;
@@ -685,7 +701,7 @@ class _$_Inspection extends _Inspection {
 
   @override
   String toString() {
-    return 'Inspection(id: $id, createdAt: $createdAt, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
+    return 'Inspection(id: $id, createdAt: $createdAt, udId: $udId, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
   }
 
   @override
@@ -696,6 +712,7 @@ class _$_Inspection extends _Inspection {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.udId, udId) || other.udId == udId) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
             const DeepCollectionEquality().equals(other._photos, _photos) &&
@@ -737,6 +754,7 @@ class _$_Inspection extends _Inspection {
         runtimeType,
         id,
         createdAt,
+        udId,
         overview,
         const DeepCollectionEquality().hash(_photos),
         const DeepCollectionEquality().hash(_blueprints),
@@ -777,6 +795,7 @@ abstract class _Inspection extends Inspection {
   const factory _Inspection(
       {required final String id,
       final DateTime? createdAt,
+      final String? udId,
       final InspectionOverview overview,
       final List<Photo> photos,
       final List<String> blueprints,
@@ -806,6 +825,8 @@ abstract class _Inspection extends Inspection {
   String get id;
   @override
   DateTime? get createdAt;
+  @override
+  String? get udId;
   @override
   InspectionOverview get overview;
   @override

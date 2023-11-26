@@ -30,6 +30,10 @@ class InspectionNotifier extends StateNotifier<Inspection> {
   InspectionNotifier({required this.ref}) : super(Inspection.empty);
   final Ref ref;
 
+  void updateUdId(String udId) {
+    state = state.copyWith(udId: udId);
+  }
+
   void updateNecessity(Necessity necessity) {
     state = state.copyWith(
       roof: state.roof.copyWith(necessity: necessity),

@@ -30,6 +30,7 @@ class Inspection with _$Inspection {
   const factory Inspection({
     required String id,
     DateTime? createdAt,
+    String? udId,
     @Default(InspectionOverview()) InspectionOverview overview,
     @Default(<Photo>[]) List<Photo> photos,
     @Default(<String>[]) List<String> blueprints,
