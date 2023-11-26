@@ -16,6 +16,7 @@ class PipingSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '設備配管',
@@ -40,7 +41,7 @@ class PipingSection extends HookConsumerWidget {
                   inspection.piping.supplyRustyWater.copyWith(result: result);
               final piping = inspection.piping
                   .copyWith(supplyRustyWater: supplyRustyWater);
-              ref.read(inspectionProvider.notifier).updatePiping(piping);
+              controller.updatePiping(piping);
             },
           ),
         ),
@@ -49,7 +50,14 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.piping.supplyRustyWater.part,
+              onChange: (text) {
+                final supplyRustyWater =
+                    inspection.piping.supplyRustyWater.copyWith(part: text);
+                final piping = inspection.piping
+                    .copyWith(supplyRustyWater: supplyRustyWater);
+                controller.updatePiping(piping);
+              },
             ),
           ),
           SectionItem(
@@ -71,7 +79,7 @@ class PipingSection extends HookConsumerWidget {
               final sewerStuck =
                   inspection.piping.sewerStuck.copyWith(result: result);
               final piping = inspection.piping.copyWith(sewerStuck: sewerStuck);
-              ref.read(inspectionProvider.notifier).updatePiping(piping);
+              controller.updatePiping(piping);
             },
           ),
         ),
@@ -80,7 +88,14 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.piping.sewerStuck.part,
+              onChange: (text) {
+                final sewerStuck =
+                    inspection.piping.sewerStuck.copyWith(part: text);
+                final piping =
+                    inspection.piping.copyWith(sewerStuck: sewerStuck);
+                controller.updatePiping(piping);
+              },
             ),
           ),
           SectionItem(
@@ -103,7 +118,7 @@ class PipingSection extends HookConsumerWidget {
                   inspection.piping.sewerWaterLeak.copyWith(result: result);
               final piping =
                   inspection.piping.copyWith(sewerWaterLeak: sewerWaterLeak);
-              ref.read(inspectionProvider.notifier).updatePiping(piping);
+              controller.updatePiping(piping);
             },
           ),
         ),
@@ -112,7 +127,14 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.piping.sewerWaterLeak.part,
+              onChange: (text) {
+                final sewerWaterLeak =
+                    inspection.piping.sewerWaterLeak.copyWith(part: text);
+                final piping =
+                    inspection.piping.copyWith(sewerWaterLeak: sewerWaterLeak);
+                controller.updatePiping(piping);
+              },
             ),
           ),
           SectionItem(
@@ -134,7 +156,7 @@ class PipingSection extends HookConsumerWidget {
               final ductLoss =
                   inspection.piping.ductLoss.copyWith(result: result);
               final piping = inspection.piping.copyWith(ductLoss: ductLoss);
-              ref.read(inspectionProvider.notifier).updatePiping(piping);
+              controller.updatePiping(piping);
             },
           ),
         ),
@@ -143,7 +165,13 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.piping.ductLoss.part,
+              onChange: (text) {
+                final ductLoss =
+                    inspection.piping.ductLoss.copyWith(part: text);
+                final piping = inspection.piping.copyWith(ductLoss: ductLoss);
+                controller.updatePiping(piping);
+              },
             ),
           ),
           SectionItem(
@@ -171,7 +199,7 @@ class PipingSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (coverage) {
               final piping = inspection.piping.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updatePiping(piping);
+              controller.updatePiping(piping);
             },
           ),
         ),
@@ -181,7 +209,11 @@ class PipingSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.piping.remarks,
+            onChange: (text) {
+              final piping = inspection.piping.copyWith(remarks: text);
+              controller.updatePiping(piping);
+            },
           ),
         ),
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
@@ -17,6 +18,7 @@ class OuterWallSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '外壁及び軒裏',
@@ -48,7 +50,7 @@ class OuterWallSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (finishings) {
-              ref.read(inspectionProvider.notifier).updateFoundation(
+              controller.updateFoundation(
                   inspection.foundation.copyWith(finishings: finishings));
             },
           ),
@@ -63,7 +65,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.dryDamage.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(dryDamage: dryDamage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -89,9 +91,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(dryDamage: dryDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -99,8 +99,21 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.outerWall.dryDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final dryDamage =
+                    inspection.outerWall.dryDamage.copyWith(max: max);
+                final outerWall =
+                    inspection.outerWall.copyWith(dryDamage: dryDamage);
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
           SectionItem(
@@ -123,7 +136,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.dryWideDamage.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(dryWideDamage: dryWideDamage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -149,9 +162,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(dryWideDamage: dryWideDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -159,8 +170,21 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.outerWall.dryWideDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final dryWideDamage =
+                    inspection.outerWall.dryWideDamage.copyWith(max: max);
+                final outerWall =
+                    inspection.outerWall.copyWith(dryWideDamage: dryWideDamage);
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
           SectionItem(
@@ -183,7 +207,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.dryCorrosion.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(dryCorrosion: dryCorrosion);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -209,9 +233,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(dryCorrosion: dryRust);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -235,7 +257,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.tileDamage.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(tileDamage: tileDamage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -261,9 +283,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(tileDamage: tileDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -271,8 +291,21 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.outerWall.tileDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final tileDamage =
+                    inspection.outerWall.tileDamage.copyWith(max: max);
+                final outerWall =
+                    inspection.outerWall.copyWith(tileDamage: tileDamage);
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
           SectionItem(
@@ -295,7 +328,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.tileWideDamage.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(tileWideDamage: tileWideDamage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -321,9 +354,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall = inspection.outerWall
                     .copyWith(tileWideDamage: tileWideDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -331,8 +362,21 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.outerWall.tileWideDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final tileWideDamage =
+                    inspection.outerWall.tileWideDamage.copyWith(max: max);
+                final outerWall = inspection.outerWall
+                    .copyWith(tileWideDamage: tileWideDamage);
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
           SectionItem(
@@ -355,7 +399,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.tileFloat.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(tileFloat: tileFloat);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -381,9 +425,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(tileFloat: tileFloat);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -407,7 +449,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.paintDamage.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(paintDamage: paintDamage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -433,9 +475,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(paintDamage: paintDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -459,7 +499,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.paintFloat.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(paintFloat: paintFloat);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -485,9 +525,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(paintFloat: paintFloat);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -511,7 +549,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.otherDamage.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(paintFloat: otherDamage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -537,9 +575,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(otherDamage: otherDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -547,8 +583,21 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.outerWall.otherDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final otherDamage =
+                    inspection.outerWall.otherDamage.copyWith(max: max);
+                final outerWall =
+                    inspection.outerWall.copyWith(otherDamage: otherDamage);
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
           SectionItem(
@@ -571,7 +620,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.otherWideDamage.copyWith(result: result);
               final outerWall = inspection.outerWall
                   .copyWith(otherWideDamage: otherWideDamage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -597,9 +646,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall = inspection.outerWall
                     .copyWith(otherWideDamage: otherWideDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -607,8 +654,21 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.outerWall.otherWideDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final otherWideDamage =
+                    inspection.outerWall.otherWideDamage.copyWith(max: max);
+                final outerWall = inspection.outerWall
+                    .copyWith(otherWideDamage: otherWideDamage);
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
           SectionItem(
@@ -631,7 +691,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.otherCorrosion.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(otherCorrosion: otherCorrosion);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -657,9 +717,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall = inspection.outerWall
                     .copyWith(otherCorrosion: otherCorrosion);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -683,7 +741,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.otherFloat.copyWith(result: result);
               final outerWall =
                   inspection.outerWall.copyWith(otherFloat: otherFloat);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -709,9 +767,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(otherFloat: otherFloat);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -735,7 +791,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.rainWallSealing.copyWith(result: result);
               final outerWall = inspection.outerWall
                   .copyWith(rainWallSealing: rainWallSealing);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -761,9 +817,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall = inspection.outerWall
                     .copyWith(rainWallSealing: rainWallSealing);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -786,7 +840,7 @@ class OuterWallSection extends HookConsumerWidget {
               final rainGap =
                   inspection.outerWall.rainWallSealing.copyWith(result: result);
               final outerWall = inspection.outerWall.copyWith(rainGap: rainGap);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -812,9 +866,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall =
                     inspection.outerWall.copyWith(rainGap: rainGap);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -838,7 +890,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.rainWallSealing.copyWith(result: result);
               final outerWall = inspection.outerWall
                   .copyWith(rainCeilingSealing: rainCeilingSealing);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -866,9 +918,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall = inspection.outerWall
                     .copyWith(rainCeilingSealing: rainCeilingSealing);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -892,7 +942,7 @@ class OuterWallSection extends HookConsumerWidget {
                   inspection.outerWall.rainCeilingLeak.copyWith(result: result);
               final outerWall = inspection.outerWall
                   .copyWith(rainCeilingLeak: rainCeilingLeak);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -918,9 +968,7 @@ class OuterWallSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final outerWall = inspection.outerWall
                     .copyWith(rainCeilingLeak: rainCeilingLeak);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateOuterWall(outerWall);
+                controller.updateOuterWall(outerWall);
               },
             ),
           ),
@@ -950,7 +998,7 @@ class OuterWallSection extends HookConsumerWidget {
             onSelect: (coverage) {
               final outerWall =
                   inspection.outerWall.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateOuterWall(outerWall);
+              controller.updateOuterWall(outerWall);
             },
           ),
         ),
@@ -958,9 +1006,13 @@ class OuterWallSection extends HookConsumerWidget {
           axis: Axis.vertical,
           title: '備考',
           child: PrimaryTextField(
-            textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            textAlign: TextAlign.start,
+            initialText: inspection.outerWall.remarks,
+            onChange: (text) {
+              final outerWall = inspection.outerWall.copyWith(remarks: text);
+              controller.updateOuterWall(outerWall);
+            },
           ),
         ),
       ],

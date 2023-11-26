@@ -14,6 +14,9 @@ _$_Damage _$$_DamageFromJson(Map<String, dynamic> json) => _$_Damage(
               .toList() ??
           const <Direction>[],
       max: (json['max'] as num?)?.toDouble() ?? 0.0,
+      part: json['part'] as String? ?? '',
+      content: json['content'] as String? ?? '',
+      situation: json['situation'] as String? ?? '',
       photos: (json['photos'] as List<dynamic>?)
               ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -29,6 +32,9 @@ Map<String, dynamic> _$$_DamageToJson(_$_Damage instance) => <String, dynamic>{
       'directions':
           instance.directions.map((e) => _$DirectionEnumMap[e]!).toList(),
       'max': instance.max,
+      'part': instance.part,
+      'content': instance.content,
+      'situation': instance.situation,
       'photos': instance.photos,
       'details': instance.details,
     };

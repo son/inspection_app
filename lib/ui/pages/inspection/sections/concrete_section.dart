@@ -16,6 +16,7 @@ class ConcreteSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: 'コンクリート圧縮強度',
@@ -45,7 +46,7 @@ class ConcreteSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (isOn) {
               final concrete = inspection.concrete.copyWith(exploration: isOn);
-              ref.read(inspectionProvider.notifier).updateConcrete(concrete);
+              controller.updateConcrete(concrete);
             },
           ),
         ),
@@ -60,7 +61,7 @@ class ConcreteSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final concrete = inspection.concrete
                   .copyWith(compressiveStrength1: compressiveStrength);
-              ref.read(inspectionProvider.notifier).updateConcrete(concrete);
+              controller.updateConcrete(concrete);
             },
           ),
         ),
@@ -87,7 +88,7 @@ class ConcreteSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final concrete = inspection.concrete
                   .copyWith(compressiveStrength2: compressiveStrength);
-              ref.read(inspectionProvider.notifier).updateConcrete(concrete);
+              controller.updateConcrete(concrete);
             },
           ),
         ),
@@ -118,7 +119,7 @@ class ConcreteSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (coverage) {
               final concrete = inspection.concrete.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateConcrete(concrete);
+              controller.updateConcrete(concrete);
             },
           ),
         ),
@@ -128,7 +129,11 @@ class ConcreteSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.concrete.remarks,
+            onChange: (text) {
+              final concrete = inspection.concrete.copyWith(remarks: text);
+              controller.updateConcrete(concrete);
+            },
           ),
         ),
       ],

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -17,6 +17,7 @@ class InnerWallSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '内壁',
@@ -41,51 +42,44 @@ class InnerWallSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final innerWall = inspection.innerWall
                   .copyWith(foundationDamage: foundationDamage);
-              ref.read(inspectionProvider.notifier).updateInnerWall(innerWall);
+              controller.updateInnerWall(innerWall);
             },
           ),
         ),
         if (inspection.innerWall.foundationDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
-            child: MultiDropdownField<Direction>(
-              values: inspection.innerWall.foundationDamage.directions
-                  .map((e) => SelectionItem(
-                        value: e,
-                        name: '${e.label}面',
-                      ))
-                  .toList(),
-              all: Direction.values
-                  .map((value) => SelectionItem(
-                        value: value,
-                        name: '${value.label}面',
-                      ))
-                  .toList(),
-              onSelect: (directions) {
-                final foundationDamage = inspection.innerWall.foundationDamage
-                    .copyWith(directions: directions);
+            title: '　最大ひび割れ幅',
+            child: PrimaryTextField(
+              initialText: inspection.innerWall.foundationDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              fixedText: 'mm',
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final foundationDamage =
+                    inspection.innerWall.foundationDamage.copyWith(max: max);
                 final innerWall = inspection.innerWall
                     .copyWith(foundationDamage: foundationDamage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateInnerWall(innerWall);
+                controller.updateInnerWall(innerWall);
               },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅',
-            child: PrimaryTextField(
-              fixedText: 'mm',
-              onChange: (text) {},
-            ),
-          ),
-          SectionItem(
-            axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.innerWall.foundationDamage.part,
+              onChange: (text) {
+                final foundationDamage =
+                    inspection.innerWall.foundationDamage.copyWith(part: text);
+                final innerWall = inspection.innerWall
+                    .copyWith(foundationDamage: foundationDamage);
+                controller.updateInnerWall(innerWall);
+              },
             ),
           ),
           SectionItem(
@@ -109,7 +103,7 @@ class InnerWallSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final innerWall = inspection.innerWall
                   .copyWith(foundationInclination: foundationInclination);
-              ref.read(inspectionProvider.notifier).updateInnerWall(innerWall);
+              controller.updateInnerWall(innerWall);
             },
           ),
         ),
@@ -117,45 +111,40 @@ class InnerWallSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
-            child: MultiDropdownField<Direction>(
-              values: inspection.innerWall.foundationInclination.directions
-                  .map((e) => SelectionItem(
-                        value: e,
-                        name: '${e.label}面',
-                      ))
-                  .toList(),
-              all: Direction.values
-                  .map((value) => SelectionItem(
-                        value: value,
-                        name: '${value.label}面',
-                      ))
-                  .toList(),
-              onSelect: (directions) {
-                final foundationInclination = inspection
-                    .innerWall.foundationInclination
-                    .copyWith(directions: directions);
-                final innerWall = inspection.innerWall
-                    .copyWith(foundationInclination: foundationInclination);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateInnerWall(innerWall);
-              },
-            ),
-          ),
-          SectionItem(
-            axis: Axis.horizontal,
             title: '　当該部分の傾斜',
             child: PrimaryTextField(
-              fixedText: 'mm',
-              onChange: (text) {},
+              initialText:
+                  inspection.innerWall.foundationInclination.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              fixedText: '/1000',
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final foundationInclination = inspection
+                    .innerWall.foundationInclination
+                    .copyWith(max: max);
+                final innerWall = inspection.innerWall
+                    .copyWith(foundationInclination: foundationInclination);
+                controller.updateInnerWall(innerWall);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　壁の最も傾きがある場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.innerWall.foundationInclination.part,
+              onChange: (text) {
+                final foundationInclination = inspection
+                    .innerWall.foundationInclination
+                    .copyWith(part: text);
+                final innerWall = inspection.innerWall
+                    .copyWith(foundationInclination: foundationInclination);
+                controller.updateInnerWall(innerWall);
+              },
             ),
           ),
           SectionItem(
@@ -178,7 +167,7 @@ class InnerWallSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final innerWall = inspection.innerWall
                   .copyWith(rainInnerWallLeak: rainInnerWallLeak);
-              ref.read(inspectionProvider.notifier).updateInnerWall(innerWall);
+              controller.updateInnerWall(innerWall);
             },
           ),
         ),
@@ -187,35 +176,15 @@ class InnerWallSection extends HookConsumerWidget {
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
-            child: MultiDropdownField<Direction>(
-              values: inspection.innerWall.rainInnerWallLeak.directions
-                  .map((e) => SelectionItem(
-                        value: e,
-                        name: '${e.label}面',
-                      ))
-                  .toList(),
-              all: Direction.values
-                  .map((value) => SelectionItem(
-                        value: value,
-                        name: '${value.label}面',
-                      ))
-                  .toList(),
-              onSelect: (directions) {
-                final rainInnerWallLeak = inspection.innerWall.rainInnerWallLeak
-                    .copyWith(directions: directions);
+            child: PrimaryTextField(
+              initialText: inspection.innerWall.rainInnerWallLeak.part,
+              onChange: (text) {
+                final rainInnerWallLeak =
+                    inspection.innerWall.rainInnerWallLeak.copyWith(part: text);
                 final innerWall = inspection.innerWall
                     .copyWith(rainInnerWallLeak: rainInnerWallLeak);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateInnerWall(innerWall);
+                controller.updateInnerWall(innerWall);
               },
-            ),
-          ),
-          SectionItem(
-            axis: Axis.horizontal,
-            title: '　問題が確認された場所',
-            child: PrimaryTextField(
-              onChange: (text) {},
             ),
           ),
           SectionItem(
@@ -244,7 +213,7 @@ class InnerWallSection extends HookConsumerWidget {
             onSelect: (coverage) {
               final innerWall =
                   inspection.innerWall.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateInnerWall(innerWall);
+              controller.updateInnerWall(innerWall);
             },
           ),
         ),
@@ -252,9 +221,13 @@ class InnerWallSection extends HookConsumerWidget {
           axis: Axis.vertical,
           title: '備考',
           child: PrimaryTextField(
+            initialText: inspection.innerWall.remarks,
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            onChange: (remarks) {
+              final innerWall = inspection.innerWall.copyWith(remarks: remarks);
+              controller.updateInnerWall(innerWall);
+            },
           ),
         ),
       ],

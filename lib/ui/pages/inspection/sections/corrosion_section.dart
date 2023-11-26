@@ -16,6 +16,7 @@ class CorrosionSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '腐朽、腐食など',
@@ -39,7 +40,7 @@ class CorrosionSection extends HookConsumerWidget {
               final corrosion =
                   inspection.corrosion.corrosion.copyWith(result: result);
               final c = inspection.corrosion.copyWith(corrosion: corrosion);
-              ref.read(inspectionProvider.notifier).updateCorrosion(c);
+              controller.updateCorrosion(c);
             },
           ),
         ),
@@ -48,7 +49,13 @@ class CorrosionSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.corrosion.corrosion.part,
+              onChange: (text) {
+                final corrosion =
+                    inspection.corrosion.corrosion.copyWith(part: text);
+                final c = inspection.corrosion.copyWith(corrosion: corrosion);
+                controller.updateCorrosion(c);
+              },
             ),
           ),
           SectionItem(
@@ -77,7 +84,7 @@ class CorrosionSection extends HookConsumerWidget {
             onSelect: (coverage) {
               final corrosion =
                   inspection.corrosion.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateCorrosion(corrosion);
+              controller.updateCorrosion(corrosion);
             },
           ),
         ),
@@ -87,7 +94,11 @@ class CorrosionSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.corrosion.remarks,
+            onChange: (text) {
+              final corrosion = inspection.corrosion.copyWith(remarks: text);
+              controller.updateCorrosion(corrosion);
+            },
           ),
         ),
       ],

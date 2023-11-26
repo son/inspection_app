@@ -25,7 +25,7 @@ class SectionItem extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             title,
-            style: TextStyles.n14,
+            style: TextStyles.n12,
           ),
           child,
         ],
@@ -42,7 +42,7 @@ class SectionItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyles.n14.copyWith(
+            style: TextStyles.n12.copyWith(
               height: multiline ? 1.5 : null,
             ),
           ),

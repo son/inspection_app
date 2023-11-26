@@ -16,6 +16,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '耐震性に関する書類の確認',
@@ -46,9 +47,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
             onSelect: (confirmationMethod) {
               final earthquakeResistant = inspection.earthquakeResistant
                   .copyWith(confirmationMethod: confirmationMethod);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateEarthquakeResistant(earthquakeResistant);
+              controller.updateEarthquakeResistant(earthquakeResistant);
             },
           ),
         ),
@@ -68,9 +67,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
             onSelect: (certificate) {
               final earthquakeResistant = inspection.earthquakeResistant
                   .copyWith(certificate: certificate);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateEarthquakeResistant(earthquakeResistant);
+              controller.updateEarthquakeResistant(earthquakeResistant);
             },
           ),
         ),
@@ -90,9 +87,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
             onSelect: (issuer) {
               final earthquakeResistant =
                   inspection.earthquakeResistant.copyWith(issuer: issuer);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateEarthquakeResistant(earthquakeResistant);
+              controller.updateEarthquakeResistant(earthquakeResistant);
             },
           ),
         ),
@@ -112,9 +107,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
             onSelect: (regulation) {
               final earthquakeResistant = inspection.earthquakeResistant
                   .copyWith(regulation: regulation);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateEarthquakeResistant(earthquakeResistant);
+              controller.updateEarthquakeResistant(earthquakeResistant);
             },
           ),
         ),
@@ -124,7 +117,12 @@ class EarthquakeResistantSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.earthquakeResistant.remarks,
+            onChange: (text) {
+              final earthquakeResistant =
+                  inspection.earthquakeResistant.copyWith(remarks: text);
+              controller.updateEarthquakeResistant(earthquakeResistant);
+            },
           ),
         ),
         SectionItem(

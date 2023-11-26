@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/damage/damage.dart';
 import 'package:inspection_app/data/entities/result.dart';
@@ -19,6 +20,7 @@ class FoundationSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '基礎',
@@ -50,23 +52,22 @@ class FoundationSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (finishings) {
-              ref.read(inspectionProvider.notifier).updateFoundation(
-                  inspection.foundation.copyWith(finishings: finishings));
+              controller.updateFoundation(
+                inspection.foundation.copyWith(finishings: finishings),
+              );
             },
           ),
         ),
         SectionItem(
           axis: Axis.horizontal,
-          title: '幅0.5mm以上のひび割れ',
+          title: '[構造] 幅0.5mm以上のひび割れ',
           child: DropdownField.result(
             result: inspection.foundation.crack.result,
             onSelect: (result) {
               final crack =
                   inspection.foundation.crack.copyWith(result: result);
               final foundation = inspection.foundation.copyWith(crack: crack);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateFoundation(foundation);
+              controller.updateFoundation(foundation);
             },
           ),
         ),
@@ -91,9 +92,7 @@ class FoundationSection extends HookConsumerWidget {
                 final crack = inspection.foundation.crack
                     .copyWith(directions: directions);
                 final foundation = inspection.foundation.copyWith(crack: crack);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateFoundation(foundation);
+                controller.updateFoundation(foundation);
               },
             ),
           ),
@@ -101,8 +100,19 @@ class FoundationSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
+              initialText: inspection.foundation.crack.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final crack = inspection.foundation.crack.copyWith(max: max);
+                final foundation = inspection.foundation.copyWith(crack: crack);
+                controller.updateFoundation(foundation);
+              },
             ),
           ),
           SectionItem(
@@ -117,7 +127,7 @@ class FoundationSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '深さ2mm以上の欠損',
+          title: '[構造] 深さ2mm以上の欠損',
           child: DropdownField.result(
             result: inspection.foundation.damage.result,
             onSelect: (result) {
@@ -162,15 +172,27 @@ class FoundationSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.foundation.damage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final damage = inspection.foundation.damage.copyWith(max: max);
+                final foundation =
+                    inspection.foundation.copyWith(damage: damage);
+                controller.updateFoundation(foundation);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.vertical,
             title: '　写真',
             child: PhotoCaptionsItem(
-              photos: inspection.foundation.crack.photos,
+              photos: inspection.foundation.damage.photos,
               onChange: (photos) {},
               onTapAdd: () {},
             ),
@@ -178,7 +200,7 @@ class FoundationSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: 'コンクリートの著しい劣化',
+          title: '[構造] コンクリートの著しい劣化',
           child: DropdownField.result(
             result: inspection.foundation.concreteDeterioration.result,
             onSelect: (result) {
@@ -253,7 +275,7 @@ class FoundationSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: 'さび汁を伴うひび割れ、欠損',
+          title: '[構造] さび汁を伴うひび割れ、欠損',
           child: DropdownField.result(
             result: inspection.foundation.rust.result,
             onSelect: (result) {
@@ -305,7 +327,7 @@ class FoundationSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '鉄筋の露出',
+          title: '[構造] 鉄筋の露出',
           child: DropdownField.result(
             result: inspection.foundation.rebarExposure.result,
             onSelect: (result) {
@@ -383,9 +405,14 @@ class FoundationSection extends HookConsumerWidget {
           axis: Axis.vertical,
           title: '備考',
           child: PrimaryTextField(
+            initialText: inspection.foundation.remarks,
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            onChange: (remarks) {
+              final foundation =
+                  inspection.foundation.copyWith(remarks: remarks);
+              controller.updateFoundation(foundation);
+            },
           ),
         ),
       ],

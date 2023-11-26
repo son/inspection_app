@@ -17,6 +17,7 @@ class CeilingSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '天井',
@@ -47,7 +48,7 @@ class CeilingSection extends HookConsumerWidget {
             onSelect: (accessPanel) {
               final ceiling =
                   inspection.ceiling.copyWith(accessPanel: accessPanel);
-              ref.read(inspectionProvider.notifier).updateCeiling(ceiling);
+              controller.updateCeiling(ceiling);
             },
           ),
         ),
@@ -61,7 +62,7 @@ class CeilingSection extends HookConsumerWidget {
                   inspection.ceiling.foundationDamage.copyWith(result: result);
               final ceiling = inspection.ceiling
                   .copyWith(foundationDamage: foundationDamage);
-              ref.read(inspectionProvider.notifier).updateCeiling(ceiling);
+              controller.updateCeiling(ceiling);
             },
           ),
         ),
@@ -70,7 +71,14 @@ class CeilingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.ceiling.foundationDamage.part,
+              onChange: (text) {
+                final foundationDamage =
+                    inspection.ceiling.foundationDamage.copyWith(part: text);
+                final ceiling = inspection.ceiling
+                    .copyWith(foundationDamage: foundationDamage);
+                controller.updateCeiling(ceiling);
+              },
             ),
           ),
           SectionItem(
@@ -85,24 +93,31 @@ class CeilingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）ひび割れ、欠損\n浮き、はらみ、剥落',
+          title: '（雨水）天井の雨漏りの跡',
           child: DropdownField.result(
-            result: inspection.ceiling.foundationDamage.result,
+            result: inspection.ceiling.rainCeilingLeak.result,
             onSelect: (result) {
-              final foundationDamage =
-                  inspection.ceiling.foundationDamage.copyWith(result: result);
-              final ceiling = inspection.ceiling
-                  .copyWith(foundationDamage: foundationDamage);
-              ref.read(inspectionProvider.notifier).updateCeiling(ceiling);
+              final rainCeilingLeak =
+                  inspection.ceiling.rainCeilingLeak.copyWith(result: result);
+              final ceiling =
+                  inspection.ceiling.copyWith(rainCeilingLeak: rainCeilingLeak);
+              controller.updateCeiling(ceiling);
             },
           ),
         ),
-        if (inspection.ceiling.foundationDamage.result == Result.failure) ...[
+        if (inspection.ceiling.rainCeilingLeak.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.ceiling.rainCeilingLeak.part,
+              onChange: (text) {
+                final rainCeilingLeak =
+                    inspection.ceiling.rainCeilingLeak.copyWith(part: text);
+                final ceiling = inspection.ceiling
+                    .copyWith(rainCeilingLeak: rainCeilingLeak);
+                controller.updateCeiling(ceiling);
+              },
             ),
           ),
           SectionItem(
@@ -130,7 +145,7 @@ class CeilingSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (coverage) {
               final ceiling = inspection.ceiling.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateCeiling(ceiling);
+              controller.updateCeiling(ceiling);
             },
           ),
         ),
@@ -138,9 +153,13 @@ class CeilingSection extends HookConsumerWidget {
           axis: Axis.vertical,
           title: '備考',
           child: PrimaryTextField(
+            initialText: inspection.ceiling.remarks,
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            onChange: (remarks) {
+              final ceiling = inspection.ceiling.copyWith(remarks: remarks);
+              controller.updateCeiling(ceiling);
+            },
           ),
         ),
       ],

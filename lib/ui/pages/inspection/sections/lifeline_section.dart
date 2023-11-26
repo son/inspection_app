@@ -16,6 +16,7 @@ class LifelineSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '給排水、電気、ガス設備',
@@ -40,7 +41,7 @@ class LifelineSection extends HookConsumerWidget {
                   inspection.lifeline.otherMalfunction.copyWith(result: result);
               final lifeline = inspection.lifeline
                   .copyWith(otherMalfunction: otherMalfunction);
-              ref.read(inspectionProvider.notifier).updateLifeline(lifeline);
+              controller.updateLifeline(lifeline);
             },
           ),
         ),
@@ -49,21 +50,42 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　調査内容',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.lifeline.otherMalfunction.content,
+              onChange: (text) {
+                final otherMalfunction = inspection.lifeline.otherMalfunction
+                    .copyWith(content: text);
+                final lifeline = inspection.lifeline
+                    .copyWith(otherMalfunction: otherMalfunction);
+                controller.updateLifeline(lifeline);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.lifeline.otherMalfunction.part,
+              onChange: (text) {
+                final otherMalfunction =
+                    inspection.lifeline.otherMalfunction.copyWith(part: text);
+                final lifeline = inspection.lifeline
+                    .copyWith(otherMalfunction: otherMalfunction);
+                controller.updateLifeline(lifeline);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　作動不良の状況',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.lifeline.otherMalfunction.situation,
+              onChange: (text) {
+                final otherMalfunction = inspection.lifeline.otherMalfunction
+                    .copyWith(situation: text);
+                final lifeline = inspection.lifeline
+                    .copyWith(otherMalfunction: otherMalfunction);
+                controller.updateLifeline(lifeline);
+              },
             ),
           ),
           SectionItem(
@@ -87,7 +109,7 @@ class LifelineSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final lifeline = inspection.lifeline
                   .copyWith(lifelineMalfunction: lifelineMalfunction);
-              ref.read(inspectionProvider.notifier).updateLifeline(lifeline);
+              controller.updateLifeline(lifeline);
             },
           ),
         ),
@@ -97,21 +119,45 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　調査内容',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.lifeline.lifelineMalfunction.content,
+              onChange: (text) {
+                final lifelineMalfunction = inspection
+                    .lifeline.lifelineMalfunction
+                    .copyWith(content: text);
+                final lifeline = inspection.lifeline
+                    .copyWith(lifelineMalfunction: lifelineMalfunction);
+                controller.updateLifeline(lifeline);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.lifeline.lifelineMalfunction.part,
+              onChange: (text) {
+                final lifelineMalfunction = inspection
+                    .lifeline.lifelineMalfunction
+                    .copyWith(part: text);
+                final lifeline = inspection.lifeline
+                    .copyWith(lifelineMalfunction: lifelineMalfunction);
+                controller.updateLifeline(lifeline);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　作動不良の状況',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.lifeline.lifelineMalfunction.situation,
+              onChange: (text) {
+                final lifelineMalfunction = inspection
+                    .lifeline.lifelineMalfunction
+                    .copyWith(situation: text);
+                final lifeline = inspection.lifeline
+                    .copyWith(lifelineMalfunction: lifelineMalfunction);
+                controller.updateLifeline(lifeline);
+              },
             ),
           ),
           SectionItem(
@@ -139,7 +185,7 @@ class LifelineSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (coverage) {
               final lifeline = inspection.lifeline.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateLifeline(lifeline);
+              controller.updateLifeline(lifeline);
             },
           ),
         ),
@@ -149,7 +195,11 @@ class LifelineSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.lifeline.remarks,
+            onChange: (text) {
+              final lifeline = inspection.lifeline.copyWith(remarks: text);
+              controller.updateLifeline(lifeline);
+            },
           ),
         ),
       ],

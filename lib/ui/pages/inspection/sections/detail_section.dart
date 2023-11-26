@@ -16,6 +16,7 @@ class DetailSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '物件詳細',
@@ -34,7 +35,7 @@ class DetailSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (type) {
-              ref.read(inspectionProvider.notifier).updateHousingType(type);
+              controller.updateHousingType(type);
             },
           ),
         ),
@@ -52,7 +53,7 @@ class DetailSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (type) {
-              ref.read(inspectionProvider.notifier).updateStructureType(type);
+              controller.updateStructureType(type);
             },
           ),
         ),
@@ -83,7 +84,7 @@ class DetailSection extends HookConsumerWidget {
                           ))
                       .toList(),
                   onSelect: (value) {
-                    ref.read(inspectionProvider.notifier).updateGround(value);
+                    controller.updateGround(value);
                   },
                 ),
               ),
@@ -102,9 +103,7 @@ class DetailSection extends HookConsumerWidget {
                           ))
                       .toList(),
                   onSelect: (value) {
-                    ref
-                        .read(inspectionProvider.notifier)
-                        .updateUnderGround(value);
+                    controller.updateUnderGround(value);
                   },
                 ),
               ),

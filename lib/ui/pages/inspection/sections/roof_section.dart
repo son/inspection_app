@@ -17,6 +17,7 @@ class RoofSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '屋根',
@@ -45,7 +46,7 @@ class RoofSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (value) {
-              ref.read(inspectionProvider.notifier).updateNecessity(value);
+              controller.updateNecessity(value);
             },
           ),
         ),
@@ -57,7 +58,7 @@ class RoofSection extends HookConsumerWidget {
             onSelect: (result) {
               final damage = inspection.roof.damage.copyWith(result: result);
               final roof = inspection.roof.copyWith(damage: damage);
-              ref.read(inspectionProvider.notifier).updateRoof(roof);
+              controller.updateRoof(roof);
             },
           ),
         ),
@@ -82,7 +83,7 @@ class RoofSection extends HookConsumerWidget {
                 final damage =
                     inspection.roof.damage.copyWith(directions: directions);
                 final roof = inspection.roof.copyWith(damage: damage);
-                ref.read(inspectionProvider.notifier).updateRoof(roof);
+                controller.updateRoof(roof);
               },
             ),
           ),
@@ -107,7 +108,7 @@ class RoofSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final roof = inspection.roof
                   .copyWith(waterProofLayerDamage: waterProofLayerDamage);
-              ref.read(inspectionProvider.notifier).updateRoof(roof);
+              controller.updateRoof(roof);
             },
           ),
         ),
@@ -134,7 +135,7 @@ class RoofSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final roof = inspection.roof
                     .copyWith(waterProofLayerDamage: waterProofLayerDamage);
-                ref.read(inspectionProvider.notifier).updateRoof(roof);
+                controller.updateRoof(roof);
               },
             ),
           ),
@@ -163,7 +164,7 @@ class RoofSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (coverage) {
               final roof = inspection.roof.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateRoof(roof);
+              controller.updateRoof(roof);
             },
           ),
         ),
@@ -173,7 +174,11 @@ class RoofSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.roof.remarks,
+            onChange: (text) {
+              final roof = inspection.roof.copyWith(remarks: text);
+              controller.updateRoof(roof);
+            },
           ),
         ),
       ],

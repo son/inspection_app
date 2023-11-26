@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
@@ -16,6 +17,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '柱及び梁',
@@ -40,9 +42,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final pillarAndBeam =
                   inspection.pillarAndBeam.copyWith(pillarDamage: pillarDamage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updatePillarAndBeam(pillarAndBeam);
+              controller.updatePillarAndBeam(pillarAndBeam);
             },
           ),
         ),
@@ -51,15 +51,35 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅、欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.pillarAndBeam.pillarDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final pillarDamage =
+                    inspection.pillarAndBeam.pillarDamage.copyWith(max: max);
+                final pillarAndBeam = inspection.pillarAndBeam
+                    .copyWith(pillarDamage: pillarDamage);
+                controller.updatePillarAndBeam(pillarAndBeam);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.pillarAndBeam.pillarDamage.part,
+              onChange: (text) {
+                final pillarDamage =
+                    inspection.pillarAndBeam.pillarDamage.copyWith(part: text);
+                final pillarAndBeam = inspection.pillarAndBeam
+                    .copyWith(pillarDamage: pillarDamage);
+                controller.updatePillarAndBeam(pillarAndBeam);
+              },
             ),
           ),
           SectionItem(
@@ -83,9 +103,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final pillarAndBeam = inspection.pillarAndBeam
                   .copyWith(pillarInclination: pillarInclination);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updatePillarAndBeam(pillarAndBeam);
+              controller.updatePillarAndBeam(pillarAndBeam);
             },
           ),
         ),
@@ -96,14 +114,37 @@ class PillarAndBeamSection extends HookConsumerWidget {
             title: '　当該部分の傾斜',
             child: PrimaryTextField(
               fixedText: '/1000',
-              onChange: (text) {},
+              initialText:
+                  inspection.pillarAndBeam.pillarInclination.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final pillarInclination = inspection
+                    .pillarAndBeam.pillarInclination
+                    .copyWith(max: max);
+                final pillarAndBeam = inspection.pillarAndBeam
+                    .copyWith(pillarInclination: pillarInclination);
+                controller.updatePillarAndBeam(pillarAndBeam);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　柱の最も傾きがある場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.pillarAndBeam.pillarInclination.part,
+              onChange: (text) {
+                final pillarInclination = inspection
+                    .pillarAndBeam.pillarInclination
+                    .copyWith(part: text);
+                final pillarAndBeam = inspection.pillarAndBeam
+                    .copyWith(pillarInclination: pillarInclination);
+                controller.updatePillarAndBeam(pillarAndBeam);
+              },
             ),
           ),
           SectionItem(
@@ -126,9 +167,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
                   inspection.pillarAndBeam.beamDamage.copyWith(result: result);
               final pillarAndBeam =
                   inspection.pillarAndBeam.copyWith(beamDamage: beamDamage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updatePillarAndBeam(pillarAndBeam);
+              controller.updatePillarAndBeam(pillarAndBeam);
             },
           ),
         ),
@@ -137,15 +176,35 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅、欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.pillarAndBeam.beamDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final beamDamage =
+                    inspection.pillarAndBeam.beamDamage.copyWith(max: max);
+                final pillarAndBeam =
+                    inspection.pillarAndBeam.copyWith(beamDamage: beamDamage);
+                controller.updatePillarAndBeam(pillarAndBeam);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.pillarAndBeam.beamDamage.part,
+              onChange: (text) {
+                final beamDamage =
+                    inspection.pillarAndBeam.beamDamage.copyWith(part: text);
+                final pillarAndBeam =
+                    inspection.pillarAndBeam.copyWith(beamDamage: beamDamage);
+                controller.updatePillarAndBeam(pillarAndBeam);
+              },
             ),
           ),
           SectionItem(
@@ -168,9 +227,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final pillarAndBeam = inspection.pillarAndBeam
                   .copyWith(beamDeflection: beamDeflection);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updatePillarAndBeam(pillarAndBeam);
+              controller.updatePillarAndBeam(pillarAndBeam);
             },
           ),
         ),
@@ -180,7 +237,14 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.pillarAndBeam.beamDeflection.part,
+              onChange: (text) {
+                final beamDeflection = inspection.pillarAndBeam.beamDeflection
+                    .copyWith(part: text);
+                final pillarAndBeam = inspection.pillarAndBeam
+                    .copyWith(beamDeflection: beamDeflection);
+                controller.updatePillarAndBeam(pillarAndBeam);
+              },
             ),
           ),
           SectionItem(
@@ -209,9 +273,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
             onSelect: (coverage) {
               final pillarAndBeam =
                   inspection.pillarAndBeam.copyWith(coverage: coverage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updatePillarAndBeam(pillarAndBeam);
+              controller.updatePillarAndBeam(pillarAndBeam);
             },
           ),
         ),
@@ -220,8 +282,13 @@ class PillarAndBeamSection extends HookConsumerWidget {
           title: '備考',
           child: PrimaryTextField(
             textAlign: TextAlign.start,
+            initialText: inspection.pillarAndBeam.remarks,
             maxLines: 100,
-            onChange: (text) {},
+            onChange: (text) {
+              final pillarAndBeam =
+                  inspection.pillarAndBeam.copyWith(remarks: text);
+              controller.updatePillarAndBeam(pillarAndBeam);
+            },
           ),
         ),
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
@@ -16,6 +17,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '土台、床組',
@@ -40,9 +42,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final baseAndFloorFraming =
                   inspection.baseAndFloorFraming.copyWith(damage: damage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateBaseAndFloorFraming(baseAndFloorFraming);
+              controller.updateBaseAndFloorFraming(baseAndFloorFraming);
             },
           ),
         ),
@@ -51,15 +51,35 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
+              initialText: inspection.baseAndFloorFraming.damage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final damage =
+                    inspection.baseAndFloorFraming.damage.copyWith(max: max);
+                final baseAndFloorFraming =
+                    inspection.baseAndFloorFraming.copyWith(damage: damage);
+                controller.updateBaseAndFloorFraming(baseAndFloorFraming);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.baseAndFloorFraming.damage.part,
+              onChange: (text) {
+                final damage =
+                    inspection.baseAndFloorFraming.damage.copyWith(part: text);
+                final baseAndFloorFraming =
+                    inspection.baseAndFloorFraming.copyWith(damage: damage);
+                controller.updateBaseAndFloorFraming(baseAndFloorFraming);
+              },
             ),
           ),
           SectionItem(
@@ -76,8 +96,8 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
             value: SelectionItem(
-              value: inspection.pillarAndBeam.coverage,
-              name: inspection.pillarAndBeam.coverage.label,
+              value: inspection.baseAndFloorFraming.coverage,
+              name: inspection.baseAndFloorFraming.coverage.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(
@@ -86,11 +106,9 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (coverage) {
-              final pillarAndBeam =
-                  inspection.pillarAndBeam.copyWith(coverage: coverage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updatePillarAndBeam(pillarAndBeam);
+              final baseAndFloorFraming =
+                  inspection.baseAndFloorFraming.copyWith(coverage: coverage);
+              controller.updateBaseAndFloorFraming(baseAndFloorFraming);
             },
           ),
         ),
@@ -100,7 +118,12 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.baseAndFloorFraming.remarks,
+            onChange: (text) {
+              final baseAndFloorFraming =
+                  inspection.baseAndFloorFraming.copyWith(remarks: text);
+              controller.updateBaseAndFloorFraming(baseAndFloorFraming);
+            },
           ),
         ),
       ],

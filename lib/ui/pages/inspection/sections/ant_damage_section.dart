@@ -17,6 +17,7 @@ class AntDamageSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '蟻害',
@@ -47,7 +48,7 @@ class AntDamageSection extends HookConsumerWidget {
             onSelect: (accessPanel) {
               final antDamage =
                   inspection.antDamage.copyWith(accessPanel: accessPanel);
-              ref.read(inspectionProvider.notifier).updateAntDamage(antDamage);
+              controller.updateAntDamage(antDamage);
             },
           ),
         ),
@@ -60,7 +61,7 @@ class AntDamageSection extends HookConsumerWidget {
               final antDamage =
                   inspection.antDamage.antDamage.copyWith(result: result);
               final ant = inspection.antDamage.copyWith(antDamage: antDamage);
-              ref.read(inspectionProvider.notifier).updateAntDamage(ant);
+              controller.updateAntDamage(ant);
             },
           ),
         ),
@@ -69,7 +70,13 @@ class AntDamageSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.antDamage.antDamage.part,
+              onChange: (text) {
+                final antDamage =
+                    inspection.antDamage.antDamage.copyWith(part: text);
+                final ant = inspection.antDamage.copyWith(antDamage: antDamage);
+                controller.updateAntDamage(ant);
+              },
             ),
           ),
           SectionItem(
@@ -98,7 +105,7 @@ class AntDamageSection extends HookConsumerWidget {
             onSelect: (coverage) {
               final antDamage =
                   inspection.antDamage.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateAntDamage(antDamage);
+              controller.updateAntDamage(antDamage);
             },
           ),
         ),
@@ -108,7 +115,11 @@ class AntDamageSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.antDamage.remarks,
+            onChange: (text) {
+              final antDamage = inspection.antDamage.copyWith(remarks: text);
+              controller.updateAntDamage(antDamage);
+            },
           ),
         ),
       ],

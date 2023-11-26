@@ -13,6 +13,7 @@ class RepairingSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '修理履歴・リフォーム工事の有無',
@@ -32,8 +33,7 @@ class RepairingSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (repaired) {
-              ref.read(inspectionProvider.notifier).updateRepairing(inspection
-                  .overview.building.repairing
+              controller.updateRepairing(inspection.overview.building.repairing
                   .copyWith(repaired: repaired));
             },
           ),
@@ -74,7 +74,7 @@ class RepairingSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (renovating) {
-              ref.read(inspectionProvider.notifier).updateRenovation(inspection
+              controller.updateRenovation(inspection
                   .overview.building.renovation
                   .copyWith(renovating: renovating));
             },

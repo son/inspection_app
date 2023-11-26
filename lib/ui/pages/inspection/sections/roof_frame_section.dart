@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
@@ -16,6 +17,7 @@ class RoofFrameSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '小屋組（下屋部分を含む）',
@@ -40,7 +42,7 @@ class RoofFrameSection extends HookConsumerWidget {
                   .copyWith(result: result);
               final roofFrame = inspection.roofFrame
                   .copyWith(foundationDamage: foundationDamage);
-              ref.read(inspectionProvider.notifier).updateRoofFrame(roofFrame);
+              controller.updateRoofFrame(roofFrame);
             },
           ),
         ),
@@ -49,15 +51,35 @@ class RoofFrameSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅、欠損深さ',
             child: PrimaryTextField(
+              initialText: inspection.roofFrame.foundationDamage.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final foundationDamage =
+                    inspection.roofFrame.foundationDamage.copyWith(max: max);
+                final roofFrame = inspection.roofFrame
+                    .copyWith(foundationDamage: foundationDamage);
+                controller.updateRoofFrame(roofFrame);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.roofFrame.foundationDamage.part,
+              onChange: (text) {
+                final foundationDamage =
+                    inspection.roofFrame.foundationDamage.copyWith(part: text);
+                final roofFrame = inspection.roofFrame
+                    .copyWith(foundationDamage: foundationDamage);
+                controller.updateRoofFrame(roofFrame);
+              },
             ),
           ),
           SectionItem(
@@ -74,29 +96,37 @@ class RoofFrameSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           title: '（雨水）小屋組の雨漏りの跡',
           child: DropdownField.result(
-            result: inspection.roofFrame.foundationDamage.result,
+            result: inspection.roofFrame.rainRoofFrameLeak.result,
             onSelect: (result) {
-              final foundationDamage = inspection.roofFrame.foundationDamage
+              final rainRoofFrameLeak = inspection.roofFrame.rainRoofFrameLeak
                   .copyWith(result: result);
               final roofFrame = inspection.roofFrame
-                  .copyWith(foundationDamage: foundationDamage);
-              ref.read(inspectionProvider.notifier).updateRoofFrame(roofFrame);
+                  .copyWith(rainRoofFrameLeak: rainRoofFrameLeak);
+              controller.updateRoofFrame(roofFrame);
             },
           ),
         ),
-        if (inspection.roofFrame.foundationDamage.result == Result.failure) ...[
+        if (inspection.roofFrame.rainRoofFrameLeak.result ==
+            Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              onChange: (text) {},
+              initialText: inspection.roofFrame.rainRoofFrameLeak.part,
+              onChange: (text) {
+                final rainRoofFrameLeak =
+                    inspection.roofFrame.rainRoofFrameLeak.copyWith(part: text);
+                final roofFrame = inspection.roofFrame
+                    .copyWith(rainRoofFrameLeak: rainRoofFrameLeak);
+                controller.updateRoofFrame(roofFrame);
+              },
             ),
           ),
           SectionItem(
             axis: Axis.vertical,
             title: '　写真',
             child: PhotoCaptionsItem(
-              photos: inspection.roofFrame.foundationDamage.photos,
+              photos: inspection.roofFrame.rainRoofFrameLeak.photos,
               onChange: (photos) {},
               onTapAdd: () {},
             ),
@@ -118,7 +148,7 @@ class RoofFrameSection extends HookConsumerWidget {
             onSelect: (coverage) {
               final roofFrame =
                   inspection.roofFrame.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateRoofFrame(roofFrame);
+              controller.updateRoofFrame(roofFrame);
             },
           ),
         ),
@@ -127,8 +157,12 @@ class RoofFrameSection extends HookConsumerWidget {
           title: '備考',
           child: PrimaryTextField(
             textAlign: TextAlign.start,
+            initialText: inspection.roofFrame.remarks,
             maxLines: 100,
-            onChange: (text) {},
+            onChange: (text) {
+              final roofFrame = inspection.roofFrame.copyWith(remarks: text);
+              controller.updateRoofFrame(roofFrame);
+            },
           ),
         ),
       ],

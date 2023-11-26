@@ -16,6 +16,7 @@ class RebarSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '鉄筋探査',
@@ -45,7 +46,7 @@ class RebarSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (isOn) {
               final rebar = inspection.rebar.copyWith(exploration: isOn);
-              ref.read(inspectionProvider.notifier).updateRebar(rebar);
+              controller.updateRebar(rebar);
             },
           ),
         ),
@@ -57,7 +58,7 @@ class RebarSection extends HookConsumerWidget {
             onSelect: (result) {
               final side = inspection.rebar.side.copyWith(result: result);
               final rebar = inspection.rebar.copyWith(side: side);
-              ref.read(inspectionProvider.notifier).updateRebar(rebar);
+              controller.updateRebar(rebar);
             },
           ),
         ),
@@ -80,7 +81,7 @@ class RebarSection extends HookConsumerWidget {
             onSelect: (result) {
               final bottom = inspection.rebar.bottom.copyWith(result: result);
               final rebar = inspection.rebar.copyWith(bottom: bottom);
-              ref.read(inspectionProvider.notifier).updateRebar(rebar);
+              controller.updateRebar(rebar);
             },
           ),
         ),
@@ -110,7 +111,7 @@ class RebarSection extends HookConsumerWidget {
                 .toList(),
             onSelect: (coverage) {
               final rebar = inspection.rebar.copyWith(coverage: coverage);
-              ref.read(inspectionProvider.notifier).updateRebar(rebar);
+              controller.updateRebar(rebar);
             },
           ),
         ),
@@ -120,7 +121,11 @@ class RebarSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.rebar.remarks,
+            onChange: (text) {
+              final rebar = inspection.rebar.copyWith(remarks: text);
+              controller.updateRebar(rebar);
+            },
           ),
         ),
       ],

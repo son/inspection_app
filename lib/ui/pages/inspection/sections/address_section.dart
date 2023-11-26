@@ -14,6 +14,7 @@ class AddressSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '物件所在地',
@@ -45,7 +46,7 @@ class AddressSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (value) {
-              ref.read(inspectionProvider.notifier).updatePrefecture(value);
+              controller.updatePrefecture(value);
             },
           ),
         ),

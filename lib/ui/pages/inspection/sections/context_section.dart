@@ -18,6 +18,7 @@ class ContextSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: '調査時の状況',
@@ -36,7 +37,7 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (weather) {
-              ref.read(inspectionProvider.notifier).updateWeather(weather);
+              controller.updateWeather(weather);
             },
           ),
         ),
@@ -53,7 +54,7 @@ class ContextSection extends HookConsumerWidget {
                 locale: LocaleType.jp,
               );
               if (date == null) return;
-              ref.read(inspectionProvider.notifier).updateCreatedAt(date);
+              controller.updateCreatedAt(date);
             },
           ),
         ),
@@ -70,7 +71,7 @@ class ContextSection extends HookConsumerWidget {
                 locale: LocaleType.jp,
               );
               if (date == null) return;
-              ref.read(inspectionProvider.notifier).updateSchedule(
+              controller.updateSchedule(
                   inspection.overview.schedule.copyWith(startedAt: date));
             },
           ),
@@ -91,7 +92,7 @@ class ContextSection extends HookConsumerWidget {
                       locale: LocaleType.jp,
                     );
                     if (date == null) return;
-                    ref.read(inspectionProvider.notifier).updateSchedule(
+                    controller.updateSchedule(
                         inspection.overview.schedule.copyWith(startedAt: date));
                   },
                 ),
@@ -114,7 +115,7 @@ class ContextSection extends HookConsumerWidget {
                       locale: LocaleType.jp,
                     );
                     if (date == null) return;
-                    ref.read(inspectionProvider.notifier).updateSchedule(
+                    controller.updateSchedule(
                         inspection.overview.schedule.copyWith(endedAt: date));
                   },
                 ),
@@ -136,7 +137,7 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              ref.read(inspectionProvider.notifier).updateLifelines(
+              controller.updateLifelines(
                   inspection.overview.lifeline.copyWith(electricity: isOn));
             },
           ),
@@ -155,7 +156,7 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              ref.read(inspectionProvider.notifier).updateLifelines(
+              controller.updateLifelines(
                   inspection.overview.lifeline.copyWith(water: isOn));
             },
           ),
@@ -174,7 +175,7 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              ref.read(inspectionProvider.notifier).updateLifelines(
+              controller.updateLifelines(
                   inspection.overview.lifeline.copyWith(gas: isOn));
             },
           ),

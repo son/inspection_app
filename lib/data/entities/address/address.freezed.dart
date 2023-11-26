@@ -25,6 +25,7 @@ mixin _$Address {
   String get municipality => throw _privateConstructorUsedError;
   String get buildingName => throw _privateConstructorUsedError;
   String get roomNumber => throw _privateConstructorUsedError;
+  AddressType get addressType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $AddressCopyWith<$Res> {
       String prefecture,
       String municipality,
       String buildingName,
-      String roomNumber});
+      String roomNumber,
+      AddressType addressType});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
     Object? municipality = null,
     Object? buildingName = null,
     Object? roomNumber = null,
+    Object? addressType = null,
   }) {
     return _then(_value.copyWith(
       postCode: null == postCode
@@ -84,6 +87,10 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
           ? _value.roomNumber
           : roomNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      addressType: null == addressType
+          ? _value.addressType
+          : addressType // ignore: cast_nullable_to_non_nullable
+              as AddressType,
     ) as $Val);
   }
 }
@@ -100,7 +107,8 @@ abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
       String prefecture,
       String municipality,
       String buildingName,
-      String roomNumber});
+      String roomNumber,
+      AddressType addressType});
 }
 
 /// @nodoc
@@ -118,6 +126,7 @@ class __$$_AddressCopyWithImpl<$Res>
     Object? municipality = null,
     Object? buildingName = null,
     Object? roomNumber = null,
+    Object? addressType = null,
   }) {
     return _then(_$_Address(
       postCode: null == postCode
@@ -140,6 +149,10 @@ class __$$_AddressCopyWithImpl<$Res>
           ? _value.roomNumber
           : roomNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      addressType: null == addressType
+          ? _value.addressType
+          : addressType // ignore: cast_nullable_to_non_nullable
+              as AddressType,
     ));
   }
 }
@@ -152,7 +165,8 @@ class _$_Address extends _Address {
       this.prefecture = '',
       this.municipality = '',
       this.buildingName = '',
-      this.roomNumber = ''})
+      this.roomNumber = '',
+      this.addressType = AddressType.lotNumber})
       : super._();
 
   factory _$_Address.fromJson(Map<String, dynamic> json) =>
@@ -173,10 +187,13 @@ class _$_Address extends _Address {
   @override
   @JsonKey()
   final String roomNumber;
+  @override
+  @JsonKey()
+  final AddressType addressType;
 
   @override
   String toString() {
-    return 'Address(postCode: $postCode, prefecture: $prefecture, municipality: $municipality, buildingName: $buildingName, roomNumber: $roomNumber)';
+    return 'Address(postCode: $postCode, prefecture: $prefecture, municipality: $municipality, buildingName: $buildingName, roomNumber: $roomNumber, addressType: $addressType)';
   }
 
   @override
@@ -193,13 +210,15 @@ class _$_Address extends _Address {
             (identical(other.buildingName, buildingName) ||
                 other.buildingName == buildingName) &&
             (identical(other.roomNumber, roomNumber) ||
-                other.roomNumber == roomNumber));
+                other.roomNumber == roomNumber) &&
+            (identical(other.addressType, addressType) ||
+                other.addressType == addressType));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, postCode, prefecture,
-      municipality, buildingName, roomNumber);
+      municipality, buildingName, roomNumber, addressType);
 
   @JsonKey(ignore: true)
   @override
@@ -221,7 +240,8 @@ abstract class _Address extends Address {
       final String prefecture,
       final String municipality,
       final String buildingName,
-      final String roomNumber}) = _$_Address;
+      final String roomNumber,
+      final AddressType addressType}) = _$_Address;
   const _Address._() : super._();
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
@@ -236,6 +256,8 @@ abstract class _Address extends Address {
   String get buildingName;
   @override
   String get roomNumber;
+  @override
+  AddressType get addressType;
   @override
   @JsonKey(ignore: true)
   _$$_AddressCopyWith<_$_Address> get copyWith =>

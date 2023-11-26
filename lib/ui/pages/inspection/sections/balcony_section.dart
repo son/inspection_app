@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
@@ -17,6 +18,7 @@ class BalconySection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inspection = ref.watch(inspectionProvider);
+    final controller = ref.read(inspectionProvider.notifier);
 
     return Section(
       title: 'バルコニー（共用廊下）',
@@ -41,7 +43,7 @@ class BalconySection extends HookConsumerWidget {
                   inspection.balcony.foundation.copyWith(result: result);
               final balcony =
                   inspection.balcony.copyWith(foundation: foundation);
-              ref.read(inspectionProvider.notifier).updateBalcony(balcony);
+              controller.updateBalcony(balcony);
             },
           ),
         ),
@@ -67,7 +69,7 @@ class BalconySection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final balcony =
                     inspection.balcony.copyWith(foundation: foundation);
-                ref.read(inspectionProvider.notifier).updateBalcony(balcony);
+                controller.updateBalcony(balcony);
               },
             ),
           ),
@@ -75,8 +77,21 @@ class BalconySection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
+              initialText: inspection.balcony.foundation.max.toString(),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               fixedText: 'mm',
-              onChange: (text) {},
+              onChange: (text) {
+                final max = double.tryParse(text);
+                if (max == null) return;
+                final foundation =
+                    inspection.balcony.foundation.copyWith(max: max);
+                final balcony =
+                    inspection.balcony.copyWith(foundation: foundation);
+                controller.updateBalcony(balcony);
+              },
             ),
           ),
           SectionItem(
@@ -99,7 +114,7 @@ class BalconySection extends HookConsumerWidget {
                   inspection.balcony.waterProofLayer.copyWith(result: result);
               final balcony =
                   inspection.balcony.copyWith(waterProofLayer: waterProofLayer);
-              ref.read(inspectionProvider.notifier).updateBalcony(balcony);
+              controller.updateBalcony(balcony);
             },
           ),
         ),
@@ -125,7 +140,7 @@ class BalconySection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final balcony = inspection.balcony
                     .copyWith(waterProofLayer: waterProofLayer);
-                ref.read(inspectionProvider.notifier).updateBalcony(balcony);
+                controller.updateBalcony(balcony);
               },
             ),
           ),
@@ -155,7 +170,7 @@ class BalconySection extends HookConsumerWidget {
             onSelect: (foundationCoverage) {
               final balcony = inspection.balcony
                   .copyWith(foundationCoverage: foundationCoverage);
-              ref.read(inspectionProvider.notifier).updateBalcony(balcony);
+              controller.updateBalcony(balcony);
             },
           ),
         ),
@@ -175,7 +190,7 @@ class BalconySection extends HookConsumerWidget {
             onSelect: (waterProofLayerCoverage) {
               final balcony = inspection.balcony
                   .copyWith(waterProofLayerCoverage: waterProofLayerCoverage);
-              ref.read(inspectionProvider.notifier).updateBalcony(balcony);
+              controller.updateBalcony(balcony);
             },
           ),
         ),
@@ -185,7 +200,11 @@ class BalconySection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            onChange: (text) {},
+            initialText: inspection.balcony.remarks,
+            onChange: (text) {
+              final balcony = inspection.balcony.copyWith(remarks: text);
+              controller.updateBalcony(balcony);
+            },
           ),
         ),
       ],
