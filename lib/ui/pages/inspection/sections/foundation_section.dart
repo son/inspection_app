@@ -131,9 +131,7 @@ class FoundationSection extends HookConsumerWidget {
               final damage =
                   inspection.foundation.damage.copyWith(result: result);
               final foundation = inspection.foundation.copyWith(damage: damage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateFoundation(foundation);
+              controller.updateFoundation(foundation);
             },
           ),
         ),
@@ -159,9 +157,7 @@ class FoundationSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final foundation =
                     inspection.foundation.copyWith(damage: damage);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateFoundation(foundation);
+                controller.updateFoundation(foundation);
               },
             ),
           ),
@@ -205,9 +201,7 @@ class FoundationSection extends HookConsumerWidget {
                   inspection.foundation.damage.copyWith(result: result);
               final foundation = inspection.foundation
                   .copyWith(concreteDeterioration: concreteDeterioration);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateFoundation(foundation);
+              controller.updateFoundation(foundation);
             },
           ),
         ),
@@ -235,9 +229,7 @@ class FoundationSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final foundation = inspection.foundation
                     .copyWith(concreteDeterioration: concreteDeterioration);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateFoundation(foundation);
+                controller.updateFoundation(foundation);
               },
             ),
           ),
@@ -254,9 +246,7 @@ class FoundationSection extends HookConsumerWidget {
                     .copyWith(details: selecteds.toList());
                 final foundation = inspection.foundation
                     .copyWith(concreteDeterioration: concreteDeterioration);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateFoundation(foundation);
+                controller.updateFoundation(foundation);
               },
             ),
           ),
@@ -279,9 +269,7 @@ class FoundationSection extends HookConsumerWidget {
               final rust =
                   inspection.foundation.damage.copyWith(result: result);
               final foundation = inspection.foundation.copyWith(rust: rust);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateFoundation(foundation);
+              controller.updateFoundation(foundation);
             },
           ),
         ),
@@ -306,9 +294,7 @@ class FoundationSection extends HookConsumerWidget {
                 final rust =
                     inspection.foundation.rust.copyWith(directions: directions);
                 final foundation = inspection.foundation.copyWith(rust: rust);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateFoundation(foundation);
+                controller.updateFoundation(foundation);
               },
             ),
           ),
@@ -332,9 +318,7 @@ class FoundationSection extends HookConsumerWidget {
                   inspection.foundation.damage.copyWith(result: result);
               final foundation =
                   inspection.foundation.copyWith(rebarExposure: rebarExposure);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateFoundation(foundation);
+              controller.updateFoundation(foundation);
             },
           ),
         ),
@@ -360,9 +344,7 @@ class FoundationSection extends HookConsumerWidget {
                     .copyWith(directions: directions);
                 final foundation = inspection.foundation
                     .copyWith(rebarExposure: rebarExposure);
-                ref
-                    .read(inspectionProvider.notifier)
-                    .updateFoundation(foundation);
+                controller.updateFoundation(foundation);
               },
             ),
           ),
@@ -392,9 +374,7 @@ class FoundationSection extends HookConsumerWidget {
             onSelect: (coverage) {
               final foundation =
                   inspection.foundation.copyWith(coverage: coverage);
-              ref
-                  .read(inspectionProvider.notifier)
-                  .updateFoundation(foundation);
+              controller.updateFoundation(foundation);
             },
           ),
         ),
