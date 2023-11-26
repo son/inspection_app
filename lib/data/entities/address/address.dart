@@ -8,12 +8,12 @@ class Address with _$Address {
   const Address._();
 
   const factory Address({
-    @Default('') String postCode,
-    @Default('') String prefecture,
-    @Default('') String municipality,
-    @Default('') String buildingName,
-    @Default('') String roomNumber,
-    @Default(AddressType.lotNumber) AddressType addressType,
+    String? postCode,
+    String? prefecture,
+    String? municipality,
+    String? buildingName,
+    String? roomNumber,
+    AddressType? addressType,
   }) = _Address;
 
   factory Address.fromJson(Map<String, dynamic> json) =>

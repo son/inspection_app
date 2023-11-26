@@ -20,12 +20,12 @@ Address _$AddressFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Address {
-  String get postCode => throw _privateConstructorUsedError;
-  String get prefecture => throw _privateConstructorUsedError;
-  String get municipality => throw _privateConstructorUsedError;
-  String get buildingName => throw _privateConstructorUsedError;
-  String get roomNumber => throw _privateConstructorUsedError;
-  AddressType get addressType => throw _privateConstructorUsedError;
+  String? get postCode => throw _privateConstructorUsedError;
+  String? get prefecture => throw _privateConstructorUsedError;
+  String? get municipality => throw _privateConstructorUsedError;
+  String? get buildingName => throw _privateConstructorUsedError;
+  String? get roomNumber => throw _privateConstructorUsedError;
+  AddressType? get addressType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +38,12 @@ abstract class $AddressCopyWith<$Res> {
       _$AddressCopyWithImpl<$Res, Address>;
   @useResult
   $Res call(
-      {String postCode,
-      String prefecture,
-      String municipality,
-      String buildingName,
-      String roomNumber,
-      AddressType addressType});
+      {String? postCode,
+      String? prefecture,
+      String? municipality,
+      String? buildingName,
+      String? roomNumber,
+      AddressType? addressType});
 }
 
 /// @nodoc
@@ -59,38 +59,38 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? postCode = null,
-    Object? prefecture = null,
-    Object? municipality = null,
-    Object? buildingName = null,
-    Object? roomNumber = null,
-    Object? addressType = null,
+    Object? postCode = freezed,
+    Object? prefecture = freezed,
+    Object? municipality = freezed,
+    Object? buildingName = freezed,
+    Object? roomNumber = freezed,
+    Object? addressType = freezed,
   }) {
     return _then(_value.copyWith(
-      postCode: null == postCode
+      postCode: freezed == postCode
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      prefecture: null == prefecture
+              as String?,
+      prefecture: freezed == prefecture
           ? _value.prefecture
           : prefecture // ignore: cast_nullable_to_non_nullable
-              as String,
-      municipality: null == municipality
+              as String?,
+      municipality: freezed == municipality
           ? _value.municipality
           : municipality // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildingName: null == buildingName
+              as String?,
+      buildingName: freezed == buildingName
           ? _value.buildingName
           : buildingName // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomNumber: null == roomNumber
+              as String?,
+      roomNumber: freezed == roomNumber
           ? _value.roomNumber
           : roomNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      addressType: null == addressType
+              as String?,
+      addressType: freezed == addressType
           ? _value.addressType
           : addressType // ignore: cast_nullable_to_non_nullable
-              as AddressType,
+              as AddressType?,
     ) as $Val);
   }
 }
@@ -103,12 +103,12 @@ abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String postCode,
-      String prefecture,
-      String municipality,
-      String buildingName,
-      String roomNumber,
-      AddressType addressType});
+      {String? postCode,
+      String? prefecture,
+      String? municipality,
+      String? buildingName,
+      String? roomNumber,
+      AddressType? addressType});
 }
 
 /// @nodoc
@@ -121,38 +121,38 @@ class __$$_AddressCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? postCode = null,
-    Object? prefecture = null,
-    Object? municipality = null,
-    Object? buildingName = null,
-    Object? roomNumber = null,
-    Object? addressType = null,
+    Object? postCode = freezed,
+    Object? prefecture = freezed,
+    Object? municipality = freezed,
+    Object? buildingName = freezed,
+    Object? roomNumber = freezed,
+    Object? addressType = freezed,
   }) {
     return _then(_$_Address(
-      postCode: null == postCode
+      postCode: freezed == postCode
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      prefecture: null == prefecture
+              as String?,
+      prefecture: freezed == prefecture
           ? _value.prefecture
           : prefecture // ignore: cast_nullable_to_non_nullable
-              as String,
-      municipality: null == municipality
+              as String?,
+      municipality: freezed == municipality
           ? _value.municipality
           : municipality // ignore: cast_nullable_to_non_nullable
-              as String,
-      buildingName: null == buildingName
+              as String?,
+      buildingName: freezed == buildingName
           ? _value.buildingName
           : buildingName // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomNumber: null == roomNumber
+              as String?,
+      roomNumber: freezed == roomNumber
           ? _value.roomNumber
           : roomNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      addressType: null == addressType
+              as String?,
+      addressType: freezed == addressType
           ? _value.addressType
           : addressType // ignore: cast_nullable_to_non_nullable
-              as AddressType,
+              as AddressType?,
     ));
   }
 }
@@ -161,35 +161,29 @@ class __$$_AddressCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Address extends _Address {
   const _$_Address(
-      {this.postCode = '',
-      this.prefecture = '',
-      this.municipality = '',
-      this.buildingName = '',
-      this.roomNumber = '',
-      this.addressType = AddressType.lotNumber})
+      {this.postCode,
+      this.prefecture,
+      this.municipality,
+      this.buildingName,
+      this.roomNumber,
+      this.addressType})
       : super._();
 
   factory _$_Address.fromJson(Map<String, dynamic> json) =>
       _$$_AddressFromJson(json);
 
   @override
-  @JsonKey()
-  final String postCode;
+  final String? postCode;
   @override
-  @JsonKey()
-  final String prefecture;
+  final String? prefecture;
   @override
-  @JsonKey()
-  final String municipality;
+  final String? municipality;
   @override
-  @JsonKey()
-  final String buildingName;
+  final String? buildingName;
   @override
-  @JsonKey()
-  final String roomNumber;
+  final String? roomNumber;
   @override
-  @JsonKey()
-  final AddressType addressType;
+  final AddressType? addressType;
 
   @override
   String toString() {
@@ -236,28 +230,28 @@ class _$_Address extends _Address {
 
 abstract class _Address extends Address {
   const factory _Address(
-      {final String postCode,
-      final String prefecture,
-      final String municipality,
-      final String buildingName,
-      final String roomNumber,
-      final AddressType addressType}) = _$_Address;
+      {final String? postCode,
+      final String? prefecture,
+      final String? municipality,
+      final String? buildingName,
+      final String? roomNumber,
+      final AddressType? addressType}) = _$_Address;
   const _Address._() : super._();
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 
   @override
-  String get postCode;
+  String? get postCode;
   @override
-  String get prefecture;
+  String? get prefecture;
   @override
-  String get municipality;
+  String? get municipality;
   @override
-  String get buildingName;
+  String? get buildingName;
   @override
-  String get roomNumber;
+  String? get roomNumber;
   @override
-  AddressType get addressType;
+  AddressType? get addressType;
   @override
   @JsonKey(ignore: true)
   _$$_AddressCopyWith<_$_Address> get copyWith =>

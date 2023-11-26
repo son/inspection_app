@@ -24,9 +24,9 @@ class AddressSection extends HookConsumerWidget {
         SectionItem(
           title: '住所標記方法',
           child: DropdownField<AddressType>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.overview.building.address.addressType,
-              name: inspection.overview.building.address.addressType.label,
+              name: inspection.overview.building.address.addressType?.label,
             ),
             all: AddressType.values
                 .map((value) => SelectionItem(
@@ -65,7 +65,7 @@ class AddressSection extends HookConsumerWidget {
         SectionItem(
           title: '都道府県',
           child: DropdownField<String>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.overview.building.prefecture,
               name: inspection.overview.building.prefecture,
             ),
@@ -84,6 +84,8 @@ class AddressSection extends HookConsumerWidget {
           title: '市区町村・番地',
           child: PrimaryTextField(
             hintText: '市区町村　番地',
+            initialText:
+                inspection.overview.building.address.municipality ?? '',
             onChange: (text) {
               final address = inspection.overview.building.address
                   .copyWith(municipality: text);
@@ -113,7 +115,7 @@ class AddressSection extends HookConsumerWidget {
           title: '部屋番号',
           child: PrimaryTextField(
             fixedText: '号室',
-            initialText: inspection.overview.building.address.roomNumber,
+            initialText: inspection.overview.building.address.roomNumber ?? '',
             onChange: (text) {
               final address = inspection.overview.building.address
                   .copyWith(roomNumber: text);

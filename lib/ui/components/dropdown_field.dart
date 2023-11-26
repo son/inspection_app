@@ -7,20 +7,22 @@ import 'package:inspection_app/ui/components/text_styles.dart';
 class DropdownField<T> extends StatelessWidget {
   const DropdownField({
     super.key,
-    required this.value,
+    this.value,
     required this.all,
     required this.onSelect,
     this.leftText = '',
     this.rightText = '',
+    this.unselectedText = '未入力',
     this.color = Colors.black87,
   });
 
-  final SelectionItem<T> value;
+  final SelectionItem<T>? value;
   final List<SelectionItem<T>> all;
   final Function(T) onSelect;
   final String leftText;
   final String rightText;
   final Color color;
+  final String unselectedText;
 
   static DropdownField result({
     required Result result,
@@ -56,6 +58,13 @@ class DropdownField<T> extends StatelessWidget {
           if (value?.value == null) return;
           onSelect(value!.value);
         },
+        hint: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            unselectedText,
+            style: TextStyles.n14.copyWith(color: Colors.black26),
+          ),
+        ),
         iconStyleData: const IconStyleData(
           icon: Icon(
             Icons.keyboard_arrow_down_rounded,
@@ -107,7 +116,7 @@ class DropdownField<T> extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        value.name,
+                        value?.name ?? '',
                         style: TextStyles.n14,
                       ),
                     ],

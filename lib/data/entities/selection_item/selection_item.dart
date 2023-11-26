@@ -10,4 +10,14 @@ class SelectionItem<T> with _$SelectionItem<T> {
     required T value,
     required String name,
   }) = _SelectionItem<T>;
+
+  static SelectionItem<T>? orNull<T>({
+    required T? value,
+    required String? name,
+  }) {
+    if (value == null || name == null) {
+      return null;
+    }
+    return SelectionItem<T>(value: value, name: name);
+  }
 }
