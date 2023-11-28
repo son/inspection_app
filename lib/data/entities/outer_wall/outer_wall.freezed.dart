@@ -37,7 +37,7 @@ mixin _$OuterWall {
   Damage get rainGap => throw _privateConstructorUsedError;
   Damage get rainCeilingSealing => throw _privateConstructorUsedError;
   Damage get rainCeilingLeak => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,7 +69,7 @@ abstract class $OuterWallCopyWith<$Res> {
       Damage rainGap,
       Damage rainCeilingSealing,
       Damage rainCeilingLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get dryDamage;
@@ -120,7 +120,7 @@ class _$OuterWallCopyWithImpl<$Res, $Val extends OuterWall>
     Object? rainGap = null,
     Object? rainCeilingSealing = null,
     Object? rainCeilingLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -192,10 +192,10 @@ class _$OuterWallCopyWithImpl<$Res, $Val extends OuterWall>
           ? _value.rainCeilingLeak
           : rainCeilingLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -357,7 +357,7 @@ abstract class _$$_OuterWallCopyWith<$Res> implements $OuterWallCopyWith<$Res> {
       Damage rainGap,
       Damage rainCeilingSealing,
       Damage rainCeilingLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -422,7 +422,7 @@ class __$$_OuterWallCopyWithImpl<$Res>
     Object? rainGap = null,
     Object? rainCeilingSealing = null,
     Object? rainCeilingLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_OuterWall(
@@ -494,10 +494,10 @@ class __$$_OuterWallCopyWithImpl<$Res>
           ? _value.rainCeilingLeak
           : rainCeilingLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -527,7 +527,7 @@ class _$_OuterWall extends _OuterWall {
       this.rainGap = const Damage(),
       this.rainCeilingSealing = const Damage(),
       this.rainCeilingLeak = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : _finishings = finishings,
         super._();
@@ -593,8 +593,7 @@ class _$_OuterWall extends _OuterWall {
   @JsonKey()
   final Damage rainCeilingLeak;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -705,7 +704,7 @@ abstract class _OuterWall extends OuterWall {
       final Damage rainGap,
       final Damage rainCeilingSealing,
       final Damage rainCeilingLeak,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_OuterWall;
   const _OuterWall._() : super._();
 
@@ -747,7 +746,7 @@ abstract class _OuterWall extends OuterWall {
   @override
   Damage get rainCeilingLeak;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

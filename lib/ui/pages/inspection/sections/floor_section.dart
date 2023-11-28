@@ -34,7 +34,7 @@ class FloorSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）著しいひび割れ\n劣化、欠損',
+          title: '[構造] 著しいひび割れ\n劣化、欠損',
           child: DropdownField.result(
             result: inspection.floor.damage.result,
             onSelect: (result) {
@@ -49,7 +49,7 @@ class FloorSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
-              initialText: inspection.floor.damage.max.toString(),
+              initialText: inspection.floor.damage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -88,7 +88,7 @@ class FloorSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）著しい沈み',
+          title: '[構造] 著しい沈み',
           child: DropdownField.result(
             result: inspection.floor.sinking.result,
             onSelect: (result) {
@@ -123,7 +123,7 @@ class FloorSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）6/1000以上の傾斜',
+          title: '[構造] 6/1000以上の傾斜',
           child: DropdownField.result(
             result: inspection.floor.inclination.result,
             onSelect: (result) {
@@ -139,7 +139,7 @@ class FloorSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　当該部分の傾斜',
             child: PrimaryTextField(
-              initialText: inspection.floor.inclination.max.toString(),
+              initialText: inspection.floor.inclination.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -183,9 +183,9 @@ class FloorSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.floor.coverage,
-              name: inspection.floor.coverage.label,
+              name: inspection.floor.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

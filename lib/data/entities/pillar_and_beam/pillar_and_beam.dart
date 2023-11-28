@@ -14,7 +14,7 @@ class PillarAndBeam with _$PillarAndBeam {
     @Default(Damage()) Damage pillarInclination,
     @Default(Damage()) Damage beamDamage,
     @Default(Damage()) Damage beamDeflection,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _PillarAndBeam;
 

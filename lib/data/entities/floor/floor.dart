@@ -13,7 +13,7 @@ class Floor with _$Floor {
     @Default(Damage()) Damage damage,
     @Default(Damage()) Damage sinking,
     @Default(Damage()) Damage inclination,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Floor;
 

@@ -20,10 +20,10 @@ Roof _$RoofFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Roof {
-  Necessity get necessity => throw _privateConstructorUsedError;
+  Necessity? get necessity => throw _privateConstructorUsedError;
   Damage get damage => throw _privateConstructorUsedError;
   Damage get waterProofLayerDamage => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,10 +37,10 @@ abstract class $RoofCopyWith<$Res> {
       _$RoofCopyWithImpl<$Res, Roof>;
   @useResult
   $Res call(
-      {Necessity necessity,
+      {Necessity? necessity,
       Damage damage,
       Damage waterProofLayerDamage,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get damage;
@@ -60,17 +60,17 @@ class _$RoofCopyWithImpl<$Res, $Val extends Roof>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? necessity = null,
+    Object? necessity = freezed,
     Object? damage = null,
     Object? waterProofLayerDamage = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
-      necessity: null == necessity
+      necessity: freezed == necessity
           ? _value.necessity
           : necessity // ignore: cast_nullable_to_non_nullable
-              as Necessity,
+              as Necessity?,
       damage: null == damage
           ? _value.damage
           : damage // ignore: cast_nullable_to_non_nullable
@@ -79,10 +79,10 @@ class _$RoofCopyWithImpl<$Res, $Val extends Roof>
           ? _value.waterProofLayerDamage
           : waterProofLayerDamage // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -114,10 +114,10 @@ abstract class _$$_RoofCopyWith<$Res> implements $RoofCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {Necessity necessity,
+      {Necessity? necessity,
       Damage damage,
       Damage waterProofLayerDamage,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -135,17 +135,17 @@ class __$$_RoofCopyWithImpl<$Res> extends _$RoofCopyWithImpl<$Res, _$_Roof>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? necessity = null,
+    Object? necessity = freezed,
     Object? damage = null,
     Object? waterProofLayerDamage = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Roof(
-      necessity: null == necessity
+      necessity: freezed == necessity
           ? _value.necessity
           : necessity // ignore: cast_nullable_to_non_nullable
-              as Necessity,
+              as Necessity?,
       damage: null == damage
           ? _value.damage
           : damage // ignore: cast_nullable_to_non_nullable
@@ -154,10 +154,10 @@ class __$$_RoofCopyWithImpl<$Res> extends _$RoofCopyWithImpl<$Res, _$_Roof>
           ? _value.waterProofLayerDamage
           : waterProofLayerDamage // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -170,18 +170,17 @@ class __$$_RoofCopyWithImpl<$Res> extends _$RoofCopyWithImpl<$Res, _$_Roof>
 @JsonSerializable()
 class _$_Roof extends _Roof {
   const _$_Roof(
-      {this.necessity = Necessity.detached,
+      {this.necessity,
       this.damage = const Damage(),
       this.waterProofLayerDamage = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
   factory _$_Roof.fromJson(Map<String, dynamic> json) => _$$_RoofFromJson(json);
 
   @override
-  @JsonKey()
-  final Necessity necessity;
+  final Necessity? necessity;
   @override
   @JsonKey()
   final Damage damage;
@@ -189,8 +188,7 @@ class _$_Roof extends _Roof {
   @JsonKey()
   final Damage waterProofLayerDamage;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -236,23 +234,23 @@ class _$_Roof extends _Roof {
 
 abstract class _Roof extends Roof {
   const factory _Roof(
-      {final Necessity necessity,
+      {final Necessity? necessity,
       final Damage damage,
       final Damage waterProofLayerDamage,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Roof;
   const _Roof._() : super._();
 
   factory _Roof.fromJson(Map<String, dynamic> json) = _$_Roof.fromJson;
 
   @override
-  Necessity get necessity;
+  Necessity? get necessity;
   @override
   Damage get damage;
   @override
   Damage get waterProofLayerDamage;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

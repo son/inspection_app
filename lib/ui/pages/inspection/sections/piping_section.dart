@@ -33,7 +33,7 @@ class PipingSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（給水・給湯管）発錆による赤水',
+          title: '[給水・給湯管] 発錆による赤水',
           child: DropdownField.result(
             result: inspection.piping.supplyRustyWater.result,
             onSelect: (result) {
@@ -72,7 +72,7 @@ class PipingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（排水管）排水の滞留',
+          title: '[排水管] 排水の滞留',
           child: DropdownField.result(
             result: inspection.piping.sewerStuck.result,
             onSelect: (result) {
@@ -110,7 +110,7 @@ class PipingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（排水管）漏水',
+          title: '[排水管] 漏水',
           child: DropdownField.result(
             result: inspection.piping.sewerWaterLeak.result,
             onSelect: (result) {
@@ -149,7 +149,7 @@ class PipingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（排水管）換気ダクトの脱落',
+          title: '[排水管] 換気ダクトの脱落',
           child: DropdownField.result(
             result: inspection.piping.ductLoss.result,
             onSelect: (result) {
@@ -187,9 +187,9 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.piping.coverage,
-              name: inspection.piping.coverage.label,
+              name: inspection.piping.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

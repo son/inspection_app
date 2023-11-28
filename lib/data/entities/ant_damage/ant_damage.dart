@@ -10,9 +10,9 @@ class AntDamage with _$AntDamage {
   const AntDamage._();
 
   const factory AntDamage({
-    @Default(AccessPanel.none) AccessPanel accessPanel,
+    AccessPanel? accessPanel,
     @Default(Damage()) Damage antDamage,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _AntDamage;
 

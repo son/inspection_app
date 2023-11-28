@@ -21,7 +21,7 @@ Corrosion _$CorrosionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Corrosion {
   Damage get corrosion => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $CorrosionCopyWith<$Res> {
   factory $CorrosionCopyWith(Corrosion value, $Res Function(Corrosion) then) =
       _$CorrosionCopyWithImpl<$Res, Corrosion>;
   @useResult
-  $Res call({Damage corrosion, Coverage coverage, String remarks});
+  $Res call({Damage corrosion, Coverage? coverage, String remarks});
 
   $DamageCopyWith<$Res> get corrosion;
 }
@@ -54,7 +54,7 @@ class _$CorrosionCopyWithImpl<$Res, $Val extends Corrosion>
   @override
   $Res call({
     Object? corrosion = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -62,10 +62,10 @@ class _$CorrosionCopyWithImpl<$Res, $Val extends Corrosion>
           ? _value.corrosion
           : corrosion // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -89,7 +89,7 @@ abstract class _$$_CorrosionCopyWith<$Res> implements $CorrosionCopyWith<$Res> {
       __$$_CorrosionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Damage corrosion, Coverage coverage, String remarks});
+  $Res call({Damage corrosion, Coverage? coverage, String remarks});
 
   @override
   $DamageCopyWith<$Res> get corrosion;
@@ -107,7 +107,7 @@ class __$$_CorrosionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? corrosion = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Corrosion(
@@ -115,10 +115,10 @@ class __$$_CorrosionCopyWithImpl<$Res>
           ? _value.corrosion
           : corrosion // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -131,9 +131,7 @@ class __$$_CorrosionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Corrosion extends _Corrosion {
   const _$_Corrosion(
-      {this.corrosion = const Damage(),
-      this.coverage = Coverage.almost,
-      this.remarks = ''})
+      {this.corrosion = const Damage(), this.coverage, this.remarks = ''})
       : super._();
 
   factory _$_Corrosion.fromJson(Map<String, dynamic> json) =>
@@ -143,8 +141,7 @@ class _$_Corrosion extends _Corrosion {
   @JsonKey()
   final Damage corrosion;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -187,7 +184,7 @@ class _$_Corrosion extends _Corrosion {
 abstract class _Corrosion extends Corrosion {
   const factory _Corrosion(
       {final Damage corrosion,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Corrosion;
   const _Corrosion._() : super._();
 
@@ -197,7 +194,7 @@ abstract class _Corrosion extends Corrosion {
   @override
   Damage get corrosion;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

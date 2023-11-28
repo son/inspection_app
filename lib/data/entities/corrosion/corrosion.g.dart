@@ -10,15 +10,14 @@ _$_Corrosion _$$_CorrosionFromJson(Map<String, dynamic> json) => _$_Corrosion(
       corrosion: json['corrosion'] == null
           ? const Damage()
           : Damage.fromJson(json['corrosion'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_CorrosionToJson(_$_Corrosion instance) =>
     <String, dynamic>{
       'corrosion': instance.corrosion,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

@@ -22,7 +22,7 @@ Damage _$DamageFromJson(Map<String, dynamic> json) {
 mixin _$Damage {
   Result get result => throw _privateConstructorUsedError;
   List<Direction> get directions => throw _privateConstructorUsedError;
-  double get max => throw _privateConstructorUsedError;
+  double? get max => throw _privateConstructorUsedError;
   String get part => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get situation => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $DamageCopyWith<$Res> {
   $Res call(
       {Result result,
       List<Direction> directions,
-      double max,
+      double? max,
       String part,
       String content,
       String situation,
@@ -65,7 +65,7 @@ class _$DamageCopyWithImpl<$Res, $Val extends Damage>
   $Res call({
     Object? result = null,
     Object? directions = null,
-    Object? max = null,
+    Object? max = freezed,
     Object? part = null,
     Object? content = null,
     Object? situation = null,
@@ -81,10 +81,10 @@ class _$DamageCopyWithImpl<$Res, $Val extends Damage>
           ? _value.directions
           : directions // ignore: cast_nullable_to_non_nullable
               as List<Direction>,
-      max: null == max
+      max: freezed == max
           ? _value.max
           : max // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       part: null == part
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ abstract class _$$_DamageCopyWith<$Res> implements $DamageCopyWith<$Res> {
   $Res call(
       {Result result,
       List<Direction> directions,
-      double max,
+      double? max,
       String part,
       String content,
       String situation,
@@ -138,7 +138,7 @@ class __$$_DamageCopyWithImpl<$Res>
   $Res call({
     Object? result = null,
     Object? directions = null,
-    Object? max = null,
+    Object? max = freezed,
     Object? part = null,
     Object? content = null,
     Object? situation = null,
@@ -154,10 +154,10 @@ class __$$_DamageCopyWithImpl<$Res>
           ? _value._directions
           : directions // ignore: cast_nullable_to_non_nullable
               as List<Direction>,
-      max: null == max
+      max: freezed == max
           ? _value.max
           : max // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       part: null == part
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
@@ -188,7 +188,7 @@ class _$_Damage extends _Damage {
   const _$_Damage(
       {this.result = Result.none,
       final List<Direction> directions = const <Direction>[],
-      this.max = 0.0,
+      this.max,
       this.part = '',
       this.content = '',
       this.situation = '',
@@ -215,8 +215,7 @@ class _$_Damage extends _Damage {
   }
 
   @override
-  @JsonKey()
-  final double max;
+  final double? max;
   @override
   @JsonKey()
   final String part;
@@ -297,7 +296,7 @@ abstract class _Damage extends Damage {
   const factory _Damage(
       {final Result result,
       final List<Direction> directions,
-      final double max,
+      final double? max,
       final String part,
       final String content,
       final String situation,
@@ -312,7 +311,7 @@ abstract class _Damage extends Damage {
   @override
   List<Direction> get directions;
   @override
-  double get max;
+  double? get max;
   @override
   String get part;
   @override

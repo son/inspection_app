@@ -12,7 +12,7 @@ class RoofFrame with _$RoofFrame {
   const factory RoofFrame({
     @Default(Damage()) Damage foundationDamage,
     @Default(Damage()) Damage rainRoofFrameLeak,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _RoofFrame;
 

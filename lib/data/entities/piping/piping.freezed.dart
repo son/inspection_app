@@ -25,7 +25,7 @@ mixin _$Piping {
   Damage get sewerStuck => throw _privateConstructorUsedError;
   Damage get sewerWaterLeak => throw _privateConstructorUsedError;
   Damage get ductLoss => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $PipingCopyWith<$Res> {
       Damage sewerStuck,
       Damage sewerWaterLeak,
       Damage ductLoss,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get supplyRustyWater;
@@ -72,7 +72,7 @@ class _$PipingCopyWithImpl<$Res, $Val extends Piping>
     Object? sewerStuck = null,
     Object? sewerWaterLeak = null,
     Object? ductLoss = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -96,10 +96,10 @@ class _$PipingCopyWithImpl<$Res, $Val extends Piping>
           ? _value.ductLoss
           : ductLoss // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ abstract class _$$_PipingCopyWith<$Res> implements $PipingCopyWith<$Res> {
       Damage sewerStuck,
       Damage sewerWaterLeak,
       Damage ductLoss,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -190,7 +190,7 @@ class __$$_PipingCopyWithImpl<$Res>
     Object? sewerStuck = null,
     Object? sewerWaterLeak = null,
     Object? ductLoss = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Piping(
@@ -214,10 +214,10 @@ class __$$_PipingCopyWithImpl<$Res>
           ? _value.ductLoss
           : ductLoss // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -235,7 +235,7 @@ class _$_Piping extends _Piping {
       this.sewerStuck = const Damage(),
       this.sewerWaterLeak = const Damage(),
       this.ductLoss = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -258,8 +258,7 @@ class _$_Piping extends _Piping {
   @JsonKey()
   final Damage ductLoss;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -315,7 +314,7 @@ abstract class _Piping extends Piping {
       final Damage sewerStuck,
       final Damage sewerWaterLeak,
       final Damage ductLoss,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Piping;
   const _Piping._() : super._();
 
@@ -332,7 +331,7 @@ abstract class _Piping extends Piping {
   @override
   Damage get ductLoss;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

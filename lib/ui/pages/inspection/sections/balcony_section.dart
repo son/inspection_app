@@ -35,7 +35,7 @@ class BalconySection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）支持部材・床の\nぐらつき、ひび割れ、劣化',
+          title: '[構造] 支持部材・床の\nぐらつき、ひび割れ、劣化',
           child: DropdownField.result(
             result: inspection.balcony.foundation.result,
             onSelect: (result) {
@@ -77,7 +77,7 @@ class BalconySection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
-              initialText: inspection.balcony.foundation.max.toString(),
+              initialText: inspection.balcony.foundation.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -106,7 +106,7 @@ class BalconySection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）防水層のひび割れ、劣化、欠損\n水切り金物などの不具合',
+          title: '[雨水] 防水層のひび割れ、劣化、欠損\n水切り金物などの不具合',
           child: DropdownField.result(
             result: inspection.balcony.waterProofLayer.result,
             onSelect: (result) {
@@ -157,9 +157,9 @@ class BalconySection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲（構造）',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.balcony.foundationCoverage,
-              name: inspection.balcony.foundationCoverage.label,
+              name: inspection.balcony.foundationCoverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(
@@ -177,9 +177,9 @@ class BalconySection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲（雨水）',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.balcony.waterProofLayerCoverage,
-              name: inspection.balcony.waterProofLayerCoverage.label,
+              name: inspection.balcony.waterProofLayerCoverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

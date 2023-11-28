@@ -35,9 +35,9 @@ class AntDamageSection extends HookConsumerWidget {
         SectionItem(
           title: '床下点検口の有無',
           child: DropdownField<AccessPanel>(
-            value: SelectionItem<AccessPanel>(
+            value: SelectionItem.orNull(
               value: inspection.antDamage.accessPanel,
-              name: inspection.antDamage.accessPanel.label,
+              name: inspection.antDamage.accessPanel?.label,
             ),
             all: AccessPanel.values
                 .map((value) => SelectionItem(
@@ -54,7 +54,7 @@ class AntDamageSection extends HookConsumerWidget {
         ),
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）著しい蟻害',
+          title: '[構造] 著しい蟻害',
           child: DropdownField.result(
             result: inspection.antDamage.antDamage.result,
             onSelect: (result) {
@@ -92,9 +92,9 @@ class AntDamageSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.antDamage.coverage,
-              name: inspection.antDamage.coverage.label,
+              name: inspection.antDamage.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

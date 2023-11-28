@@ -57,7 +57,7 @@ class OuterWallSection extends HookConsumerWidget {
         ),
         SectionItem(
           axis: Axis.horizontal,
-          title: '（乾式）ひび割れ、欠損、浮き\nはらみ、剥落',
+          title: '[乾式] ひび割れ、欠損、浮き\nはらみ、剥落',
           child: DropdownField.result(
             result: inspection.outerWall.dryDamage.result,
             onSelect: (result) {
@@ -99,7 +99,7 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.outerWall.dryDamage.max.toString(),
+              initialText: inspection.outerWall.dryDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -128,7 +128,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（乾式）複数にまたがる\nひび割れ、欠損',
+          title: '[乾式] 複数にまたがる\nひび割れ、欠損',
           child: DropdownField.result(
             result: inspection.outerWall.dryWideDamage.result,
             onSelect: (result) {
@@ -170,7 +170,8 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.outerWall.dryWideDamage.max.toString(),
+              initialText:
+                  inspection.outerWall.dryWideDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -199,7 +200,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（乾式）金属の著しいさび\n化学的侵食',
+          title: '[乾式] 金属の著しいさび\n化学的侵食',
           child: DropdownField.result(
             result: inspection.outerWall.dryCorrosion.result,
             onSelect: (result) {
@@ -249,7 +250,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（タイル）ひび割れ、欠損、浮き\nはらみ、剥落',
+          title: '[タイル] ひび割れ、欠損、浮き\nはらみ、剥落',
           child: DropdownField.result(
             result: inspection.outerWall.tileDamage.result,
             onSelect: (result) {
@@ -291,7 +292,8 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.outerWall.tileDamage.max.toString(),
+              initialText:
+                  inspection.outerWall.tileDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -320,7 +322,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（タイル）複数にまたがる\nひび割れ、欠損',
+          title: '[タイル] 複数にまたがる\nひび割れ、欠損',
           child: DropdownField.result(
             result: inspection.outerWall.tileWideDamage.result,
             onSelect: (result) {
@@ -362,7 +364,8 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.outerWall.tileWideDamage.max.toString(),
+              initialText:
+                  inspection.outerWall.tileWideDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -391,7 +394,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（タイル）仕上げ材の著しい浮き',
+          title: '[タイル] 仕上げ材の著しい浮き',
           child: DropdownField.result(
             result: inspection.outerWall.tileFloat.result,
             onSelect: (result) {
@@ -441,7 +444,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（塗壁）ひび割れ、欠損、浮き\nはらみ、剥落',
+          title: '[塗壁] ひび割れ、欠損、浮き\nはらみ、剥落',
           child: DropdownField.result(
             result: inspection.outerWall.paintDamage.result,
             onSelect: (result) {
@@ -491,7 +494,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（塗壁）仕上げ材の著しい浮き',
+          title: '[塗壁] 仕上げ材の著しい浮き',
           child: DropdownField.result(
             result: inspection.outerWall.paintFloat.result,
             onSelect: (result) {
@@ -541,7 +544,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（その他）ひび割れ、欠損、浮き\nはらみ、剥落',
+          title: '[その他] ひび割れ、欠損、浮き\nはらみ、剥落',
           child: DropdownField.result(
             result: inspection.outerWall.otherDamage.result,
             onSelect: (result) {
@@ -583,7 +586,8 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.outerWall.otherDamage.max.toString(),
+              initialText:
+                  inspection.outerWall.otherDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -612,7 +616,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（その他）複数にまたがる\nひび割れ、欠損',
+          title: '[その他] 複数にまたがる\nひび割れ、欠損',
           child: DropdownField.result(
             result: inspection.outerWall.otherWideDamage.result,
             onSelect: (result) {
@@ -654,7 +658,8 @@ class OuterWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅・欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.outerWall.otherWideDamage.max.toString(),
+              initialText:
+                  inspection.outerWall.otherWideDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -683,7 +688,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（その他）金属の著しいさび\n化学的侵食',
+          title: '[その他] 金属の著しいさび\n化学的侵食',
           child: DropdownField.result(
             result: inspection.outerWall.otherCorrosion.result,
             onSelect: (result) {
@@ -733,7 +738,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（その他）仕上げ材の著しい浮き',
+          title: '[その他] 仕上げ材の著しい浮き',
           child: DropdownField.result(
             result: inspection.outerWall.otherFloat.result,
             onSelect: (result) {
@@ -783,7 +788,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）外壁シーリング材\nの破断、欠損',
+          title: '[雨水] 外壁シーリング材\nの破断、欠損',
           child: DropdownField.result(
             result: inspection.outerWall.rainWallSealing.result,
             onSelect: (result) {
@@ -833,7 +838,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）建具の周囲の隙間\n開閉不良',
+          title: '[雨水] 建具の周囲の隙間\n開閉不良',
           child: DropdownField.result(
             result: inspection.outerWall.rainGap.result,
             onSelect: (result) {
@@ -882,7 +887,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）軒裏天井のシーリング材\nの破断、欠損',
+          title: '[雨水] 軒裏天井のシーリング材\nの破断、欠損',
           child: DropdownField.result(
             result: inspection.outerWall.rainCeilingSealing.result,
             onSelect: (result) {
@@ -934,7 +939,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）軒裏天井の雨漏りの跡',
+          title: '[雨水] 軒裏天井の雨漏りの跡',
           child: DropdownField.result(
             result: inspection.outerWall.rainCeilingLeak.result,
             onSelect: (result) {
@@ -985,9 +990,9 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.outerWall.coverage,
-              name: inspection.outerWall.coverage.label,
+              name: inspection.outerWall.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

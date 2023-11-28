@@ -13,7 +13,7 @@ class Rebar with _$Rebar {
     @Default(false) bool exploration,
     @Default(Damage()) Damage side,
     @Default(Damage()) Damage bottom,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Rebar;
 

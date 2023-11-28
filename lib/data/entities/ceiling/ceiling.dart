@@ -10,10 +10,10 @@ class Ceiling with _$Ceiling {
   const Ceiling._();
 
   const factory Ceiling({
-    @Default(AccessPanel.none) AccessPanel accessPanel,
+    AccessPanel? accessPanel,
     @Default(Damage()) Damage foundationDamage,
     @Default(Damage()) Damage rainCeilingLeak,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Ceiling;
 

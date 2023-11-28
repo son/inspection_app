@@ -27,7 +27,7 @@ class OuterWall with _$OuterWall {
     @Default(Damage()) Damage rainGap,
     @Default(Damage()) Damage rainCeilingSealing,
     @Default(Damage()) Damage rainCeilingLeak,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _OuterWall;
 

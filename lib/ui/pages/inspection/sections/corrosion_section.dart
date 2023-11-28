@@ -33,7 +33,7 @@ class CorrosionSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）著しい腐朽、腐食など',
+          title: '[構造] 著しい腐朽、腐食など',
           child: DropdownField.result(
             result: inspection.corrosion.corrosion.result,
             onSelect: (result) {
@@ -71,9 +71,9 @@ class CorrosionSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.corrosion.coverage,
-              name: inspection.corrosion.coverage.label,
+              name: inspection.corrosion.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

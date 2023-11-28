@@ -15,7 +15,7 @@ class Piping with _$Piping {
     @Default(Damage()) Damage sewerStuck,
     @Default(Damage()) Damage sewerWaterLeak,
     @Default(Damage()) Damage ductLoss,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Piping;
 

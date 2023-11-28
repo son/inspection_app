@@ -99,9 +99,9 @@ class RebarSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.rebar.coverage,
-              name: inspection.rebar.coverage.label,
+              name: inspection.rebar.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

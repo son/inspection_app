@@ -12,8 +12,8 @@ class Balcony with _$Balcony {
   const factory Balcony({
     @Default(Damage()) Damage foundation,
     @Default(Damage()) Damage waterProofLayer,
-    @Default(Coverage.almost) Coverage foundationCoverage,
-    @Default(Coverage.almost) Coverage waterProofLayerCoverage,
+    Coverage? foundationCoverage,
+    Coverage? waterProofLayerCoverage,
     @Default('') String remarks,
   }) = _Balcony;
 

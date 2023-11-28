@@ -34,7 +34,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）柱の著しいひび割れ\n劣化、欠損',
+          title: '[構造] 柱の著しいひび割れ\n劣化、欠損',
           child: DropdownField.result(
             result: inspection.pillarAndBeam.pillarDamage.result,
             onSelect: (result) {
@@ -51,7 +51,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅、欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.pillarAndBeam.pillarDamage.max.toString(),
+              initialText:
+                  inspection.pillarAndBeam.pillarDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -94,7 +95,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）6/1000以上の傾斜',
+          title: '[構造] 6/1000以上の傾斜',
           child: DropdownField.result(
             result: inspection.pillarAndBeam.pillarInclination.result,
             onSelect: (result) {
@@ -115,7 +116,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
             child: PrimaryTextField(
               fixedText: '/1000',
               initialText:
-                  inspection.pillarAndBeam.pillarInclination.max.toString(),
+                  inspection.pillarAndBeam.pillarInclination.max?.toString() ??
+                      '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -159,7 +161,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）梁の著しいひび割れ、劣化、欠損',
+          title: '[構造] 梁の著しいひび割れ、劣化、欠損',
           child: DropdownField.result(
             result: inspection.pillarAndBeam.beamDamage.result,
             onSelect: (result) {
@@ -176,7 +178,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅、欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.pillarAndBeam.beamDamage.max.toString(),
+              initialText:
+                  inspection.pillarAndBeam.beamDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -219,7 +222,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）梁の著しい たわみ',
+          title: '[構造] 梁の著しい たわみ',
           child: DropdownField.result(
             result: inspection.pillarAndBeam.beamDeflection.result,
             onSelect: (result) {
@@ -260,9 +263,9 @@ class PillarAndBeamSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.pillarAndBeam.coverage,
-              name: inspection.pillarAndBeam.coverage.label,
+              name: inspection.pillarAndBeam.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

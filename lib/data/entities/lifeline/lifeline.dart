@@ -12,7 +12,7 @@ class Lifeline with _$Lifeline {
   const factory Lifeline({
     @Default(Damage()) Damage lifelineMalfunction,
     @Default(Damage()) Damage otherMalfunction,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Lifeline;
 

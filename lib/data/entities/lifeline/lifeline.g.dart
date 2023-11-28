@@ -14,8 +14,7 @@ _$_Lifeline _$$_LifelineFromJson(Map<String, dynamic> json) => _$_Lifeline(
       otherMalfunction: json['otherMalfunction'] == null
           ? const Damage()
           : Damage.fromJson(json['otherMalfunction'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
@@ -23,7 +22,7 @@ Map<String, dynamic> _$$_LifelineToJson(_$_Lifeline instance) =>
     <String, dynamic>{
       'lifelineMalfunction': instance.lifelineMalfunction,
       'otherMalfunction': instance.otherMalfunction,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

@@ -11,7 +11,7 @@ class BaseAndFloorFraming with _$BaseAndFloorFraming {
 
   const factory BaseAndFloorFraming({
     @Default(Damage()) Damage damage,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _BaseAndFloorFraming;
 

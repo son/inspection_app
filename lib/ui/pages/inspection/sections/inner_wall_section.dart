@@ -34,7 +34,7 @@ class InnerWallSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）ひび割れ、欠損\n浮き、はらみ、剥落',
+          title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
           child: DropdownField.result(
             result: inspection.innerWall.foundationDamage.result,
             onSelect: (result) {
@@ -51,7 +51,8 @@ class InnerWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
-              initialText: inspection.innerWall.foundationDamage.max.toString(),
+              initialText:
+                  inspection.innerWall.foundationDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -94,7 +95,7 @@ class InnerWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）6/1000以上の傾斜',
+          title: '[構造] 6/1000以上の傾斜',
           child: DropdownField.result(
             result: inspection.innerWall.foundationInclination.result,
             onSelect: (result) {
@@ -114,7 +115,8 @@ class InnerWallSection extends HookConsumerWidget {
             title: '　当該部分の傾斜',
             child: PrimaryTextField(
               initialText:
-                  inspection.innerWall.foundationInclination.max.toString(),
+                  inspection.innerWall.foundationInclination.max?.toString() ??
+                      '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -159,7 +161,7 @@ class InnerWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）内壁の雨漏りの跡',
+          title: '[雨水] 内壁の雨漏りの跡',
           child: DropdownField.result(
             result: inspection.innerWall.rainInnerWallLeak.result,
             onSelect: (result) {
@@ -200,9 +202,9 @@ class InnerWallSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.innerWall.coverage,
-              name: inspection.innerWall.coverage.label,
+              name: inspection.innerWall.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

@@ -15,7 +15,7 @@ class Damage with _$Damage {
   const factory Damage({
     @Default(Result.none) Result result,
     @Default(<Direction>[]) List<Direction> directions,
-    @Default(0.0) double max,
+    double? max,
     @Default('') String part,
     @Default('') String content,
     @Default('') String situation,

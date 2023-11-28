@@ -10,10 +10,10 @@ class Concrete with _$Concrete {
   const Concrete._();
 
   const factory Concrete({
-    @Default(false) bool exploration,
+    bool? exploration,
     @Default(Damage()) Damage compressiveStrength1,
     @Default(Damage()) Damage compressiveStrength2,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Concrete;
 

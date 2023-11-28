@@ -35,9 +35,9 @@ class CeilingSection extends HookConsumerWidget {
         SectionItem(
           title: '天井点検口の有無',
           child: DropdownField<AccessPanel>(
-            value: SelectionItem<AccessPanel>(
+            value: SelectionItem.orNull(
               value: inspection.ceiling.accessPanel,
-              name: inspection.ceiling.accessPanel.label,
+              name: inspection.ceiling.accessPanel?.label,
             ),
             all: AccessPanel.values
                 .map((value) => SelectionItem(
@@ -54,7 +54,7 @@ class CeilingSection extends HookConsumerWidget {
         ),
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）ひび割れ、欠損\n浮き、はらみ、剥落',
+          title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
           child: DropdownField.result(
             result: inspection.ceiling.foundationDamage.result,
             onSelect: (result) {
@@ -93,7 +93,7 @@ class CeilingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）天井の雨漏りの跡',
+          title: '[雨水] 天井の雨漏りの跡',
           child: DropdownField.result(
             result: inspection.ceiling.rainCeilingLeak.result,
             onSelect: (result) {
@@ -133,9 +133,9 @@ class CeilingSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.ceiling.coverage,
-              name: inspection.ceiling.coverage.label,
+              name: inspection.ceiling.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

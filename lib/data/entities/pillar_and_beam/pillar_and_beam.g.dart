@@ -20,8 +20,7 @@ _$_PillarAndBeam _$$_PillarAndBeamFromJson(Map<String, dynamic> json) =>
       beamDeflection: json['beamDeflection'] == null
           ? const Damage()
           : Damage.fromJson(json['beamDeflection'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
@@ -31,7 +30,7 @@ Map<String, dynamic> _$$_PillarAndBeamToJson(_$_PillarAndBeam instance) =>
       'pillarInclination': instance.pillarInclination,
       'beamDamage': instance.beamDamage,
       'beamDeflection': instance.beamDeflection,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

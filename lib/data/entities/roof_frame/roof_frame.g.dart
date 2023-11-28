@@ -13,8 +13,7 @@ _$_RoofFrame _$$_RoofFrameFromJson(Map<String, dynamic> json) => _$_RoofFrame(
       rainRoofFrameLeak: json['rainRoofFrameLeak'] == null
           ? const Damage()
           : Damage.fromJson(json['rainRoofFrameLeak'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
@@ -22,7 +21,7 @@ Map<String, dynamic> _$$_RoofFrameToJson(_$_RoofFrame instance) =>
     <String, dynamic>{
       'foundationDamage': instance.foundationDamage,
       'rainRoofFrameLeak': instance.rainRoofFrameLeak,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

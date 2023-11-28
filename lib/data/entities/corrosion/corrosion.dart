@@ -11,7 +11,7 @@ class Corrosion with _$Corrosion {
 
   const factory Corrosion({
     @Default(Damage()) Damage corrosion,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Corrosion;
 

@@ -22,7 +22,7 @@ Lifeline _$LifelineFromJson(Map<String, dynamic> json) {
 mixin _$Lifeline {
   Damage get lifelineMalfunction => throw _privateConstructorUsedError;
   Damage get otherMalfunction => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $LifelineCopyWith<$Res> {
   $Res call(
       {Damage lifelineMalfunction,
       Damage otherMalfunction,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get lifelineMalfunction;
@@ -61,7 +61,7 @@ class _$LifelineCopyWithImpl<$Res, $Val extends Lifeline>
   $Res call({
     Object? lifelineMalfunction = null,
     Object? otherMalfunction = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -73,10 +73,10 @@ class _$LifelineCopyWithImpl<$Res, $Val extends Lifeline>
           ? _value.otherMalfunction
           : otherMalfunction // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ abstract class _$$_LifelineCopyWith<$Res> implements $LifelineCopyWith<$Res> {
   $Res call(
       {Damage lifelineMalfunction,
       Damage otherMalfunction,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -133,7 +133,7 @@ class __$$_LifelineCopyWithImpl<$Res>
   $Res call({
     Object? lifelineMalfunction = null,
     Object? otherMalfunction = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Lifeline(
@@ -145,10 +145,10 @@ class __$$_LifelineCopyWithImpl<$Res>
           ? _value.otherMalfunction
           : otherMalfunction // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class _$_Lifeline extends _Lifeline {
   const _$_Lifeline(
       {this.lifelineMalfunction = const Damage(),
       this.otherMalfunction = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -177,8 +177,7 @@ class _$_Lifeline extends _Lifeline {
   @JsonKey()
   final Damage otherMalfunction;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -225,7 +224,7 @@ abstract class _Lifeline extends Lifeline {
   const factory _Lifeline(
       {final Damage lifelineMalfunction,
       final Damage otherMalfunction,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Lifeline;
   const _Lifeline._() : super._();
 
@@ -236,7 +235,7 @@ abstract class _Lifeline extends Lifeline {
   @override
   Damage get otherMalfunction;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

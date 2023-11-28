@@ -21,7 +21,7 @@ BaseAndFloorFraming _$BaseAndFloorFramingFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BaseAndFloorFraming {
   Damage get damage => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $BaseAndFloorFramingCopyWith<$Res> {
           BaseAndFloorFraming value, $Res Function(BaseAndFloorFraming) then) =
       _$BaseAndFloorFramingCopyWithImpl<$Res, BaseAndFloorFraming>;
   @useResult
-  $Res call({Damage damage, Coverage coverage, String remarks});
+  $Res call({Damage damage, Coverage? coverage, String remarks});
 
   $DamageCopyWith<$Res> get damage;
 }
@@ -55,7 +55,7 @@ class _$BaseAndFloorFramingCopyWithImpl<$Res, $Val extends BaseAndFloorFraming>
   @override
   $Res call({
     Object? damage = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -63,10 +63,10 @@ class _$BaseAndFloorFramingCopyWithImpl<$Res, $Val extends BaseAndFloorFraming>
           ? _value.damage
           : damage // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -91,7 +91,7 @@ abstract class _$$_BaseAndFloorFramingCopyWith<$Res>
       __$$_BaseAndFloorFramingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Damage damage, Coverage coverage, String remarks});
+  $Res call({Damage damage, Coverage? coverage, String remarks});
 
   @override
   $DamageCopyWith<$Res> get damage;
@@ -109,7 +109,7 @@ class __$$_BaseAndFloorFramingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? damage = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_BaseAndFloorFraming(
@@ -117,10 +117,10 @@ class __$$_BaseAndFloorFramingCopyWithImpl<$Res>
           ? _value.damage
           : damage // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -133,9 +133,7 @@ class __$$_BaseAndFloorFramingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BaseAndFloorFraming extends _BaseAndFloorFraming {
   const _$_BaseAndFloorFraming(
-      {this.damage = const Damage(),
-      this.coverage = Coverage.almost,
-      this.remarks = ''})
+      {this.damage = const Damage(), this.coverage, this.remarks = ''})
       : super._();
 
   factory _$_BaseAndFloorFraming.fromJson(Map<String, dynamic> json) =>
@@ -145,8 +143,7 @@ class _$_BaseAndFloorFraming extends _BaseAndFloorFraming {
   @JsonKey()
   final Damage damage;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -189,7 +186,7 @@ class _$_BaseAndFloorFraming extends _BaseAndFloorFraming {
 abstract class _BaseAndFloorFraming extends BaseAndFloorFraming {
   const factory _BaseAndFloorFraming(
       {final Damage damage,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_BaseAndFloorFraming;
   const _BaseAndFloorFraming._() : super._();
 
@@ -199,7 +196,7 @@ abstract class _BaseAndFloorFraming extends BaseAndFloorFraming {
   @override
   Damage get damage;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

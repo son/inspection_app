@@ -97,7 +97,7 @@ class FoundationSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
-              initialText: inspection.foundation.crack.max.toString(),
+              initialText: inspection.foundation.crack.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -165,7 +165,7 @@ class FoundationSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.foundation.damage.max.toString(),
+              initialText: inspection.foundation.damage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -361,9 +361,9 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.foundation.coverage,
-              name: inspection.foundation.coverage.label,
+              name: inspection.foundation.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

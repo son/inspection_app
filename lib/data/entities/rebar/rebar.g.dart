@@ -14,8 +14,7 @@ _$_Rebar _$$_RebarFromJson(Map<String, dynamic> json) => _$_Rebar(
       bottom: json['bottom'] == null
           ? const Damage()
           : Damage.fromJson(json['bottom'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
@@ -23,7 +22,7 @@ Map<String, dynamic> _$$_RebarToJson(_$_Rebar instance) => <String, dynamic>{
       'exploration': instance.exploration,
       'side': instance.side,
       'bottom': instance.bottom,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

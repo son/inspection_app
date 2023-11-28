@@ -13,7 +13,7 @@ _$_Damage _$$_DamageFromJson(Map<String, dynamic> json) => _$_Damage(
               ?.map((e) => $enumDecode(_$DirectionEnumMap, e))
               .toList() ??
           const <Direction>[],
-      max: (json['max'] as num?)?.toDouble() ?? 0.0,
+      max: (json['max'] as num?)?.toDouble(),
       part: json['part'] as String? ?? '',
       content: json['content'] as String? ?? '',
       situation: json['situation'] as String? ?? '',

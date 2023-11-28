@@ -7,7 +7,7 @@ part of 'concrete.dart';
 // **************************************************************************
 
 _$_Concrete _$$_ConcreteFromJson(Map<String, dynamic> json) => _$_Concrete(
-      exploration: json['exploration'] as bool? ?? false,
+      exploration: json['exploration'] as bool?,
       compressiveStrength1: json['compressiveStrength1'] == null
           ? const Damage()
           : Damage.fromJson(
@@ -16,8 +16,7 @@ _$_Concrete _$$_ConcreteFromJson(Map<String, dynamic> json) => _$_Concrete(
           ? const Damage()
           : Damage.fromJson(
               json['compressiveStrength2'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
@@ -26,7 +25,7 @@ Map<String, dynamic> _$$_ConcreteToJson(_$_Concrete instance) =>
       'exploration': instance.exploration,
       'compressiveStrength1': instance.compressiveStrength1,
       'compressiveStrength2': instance.compressiveStrength2,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

@@ -8,21 +8,19 @@ part of 'ant_damage.dart';
 
 _$_AntDamage _$$_AntDamageFromJson(Map<String, dynamic> json) => _$_AntDamage(
       accessPanel:
-          $enumDecodeNullable(_$AccessPanelEnumMap, json['accessPanel']) ??
-              AccessPanel.none,
+          $enumDecodeNullable(_$AccessPanelEnumMap, json['accessPanel']),
       antDamage: json['antDamage'] == null
           ? const Damage()
           : Damage.fromJson(json['antDamage'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_AntDamageToJson(_$_AntDamage instance) =>
     <String, dynamic>{
-      'accessPanel': _$AccessPanelEnumMap[instance.accessPanel]!,
+      'accessPanel': _$AccessPanelEnumMap[instance.accessPanel],
       'antDamage': instance.antDamage,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

@@ -59,8 +59,7 @@ _$_OuterWall _$$_OuterWallFromJson(Map<String, dynamic> json) => _$_OuterWall(
       rainCeilingLeak: json['rainCeilingLeak'] == null
           ? const Damage()
           : Damage.fromJson(json['rainCeilingLeak'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
@@ -83,7 +82,7 @@ Map<String, dynamic> _$$_OuterWallToJson(_$_OuterWall instance) =>
       'rainGap': instance.rainGap,
       'rainCeilingSealing': instance.rainCeilingSealing,
       'rainCeilingLeak': instance.rainCeilingLeak,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

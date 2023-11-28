@@ -16,7 +16,7 @@ class Foundation with _$Foundation {
     @Default(Damage()) Damage concreteDeterioration,
     @Default(Damage()) Damage rust,
     @Default(Damage()) Damage rebarExposure,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _Foundation;
 

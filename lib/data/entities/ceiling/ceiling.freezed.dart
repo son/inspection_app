@@ -20,10 +20,10 @@ Ceiling _$CeilingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Ceiling {
-  AccessPanel get accessPanel => throw _privateConstructorUsedError;
+  AccessPanel? get accessPanel => throw _privateConstructorUsedError;
   Damage get foundationDamage => throw _privateConstructorUsedError;
   Damage get rainCeilingLeak => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,10 +37,10 @@ abstract class $CeilingCopyWith<$Res> {
       _$CeilingCopyWithImpl<$Res, Ceiling>;
   @useResult
   $Res call(
-      {AccessPanel accessPanel,
+      {AccessPanel? accessPanel,
       Damage foundationDamage,
       Damage rainCeilingLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get foundationDamage;
@@ -60,17 +60,17 @@ class _$CeilingCopyWithImpl<$Res, $Val extends Ceiling>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessPanel = null,
+    Object? accessPanel = freezed,
     Object? foundationDamage = null,
     Object? rainCeilingLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
-      accessPanel: null == accessPanel
+      accessPanel: freezed == accessPanel
           ? _value.accessPanel
           : accessPanel // ignore: cast_nullable_to_non_nullable
-              as AccessPanel,
+              as AccessPanel?,
       foundationDamage: null == foundationDamage
           ? _value.foundationDamage
           : foundationDamage // ignore: cast_nullable_to_non_nullable
@@ -79,10 +79,10 @@ class _$CeilingCopyWithImpl<$Res, $Val extends Ceiling>
           ? _value.rainCeilingLeak
           : rainCeilingLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -115,10 +115,10 @@ abstract class _$$_CeilingCopyWith<$Res> implements $CeilingCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {AccessPanel accessPanel,
+      {AccessPanel? accessPanel,
       Damage foundationDamage,
       Damage rainCeilingLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -137,17 +137,17 @@ class __$$_CeilingCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessPanel = null,
+    Object? accessPanel = freezed,
     Object? foundationDamage = null,
     Object? rainCeilingLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Ceiling(
-      accessPanel: null == accessPanel
+      accessPanel: freezed == accessPanel
           ? _value.accessPanel
           : accessPanel // ignore: cast_nullable_to_non_nullable
-              as AccessPanel,
+              as AccessPanel?,
       foundationDamage: null == foundationDamage
           ? _value.foundationDamage
           : foundationDamage // ignore: cast_nullable_to_non_nullable
@@ -156,10 +156,10 @@ class __$$_CeilingCopyWithImpl<$Res>
           ? _value.rainCeilingLeak
           : rainCeilingLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -172,10 +172,10 @@ class __$$_CeilingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Ceiling extends _Ceiling {
   const _$_Ceiling(
-      {this.accessPanel = AccessPanel.none,
+      {this.accessPanel,
       this.foundationDamage = const Damage(),
       this.rainCeilingLeak = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -183,8 +183,7 @@ class _$_Ceiling extends _Ceiling {
       _$$_CeilingFromJson(json);
 
   @override
-  @JsonKey()
-  final AccessPanel accessPanel;
+  final AccessPanel? accessPanel;
   @override
   @JsonKey()
   final Damage foundationDamage;
@@ -192,8 +191,7 @@ class _$_Ceiling extends _Ceiling {
   @JsonKey()
   final Damage rainCeilingLeak;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -240,23 +238,23 @@ class _$_Ceiling extends _Ceiling {
 
 abstract class _Ceiling extends Ceiling {
   const factory _Ceiling(
-      {final AccessPanel accessPanel,
+      {final AccessPanel? accessPanel,
       final Damage foundationDamage,
       final Damage rainCeilingLeak,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Ceiling;
   const _Ceiling._() : super._();
 
   factory _Ceiling.fromJson(Map<String, dynamic> json) = _$_Ceiling.fromJson;
 
   @override
-  AccessPanel get accessPanel;
+  AccessPanel? get accessPanel;
   @override
   Damage get foundationDamage;
   @override
   Damage get rainCeilingLeak;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

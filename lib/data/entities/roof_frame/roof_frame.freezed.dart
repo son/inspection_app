@@ -22,7 +22,7 @@ RoofFrame _$RoofFrameFromJson(Map<String, dynamic> json) {
 mixin _$RoofFrame {
   Damage get foundationDamage => throw _privateConstructorUsedError;
   Damage get rainRoofFrameLeak => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $RoofFrameCopyWith<$Res> {
   $Res call(
       {Damage foundationDamage,
       Damage rainRoofFrameLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get foundationDamage;
@@ -61,7 +61,7 @@ class _$RoofFrameCopyWithImpl<$Res, $Val extends RoofFrame>
   $Res call({
     Object? foundationDamage = null,
     Object? rainRoofFrameLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -73,10 +73,10 @@ class _$RoofFrameCopyWithImpl<$Res, $Val extends RoofFrame>
           ? _value.rainRoofFrameLeak
           : rainRoofFrameLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ abstract class _$$_RoofFrameCopyWith<$Res> implements $RoofFrameCopyWith<$Res> {
   $Res call(
       {Damage foundationDamage,
       Damage rainRoofFrameLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -133,7 +133,7 @@ class __$$_RoofFrameCopyWithImpl<$Res>
   $Res call({
     Object? foundationDamage = null,
     Object? rainRoofFrameLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_RoofFrame(
@@ -145,10 +145,10 @@ class __$$_RoofFrameCopyWithImpl<$Res>
           ? _value.rainRoofFrameLeak
           : rainRoofFrameLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class _$_RoofFrame extends _RoofFrame {
   const _$_RoofFrame(
       {this.foundationDamage = const Damage(),
       this.rainRoofFrameLeak = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -177,8 +177,7 @@ class _$_RoofFrame extends _RoofFrame {
   @JsonKey()
   final Damage rainRoofFrameLeak;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -225,7 +224,7 @@ abstract class _RoofFrame extends RoofFrame {
   const factory _RoofFrame(
       {final Damage foundationDamage,
       final Damage rainRoofFrameLeak,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_RoofFrame;
   const _RoofFrame._() : super._();
 
@@ -237,7 +236,7 @@ abstract class _RoofFrame extends RoofFrame {
   @override
   Damage get rainRoofFrameLeak;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

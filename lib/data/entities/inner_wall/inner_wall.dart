@@ -13,7 +13,7 @@ class InnerWall with _$InnerWall {
     @Default(Damage()) Damage foundationDamage,
     @Default(Damage()) Damage foundationInclination,
     @Default(Damage()) Damage rainInnerWallLeak,
-    @Default(Coverage.almost) Coverage coverage,
+    Coverage? coverage,
     @Default('') String remarks,
   }) = _InnerWall;
 

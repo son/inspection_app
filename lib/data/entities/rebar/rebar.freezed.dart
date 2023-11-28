@@ -23,7 +23,7 @@ mixin _$Rebar {
   bool get exploration => throw _privateConstructorUsedError;
   Damage get side => throw _privateConstructorUsedError;
   Damage get bottom => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $RebarCopyWith<$Res> {
       {bool exploration,
       Damage side,
       Damage bottom,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get side;
@@ -63,7 +63,7 @@ class _$RebarCopyWithImpl<$Res, $Val extends Rebar>
     Object? exploration = null,
     Object? side = null,
     Object? bottom = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -79,10 +79,10 @@ class _$RebarCopyWithImpl<$Res, $Val extends Rebar>
           ? _value.bottom
           : bottom // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -117,7 +117,7 @@ abstract class _$$_RebarCopyWith<$Res> implements $RebarCopyWith<$Res> {
       {bool exploration,
       Damage side,
       Damage bottom,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -138,7 +138,7 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
     Object? exploration = null,
     Object? side = null,
     Object? bottom = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Rebar(
@@ -154,10 +154,10 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
           ? _value.bottom
           : bottom // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ class _$_Rebar extends _Rebar {
       {this.exploration = false,
       this.side = const Damage(),
       this.bottom = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -190,8 +190,7 @@ class _$_Rebar extends _Rebar {
   @JsonKey()
   final Damage bottom;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -239,7 +238,7 @@ abstract class _Rebar extends Rebar {
       {final bool exploration,
       final Damage side,
       final Damage bottom,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Rebar;
   const _Rebar._() : super._();
 
@@ -252,7 +251,7 @@ abstract class _Rebar extends Rebar {
   @override
   Damage get bottom;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

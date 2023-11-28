@@ -34,10 +34,13 @@ class ConcreteSection extends HookConsumerWidget {
         SectionItem(
           title: '圧縮強度調査の有無',
           child: DropdownField<bool>(
-            value: SelectionItem(
-              value: inspection.concrete.exploration,
-              name: inspection.concrete.exploration ? 'あり（鉄骨造・大規模住宅）' : 'なし',
-            ),
+            value: () {
+              if (inspection.concrete.exploration == null) return null;
+              return SelectionItem(
+                value: inspection.concrete.exploration!,
+                name: inspection.concrete.exploration! ? 'あり（鉄骨造・大規模住宅）' : 'なし',
+              );
+            }(),
             all: [false, true]
                 .map((value) => SelectionItem(
                       value: value,
@@ -107,9 +110,9 @@ class ConcreteSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.concrete.coverage,
-              name: inspection.concrete.coverage.label,
+              name: inspection.concrete.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

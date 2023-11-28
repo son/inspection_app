@@ -9,12 +9,11 @@ class EarthquakeResistant with _$EarthquakeResistant {
   const EarthquakeResistant._();
 
   const factory EarthquakeResistant({
-    @Default(false) bool exploration,
-    @Default(ConfirmationMethod.unknown) ConfirmationMethod confirmationMethod,
-    @Default(Certificate.performanceEvaluation) Certificate certificate,
-    @Default(Issuer.architect) Issuer issuer,
-    @Default(EarthquakeProofSafetyRegulation.unknown)
-    EarthquakeProofSafetyRegulation regulation,
+    bool? exploration,
+    ConfirmationMethod? confirmationMethod,
+    Certificate? certificate,
+    Issuer? issuer,
+    EarthquakeProofSafetyRegulation? regulation,
     @Default('') String remarks,
     @Default(<Photo>[]) List<Photo> photos,
   }) = _EarthquakeResistant;

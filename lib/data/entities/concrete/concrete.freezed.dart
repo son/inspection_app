@@ -20,10 +20,10 @@ Concrete _$ConcreteFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Concrete {
-  bool get exploration => throw _privateConstructorUsedError;
+  bool? get exploration => throw _privateConstructorUsedError;
   Damage get compressiveStrength1 => throw _privateConstructorUsedError;
   Damage get compressiveStrength2 => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,10 +38,10 @@ abstract class $ConcreteCopyWith<$Res> {
       _$ConcreteCopyWithImpl<$Res, Concrete>;
   @useResult
   $Res call(
-      {bool exploration,
+      {bool? exploration,
       Damage compressiveStrength1,
       Damage compressiveStrength2,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get compressiveStrength1;
@@ -61,17 +61,17 @@ class _$ConcreteCopyWithImpl<$Res, $Val extends Concrete>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exploration = null,
+    Object? exploration = freezed,
     Object? compressiveStrength1 = null,
     Object? compressiveStrength2 = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
-      exploration: null == exploration
+      exploration: freezed == exploration
           ? _value.exploration
           : exploration // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       compressiveStrength1: null == compressiveStrength1
           ? _value.compressiveStrength1
           : compressiveStrength1 // ignore: cast_nullable_to_non_nullable
@@ -80,10 +80,10 @@ class _$ConcreteCopyWithImpl<$Res, $Val extends Concrete>
           ? _value.compressiveStrength2
           : compressiveStrength2 // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -116,10 +116,10 @@ abstract class _$$_ConcreteCopyWith<$Res> implements $ConcreteCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {bool exploration,
+      {bool? exploration,
       Damage compressiveStrength1,
       Damage compressiveStrength2,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -139,17 +139,17 @@ class __$$_ConcreteCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exploration = null,
+    Object? exploration = freezed,
     Object? compressiveStrength1 = null,
     Object? compressiveStrength2 = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Concrete(
-      exploration: null == exploration
+      exploration: freezed == exploration
           ? _value.exploration
           : exploration // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       compressiveStrength1: null == compressiveStrength1
           ? _value.compressiveStrength1
           : compressiveStrength1 // ignore: cast_nullable_to_non_nullable
@@ -158,10 +158,10 @@ class __$$_ConcreteCopyWithImpl<$Res>
           ? _value.compressiveStrength2
           : compressiveStrength2 // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -174,10 +174,10 @@ class __$$_ConcreteCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Concrete extends _Concrete {
   const _$_Concrete(
-      {this.exploration = false,
+      {this.exploration,
       this.compressiveStrength1 = const Damage(),
       this.compressiveStrength2 = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -185,8 +185,7 @@ class _$_Concrete extends _Concrete {
       _$$_ConcreteFromJson(json);
 
   @override
-  @JsonKey()
-  final bool exploration;
+  final bool? exploration;
   @override
   @JsonKey()
   final Damage compressiveStrength1;
@@ -194,8 +193,7 @@ class _$_Concrete extends _Concrete {
   @JsonKey()
   final Damage compressiveStrength2;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -242,23 +240,23 @@ class _$_Concrete extends _Concrete {
 
 abstract class _Concrete extends Concrete {
   const factory _Concrete(
-      {final bool exploration,
+      {final bool? exploration,
       final Damage compressiveStrength1,
       final Damage compressiveStrength2,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Concrete;
   const _Concrete._() : super._();
 
   factory _Concrete.fromJson(Map<String, dynamic> json) = _$_Concrete.fromJson;
 
   @override
-  bool get exploration;
+  bool? get exploration;
   @override
   Damage get compressiveStrength1;
   @override
   Damage get compressiveStrength2;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

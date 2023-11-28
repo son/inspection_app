@@ -24,7 +24,7 @@ mixin _$PillarAndBeam {
   Damage get pillarInclination => throw _privateConstructorUsedError;
   Damage get beamDamage => throw _privateConstructorUsedError;
   Damage get beamDeflection => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $PillarAndBeamCopyWith<$Res> {
       Damage pillarInclination,
       Damage beamDamage,
       Damage beamDeflection,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get pillarDamage;
@@ -70,7 +70,7 @@ class _$PillarAndBeamCopyWithImpl<$Res, $Val extends PillarAndBeam>
     Object? pillarInclination = null,
     Object? beamDamage = null,
     Object? beamDeflection = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -90,10 +90,10 @@ class _$PillarAndBeamCopyWithImpl<$Res, $Val extends PillarAndBeam>
           ? _value.beamDeflection
           : beamDeflection // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -147,7 +147,7 @@ abstract class _$$_PillarAndBeamCopyWith<$Res>
       Damage pillarInclination,
       Damage beamDamage,
       Damage beamDeflection,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -175,7 +175,7 @@ class __$$_PillarAndBeamCopyWithImpl<$Res>
     Object? pillarInclination = null,
     Object? beamDamage = null,
     Object? beamDeflection = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_PillarAndBeam(
@@ -195,10 +195,10 @@ class __$$_PillarAndBeamCopyWithImpl<$Res>
           ? _value.beamDeflection
           : beamDeflection // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -215,7 +215,7 @@ class _$_PillarAndBeam extends _PillarAndBeam {
       this.pillarInclination = const Damage(),
       this.beamDamage = const Damage(),
       this.beamDeflection = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -235,8 +235,7 @@ class _$_PillarAndBeam extends _PillarAndBeam {
   @JsonKey()
   final Damage beamDeflection;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -289,7 +288,7 @@ abstract class _PillarAndBeam extends PillarAndBeam {
       final Damage pillarInclination,
       final Damage beamDamage,
       final Damage beamDeflection,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_PillarAndBeam;
   const _PillarAndBeam._() : super._();
 
@@ -305,7 +304,7 @@ abstract class _PillarAndBeam extends PillarAndBeam {
   @override
   Damage get beamDeflection;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

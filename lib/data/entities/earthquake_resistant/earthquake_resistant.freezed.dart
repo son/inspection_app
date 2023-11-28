@@ -20,12 +20,12 @@ EarthquakeResistant _$EarthquakeResistantFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EarthquakeResistant {
-  bool get exploration => throw _privateConstructorUsedError;
-  ConfirmationMethod get confirmationMethod =>
+  bool? get exploration => throw _privateConstructorUsedError;
+  ConfirmationMethod? get confirmationMethod =>
       throw _privateConstructorUsedError;
-  Certificate get certificate => throw _privateConstructorUsedError;
-  Issuer get issuer => throw _privateConstructorUsedError;
-  EarthquakeProofSafetyRegulation get regulation =>
+  Certificate? get certificate => throw _privateConstructorUsedError;
+  Issuer? get issuer => throw _privateConstructorUsedError;
+  EarthquakeProofSafetyRegulation? get regulation =>
       throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
@@ -43,11 +43,11 @@ abstract class $EarthquakeResistantCopyWith<$Res> {
       _$EarthquakeResistantCopyWithImpl<$Res, EarthquakeResistant>;
   @useResult
   $Res call(
-      {bool exploration,
-      ConfirmationMethod confirmationMethod,
-      Certificate certificate,
-      Issuer issuer,
-      EarthquakeProofSafetyRegulation regulation,
+      {bool? exploration,
+      ConfirmationMethod? confirmationMethod,
+      Certificate? certificate,
+      Issuer? issuer,
+      EarthquakeProofSafetyRegulation? regulation,
       String remarks,
       List<Photo> photos});
 }
@@ -65,35 +65,35 @@ class _$EarthquakeResistantCopyWithImpl<$Res, $Val extends EarthquakeResistant>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exploration = null,
-    Object? confirmationMethod = null,
-    Object? certificate = null,
-    Object? issuer = null,
-    Object? regulation = null,
+    Object? exploration = freezed,
+    Object? confirmationMethod = freezed,
+    Object? certificate = freezed,
+    Object? issuer = freezed,
+    Object? regulation = freezed,
     Object? remarks = null,
     Object? photos = null,
   }) {
     return _then(_value.copyWith(
-      exploration: null == exploration
+      exploration: freezed == exploration
           ? _value.exploration
           : exploration // ignore: cast_nullable_to_non_nullable
-              as bool,
-      confirmationMethod: null == confirmationMethod
+              as bool?,
+      confirmationMethod: freezed == confirmationMethod
           ? _value.confirmationMethod
           : confirmationMethod // ignore: cast_nullable_to_non_nullable
-              as ConfirmationMethod,
-      certificate: null == certificate
+              as ConfirmationMethod?,
+      certificate: freezed == certificate
           ? _value.certificate
           : certificate // ignore: cast_nullable_to_non_nullable
-              as Certificate,
-      issuer: null == issuer
+              as Certificate?,
+      issuer: freezed == issuer
           ? _value.issuer
           : issuer // ignore: cast_nullable_to_non_nullable
-              as Issuer,
-      regulation: null == regulation
+              as Issuer?,
+      regulation: freezed == regulation
           ? _value.regulation
           : regulation // ignore: cast_nullable_to_non_nullable
-              as EarthquakeProofSafetyRegulation,
+              as EarthquakeProofSafetyRegulation?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -115,11 +115,11 @@ abstract class _$$_EarthquakeResistantCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool exploration,
-      ConfirmationMethod confirmationMethod,
-      Certificate certificate,
-      Issuer issuer,
-      EarthquakeProofSafetyRegulation regulation,
+      {bool? exploration,
+      ConfirmationMethod? confirmationMethod,
+      Certificate? certificate,
+      Issuer? issuer,
+      EarthquakeProofSafetyRegulation? regulation,
       String remarks,
       List<Photo> photos});
 }
@@ -135,35 +135,35 @@ class __$$_EarthquakeResistantCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exploration = null,
-    Object? confirmationMethod = null,
-    Object? certificate = null,
-    Object? issuer = null,
-    Object? regulation = null,
+    Object? exploration = freezed,
+    Object? confirmationMethod = freezed,
+    Object? certificate = freezed,
+    Object? issuer = freezed,
+    Object? regulation = freezed,
     Object? remarks = null,
     Object? photos = null,
   }) {
     return _then(_$_EarthquakeResistant(
-      exploration: null == exploration
+      exploration: freezed == exploration
           ? _value.exploration
           : exploration // ignore: cast_nullable_to_non_nullable
-              as bool,
-      confirmationMethod: null == confirmationMethod
+              as bool?,
+      confirmationMethod: freezed == confirmationMethod
           ? _value.confirmationMethod
           : confirmationMethod // ignore: cast_nullable_to_non_nullable
-              as ConfirmationMethod,
-      certificate: null == certificate
+              as ConfirmationMethod?,
+      certificate: freezed == certificate
           ? _value.certificate
           : certificate // ignore: cast_nullable_to_non_nullable
-              as Certificate,
-      issuer: null == issuer
+              as Certificate?,
+      issuer: freezed == issuer
           ? _value.issuer
           : issuer // ignore: cast_nullable_to_non_nullable
-              as Issuer,
-      regulation: null == regulation
+              as Issuer?,
+      regulation: freezed == regulation
           ? _value.regulation
           : regulation // ignore: cast_nullable_to_non_nullable
-              as EarthquakeProofSafetyRegulation,
+              as EarthquakeProofSafetyRegulation?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -180,11 +180,11 @@ class __$$_EarthquakeResistantCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_EarthquakeResistant extends _EarthquakeResistant {
   const _$_EarthquakeResistant(
-      {this.exploration = false,
-      this.confirmationMethod = ConfirmationMethod.unknown,
-      this.certificate = Certificate.performanceEvaluation,
-      this.issuer = Issuer.architect,
-      this.regulation = EarthquakeProofSafetyRegulation.unknown,
+      {this.exploration,
+      this.confirmationMethod,
+      this.certificate,
+      this.issuer,
+      this.regulation,
       this.remarks = '',
       final List<Photo> photos = const <Photo>[]})
       : _photos = photos,
@@ -194,20 +194,15 @@ class _$_EarthquakeResistant extends _EarthquakeResistant {
       _$$_EarthquakeResistantFromJson(json);
 
   @override
-  @JsonKey()
-  final bool exploration;
+  final bool? exploration;
   @override
-  @JsonKey()
-  final ConfirmationMethod confirmationMethod;
+  final ConfirmationMethod? confirmationMethod;
   @override
-  @JsonKey()
-  final Certificate certificate;
+  final Certificate? certificate;
   @override
-  @JsonKey()
-  final Issuer issuer;
+  final Issuer? issuer;
   @override
-  @JsonKey()
-  final EarthquakeProofSafetyRegulation regulation;
+  final EarthquakeProofSafetyRegulation? regulation;
   @override
   @JsonKey()
   final String remarks;
@@ -272,11 +267,11 @@ class _$_EarthquakeResistant extends _EarthquakeResistant {
 
 abstract class _EarthquakeResistant extends EarthquakeResistant {
   const factory _EarthquakeResistant(
-      {final bool exploration,
-      final ConfirmationMethod confirmationMethod,
-      final Certificate certificate,
-      final Issuer issuer,
-      final EarthquakeProofSafetyRegulation regulation,
+      {final bool? exploration,
+      final ConfirmationMethod? confirmationMethod,
+      final Certificate? certificate,
+      final Issuer? issuer,
+      final EarthquakeProofSafetyRegulation? regulation,
       final String remarks,
       final List<Photo> photos}) = _$_EarthquakeResistant;
   const _EarthquakeResistant._() : super._();
@@ -285,15 +280,15 @@ abstract class _EarthquakeResistant extends EarthquakeResistant {
       _$_EarthquakeResistant.fromJson;
 
   @override
-  bool get exploration;
+  bool? get exploration;
   @override
-  ConfirmationMethod get confirmationMethod;
+  ConfirmationMethod? get confirmationMethod;
   @override
-  Certificate get certificate;
+  Certificate? get certificate;
   @override
-  Issuer get issuer;
+  Issuer? get issuer;
   @override
-  EarthquakeProofSafetyRegulation get regulation;
+  EarthquakeProofSafetyRegulation? get regulation;
   @override
   String get remarks;
   @override

@@ -20,9 +20,9 @@ AntDamage _$AntDamageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AntDamage {
-  AccessPanel get accessPanel => throw _privateConstructorUsedError;
+  AccessPanel? get accessPanel => throw _privateConstructorUsedError;
   Damage get antDamage => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +37,9 @@ abstract class $AntDamageCopyWith<$Res> {
       _$AntDamageCopyWithImpl<$Res, AntDamage>;
   @useResult
   $Res call(
-      {AccessPanel accessPanel,
+      {AccessPanel? accessPanel,
       Damage antDamage,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get antDamage;
@@ -58,24 +58,24 @@ class _$AntDamageCopyWithImpl<$Res, $Val extends AntDamage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessPanel = null,
+    Object? accessPanel = freezed,
     Object? antDamage = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
-      accessPanel: null == accessPanel
+      accessPanel: freezed == accessPanel
           ? _value.accessPanel
           : accessPanel // ignore: cast_nullable_to_non_nullable
-              as AccessPanel,
+              as AccessPanel?,
       antDamage: null == antDamage
           ? _value.antDamage
           : antDamage // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -100,9 +100,9 @@ abstract class _$$_AntDamageCopyWith<$Res> implements $AntDamageCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {AccessPanel accessPanel,
+      {AccessPanel? accessPanel,
       Damage antDamage,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -120,24 +120,24 @@ class __$$_AntDamageCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessPanel = null,
+    Object? accessPanel = freezed,
     Object? antDamage = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_AntDamage(
-      accessPanel: null == accessPanel
+      accessPanel: freezed == accessPanel
           ? _value.accessPanel
           : accessPanel // ignore: cast_nullable_to_non_nullable
-              as AccessPanel,
+              as AccessPanel?,
       antDamage: null == antDamage
           ? _value.antDamage
           : antDamage // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -150,9 +150,9 @@ class __$$_AntDamageCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AntDamage extends _AntDamage {
   const _$_AntDamage(
-      {this.accessPanel = AccessPanel.none,
+      {this.accessPanel,
       this.antDamage = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -160,14 +160,12 @@ class _$_AntDamage extends _AntDamage {
       _$$_AntDamageFromJson(json);
 
   @override
-  @JsonKey()
-  final AccessPanel accessPanel;
+  final AccessPanel? accessPanel;
   @override
   @JsonKey()
   final Damage antDamage;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -212,9 +210,9 @@ class _$_AntDamage extends _AntDamage {
 
 abstract class _AntDamage extends AntDamage {
   const factory _AntDamage(
-      {final AccessPanel accessPanel,
+      {final AccessPanel? accessPanel,
       final Damage antDamage,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_AntDamage;
   const _AntDamage._() : super._();
 
@@ -222,11 +220,11 @@ abstract class _AntDamage extends AntDamage {
       _$_AntDamage.fromJson;
 
   @override
-  AccessPanel get accessPanel;
+  AccessPanel? get accessPanel;
   @override
   Damage get antDamage;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

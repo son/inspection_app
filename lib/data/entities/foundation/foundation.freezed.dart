@@ -26,7 +26,7 @@ mixin _$Foundation {
   Damage get concreteDeterioration => throw _privateConstructorUsedError;
   Damage get rust => throw _privateConstructorUsedError;
   Damage get rebarExposure => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $FoundationCopyWith<$Res> {
       Damage concreteDeterioration,
       Damage rust,
       Damage rebarExposure,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get crack;
@@ -77,7 +77,7 @@ class _$FoundationCopyWithImpl<$Res, $Val extends Foundation>
     Object? concreteDeterioration = null,
     Object? rust = null,
     Object? rebarExposure = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -105,10 +105,10 @@ class _$FoundationCopyWithImpl<$Res, $Val extends Foundation>
           ? _value.rebarExposure
           : rebarExposure // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -172,7 +172,7 @@ abstract class _$$_FoundationCopyWith<$Res>
       Damage concreteDeterioration,
       Damage rust,
       Damage rebarExposure,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -204,7 +204,7 @@ class __$$_FoundationCopyWithImpl<$Res>
     Object? concreteDeterioration = null,
     Object? rust = null,
     Object? rebarExposure = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_Foundation(
@@ -232,10 +232,10 @@ class __$$_FoundationCopyWithImpl<$Res>
           ? _value.rebarExposure
           : rebarExposure // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -254,7 +254,7 @@ class _$_Foundation extends _Foundation {
       this.concreteDeterioration = const Damage(),
       this.rust = const Damage(),
       this.rebarExposure = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : _finishings = finishings,
         super._();
@@ -287,8 +287,7 @@ class _$_Foundation extends _Foundation {
   @JsonKey()
   final Damage rebarExposure;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -352,7 +351,7 @@ abstract class _Foundation extends Foundation {
       final Damage concreteDeterioration,
       final Damage rust,
       final Damage rebarExposure,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_Foundation;
   const _Foundation._() : super._();
 
@@ -372,7 +371,7 @@ abstract class _Foundation extends Foundation {
   @override
   Damage get rebarExposure;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

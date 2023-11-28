@@ -61,7 +61,8 @@ class DetailSection extends HookConsumerWidget {
         SectionItem(
           title: '延床面積',
           child: PrimaryTextField(
-            initialText: inspection.overview.building.totalFloorArea.toString(),
+            initialText:
+                inspection.overview.building.totalFloorArea?.toString() ?? '',
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: const TextInputType.numberWithOptions(
               decimal: true,

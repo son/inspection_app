@@ -173,9 +173,9 @@ class LifelineSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.lifeline.coverage,
-              name: inspection.lifeline.coverage.label,
+              name: inspection.lifeline.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

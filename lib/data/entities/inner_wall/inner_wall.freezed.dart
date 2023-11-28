@@ -23,7 +23,7 @@ mixin _$InnerWall {
   Damage get foundationDamage => throw _privateConstructorUsedError;
   Damage get foundationInclination => throw _privateConstructorUsedError;
   Damage get rainInnerWallLeak => throw _privateConstructorUsedError;
-  Coverage get coverage => throw _privateConstructorUsedError;
+  Coverage? get coverage => throw _privateConstructorUsedError;
   String get remarks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $InnerWallCopyWith<$Res> {
       {Damage foundationDamage,
       Damage foundationInclination,
       Damage rainInnerWallLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   $DamageCopyWith<$Res> get foundationDamage;
@@ -65,7 +65,7 @@ class _$InnerWallCopyWithImpl<$Res, $Val extends InnerWall>
     Object? foundationDamage = null,
     Object? foundationInclination = null,
     Object? rainInnerWallLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_value.copyWith(
@@ -81,10 +81,10 @@ class _$InnerWallCopyWithImpl<$Res, $Val extends InnerWall>
           ? _value.rainInnerWallLeak
           : rainInnerWallLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ abstract class _$$_InnerWallCopyWith<$Res> implements $InnerWallCopyWith<$Res> {
       {Damage foundationDamage,
       Damage foundationInclination,
       Damage rainInnerWallLeak,
-      Coverage coverage,
+      Coverage? coverage,
       String remarks});
 
   @override
@@ -153,7 +153,7 @@ class __$$_InnerWallCopyWithImpl<$Res>
     Object? foundationDamage = null,
     Object? foundationInclination = null,
     Object? rainInnerWallLeak = null,
-    Object? coverage = null,
+    Object? coverage = freezed,
     Object? remarks = null,
   }) {
     return _then(_$_InnerWall(
@@ -169,10 +169,10 @@ class __$$_InnerWallCopyWithImpl<$Res>
           ? _value.rainInnerWallLeak
           : rainInnerWallLeak // ignore: cast_nullable_to_non_nullable
               as Damage,
-      coverage: null == coverage
+      coverage: freezed == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
-              as Coverage,
+              as Coverage?,
       remarks: null == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
@@ -188,7 +188,7 @@ class _$_InnerWall extends _InnerWall {
       {this.foundationDamage = const Damage(),
       this.foundationInclination = const Damage(),
       this.rainInnerWallLeak = const Damage(),
-      this.coverage = Coverage.almost,
+      this.coverage,
       this.remarks = ''})
       : super._();
 
@@ -205,8 +205,7 @@ class _$_InnerWall extends _InnerWall {
   @JsonKey()
   final Damage rainInnerWallLeak;
   @override
-  @JsonKey()
-  final Coverage coverage;
+  final Coverage? coverage;
   @override
   @JsonKey()
   final String remarks;
@@ -256,7 +255,7 @@ abstract class _InnerWall extends InnerWall {
       {final Damage foundationDamage,
       final Damage foundationInclination,
       final Damage rainInnerWallLeak,
-      final Coverage coverage,
+      final Coverage? coverage,
       final String remarks}) = _$_InnerWall;
   const _InnerWall._() : super._();
 
@@ -270,7 +269,7 @@ abstract class _InnerWall extends InnerWall {
   @override
   Damage get rainInnerWallLeak;
   @override
-  Coverage get coverage;
+  Coverage? get coverage;
   @override
   String get remarks;
   @override

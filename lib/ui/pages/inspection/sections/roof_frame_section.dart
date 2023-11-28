@@ -34,7 +34,7 @@ class RoofFrameSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）ひび割れ、欠損',
+          title: '[構造] ひび割れ、欠損',
           child: DropdownField.result(
             result: inspection.roofFrame.foundationDamage.result,
             onSelect: (result) {
@@ -51,7 +51,8 @@ class RoofFrameSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅、欠損深さ',
             child: PrimaryTextField(
-              initialText: inspection.roofFrame.foundationDamage.max.toString(),
+              initialText:
+                  inspection.roofFrame.foundationDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -94,7 +95,7 @@ class RoofFrameSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）小屋組の雨漏りの跡',
+          title: '[雨水] 小屋組の雨漏りの跡',
           child: DropdownField.result(
             result: inspection.roofFrame.rainRoofFrameLeak.result,
             onSelect: (result) {
@@ -135,9 +136,9 @@ class RoofFrameSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.roofFrame.coverage,
-              name: inspection.roofFrame.coverage.label,
+              name: inspection.roofFrame.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

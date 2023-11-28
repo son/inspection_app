@@ -9,18 +9,14 @@ part of 'earthquake_resistant.dart';
 _$_EarthquakeResistant _$$_EarthquakeResistantFromJson(
         Map<String, dynamic> json) =>
     _$_EarthquakeResistant(
-      exploration: json['exploration'] as bool? ?? false,
+      exploration: json['exploration'] as bool?,
       confirmationMethod: $enumDecodeNullable(
-              _$ConfirmationMethodEnumMap, json['confirmationMethod']) ??
-          ConfirmationMethod.unknown,
+          _$ConfirmationMethodEnumMap, json['confirmationMethod']),
       certificate:
-          $enumDecodeNullable(_$CertificateEnumMap, json['certificate']) ??
-              Certificate.performanceEvaluation,
-      issuer: $enumDecodeNullable(_$IssuerEnumMap, json['issuer']) ??
-          Issuer.architect,
+          $enumDecodeNullable(_$CertificateEnumMap, json['certificate']),
+      issuer: $enumDecodeNullable(_$IssuerEnumMap, json['issuer']),
       regulation: $enumDecodeNullable(
-              _$EarthquakeProofSafetyRegulationEnumMap, json['regulation']) ??
-          EarthquakeProofSafetyRegulation.unknown,
+          _$EarthquakeProofSafetyRegulationEnumMap, json['regulation']),
       remarks: json['remarks'] as String? ?? '',
       photos: (json['photos'] as List<dynamic>?)
               ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
@@ -33,11 +29,11 @@ Map<String, dynamic> _$$_EarthquakeResistantToJson(
     <String, dynamic>{
       'exploration': instance.exploration,
       'confirmationMethod':
-          _$ConfirmationMethodEnumMap[instance.confirmationMethod]!,
-      'certificate': _$CertificateEnumMap[instance.certificate]!,
-      'issuer': _$IssuerEnumMap[instance.issuer]!,
+          _$ConfirmationMethodEnumMap[instance.confirmationMethod],
+      'certificate': _$CertificateEnumMap[instance.certificate],
+      'issuer': _$IssuerEnumMap[instance.issuer],
       'regulation':
-          _$EarthquakeProofSafetyRegulationEnumMap[instance.regulation]!,
+          _$EarthquakeProofSafetyRegulationEnumMap[instance.regulation],
       'remarks': instance.remarks,
       'photos': instance.photos,
     };

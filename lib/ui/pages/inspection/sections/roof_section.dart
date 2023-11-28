@@ -35,9 +35,9 @@ class RoofSection extends HookConsumerWidget {
         SectionItem(
           title: '調査要否',
           child: DropdownField<Necessity>(
-            value: SelectionItem<Necessity>(
+            value: SelectionItem.orNull(
               value: inspection.roof.necessity,
-              name: inspection.roof.necessity.label,
+              name: inspection.roof.necessity?.label,
             ),
             all: Necessity.values
                 .map((value) => SelectionItem(
@@ -52,7 +52,7 @@ class RoofSection extends HookConsumerWidget {
         ),
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）破損、ずれ、ひび割れ\n劣化、欠損、浮き、剥がれ',
+          title: '[雨水] 破損、ずれ、ひび割れ\n劣化、欠損、浮き、剥がれ',
           child: DropdownField.result(
             result: inspection.roof.damage.result,
             onSelect: (result) {
@@ -99,7 +99,7 @@ class RoofSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '（雨水）破損、ずれ、ひび割れ\n劣化、欠損、浮き、剥がれ',
+          title: '[雨水] 破損、ずれ、ひび割れ\n劣化、欠損、浮き、剥がれ',
           child: DropdownField.result(
             result: inspection.roof.waterProofLayerDamage.result,
             onSelect: (result) {
@@ -152,9 +152,9 @@ class RoofSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.roof.coverage,
-              name: inspection.roof.coverage.label,
+              name: inspection.roof.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(

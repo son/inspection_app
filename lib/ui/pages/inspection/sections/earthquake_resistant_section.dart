@@ -34,9 +34,9 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '確認方法',
           child: DropdownField<ConfirmationMethod>(
-            value: SelectionItem<ConfirmationMethod>(
+            value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.confirmationMethod,
-              name: inspection.earthquakeResistant.confirmationMethod.label,
+              name: inspection.earthquakeResistant.confirmationMethod?.label,
             ),
             all: ConfirmationMethod.values
                 .map((value) => SelectionItem(
@@ -54,9 +54,9 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '書類',
           child: DropdownField<Certificate>(
-            value: SelectionItem<Certificate>(
+            value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.certificate,
-              name: inspection.earthquakeResistant.certificate.label,
+              name: inspection.earthquakeResistant.certificate?.label,
             ),
             all: Certificate.values
                 .map((value) => SelectionItem(
@@ -74,9 +74,9 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '発行者',
           child: DropdownField<Issuer>(
-            value: SelectionItem<Issuer>(
+            value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.issuer,
-              name: inspection.earthquakeResistant.issuer.label,
+              name: inspection.earthquakeResistant.issuer?.label,
             ),
             all: Issuer.values
                 .map((value) => SelectionItem(
@@ -94,9 +94,9 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '安全上耐震関係規定に準ずる基準',
           child: DropdownField<EarthquakeProofSafetyRegulation>(
-            value: SelectionItem<EarthquakeProofSafetyRegulation>(
+            value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.regulation,
-              name: inspection.earthquakeResistant.regulation.label,
+              name: inspection.earthquakeResistant.regulation?.label,
             ),
             all: EarthquakeProofSafetyRegulation.values
                 .map((value) => SelectionItem(

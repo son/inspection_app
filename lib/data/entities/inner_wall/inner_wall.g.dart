@@ -17,8 +17,7 @@ _$_InnerWall _$$_InnerWallFromJson(Map<String, dynamic> json) => _$_InnerWall(
       rainInnerWallLeak: json['rainInnerWallLeak'] == null
           ? const Damage()
           : Damage.fromJson(json['rainInnerWallLeak'] as Map<String, dynamic>),
-      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']) ??
-          Coverage.almost,
+      coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
       remarks: json['remarks'] as String? ?? '',
     );
 
@@ -27,7 +26,7 @@ Map<String, dynamic> _$$_InnerWallToJson(_$_InnerWall instance) =>
       'foundationDamage': instance.foundationDamage,
       'foundationInclination': instance.foundationInclination,
       'rainInnerWallLeak': instance.rainInnerWallLeak,
-      'coverage': _$CoverageEnumMap[instance.coverage]!,
+      'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };
 

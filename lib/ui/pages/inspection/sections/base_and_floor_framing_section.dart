@@ -34,7 +34,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
-          title: '（構造）柱の著しいひび割れ\n劣化、欠損',
+          title: '[構造] 柱の著しいひび割れ\n劣化、欠損',
           child: DropdownField.result(
             result: inspection.baseAndFloorFraming.damage.result,
             onSelect: (result) {
@@ -51,7 +51,8 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最大ひび割れ幅',
             child: PrimaryTextField(
-              initialText: inspection.baseAndFloorFraming.damage.max.toString(),
+              initialText:
+                  inspection.baseAndFloorFraming.damage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -95,9 +96,9 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           child: DropdownField<Coverage>(
-            value: SelectionItem(
+            value: SelectionItem.orNull(
               value: inspection.baseAndFloorFraming.coverage,
-              name: inspection.baseAndFloorFraming.coverage.label,
+              name: inspection.baseAndFloorFraming.coverage?.label,
             ),
             all: Coverage.values
                 .map((value) => SelectionItem(
