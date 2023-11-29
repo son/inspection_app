@@ -21,7 +21,7 @@ Inspection _$InspectionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Inspection {
   String get id => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get inspectionCreatedAt => throw _privateConstructorUsedError;
   String? get udId => throw _privateConstructorUsedError;
   InspectionOverview get overview => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ abstract class $InspectionCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      DateTime? createdAt,
+      DateTime? inspectionCreatedAt,
       String? udId,
       InspectionOverview overview,
       List<Photo> photos,
@@ -117,7 +117,7 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
   @override
   $Res call({
     Object? id = null,
-    Object? createdAt = freezed,
+    Object? inspectionCreatedAt = freezed,
     Object? udId = freezed,
     Object? overview = null,
     Object? photos = null,
@@ -145,9 +145,9 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      inspectionCreatedAt: freezed == inspectionCreatedAt
+          ? _value.inspectionCreatedAt
+          : inspectionCreatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       udId: freezed == udId
           ? _value.udId
@@ -393,7 +393,7 @@ abstract class _$$_InspectionCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      DateTime? createdAt,
+      DateTime? inspectionCreatedAt,
       String? udId,
       InspectionOverview overview,
       List<Photo> photos,
@@ -466,7 +466,7 @@ class __$$_InspectionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? createdAt = freezed,
+    Object? inspectionCreatedAt = freezed,
     Object? udId = freezed,
     Object? overview = null,
     Object? photos = null,
@@ -494,9 +494,9 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      inspectionCreatedAt: freezed == inspectionCreatedAt
+          ? _value.inspectionCreatedAt
+          : inspectionCreatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       udId: freezed == udId
           ? _value.udId
@@ -591,7 +591,7 @@ class __$$_InspectionCopyWithImpl<$Res>
 class _$_Inspection extends _Inspection {
   const _$_Inspection(
       {required this.id,
-      this.createdAt,
+      this.inspectionCreatedAt,
       this.udId,
       this.overview = const InspectionOverview(),
       final List<Photo> photos = const <Photo>[],
@@ -623,7 +623,7 @@ class _$_Inspection extends _Inspection {
   @override
   final String id;
   @override
-  final DateTime? createdAt;
+  final DateTime? inspectionCreatedAt;
   @override
   final String? udId;
   @override
@@ -701,7 +701,7 @@ class _$_Inspection extends _Inspection {
 
   @override
   String toString() {
-    return 'Inspection(id: $id, createdAt: $createdAt, udId: $udId, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
+    return 'Inspection(id: $id, inspectionCreatedAt: $inspectionCreatedAt, udId: $udId, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
   }
 
   @override
@@ -710,8 +710,8 @@ class _$_Inspection extends _Inspection {
         (other.runtimeType == runtimeType &&
             other is _$_Inspection &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.inspectionCreatedAt, inspectionCreatedAt) ||
+                other.inspectionCreatedAt == inspectionCreatedAt) &&
             (identical(other.udId, udId) || other.udId == udId) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
@@ -753,7 +753,7 @@ class _$_Inspection extends _Inspection {
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
-        createdAt,
+        inspectionCreatedAt,
         udId,
         overview,
         const DeepCollectionEquality().hash(_photos),
@@ -794,7 +794,7 @@ class _$_Inspection extends _Inspection {
 abstract class _Inspection extends Inspection {
   const factory _Inspection(
       {required final String id,
-      final DateTime? createdAt,
+      final DateTime? inspectionCreatedAt,
       final String? udId,
       final InspectionOverview overview,
       final List<Photo> photos,
@@ -824,7 +824,7 @@ abstract class _Inspection extends Inspection {
   @override
   String get id;
   @override
-  DateTime? get createdAt;
+  DateTime? get inspectionCreatedAt;
   @override
   String? get udId;
   @override

@@ -29,7 +29,8 @@ class Inspection with _$Inspection {
 
   const factory Inspection({
     required String id,
-    DateTime? createdAt,
+    // required DateTime createdAt,
+    DateTime? inspectionCreatedAt,
     String? udId,
     @Default(InspectionOverview()) InspectionOverview overview,
     @Default(<Photo>[]) List<Photo> photos,

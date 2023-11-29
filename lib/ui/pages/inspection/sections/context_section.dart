@@ -44,7 +44,7 @@ class ContextSection extends HookConsumerWidget {
         SectionItem(
           title: '報告書作成日',
           child: PrimaryField(
-            text: inspection.createdAt?.ymd() ?? '',
+            text: inspection.inspectionCreatedAt?.ymd() ?? '',
             onTap: () async {
               final date = await DatePicker.showDatePicker(
                 context,
@@ -54,7 +54,7 @@ class ContextSection extends HookConsumerWidget {
                 locale: LocaleType.jp,
               );
               if (date == null) return;
-              controller.updateCreatedAt(date);
+              controller.updateInspectionCreatedAt(date);
             },
           ),
         ),

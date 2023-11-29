@@ -92,8 +92,8 @@ class InspectionNotifier extends StateNotifier<Inspection> {
     state = state.copyWith(overview: state.overview.copyWith(weather: weather));
   }
 
-  void updateCreatedAt(DateTime createdAt) {
-    state = state.copyWith(createdAt: createdAt);
+  void updateInspectionCreatedAt(DateTime inspectionCreatedAt) {
+    state = state.copyWith(inspectionCreatedAt: inspectionCreatedAt);
   }
 
   void updateSchedule(Schedule schedule) {

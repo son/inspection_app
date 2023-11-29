@@ -9,9 +9,9 @@ part of 'inspection.dart';
 _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
     _$_Inspection(
       id: json['id'] as String,
-      createdAt: json['createdAt'] == null
+      inspectionCreatedAt: json['inspectionCreatedAt'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
+          : DateTime.parse(json['inspectionCreatedAt'] as String),
       udId: json['udId'] as String?,
       overview: json['overview'] == null
           ? const InspectionOverview()
@@ -84,7 +84,7 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'inspectionCreatedAt': instance.inspectionCreatedAt?.toIso8601String(),
       'udId': instance.udId,
       'overview': instance.overview,
       'photos': instance.photos,
