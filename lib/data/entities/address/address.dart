@@ -7,6 +7,7 @@ part 'address.g.dart';
 class Address with _$Address {
   const Address._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Address({
     String? postCode,
     String? prefecture,

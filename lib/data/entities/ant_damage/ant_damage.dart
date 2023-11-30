@@ -9,6 +9,7 @@ part 'ant_damage.g.dart';
 class AntDamage with _$AntDamage {
   const AntDamage._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory AntDamage({
     AccessPanel? accessPanel,
     @Default(Damage()) Damage antDamage,

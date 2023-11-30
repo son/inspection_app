@@ -29,13 +29,13 @@ _$_InspectionOverview _$$_InspectionOverviewFromJson(
 Map<String, dynamic> _$$_InspectionOverviewToJson(
         _$_InspectionOverview instance) =>
     <String, dynamic>{
-      'schedule': instance.schedule,
+      'schedule': instance.schedule.toJson(),
       'weather': _$WeatherEnumMap[instance.weather],
       'housingType': _$HousingTypeEnumMap[instance.housingType],
       'clientName': instance.clientName,
       'witnessName': instance.witnessName,
-      'building': instance.building,
-      'lifeline': instance.lifeline,
+      'building': instance.building.toJson(),
+      'lifeline': instance.lifeline.toJson(),
       'findings': instance.findings,
     };
 
@@ -54,18 +54,14 @@ const _$HousingTypeEnumMap = {
 };
 
 _$_Schedule _$$_ScheduleFromJson(Map<String, dynamic> json) => _$_Schedule(
-      startedAt: json['startedAt'] == null
-          ? null
-          : DateTime.parse(json['startedAt'] as String),
-      endedAt: json['endedAt'] == null
-          ? null
-          : DateTime.parse(json['endedAt'] as String),
+      startedAt: const DateTimeOrNullConverter().fromJson(json['startedAt']),
+      endedAt: const DateTimeOrNullConverter().fromJson(json['endedAt']),
     );
 
 Map<String, dynamic> _$$_ScheduleToJson(_$_Schedule instance) =>
     <String, dynamic>{
-      'startedAt': instance.startedAt?.toIso8601String(),
-      'endedAt': instance.endedAt?.toIso8601String(),
+      'startedAt': const DateTimeOrNullConverter().toJson(instance.startedAt),
+      'endedAt': const DateTimeOrNullConverter().toJson(instance.endedAt),
     };
 
 _$_Lifelines _$$_LifelinesFromJson(Map<String, dynamic> json) => _$_Lifelines(

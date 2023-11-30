@@ -21,6 +21,9 @@ Inspection _$InspectionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Inspection {
   String get id => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
+  @DateTimeConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime? get inspectionCreatedAt => throw _privateConstructorUsedError;
   String? get udId => throw _privateConstructorUsedError;
   InspectionOverview get overview => throw _privateConstructorUsedError;
@@ -60,6 +63,8 @@ abstract class $InspectionCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String userId,
+      @DateTimeConverter() DateTime createdAt,
       DateTime? inspectionCreatedAt,
       String? udId,
       InspectionOverview overview,
@@ -117,6 +122,8 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
+    Object? createdAt = null,
     Object? inspectionCreatedAt = freezed,
     Object? udId = freezed,
     Object? overview = null,
@@ -145,6 +152,14 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       inspectionCreatedAt: freezed == inspectionCreatedAt
           ? _value.inspectionCreatedAt
           : inspectionCreatedAt // ignore: cast_nullable_to_non_nullable
@@ -393,6 +408,8 @@ abstract class _$$_InspectionCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String userId,
+      @DateTimeConverter() DateTime createdAt,
       DateTime? inspectionCreatedAt,
       String? udId,
       InspectionOverview overview,
@@ -466,6 +483,8 @@ class __$$_InspectionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
+    Object? createdAt = null,
     Object? inspectionCreatedAt = freezed,
     Object? udId = freezed,
     Object? overview = null,
@@ -494,6 +513,14 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       inspectionCreatedAt: freezed == inspectionCreatedAt
           ? _value.inspectionCreatedAt
           : inspectionCreatedAt // ignore: cast_nullable_to_non_nullable
@@ -587,10 +614,13 @@ class __$$_InspectionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Inspection extends _Inspection {
   const _$_Inspection(
       {required this.id,
+      required this.userId,
+      @DateTimeConverter() required this.createdAt,
       this.inspectionCreatedAt,
       this.udId,
       this.overview = const InspectionOverview(),
@@ -622,6 +652,11 @@ class _$_Inspection extends _Inspection {
 
   @override
   final String id;
+  @override
+  final String userId;
+  @override
+  @DateTimeConverter()
+  final DateTime createdAt;
   @override
   final DateTime? inspectionCreatedAt;
   @override
@@ -701,7 +736,7 @@ class _$_Inspection extends _Inspection {
 
   @override
   String toString() {
-    return 'Inspection(id: $id, inspectionCreatedAt: $inspectionCreatedAt, udId: $udId, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
+    return 'Inspection(id: $id, userId: $userId, createdAt: $createdAt, inspectionCreatedAt: $inspectionCreatedAt, udId: $udId, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
   }
 
   @override
@@ -710,6 +745,9 @@ class _$_Inspection extends _Inspection {
         (other.runtimeType == runtimeType &&
             other is _$_Inspection &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.inspectionCreatedAt, inspectionCreatedAt) ||
                 other.inspectionCreatedAt == inspectionCreatedAt) &&
             (identical(other.udId, udId) || other.udId == udId) &&
@@ -753,6 +791,8 @@ class _$_Inspection extends _Inspection {
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
+        userId,
+        createdAt,
         inspectionCreatedAt,
         udId,
         overview,
@@ -794,6 +834,8 @@ class _$_Inspection extends _Inspection {
 abstract class _Inspection extends Inspection {
   const factory _Inspection(
       {required final String id,
+      required final String userId,
+      @DateTimeConverter() required final DateTime createdAt,
       final DateTime? inspectionCreatedAt,
       final String? udId,
       final InspectionOverview overview,
@@ -823,6 +865,11 @@ abstract class _Inspection extends Inspection {
 
   @override
   String get id;
+  @override
+  String get userId;
+  @override
+  @DateTimeConverter()
+  DateTime get createdAt;
   @override
   DateTime? get inspectionCreatedAt;
   @override

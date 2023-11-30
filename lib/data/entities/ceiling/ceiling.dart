@@ -9,6 +9,7 @@ part 'ceiling.g.dart';
 class Ceiling with _$Ceiling {
   const Ceiling._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Ceiling({
     AccessPanel? accessPanel,
     @Default(Damage()) Damage foundationDamage,

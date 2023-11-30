@@ -13,14 +13,16 @@ import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
+import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
 class FoundationSection extends HookConsumerWidget {
   const FoundationSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final inspection = ref.watch(inspectionProvider);
-    final controller = ref.read(inspectionProvider.notifier);
+    final id = ref.watch(inspectionIdProvider);
+    final inspection = ref.watch(inspectionProvider(id));
+    final controller = ref.read(inspectionProvider(id).notifier);
 
     return Section(
       title: '基礎',

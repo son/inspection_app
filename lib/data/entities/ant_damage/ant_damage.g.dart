@@ -19,7 +19,7 @@ _$_AntDamage _$$_AntDamageFromJson(Map<String, dynamic> json) => _$_AntDamage(
 Map<String, dynamic> _$$_AntDamageToJson(_$_AntDamage instance) =>
     <String, dynamic>{
       'accessPanel': _$AccessPanelEnumMap[instance.accessPanel],
-      'antDamage': instance.antDamage,
+      'antDamage': instance.antDamage.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

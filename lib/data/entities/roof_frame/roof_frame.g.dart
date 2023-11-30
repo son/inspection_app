@@ -19,8 +19,8 @@ _$_RoofFrame _$$_RoofFrameFromJson(Map<String, dynamic> json) => _$_RoofFrame(
 
 Map<String, dynamic> _$$_RoofFrameToJson(_$_RoofFrame instance) =>
     <String, dynamic>{
-      'foundationDamage': instance.foundationDamage,
-      'rainRoofFrameLeak': instance.rainRoofFrameLeak,
+      'foundationDamage': instance.foundationDamage.toJson(),
+      'rainRoofFrameLeak': instance.rainRoofFrameLeak.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

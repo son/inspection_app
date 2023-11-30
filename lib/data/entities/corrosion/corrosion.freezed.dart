@@ -128,7 +128,8 @@ class __$$_CorrosionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Corrosion extends _Corrosion {
   const _$_Corrosion(
       {this.corrosion = const Damage(), this.coverage, this.remarks = ''})

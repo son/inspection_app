@@ -22,8 +22,8 @@ _$_Ceiling _$$_CeilingFromJson(Map<String, dynamic> json) => _$_Ceiling(
 Map<String, dynamic> _$$_CeilingToJson(_$_Ceiling instance) =>
     <String, dynamic>{
       'accessPanel': _$AccessPanelEnumMap[instance.accessPanel],
-      'foundationDamage': instance.foundationDamage,
-      'rainCeilingLeak': instance.rainCeilingLeak,
+      'foundationDamage': instance.foundationDamage.toJson(),
+      'rainCeilingLeak': instance.rainCeilingLeak.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

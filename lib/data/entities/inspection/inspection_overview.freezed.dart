@@ -223,7 +223,8 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_InspectionOverview extends _InspectionOverview {
   const _$_InspectionOverview(
       {this.schedule = const Schedule(),
@@ -350,7 +351,9 @@ Schedule _$ScheduleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Schedule {
+  @DateTimeOrNullConverter()
   DateTime? get startedAt => throw _privateConstructorUsedError;
+  @DateTimeOrNullConverter()
   DateTime? get endedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -364,7 +367,9 @@ abstract class $ScheduleCopyWith<$Res> {
   factory $ScheduleCopyWith(Schedule value, $Res Function(Schedule) then) =
       _$ScheduleCopyWithImpl<$Res, Schedule>;
   @useResult
-  $Res call({DateTime? startedAt, DateTime? endedAt});
+  $Res call(
+      {@DateTimeOrNullConverter() DateTime? startedAt,
+      @DateTimeOrNullConverter() DateTime? endedAt});
 }
 
 /// @nodoc
@@ -403,7 +408,9 @@ abstract class _$$_ScheduleCopyWith<$Res> implements $ScheduleCopyWith<$Res> {
       __$$_ScheduleCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime? startedAt, DateTime? endedAt});
+  $Res call(
+      {@DateTimeOrNullConverter() DateTime? startedAt,
+      @DateTimeOrNullConverter() DateTime? endedAt});
 }
 
 /// @nodoc
@@ -434,16 +441,22 @@ class __$$_ScheduleCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Schedule extends _Schedule {
-  const _$_Schedule({this.startedAt, this.endedAt}) : super._();
+  const _$_Schedule(
+      {@DateTimeOrNullConverter() this.startedAt,
+      @DateTimeOrNullConverter() this.endedAt})
+      : super._();
 
   factory _$_Schedule.fromJson(Map<String, dynamic> json) =>
       _$$_ScheduleFromJson(json);
 
   @override
+  @DateTimeOrNullConverter()
   final DateTime? startedAt;
   @override
+  @DateTimeOrNullConverter()
   final DateTime? endedAt;
 
   @override
@@ -481,14 +494,17 @@ class _$_Schedule extends _Schedule {
 
 abstract class _Schedule extends Schedule {
   const factory _Schedule(
-      {final DateTime? startedAt, final DateTime? endedAt}) = _$_Schedule;
+      {@DateTimeOrNullConverter() final DateTime? startedAt,
+      @DateTimeOrNullConverter() final DateTime? endedAt}) = _$_Schedule;
   const _Schedule._() : super._();
 
   factory _Schedule.fromJson(Map<String, dynamic> json) = _$_Schedule.fromJson;
 
   @override
+  @DateTimeOrNullConverter()
   DateTime? get startedAt;
   @override
+  @DateTimeOrNullConverter()
   DateTime? get endedAt;
   @override
   @JsonKey(ignore: true)
@@ -597,7 +613,8 @@ class __$$_LifelinesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Lifelines extends _Lifelines {
   const _$_Lifelines({this.water, this.electricity, this.gas}) : super._();
 

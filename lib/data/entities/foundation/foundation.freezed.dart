@@ -245,7 +245,8 @@ class __$$_FoundationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Foundation extends _Foundation {
   const _$_Foundation(
       {final List<String> finishings = const <String>[],

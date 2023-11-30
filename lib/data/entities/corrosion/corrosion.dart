@@ -9,6 +9,7 @@ part 'corrosion.g.dart';
 class Corrosion with _$Corrosion {
   const Corrosion._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Corrosion({
     @Default(Damage()) Damage corrosion,
     Coverage? coverage,

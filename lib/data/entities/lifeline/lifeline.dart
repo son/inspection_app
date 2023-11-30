@@ -9,6 +9,7 @@ part 'lifeline.g.dart';
 class Lifeline with _$Lifeline {
   const Lifeline._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Lifeline({
     @Default(Damage()) Damage lifelineMalfunction,
     @Default(Damage()) Damage otherMalfunction,

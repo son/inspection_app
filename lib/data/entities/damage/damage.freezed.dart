@@ -183,7 +183,8 @@ class __$$_DamageCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Damage extends _Damage {
   const _$_Damage(
       {this.result = Result.none,

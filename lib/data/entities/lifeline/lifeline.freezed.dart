@@ -158,7 +158,8 @@ class __$$_LifelineCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Lifeline extends _Lifeline {
   const _$_Lifeline(
       {this.lifelineMalfunction = const Damage(),

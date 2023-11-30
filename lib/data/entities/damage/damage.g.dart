@@ -35,7 +35,7 @@ Map<String, dynamic> _$$_DamageToJson(_$_Damage instance) => <String, dynamic>{
       'part': instance.part,
       'content': instance.content,
       'situation': instance.situation,
-      'photos': instance.photos,
+      'photos': instance.photos.map((e) => e.toJson()).toList(),
       'details': instance.details,
     };
 

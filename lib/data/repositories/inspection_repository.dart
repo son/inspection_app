@@ -21,21 +21,25 @@ class InspectionRepository {
 
   Future<List<Inspection>> getInspections({
     required int limit,
+    DateTime? latest,
   }) {
     final userId = ref.read(userIdProvider);
     if (userId == null) return Future.value([]);
     return firestore
         .collection('inspections')
         .limit(limit)
+        .orderBy('createdAt', descending: true)
+        .startAfter([Timestamp.fromDate(latest ?? DateTime.now())])
         .where('userId', isEqualTo: userId)
         .get()
-        .then((s) => s.docs.map((d) => Inspection.fromJson(d.data())).toList())
-        .catchError((e) => <Inspection>[]);
+        .then((s) => s.docs.map((d) => Inspection.fromJson(d.data())).toList());
   }
 
-  Inspection createInspection() {
+  Inspection? createInspection() {
+    final userId = ref.read(userIdProvider);
+    if (userId == null) return null;
     final id = firestore.collection('inspections').doc().id;
-    return Inspection(id: id);
+    return Inspection(id: id, userId: userId, createdAt: DateTime.now());
   }
 
   Future<void> updateInspection(Inspection inspection) {

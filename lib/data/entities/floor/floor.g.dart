@@ -21,9 +21,9 @@ _$_Floor _$$_FloorFromJson(Map<String, dynamic> json) => _$_Floor(
     );
 
 Map<String, dynamic> _$$_FloorToJson(_$_Floor instance) => <String, dynamic>{
-      'damage': instance.damage,
-      'sinking': instance.sinking,
-      'inclination': instance.inclination,
+      'damage': instance.damage.toJson(),
+      'sinking': instance.sinking.toJson(),
+      'inclination': instance.inclination.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

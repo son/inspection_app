@@ -35,7 +35,7 @@ Map<String, dynamic> _$$_EarthquakeResistantToJson(
       'regulation':
           _$EarthquakeProofSafetyRegulationEnumMap[instance.regulation],
       'remarks': instance.remarks,
-      'photos': instance.photos,
+      'photos': instance.photos.map((e) => e.toJson()).toList(),
     };
 
 const _$ConfirmationMethodEnumMap = {

@@ -9,6 +9,7 @@ part 'base_and_floor_framing.g.dart';
 class BaseAndFloorFraming with _$BaseAndFloorFraming {
   const BaseAndFloorFraming._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory BaseAndFloorFraming({
     @Default(Damage()) Damage damage,
     Coverage? coverage,

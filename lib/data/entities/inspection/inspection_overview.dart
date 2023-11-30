@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:inspection_app/data/entities/building/building.dart';
+import 'package:inspection_app/data/entities/json_supports.dart';
 
 part 'inspection_overview.freezed.dart';
 part 'inspection_overview.g.dart';
@@ -8,6 +9,7 @@ part 'inspection_overview.g.dart';
 class InspectionOverview with _$InspectionOverview {
   const InspectionOverview._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory InspectionOverview({
     @Default(Schedule()) Schedule schedule,
     Weather? weather,
@@ -50,9 +52,10 @@ enum HousingType {
 class Schedule with _$Schedule {
   const Schedule._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Schedule({
-    DateTime? startedAt,
-    DateTime? endedAt,
+    @DateTimeOrNullConverter() DateTime? startedAt,
+    @DateTimeOrNullConverter() DateTime? endedAt,
   }) = _Schedule;
 
   factory Schedule.fromJson(Map<String, dynamic> json) =>
@@ -63,6 +66,7 @@ class Schedule with _$Schedule {
 class Lifelines with _$Lifelines {
   const Lifelines._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Lifelines({
     bool? water,
     bool? electricity,

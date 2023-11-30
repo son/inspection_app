@@ -9,6 +9,7 @@ part 'outer_wall.g.dart';
 class OuterWall with _$OuterWall {
   const OuterWall._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory OuterWall({
     @Default(<String>[]) List<String> finishings,
     @Default(Damage()) Damage dryDamage,

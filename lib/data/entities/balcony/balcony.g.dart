@@ -22,8 +22,8 @@ _$_Balcony _$$_BalconyFromJson(Map<String, dynamic> json) => _$_Balcony(
 
 Map<String, dynamic> _$$_BalconyToJson(_$_Balcony instance) =>
     <String, dynamic>{
-      'foundation': instance.foundation,
-      'waterProofLayer': instance.waterProofLayer,
+      'foundation': instance.foundation.toJson(),
+      'waterProofLayer': instance.waterProofLayer.toJson(),
       'foundationCoverage': _$CoverageEnumMap[instance.foundationCoverage],
       'waterProofLayerCoverage':
           _$CoverageEnumMap[instance.waterProofLayerCoverage],

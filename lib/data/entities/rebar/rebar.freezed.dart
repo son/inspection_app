@@ -167,7 +167,8 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Rebar extends _Rebar {
   const _$_Rebar(
       {this.exploration = false,

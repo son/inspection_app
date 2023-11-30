@@ -169,7 +169,8 @@ class __$$_BalconyCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Balcony extends _Balcony {
   const _$_Balcony(
       {this.foundation = const Damage(),

@@ -8,6 +8,7 @@ import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
+import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
 import '../children/section_item.dart';
 
@@ -16,8 +17,9 @@ class DetailSection extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final inspection = ref.watch(inspectionProvider);
-    final controller = ref.read(inspectionProvider.notifier);
+    final id = ref.watch(inspectionIdProvider);
+    final inspection = ref.watch(inspectionProvider(id));
+    final controller = ref.read(inspectionProvider(id).notifier);
 
     return Section(
       title: '物件詳細',

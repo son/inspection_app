@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/providers/inspection_list_provider.dart';
+import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.dart';
@@ -29,99 +31,132 @@ import 'sections/outer_wall_section.dart';
 import 'sections/overview_section.dart';
 import 'sections/repairing_section.dart';
 
-class InspectionPage extends HookConsumerWidget {
-  const InspectionPage({super.key});
+final inspectionIdProvider = Provider<String>(
+  (ref) => throw UnimplementedError(),
+);
 
-  static CupertinoPageRoute route() => CupertinoPageRoute(
-        builder: (_) => const InspectionPage(),
+class InspectionPage extends HookConsumerWidget {
+  const InspectionPage({super.key, required this.inspectionId});
+
+  final String inspectionId;
+
+  static CupertinoPageRoute route({
+    required String inspectionId,
+  }) =>
+      CupertinoPageRoute(
+        builder: (_) => InspectionPage(inspectionId: inspectionId),
       );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: PrimaryAppBar(
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              '削除',
-              style: TextStyles.n16.copyWith(color: Colors.red),
+    final controller = ref.read(inspectionListProvider.notifier);
+
+    return WillPopScope(
+      onWillPop: () async {
+        final inspection = ref.read(inspectionProvider(inspectionId));
+        await controller.updateInspection(inspection);
+        return true;
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: PrimaryAppBar(
+          actions: [
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                '削除',
+                style: TextStyles.n16.copyWith(color: Colors.red),
+              ),
             ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              'PDF',
-              style: TextStyles.n16.copyWith(color: Colors.blue),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                'PDF',
+                style: TextStyles.n16.copyWith(color: Colors.blue),
+              ),
             ),
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: EdgeInsets.only(
-          top: MediaQuery.paddingOf(context).top + kToolbarHeight + 16,
-          left: 16,
-          right: 16,
-          bottom: MediaQuery.paddingOf(context).bottom + 16,
+            TextButton(
+              onPressed: () async {
+                final inspection = ref.read(inspectionProvider(inspectionId));
+                await controller.updateInspection(inspection);
+              },
+              child: Text(
+                '保存',
+                style: TextStyles.n16.copyWith(color: Colors.blue),
+              ),
+            ),
+          ],
         ),
-        children: const [
-          SectionTitle(title: '基本情報'),
-          SizedBox(height: 16),
-          OverviewSection(),
-          SizedBox(height: 16),
-          AddressSection(),
-          SizedBox(height: 16),
-          DetailSection(),
-          SizedBox(height: 16),
-          ContextSection(),
-          SizedBox(height: 16),
-          RepairingSection(),
-          SizedBox(height: 16),
-          ImageSection(),
-          SizedBox(height: 32),
-          SectionTitle(title: '外回りの調査'),
-          SizedBox(height: 16),
-          FoundationSection(),
-          SizedBox(height: 16),
-          OuterWallSection(),
-          SizedBox(height: 16),
-          RoofSection(),
-          SizedBox(height: 32),
-          SectionTitle(title: '室内の調査'),
-          SizedBox(height: 16),
-          BalconySection(),
-          SizedBox(height: 16),
-          InnerWallSection(),
-          SizedBox(height: 16),
-          CeilingSection(),
-          SizedBox(height: 16),
-          RoofFrameSection(),
-          SizedBox(height: 16),
-          PillarAndBeamSection(),
-          SizedBox(height: 16),
-          BaseAndFloorFramingSection(),
-          SizedBox(height: 16),
-          FloorSection(),
-          SizedBox(height: 16),
-          AntDamageSection(),
-          SizedBox(height: 16),
-          CorrosionSection(),
-          SizedBox(height: 32),
-          SectionTitle(title: '設備の調査'),
-          SizedBox(height: 16),
-          PipingSection(),
-          SizedBox(height: 16),
-          LifelineSection(),
-          SizedBox(height: 32),
-          SectionTitle(title: 'その他の調査'),
-          SizedBox(height: 16),
-          RebarSection(),
-          SizedBox(height: 16),
-          ConcreteSection(),
-          SizedBox(height: 16),
-          EarthquakeResistantSection(),
-        ],
+        body: ProviderScope(
+          overrides: [
+            inspectionIdProvider.overrideWithValue(inspectionId),
+          ],
+          child: ListView(
+            padding: EdgeInsets.only(
+              top: MediaQuery.paddingOf(context).top + kToolbarHeight + 16,
+              left: 16,
+              right: 16,
+              bottom: MediaQuery.paddingOf(context).bottom + 16,
+            ),
+            children: const [
+              SectionTitle(title: '基本情報'),
+              SizedBox(height: 16),
+              OverviewSection(),
+              SizedBox(height: 16),
+              AddressSection(),
+              SizedBox(height: 16),
+              DetailSection(),
+              SizedBox(height: 16),
+              ContextSection(),
+              SizedBox(height: 16),
+              RepairingSection(),
+              SizedBox(height: 16),
+              ImageSection(),
+              SizedBox(height: 32),
+              SectionTitle(title: '外回りの調査'),
+              SizedBox(height: 16),
+              FoundationSection(),
+              SizedBox(height: 16),
+              OuterWallSection(),
+              SizedBox(height: 16),
+              RoofSection(),
+              SizedBox(height: 32),
+              SectionTitle(title: '室内の調査'),
+              SizedBox(height: 16),
+              BalconySection(),
+              SizedBox(height: 16),
+              InnerWallSection(),
+              SizedBox(height: 16),
+              CeilingSection(),
+              SizedBox(height: 16),
+              RoofFrameSection(),
+              SizedBox(height: 16),
+              PillarAndBeamSection(),
+              SizedBox(height: 16),
+              BaseAndFloorFramingSection(),
+              SizedBox(height: 16),
+              FloorSection(),
+              SizedBox(height: 16),
+              AntDamageSection(),
+              SizedBox(height: 16),
+              CorrosionSection(),
+              SizedBox(height: 32),
+              SectionTitle(title: '設備の調査'),
+              SizedBox(height: 16),
+              PipingSection(),
+              SizedBox(height: 16),
+              LifelineSection(),
+              SizedBox(height: 32),
+              SectionTitle(title: 'その他の調査'),
+              SizedBox(height: 16),
+              RebarSection(),
+              SizedBox(height: 16),
+              ConcreteSection(),
+              SizedBox(height: 16),
+              EarthquakeResistantSection(),
+            ],
+          ),
+        ),
       ),
     );
   }

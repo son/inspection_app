@@ -9,6 +9,7 @@ part 'pillar_and_beam.g.dart';
 class PillarAndBeam with _$PillarAndBeam {
   const PillarAndBeam._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory PillarAndBeam({
     @Default(Damage()) Damage pillarDamage,
     @Default(Damage()) Damage pillarInclination,

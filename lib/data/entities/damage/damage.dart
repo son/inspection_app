@@ -12,6 +12,7 @@ part 'damage.g.dart';
 class Damage with _$Damage {
   const Damage._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Damage({
     @Default(Result.none) Result result,
     @Default(<Direction>[]) List<Direction> directions,

@@ -227,7 +227,8 @@ class __$$_PipingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Piping extends _Piping {
   const _$_Piping(
       {this.supplyRustyWater = const Damage(),

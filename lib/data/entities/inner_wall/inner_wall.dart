@@ -9,6 +9,7 @@ part 'inner_wall.g.dart';
 class InnerWall with _$InnerWall {
   const InnerWall._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory InnerWall({
     @Default(Damage()) Damage foundationDamage,
     @Default(Damage()) Damage foundationInclination,

@@ -29,6 +29,7 @@ mixin _$Building {
   Repairing get repairing => throw _privateConstructorUsedError;
   Renovation get renovation => throw _privateConstructorUsedError;
   String get findings => throw _privateConstructorUsedError;
+  @DateTimeOrNullConverter()
   DateTime? get builtAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,7 +53,7 @@ abstract class $BuildingCopyWith<$Res> {
       Repairing repairing,
       Renovation renovation,
       String findings,
-      DateTime? builtAt});
+      @DateTimeOrNullConverter() DateTime? builtAt});
 
   $FloorCopyWith<$Res> get floor;
   $AddressCopyWith<$Res> get address;
@@ -178,7 +179,7 @@ abstract class _$$_BuildingCopyWith<$Res> implements $BuildingCopyWith<$Res> {
       Repairing repairing,
       Renovation renovation,
       String findings,
-      DateTime? builtAt});
+      @DateTimeOrNullConverter() DateTime? builtAt});
 
   @override
   $FloorCopyWith<$Res> get floor;
@@ -258,7 +259,8 @@ class __$$_BuildingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Building extends _Building {
   const _$_Building(
       {this.name,
@@ -270,7 +272,7 @@ class _$_Building extends _Building {
       this.repairing = const Repairing(),
       this.renovation = const Renovation(),
       this.findings = '',
-      this.builtAt})
+      @DateTimeOrNullConverter() this.builtAt})
       : super._();
 
   factory _$_Building.fromJson(Map<String, dynamic> json) =>
@@ -300,6 +302,7 @@ class _$_Building extends _Building {
   @JsonKey()
   final String findings;
   @override
+  @DateTimeOrNullConverter()
   final DateTime? builtAt;
 
   @override
@@ -370,7 +373,7 @@ abstract class _Building extends Building {
       final Repairing repairing,
       final Renovation renovation,
       final String findings,
-      final DateTime? builtAt}) = _$_Building;
+      @DateTimeOrNullConverter() final DateTime? builtAt}) = _$_Building;
   const _Building._() : super._();
 
   factory _Building.fromJson(Map<String, dynamic> json) = _$_Building.fromJson;
@@ -394,6 +397,7 @@ abstract class _Building extends Building {
   @override
   String get findings;
   @override
+  @DateTimeOrNullConverter()
   DateTime? get builtAt;
   @override
   @JsonKey(ignore: true)
@@ -487,7 +491,8 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Floor extends _Floor {
   const _$_Floor({this.ground, this.underground}) : super._();
 
@@ -660,7 +665,8 @@ class __$$_RepairingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Repairing extends _Repairing {
   const _$_Repairing(
       {this.repaired, this.parts = '', this.remarks = '', this.method = ''})

@@ -9,6 +9,7 @@ part 'floor.g.dart';
 class Floor with _$Floor {
   const Floor._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Floor({
     @Default(Damage()) Damage damage,
     @Default(Damage()) Damage sinking,

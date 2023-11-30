@@ -11,14 +11,16 @@ import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
+import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
 class ContextSection extends HookConsumerWidget {
   const ContextSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final inspection = ref.watch(inspectionProvider);
-    final controller = ref.read(inspectionProvider.notifier);
+    final id = ref.watch(inspectionIdProvider);
+    final inspection = ref.watch(inspectionProvider(id));
+    final controller = ref.read(inspectionProvider(id).notifier);
 
     return Section(
       title: '調査時の状況',

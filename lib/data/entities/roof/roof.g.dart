@@ -21,8 +21,8 @@ _$_Roof _$$_RoofFromJson(Map<String, dynamic> json) => _$_Roof(
 
 Map<String, dynamic> _$$_RoofToJson(_$_Roof instance) => <String, dynamic>{
       'necessity': _$NecessityEnumMap[instance.necessity],
-      'damage': instance.damage,
-      'waterProofLayerDamage': instance.waterProofLayerDamage,
+      'damage': instance.damage.toJson(),
+      'waterProofLayerDamage': instance.waterProofLayerDamage.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

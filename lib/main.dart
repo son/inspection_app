@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/ui/pages/root/root.dart';
 
 import 'firebase_options.dart';
 import 'ui/pages/inspection_list/inspection_list_page.dart';
@@ -28,7 +29,7 @@ class App extends StatelessWidget {
           background: Colors.white,
         ),
       ),
-      home: const InspectionListPage(),
+      home: const Root(child: InspectionListPage()),
     );
   }
 }

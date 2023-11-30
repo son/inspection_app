@@ -7,6 +7,7 @@ class TextStyles {
   static final _default = GoogleFonts.notoSansJp(
     color: Colors.black87,
     textStyle: const TextStyle(overflow: TextOverflow.ellipsis),
+    decoration: TextDecoration.none,
   );
 
   static final n10 = _default.copyWith(

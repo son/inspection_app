@@ -169,7 +169,8 @@ class __$$_CeilingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Ceiling extends _Ceiling {
   const _$_Ceiling(
       {this.accessPanel,

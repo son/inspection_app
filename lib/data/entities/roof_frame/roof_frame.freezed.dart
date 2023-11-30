@@ -158,7 +158,8 @@ class __$$_RoofFrameCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_RoofFrame extends _RoofFrame {
   const _$_RoofFrame(
       {this.foundationDamage = const Damage(),

@@ -25,9 +25,7 @@ _$_Building _$$_BuildingFromJson(Map<String, dynamic> json) => _$_Building(
           ? const Renovation()
           : Renovation.fromJson(json['renovation'] as Map<String, dynamic>),
       findings: json['findings'] as String? ?? '',
-      builtAt: json['builtAt'] == null
-          ? null
-          : DateTime.parse(json['builtAt'] as String),
+      builtAt: const DateTimeOrNullConverter().fromJson(json['builtAt']),
     );
 
 Map<String, dynamic> _$$_BuildingToJson(_$_Building instance) =>
@@ -35,13 +33,13 @@ Map<String, dynamic> _$$_BuildingToJson(_$_Building instance) =>
       'name': instance.name,
       'structureType': _$StructureTypeEnumMap[instance.structureType],
       'totalFloorArea': instance.totalFloorArea,
-      'floor': instance.floor,
-      'address': instance.address,
+      'floor': instance.floor.toJson(),
+      'address': instance.address.toJson(),
       'prefecture': instance.prefecture,
-      'repairing': instance.repairing,
-      'renovation': instance.renovation,
+      'repairing': instance.repairing.toJson(),
+      'renovation': instance.renovation.toJson(),
       'findings': instance.findings,
-      'builtAt': instance.builtAt?.toIso8601String(),
+      'builtAt': const DateTimeOrNullConverter().toJson(instance.builtAt),
     };
 
 const _$StructureTypeEnumMap = {

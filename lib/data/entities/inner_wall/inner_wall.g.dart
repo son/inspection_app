@@ -23,9 +23,9 @@ _$_InnerWall _$$_InnerWallFromJson(Map<String, dynamic> json) => _$_InnerWall(
 
 Map<String, dynamic> _$$_InnerWallToJson(_$_InnerWall instance) =>
     <String, dynamic>{
-      'foundationDamage': instance.foundationDamage,
-      'foundationInclination': instance.foundationInclination,
-      'rainInnerWallLeak': instance.rainInnerWallLeak,
+      'foundationDamage': instance.foundationDamage.toJson(),
+      'foundationInclination': instance.foundationInclination.toJson(),
+      'rainInnerWallLeak': instance.rainInnerWallLeak.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

@@ -9,6 +9,7 @@ part 'concrete.g.dart';
 class Concrete with _$Concrete {
   const Concrete._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Concrete({
     bool? exploration,
     @Default(Damage()) Damage compressiveStrength1,

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:inspection_app/data/entities/address/address.dart';
+import 'package:inspection_app/data/entities/json_supports.dart';
 
 part 'building.freezed.dart';
 part 'building.g.dart';
@@ -8,6 +9,7 @@ part 'building.g.dart';
 class Building with _$Building {
   const Building._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Building({
     String? name,
     StructureType? structureType,
@@ -18,7 +20,7 @@ class Building with _$Building {
     @Default(Repairing()) Repairing repairing,
     @Default(Renovation()) Renovation renovation,
     @Default('') String findings,
-    DateTime? builtAt,
+    @DateTimeOrNullConverter() DateTime? builtAt,
   }) = _Building;
 
   factory Building.fromJson(Map<String, dynamic> json) =>
@@ -42,6 +44,7 @@ enum StructureType {
 class Floor with _$Floor {
   const Floor._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Floor({
     int? ground,
     int? underground,
@@ -54,6 +57,7 @@ class Floor with _$Floor {
 class Repairing with _$Repairing {
   const Repairing._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Repairing({
     bool? repaired,
     @Default('') String parts,

@@ -9,6 +9,7 @@ import 'package:inspection_app/data/entities/earthquake_resistant/earthquake_res
 import 'package:inspection_app/data/entities/floor/floor.dart';
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
+import 'package:inspection_app/data/entities/json_supports.dart';
 import 'package:inspection_app/data/entities/lifeline/lifeline.dart';
 import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
 import 'package:inspection_app/data/entities/photo/photo.dart';
@@ -27,9 +28,11 @@ part 'inspection.g.dart';
 class Inspection with _$Inspection {
   const Inspection._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Inspection({
     required String id,
-    // required DateTime createdAt,
+    required String userId,
+    @DateTimeConverter() required DateTime createdAt,
     DateTime? inspectionCreatedAt,
     String? udId,
     @Default(InspectionOverview()) InspectionOverview overview,
@@ -57,5 +60,9 @@ class Inspection with _$Inspection {
   factory Inspection.fromJson(Map<String, dynamic> json) =>
       _$InspectionFromJson(json);
 
-  static const empty = Inspection(id: '');
+  static final empty = Inspection(
+    id: '',
+    userId: '',
+    createdAt: DateTime.now(),
+  );
 }

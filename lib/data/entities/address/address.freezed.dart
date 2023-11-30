@@ -158,7 +158,8 @@ class __$$_AddressCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Address extends _Address {
   const _$_Address(
       {this.postCode,

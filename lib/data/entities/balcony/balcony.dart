@@ -9,6 +9,7 @@ part 'balcony.g.dart';
 class Balcony with _$Balcony {
   const Balcony._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Balcony({
     @Default(Damage()) Damage foundation,
     @Default(Damage()) Damage waterProofLayer,

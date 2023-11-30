@@ -208,7 +208,8 @@ class __$$_PillarAndBeamCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_PillarAndBeam extends _PillarAndBeam {
   const _$_PillarAndBeam(
       {this.pillarDamage = const Damage(),

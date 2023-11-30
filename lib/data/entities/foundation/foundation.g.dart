@@ -35,11 +35,11 @@ _$_Foundation _$$_FoundationFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_FoundationToJson(_$_Foundation instance) =>
     <String, dynamic>{
       'finishings': instance.finishings,
-      'crack': instance.crack,
-      'damage': instance.damage,
-      'concreteDeterioration': instance.concreteDeterioration,
-      'rust': instance.rust,
-      'rebarExposure': instance.rebarExposure,
+      'crack': instance.crack.toJson(),
+      'damage': instance.damage.toJson(),
+      'concreteDeterioration': instance.concreteDeterioration.toJson(),
+      'rust': instance.rust.toJson(),
+      'rebarExposure': instance.rebarExposure.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

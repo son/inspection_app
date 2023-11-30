@@ -9,6 +9,7 @@ part 'rebar.g.dart';
 class Rebar with _$Rebar {
   const Rebar._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Rebar({
     @Default(false) bool exploration,
     @Default(Damage()) Damage side,

@@ -20,8 +20,8 @@ _$_Rebar _$$_RebarFromJson(Map<String, dynamic> json) => _$_Rebar(
 
 Map<String, dynamic> _$$_RebarToJson(_$_Rebar instance) => <String, dynamic>{
       'exploration': instance.exploration,
-      'side': instance.side,
-      'bottom': instance.bottom,
+      'side': instance.side.toJson(),
+      'bottom': instance.bottom.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

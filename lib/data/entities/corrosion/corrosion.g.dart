@@ -16,7 +16,7 @@ _$_Corrosion _$$_CorrosionFromJson(Map<String, dynamic> json) => _$_Corrosion(
 
 Map<String, dynamic> _$$_CorrosionToJson(_$_Corrosion instance) =>
     <String, dynamic>{
-      'corrosion': instance.corrosion,
+      'corrosion': instance.corrosion.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

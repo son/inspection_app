@@ -23,8 +23,8 @@ _$_Concrete _$$_ConcreteFromJson(Map<String, dynamic> json) => _$_Concrete(
 Map<String, dynamic> _$$_ConcreteToJson(_$_Concrete instance) =>
     <String, dynamic>{
       'exploration': instance.exploration,
-      'compressiveStrength1': instance.compressiveStrength1,
-      'compressiveStrength2': instance.compressiveStrength2,
+      'compressiveStrength1': instance.compressiveStrength1.toJson(),
+      'compressiveStrength2': instance.compressiveStrength2.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

@@ -19,7 +19,7 @@ _$_BaseAndFloorFraming _$$_BaseAndFloorFramingFromJson(
 Map<String, dynamic> _$$_BaseAndFloorFramingToJson(
         _$_BaseAndFloorFraming instance) =>
     <String, dynamic>{
-      'damage': instance.damage,
+      'damage': instance.damage.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

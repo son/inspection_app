@@ -26,10 +26,10 @@ _$_PillarAndBeam _$$_PillarAndBeamFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_PillarAndBeamToJson(_$_PillarAndBeam instance) =>
     <String, dynamic>{
-      'pillarDamage': instance.pillarDamage,
-      'pillarInclination': instance.pillarInclination,
-      'beamDamage': instance.beamDamage,
-      'beamDeflection': instance.beamDeflection,
+      'pillarDamage': instance.pillarDamage.toJson(),
+      'pillarInclination': instance.pillarInclination.toJson(),
+      'beamDamage': instance.beamDamage.toJson(),
+      'beamDeflection': instance.beamDeflection.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

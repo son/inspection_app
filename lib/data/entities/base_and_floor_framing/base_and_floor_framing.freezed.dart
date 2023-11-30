@@ -130,7 +130,8 @@ class __$$_BaseAndFloorFramingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_BaseAndFloorFraming extends _BaseAndFloorFraming {
   const _$_BaseAndFloorFraming(
       {this.damage = const Damage(), this.coverage, this.remarks = ''})

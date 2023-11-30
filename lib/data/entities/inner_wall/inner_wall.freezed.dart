@@ -182,7 +182,8 @@ class __$$_InnerWallCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_InnerWall extends _InnerWall {
   const _$_InnerWall(
       {this.foundationDamage = const Damage(),

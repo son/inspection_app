@@ -9,6 +9,7 @@ part 'roof.g.dart';
 class Roof with _$Roof {
   const Roof._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Roof({
     Necessity? necessity,
     @Default(Damage()) Damage damage,

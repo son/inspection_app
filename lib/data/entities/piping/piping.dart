@@ -9,6 +9,7 @@ part 'piping.g.dart';
 class Piping with _$Piping {
   const Piping._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Piping({
     @Default(Damage()) Damage supplyRustyWater,
     @Default(Damage()) Damage supplyWaterLeak,

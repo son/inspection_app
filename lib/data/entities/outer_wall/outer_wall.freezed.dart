@@ -507,7 +507,8 @@ class __$$_OuterWallCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_OuterWall extends _OuterWall {
   const _$_OuterWall(
       {final List<String> finishings = const <String>[],

@@ -147,7 +147,8 @@ class __$$_AntDamageCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_AntDamage extends _AntDamage {
   const _$_AntDamage(
       {this.accessPanel,

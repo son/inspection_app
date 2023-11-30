@@ -7,6 +7,7 @@ part 'photo.g.dart';
 class Photo with _$Photo {
   const Photo._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Photo({
     required String image,
     @Default('') String label,

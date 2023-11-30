@@ -20,15 +20,26 @@ import 'package:inspection_app/data/entities/rebar/rebar.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
+import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 
 final inspectionProvider =
-    StateNotifierProvider<InspectionNotifier, Inspection>(
-  (ref) => InspectionNotifier(ref: ref),
-);
+    StateNotifierProvider.family<InspectionNotifier, Inspection, String>(
+        (ref, inspectionId) {
+  return InspectionNotifier(ref: ref, inspectionId: inspectionId);
+});
 
 class InspectionNotifier extends StateNotifier<Inspection> {
-  InspectionNotifier({required this.ref}) : super(Inspection.empty);
+  InspectionNotifier({
+    required this.ref,
+    required this.inspectionId,
+  }) : super(Inspection.empty) {
+    state = ref
+        .read(inspectionListProvider)
+        .firstWhere((i) => i.id == inspectionId);
+  }
+
   final Ref ref;
+  final String inspectionId;
 
   void updateUdId(String udId) {
     state = state.copyWith(udId: udId);

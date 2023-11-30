@@ -8,6 +8,7 @@ part 'earthquake_resistant.g.dart';
 class EarthquakeResistant with _$EarthquakeResistant {
   const EarthquakeResistant._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory EarthquakeResistant({
     bool? exploration,
     ConfirmationMethod? confirmationMethod,

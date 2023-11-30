@@ -9,6 +9,7 @@ part 'foundation.g.dart';
 class Foundation with _$Foundation {
   const Foundation._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory Foundation({
     @Default(<String>[]) List<String> finishings,
     @Default(Damage()) Damage crack,

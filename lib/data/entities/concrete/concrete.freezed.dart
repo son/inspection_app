@@ -171,7 +171,8 @@ class __$$_ConcreteCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Concrete extends _Concrete {
   const _$_Concrete(
       {this.exploration,

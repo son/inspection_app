@@ -9,6 +9,7 @@ part 'roof_frame.g.dart';
 class RoofFrame with _$RoofFrame {
   const RoofFrame._();
 
+  @JsonSerializable(explicitToJson: true)
   const factory RoofFrame({
     @Default(Damage()) Damage foundationDamage,
     @Default(Damage()) Damage rainRoofFrameLeak,

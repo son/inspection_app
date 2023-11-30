@@ -111,7 +111,8 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Photo extends _Photo {
   const _$_Photo({required this.image, this.label = '', this.caption = ''})
       : super._();

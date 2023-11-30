@@ -27,11 +27,11 @@ _$_Piping _$$_PipingFromJson(Map<String, dynamic> json) => _$_Piping(
     );
 
 Map<String, dynamic> _$$_PipingToJson(_$_Piping instance) => <String, dynamic>{
-      'supplyRustyWater': instance.supplyRustyWater,
-      'supplyWaterLeak': instance.supplyWaterLeak,
-      'sewerStuck': instance.sewerStuck,
-      'sewerWaterLeak': instance.sewerWaterLeak,
-      'ductLoss': instance.ductLoss,
+      'supplyRustyWater': instance.supplyRustyWater.toJson(),
+      'supplyWaterLeak': instance.supplyWaterLeak.toJson(),
+      'sewerStuck': instance.sewerStuck.toJson(),
+      'sewerWaterLeak': instance.sewerWaterLeak.toJson(),
+      'ductLoss': instance.ductLoss.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

@@ -177,7 +177,8 @@ class __$$_EarthquakeResistantCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_EarthquakeResistant extends _EarthquakeResistant {
   const _$_EarthquakeResistant(
       {this.exploration,

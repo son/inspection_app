@@ -20,8 +20,8 @@ _$_Lifeline _$$_LifelineFromJson(Map<String, dynamic> json) => _$_Lifeline(
 
 Map<String, dynamic> _$$_LifelineToJson(_$_Lifeline instance) =>
     <String, dynamic>{
-      'lifelineMalfunction': instance.lifelineMalfunction,
-      'otherMalfunction': instance.otherMalfunction,
+      'lifelineMalfunction': instance.lifelineMalfunction.toJson(),
+      'otherMalfunction': instance.otherMalfunction.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
     };

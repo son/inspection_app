@@ -167,7 +167,8 @@ class __$$_RoofCopyWithImpl<$Res> extends _$RoofCopyWithImpl<$Res, _$_Roof>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Roof extends _Roof {
   const _$_Roof(
       {this.necessity,

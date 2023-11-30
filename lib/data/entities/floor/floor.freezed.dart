@@ -178,7 +178,8 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Floor extends _Floor {
   const _$_Floor(
       {this.damage = const Damage(),
