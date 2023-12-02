@@ -8,7 +8,13 @@ import '../../components/text_styles.dart';
 import 'children/inspection_list_item.dart';
 
 class InspectionListPage extends HookConsumerWidget {
-  const InspectionListPage({super.key});
+  const InspectionListPage._();
+
+  static Route route() => PageRouteBuilder(
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
+        pageBuilder: (_, __, ___) => const InspectionListPage._(),
+      );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,7 +86,7 @@ class InspectionListPage extends HookConsumerWidget {
                     topRight: Radius.circular(8),
                   );
                 }
-                if (index == inspections.length - 1) {
+                if (index == inspections.length) {
                   return const BorderRadius.only(
                     bottomLeft: Radius.circular(8),
                     bottomRight: Radius.circular(8),
@@ -90,6 +96,7 @@ class InspectionListPage extends HookConsumerWidget {
               }(),
               child: InspectionListItem(
                 key: ValueKey(index),
+                inspection: inspections[index - 1],
                 onTap: () {
                   final inspectionId = inspections[index - 1].id;
                   Navigator.of(context).push(

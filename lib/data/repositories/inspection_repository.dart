@@ -48,4 +48,8 @@ class InspectionRepository {
         .doc(inspection.id)
         .set(inspection.toJson(), SetOptions(merge: true));
   }
+
+  Future<void> deleteInspection(String inspectionId) {
+    return firestore.collection('inspections').doc(inspectionId).delete();
+  }
 }

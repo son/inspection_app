@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/ui/pages/root/root.dart';
 
 import 'firebase_options.dart';
-import 'ui/pages/inspection_list/inspection_list_page.dart';
+import 'ui/pages/sign_in/sign_in.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +28,7 @@ class App extends StatelessWidget {
           background: Colors.white,
         ),
       ),
-      home: const Root(child: InspectionListPage()),
+      home: const SignInPage(),
     );
   }
 }

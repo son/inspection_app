@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/providers/auth/core.dart';
@@ -14,7 +15,6 @@ class InspectionListNotifier extends StateNotifier<List<Inspection>> {
       if (userId == null) return;
       refresh();
     }, fireImmediately: true);
-    refresh();
   }
 
   final Ref ref;
@@ -47,5 +47,11 @@ class InspectionListNotifier extends StateNotifier<List<Inspection>> {
         state.map((i) => i.id == inspection.id ? inspection : i).toList();
     state = [...newList];
     await ref.read(inspectionRepositoryProvider).updateInspection(inspection);
+  }
+
+  Future<void> deleteInspection(String inspectionId) async {
+    final newList = state.whereNot((i) => i.id == inspectionId).toList();
+    state = [...newList];
+    await ref.read(inspectionRepositoryProvider).deleteInspection(inspectionId);
   }
 }

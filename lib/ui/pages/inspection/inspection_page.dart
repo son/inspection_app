@@ -62,7 +62,12 @@ class InspectionPage extends HookConsumerWidget {
         appBar: PrimaryAppBar(
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                // TODO: 確認
+                await controller.deleteInspection(inspectionId);
+                // ignore: use_build_context_synchronously
+                Navigator.of(context).pop();
+              },
               child: Text(
                 '削除',
                 style: TextStyles.n16.copyWith(color: Colors.red),
