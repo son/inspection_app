@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/providers/image_upload_provider.dart';
 import 'package:inspection_app/ui/pages/image/images_page.dart';
 import 'package:inspection_app/ui/pages/inspection/children/image_item.dart';
 
@@ -32,7 +33,10 @@ class BlueprintsSectionItem extends HookConsumerWidget {
             runSpacing: padding,
             children: [
               AddImageItem(
-                onTap: () {},
+                onTap: () async {
+                  final files = await ref.read(imagePickProvider)(context);
+                  print(files);
+                },
                 size: size,
               ),
               ...blueprints

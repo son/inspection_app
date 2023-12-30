@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'firebase_options.dart';
-import 'ui/pages/sign_in/sign_in.dart';
+import 'ui/pages/sign_in/sign_in_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
