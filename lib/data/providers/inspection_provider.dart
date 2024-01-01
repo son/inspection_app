@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/ant_damage/ant_damage.dart';
 import 'package:inspection_app/data/entities/balcony/balcony.dart';
@@ -14,6 +15,7 @@ import 'package:inspection_app/data/entities/inspection/inspection.dart';
 import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 import 'package:inspection_app/data/entities/lifeline/lifeline.dart';
 import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
+import 'package:inspection_app/data/entities/photo/photo.dart';
 import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dart';
 import 'package:inspection_app/data/entities/piping/piping.dart';
 import 'package:inspection_app/data/entities/rebar/rebar.dart';
@@ -21,6 +23,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
+import 'package:inspection_app/data/repositories/image_repository.dart';
 
 final inspectionProvider =
     StateNotifierProvider.family<InspectionNotifier, Inspection, String>(
@@ -201,5 +204,45 @@ class InspectionNotifier extends StateNotifier<Inspection> {
 
   void updateEarthquakeResistant(EarthquakeResistant earthquakeResistant) {
     state = state.copyWith(earthquakeResistant: earthquakeResistant);
+  }
+
+  void updateBlueprints(List<String> paths) async {
+    final urls = await Future.wait(paths.map(
+        (path) => ref.read(imageRepositoryProvider).uploadImage(path))).then(
+      (value) => value.whereType<String>().toList(),
+    );
+    final news = urls.map((url) => Photo(image: url)).toList();
+    state = state.copyWith(blueprints: [...state.blueprints, ...news]);
+    await ref.read(inspectionListProvider.notifier).updateInspection(state);
+  }
+
+  void deleteBlueprint(String url) async {
+    final news = state.blueprints
+        .whereNot((blueprint) => blueprint.image == url)
+        .toList();
+    state = state.copyWith(blueprints: news);
+    await Future.wait([
+      ref.read(imageRepositoryProvider).deleteImage(url),
+      ref.read(inspectionListProvider.notifier).updateInspection(state),
+    ]);
+  }
+
+  void updatePhotos(List<String> paths) async {
+    final urls = await Future.wait(paths.map(
+        (path) => ref.read(imageRepositoryProvider).uploadImage(path))).then(
+      (value) => value.whereType<String>().toList(),
+    );
+    final news = urls.map((url) => Photo(image: url)).toList();
+    state = state.copyWith(photos: [...state.photos, ...news]);
+    await ref.read(inspectionListProvider.notifier).updateInspection(state);
+  }
+
+  void deletePhoto(String url) async {
+    final news = state.photos.whereNot((photo) => photo.image == url).toList();
+    state = state.copyWith(photos: news);
+    await Future.wait([
+      ref.read(imageRepositoryProvider).deleteImage(url),
+      ref.read(inspectionListProvider.notifier).updateInspection(state),
+    ]);
   }
 }

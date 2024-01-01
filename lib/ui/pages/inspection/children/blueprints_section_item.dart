@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/data/providers/image_upload_provider.dart';
+import 'package:inspection_app/data/providers/inspection_list_provider.dart';
+import 'package:inspection_app/data/providers/inspection_provider.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/pages/image/images_page.dart';
 import 'package:inspection_app/ui/pages/inspection/children/image_item.dart';
+import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
 class BlueprintsSectionItem extends HookConsumerWidget {
   const BlueprintsSectionItem({super.key});
@@ -10,16 +13,10 @@ class BlueprintsSectionItem extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const padding = 16.0;
-    final blueprints = [
-      'https://image.lgtmoon.dev/223789',
-      'https://image.lgtmoon.dev/223785',
-      'https://image.lgtmoon.dev/223784',
-      'https://image.lgtmoon.dev/223784',
-      'https://image.lgtmoon.dev/223784',
-      'https://image.lgtmoon.dev/223784',
-      'https://image.lgtmoon.dev/223784',
-      'https://image.lgtmoon.dev/223784',
-    ];
+    final id = ref.watch(inspectionIdProvider);
+    final blueprints =
+        ref.watch(inspectionProvider(id).select((value) => value.blueprints));
+    final controller = ref.read(inspectionProvider(id).notifier);
 
     return Container(
       width: double.infinity,
@@ -34,21 +31,22 @@ class BlueprintsSectionItem extends HookConsumerWidget {
             children: [
               AddImageItem(
                 onTap: () async {
-                  final files = await ref.read(imagePickProvider)(context);
-                  print(files);
+                  final paths = await ImageSourceSheet.show(context);
+                  if (paths == null) return;
+                  controller.updateBlueprints(paths);
                 },
                 size: size,
               ),
               ...blueprints
                   .map(
-                    (image) => ImageItem(
-                      url: image,
+                    (blueprint) => ImageItem(
+                      url: blueprint.image,
                       size: size,
                       onTap: () {
                         ImagesPage.show(
                           context: context,
-                          images: blueprints,
-                          initialIndex: blueprints.indexOf(image),
+                          images: blueprints.map((e) => e.image).toList(),
+                          initialIndex: blueprints.indexOf(blueprint),
                         );
                       },
                     ),

@@ -25,9 +25,9 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const <Photo>[],
       blueprints: (json['blueprints'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
               .toList() ??
-          const <String>[],
+          const <Photo>[],
       foundation: json['foundation'] == null
           ? const Foundation()
           : Foundation.fromJson(json['foundation'] as Map<String, dynamic>),
@@ -93,7 +93,7 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
       'udId': instance.udId,
       'overview': instance.overview.toJson(),
       'photos': instance.photos.map((e) => e.toJson()).toList(),
-      'blueprints': instance.blueprints,
+      'blueprints': instance.blueprints.map((e) => e.toJson()).toList(),
       'foundation': instance.foundation.toJson(),
       'outerWall': instance.outerWall.toJson(),
       'roof': instance.roof.toJson(),

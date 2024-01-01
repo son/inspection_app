@@ -37,7 +37,7 @@ class Inspection with _$Inspection {
     String? udId,
     @Default(InspectionOverview()) InspectionOverview overview,
     @Default(<Photo>[]) List<Photo> photos,
-    @Default(<String>[]) List<String> blueprints,
+    @Default(<Photo>[]) List<Photo> blueprints,
     @Default(Foundation()) Foundation foundation,
     @Default(OuterWall()) OuterWall outerWall,
     @Default(Roof()) Roof roof,

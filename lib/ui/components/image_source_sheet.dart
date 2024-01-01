@@ -1,12 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:inspection_app/data/providers/image_pick_provider.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 
 class ImageSourceSheet extends HookConsumerWidget {
   const ImageSourceSheet({super.key});
 
-  static Future<void> show(BuildContext context) {
+  static Future<List<String>?> show(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -40,9 +42,9 @@ class ImageSourceSheet extends HookConsumerWidget {
             title: 'カメラで\n写真を撮る',
             icon: Icons.camera_rounded,
             onTap: () async {
-              final image = await ImagePicker()
-                  .pickImage(source: ImageSource.camera)
-                  .catchError((e) => null);
+              final image = await ref.read(cameraImagePickProvider)(context);
+              if (image == null) return;
+              Navigator.of(context).pop([image]);
             },
           ),
           Container(
@@ -54,9 +56,9 @@ class ImageSourceSheet extends HookConsumerWidget {
             title: 'アルバムから\n画像を選択する',
             icon: Icons.photo,
             onTap: () async {
-              final images = await ImagePicker()
-                  .pickMultiImage()
-                  .catchError((e) => <XFile>[]);
+              final images = await ref.read(photoImagePickProvider)(context);
+              if (images.isEmpty) return;
+              Navigator.of(context).pop(images);
             },
           ),
         ],

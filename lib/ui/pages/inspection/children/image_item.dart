@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/image_source_sheet.dart';
-
 class ImageItem extends StatelessWidget {
   const ImageItem({
     super.key,
@@ -70,9 +68,7 @@ class AddImageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        ImageSourceSheet.show(context);
-      },
+      onTap: onTap,
       child: Container(
         height: size,
         width: size,

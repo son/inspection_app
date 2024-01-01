@@ -25,16 +25,30 @@ class ImageRepository {
     try {
       final userId = ref.read(userIdProvider);
       if (userId == null) return null;
-      final date = DateTime.now().toString();
+      final date = DateTime.now()
+          .toString()
+          .replaceAll(' ', '')
+          .replaceAll('.', '')
+          .replaceAll(':', '');
       final imageFile = File(path);
       final extension = path.substring(path.lastIndexOf('.'));
       final uuid = const Uuid().v4();
-      final storageRef = storage.ref('$userId/$date-$uuid.$extension');
+      final name = '$userId/$date-$uuid$extension';
+      final storageRef = storage.ref(name);
       await storageRef.putFile(imageFile);
-      return storageRef.getDownloadURL();
+      final url = await storageRef.getDownloadURL();
+      return url;
     } catch (e) {
       print(e);
       return null;
+    }
+  }
+
+  Future<void> deleteImage(String url) async {
+    try {
+      await storage.refFromURL(url).delete();
+    } catch (e) {
+      print(e);
     }
   }
 }

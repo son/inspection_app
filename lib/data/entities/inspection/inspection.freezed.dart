@@ -28,7 +28,7 @@ mixin _$Inspection {
   String? get udId => throw _privateConstructorUsedError;
   InspectionOverview get overview => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
-  List<String> get blueprints => throw _privateConstructorUsedError;
+  List<Photo> get blueprints => throw _privateConstructorUsedError;
   Foundation get foundation => throw _privateConstructorUsedError;
   OuterWall get outerWall => throw _privateConstructorUsedError;
   Roof get roof => throw _privateConstructorUsedError;
@@ -69,7 +69,7 @@ abstract class $InspectionCopyWith<$Res> {
       String? udId,
       InspectionOverview overview,
       List<Photo> photos,
-      List<String> blueprints,
+      List<Photo> blueprints,
       Foundation foundation,
       OuterWall outerWall,
       Roof roof,
@@ -179,7 +179,7 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
       blueprints: null == blueprints
           ? _value.blueprints
           : blueprints // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<Photo>,
       foundation: null == foundation
           ? _value.foundation
           : foundation // ignore: cast_nullable_to_non_nullable
@@ -414,7 +414,7 @@ abstract class _$$_InspectionCopyWith<$Res>
       String? udId,
       InspectionOverview overview,
       List<Photo> photos,
-      List<String> blueprints,
+      List<Photo> blueprints,
       Foundation foundation,
       OuterWall outerWall,
       Roof roof,
@@ -540,7 +540,7 @@ class __$$_InspectionCopyWithImpl<$Res>
       blueprints: null == blueprints
           ? _value._blueprints
           : blueprints // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<Photo>,
       foundation: null == foundation
           ? _value.foundation
           : foundation // ignore: cast_nullable_to_non_nullable
@@ -625,7 +625,7 @@ class _$_Inspection extends _Inspection {
       this.udId,
       this.overview = const InspectionOverview(),
       final List<Photo> photos = const <Photo>[],
-      final List<String> blueprints = const <String>[],
+      final List<Photo> blueprints = const <Photo>[],
       this.foundation = const Foundation(),
       this.outerWall = const OuterWall(),
       this.roof = const Roof(),
@@ -673,10 +673,10 @@ class _$_Inspection extends _Inspection {
     return EqualUnmodifiableListView(_photos);
   }
 
-  final List<String> _blueprints;
+  final List<Photo> _blueprints;
   @override
   @JsonKey()
-  List<String> get blueprints {
+  List<Photo> get blueprints {
     if (_blueprints is EqualUnmodifiableListView) return _blueprints;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_blueprints);
@@ -840,7 +840,7 @@ abstract class _Inspection extends Inspection {
       final String? udId,
       final InspectionOverview overview,
       final List<Photo> photos,
-      final List<String> blueprints,
+      final List<Photo> blueprints,
       final Foundation foundation,
       final OuterWall outerWall,
       final Roof roof,
@@ -879,7 +879,7 @@ abstract class _Inspection extends Inspection {
   @override
   List<Photo> get photos;
   @override
-  List<String> get blueprints;
+  List<Photo> get blueprints;
   @override
   Foundation get foundation;
   @override
