@@ -31,7 +31,7 @@ class ExteriorSectionItem extends HookConsumerWidget {
               AddImageItem(
                 onTap: () async {
                   final paths = await ImageSourceSheet.show(context);
-                  if (paths == null) return;
+                  if (paths.isEmpty) return;
                   controller.updatePhotos(paths);
                 },
                 size: size,
@@ -46,6 +46,10 @@ class ExteriorSectionItem extends HookConsumerWidget {
                           context: context,
                           images: photos.map((e) => e.image).toList(),
                           initialIndex: photos.indexOf(photo),
+                          onTapDelete: (url) {
+                            controller.deletePhoto(url);
+                            Navigator.of(context).pop();
+                          },
                         );
                       },
                     ),

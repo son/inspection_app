@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/photo/photo.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 
@@ -29,6 +31,15 @@ class PhotoCaptionsItem extends StatelessWidget {
                 .map((photo) => _Item(
                       photo: photo,
                       size: size,
+                      onChange: (photo) {
+                        final index = photos.indexWhere(
+                          (p) => p.image == photo.image,
+                        );
+                        if (index == -1) return;
+                        final newPhotos = [...photos];
+                        newPhotos[index] = photo;
+                        onChange(newPhotos);
+                      },
                     ))
                 .toList(),
           ],
@@ -39,16 +50,22 @@ class PhotoCaptionsItem extends StatelessWidget {
 }
 
 class _Item extends StatelessWidget {
-  const _Item({required this.photo, required this.size});
+  const _Item({
+    required this.photo,
+    required this.onChange,
+    required this.size,
+  });
 
   final Photo photo;
   final double size;
+  final Function(Photo) onChange;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(left: 16, bottom: 16),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
@@ -89,6 +106,12 @@ class _Item extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
+          Expanded(
+            child: _TextField(
+              initialText: photo.caption,
+              onChange: (text) => onChange(photo.copyWith(caption: text)),
+            ),
+          ),
         ],
       ),
     );
@@ -124,6 +147,49 @@ class _AddItem extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _TextField extends HookConsumerWidget {
+  const _TextField({required this.initialText, required this.onChange});
+  final String initialText;
+  final Function(String) onChange;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = useTextEditingController();
+
+    useEffect(() {
+      controller.text = initialText;
+      return null;
+    }, []);
+
+    const border = OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.white),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    );
+
+    return TextField(
+      controller: controller,
+      style: TextStyles.n14,
+      minLines: 1,
+      maxLines: null,
+      onChanged: onChange,
+      cursorColor: Colors.blueAccent,
+      decoration: InputDecoration(
+        hintText: '説明を追加',
+        hintStyle: TextStyles.n12.copyWith(color: Colors.grey),
+        enabledBorder: border,
+        focusedBorder: border,
+        disabledBorder: border,
+        border: border,
+        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        focusColor: const Color(0xFFF2F7FF),
+        hoverColor: const Color(0xFFF2F7FF),
+        fillColor: const Color(0xFFF2F7FF),
+        filled: true,
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_check_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
@@ -116,11 +117,27 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.foundation.crack.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final foundation = inspection.foundation.copyWith(
+                  crack: inspection.foundation.crack.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final foundation = inspection.foundation.copyWith(
+                  crack: inspection.foundation.crack.copyWith(
+                    photos: [...inspection.foundation.crack.photos, ...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
             ),
           ),
         ],
@@ -254,11 +271,32 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.foundation.concreteDeterioration.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final foundation = inspection.foundation.copyWith(
+                  concreteDeterioration:
+                      inspection.foundation.concreteDeterioration.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final foundation = inspection.foundation.copyWith(
+                  concreteDeterioration:
+                      inspection.foundation.concreteDeterioration.copyWith(
+                    photos: [
+                      ...inspection.foundation.concreteDeterioration.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
             ),
           ),
         ],
@@ -302,11 +340,27 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.foundation.rust.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final foundation = inspection.foundation.copyWith(
+                  rust: inspection.foundation.rust.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final foundation = inspection.foundation.copyWith(
+                  rust: inspection.foundation.rust.copyWith(
+                    photos: [...inspection.foundation.rust.photos, ...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
             ),
           ),
         ],
@@ -352,11 +406,30 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.foundation.rebarExposure.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final foundation = inspection.foundation.copyWith(
+                  rebarExposure: inspection.foundation.rebarExposure.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final foundation = inspection.foundation.copyWith(
+                  rebarExposure: inspection.foundation.rebarExposure.copyWith(
+                    photos: [
+                      ...inspection.foundation.rebarExposure.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
             ),
           ),
         ],

@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
+import 'package:inspection_app/ui/components/confirm_dialog.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.dart';
@@ -63,9 +66,13 @@ class InspectionPage extends HookConsumerWidget {
           actions: [
             TextButton(
               onPressed: () async {
-                // TODO: 確認
+                final canGo = await ConfirmDialog.show(
+                  context: context,
+                  title: '削除しますか？',
+                  caption: '削除したデータは復元できません。',
+                );
+                if (!canGo) return;
                 await controller.deleteInspection(inspectionId);
-                // ignore: use_build_context_synchronously
                 Navigator.of(context).pop();
               },
               child: Text(

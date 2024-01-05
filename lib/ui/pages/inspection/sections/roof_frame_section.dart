@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -87,11 +88,32 @@ class RoofFrameSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.roofFrame.foundationDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final roofFrame = inspection.roofFrame.copyWith(
+                  foundationDamage:
+                      inspection.roofFrame.foundationDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateRoofFrame(roofFrame);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final roofFrame = inspection.roofFrame.copyWith(
+                  foundationDamage:
+                      inspection.roofFrame.foundationDamage.copyWith(
+                    photos: [
+                      ...inspection.roofFrame.foundationDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateRoofFrame(roofFrame);
+              },
             ),
           ),
         ],
@@ -127,11 +149,32 @@ class RoofFrameSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.roofFrame.rainRoofFrameLeak.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final roofFrame = inspection.roofFrame.copyWith(
+                  rainRoofFrameLeak:
+                      inspection.roofFrame.rainRoofFrameLeak.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateRoofFrame(roofFrame);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final roofFrame = inspection.roofFrame.copyWith(
+                  rainRoofFrameLeak:
+                      inspection.roofFrame.rainRoofFrameLeak.copyWith(
+                    photos: [
+                      ...inspection.roofFrame.rainRoofFrameLeak.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateRoofFrame(roofFrame);
+              },
             ),
           ),
         ],

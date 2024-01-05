@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
@@ -120,11 +121,27 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.dryDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  dryDamage: inspection.outerWall.dryDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  dryDamage: inspection.outerWall.dryDamage.copyWith(
+                    photos: [...inspection.outerWall.dryDamage.photos, ...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -192,11 +209,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.dryWideDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  dryWideDamage: inspection.outerWall.dryWideDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  dryWideDamage: inspection.outerWall.dryWideDamage.copyWith(
+                    photos: [
+                      ...inspection.outerWall.dryWideDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -242,11 +278,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.dryCorrosion.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  dryCorrosion: inspection.outerWall.dryCorrosion.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  dryCorrosion: inspection.outerWall.dryCorrosion.copyWith(
+                    photos: [
+                      ...inspection.outerWall.dryCorrosion.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -314,11 +369,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.tileDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  tileDamage: inspection.outerWall.tileDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  tileDamage: inspection.outerWall.tileDamage.copyWith(
+                    photos: [
+                      ...inspection.outerWall.tileDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -386,11 +460,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
-              photos: inspection.outerWall.tileDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              photos: inspection.outerWall.tileWideDamage.photos,
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  tileWideDamage: inspection.outerWall.tileWideDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  tileWideDamage: inspection.outerWall.tileWideDamage.copyWith(
+                    photos: [
+                      ...inspection.outerWall.tileWideDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -436,11 +529,27 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.tileFloat.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  tileFloat: inspection.outerWall.tileFloat.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  tileFloat: inspection.outerWall.tileFloat.copyWith(
+                    photos: [...inspection.outerWall.tileFloat.photos, ...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -486,11 +595,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.paintDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  paintDamage: inspection.outerWall.paintDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  paintDamage: inspection.outerWall.paintDamage.copyWith(
+                    photos: [
+                      ...inspection.outerWall.paintDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -536,11 +664,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.paintFloat.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  paintFloat: inspection.outerWall.paintFloat.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  paintFloat: inspection.outerWall.paintFloat.copyWith(
+                    photos: [
+                      ...inspection.outerWall.paintFloat.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -608,11 +755,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.otherDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  otherDamage: inspection.outerWall.otherDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  otherDamage: inspection.outerWall.otherDamage.copyWith(
+                    photos: [
+                      ...inspection.outerWall.otherDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -680,11 +846,32 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.otherWideDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  otherWideDamage:
+                      inspection.outerWall.otherWideDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  otherWideDamage:
+                      inspection.outerWall.otherWideDamage.copyWith(
+                    photos: [
+                      ...inspection.outerWall.otherWideDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -730,11 +917,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.otherCorrosion.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  otherCorrosion: inspection.outerWall.otherCorrosion.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  otherCorrosion: inspection.outerWall.otherCorrosion.copyWith(
+                    photos: [
+                      ...inspection.outerWall.otherCorrosion.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -780,11 +986,30 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.otherFloat.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  otherFloat: inspection.outerWall.otherFloat.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  otherFloat: inspection.outerWall.otherFloat.copyWith(
+                    photos: [
+                      ...inspection.outerWall.otherFloat.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -830,11 +1055,32 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.rainWallSealing.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  rainWallSealing:
+                      inspection.outerWall.rainWallSealing.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  rainWallSealing:
+                      inspection.outerWall.rainWallSealing.copyWith(
+                    photos: [
+                      ...inspection.outerWall.rainWallSealing.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -879,11 +1125,27 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.rainGap.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  rainGap: inspection.outerWall.rainGap.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  rainGap: inspection.outerWall.rainGap.copyWith(
+                    photos: [...inspection.outerWall.rainGap.photos, ...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -931,11 +1193,32 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.rainCeilingSealing.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  rainCeilingSealing:
+                      inspection.outerWall.rainCeilingSealing.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  rainCeilingSealing:
+                      inspection.outerWall.rainCeilingSealing.copyWith(
+                    photos: [
+                      ...inspection.outerWall.rainCeilingSealing.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],
@@ -981,11 +1264,32 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.outerWall.rainCeilingLeak.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final outerWall = inspection.outerWall.copyWith(
+                  rainCeilingLeak:
+                      inspection.outerWall.rainCeilingLeak.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final outerWall = inspection.outerWall.copyWith(
+                  rainCeilingLeak:
+                      inspection.outerWall.rainCeilingLeak.copyWith(
+                    photos: [
+                      ...inspection.outerWall.rainCeilingLeak.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+              },
             ),
           ),
         ],

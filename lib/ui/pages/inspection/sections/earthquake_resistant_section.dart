@@ -4,6 +4,7 @@ import 'package:inspection_app/data/entities/earthquake_resistant/earthquake_res
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -129,11 +130,25 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         ),
         SectionItem(
           axis: Axis.vertical,
-          title: '写真',
           child: PhotoCaptionsItem(
             photos: inspection.earthquakeResistant.photos,
-            onChange: (photos) {},
-            onTapAdd: () {},
+            onChange: (photos) {
+              final earthquakeResistant =
+                  inspection.earthquakeResistant.copyWith(
+                photos: [...photos],
+              );
+              controller.updateEarthquakeResistant(earthquakeResistant);
+            },
+            onTapAdd: () async {
+              final paths = await ImageSourceSheet.show(context);
+              if (paths.isEmpty) return;
+              final news = await controller.createNewPhotos(paths);
+              final earthquakeResistant =
+                  inspection.earthquakeResistant.copyWith(
+                photos: [...inspection.earthquakeResistant.photos, ...news],
+              );
+              controller.updateEarthquakeResistant(earthquakeResistant);
+            },
           ),
         ),
       ],

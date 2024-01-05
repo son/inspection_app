@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
@@ -98,11 +99,27 @@ class BalconySection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.balcony.foundation.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final balcony = inspection.balcony.copyWith(
+                  foundation: inspection.balcony.foundation.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateBalcony(balcony);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final balcony = inspection.balcony.copyWith(
+                  foundation: inspection.balcony.foundation.copyWith(
+                    photos: [...inspection.balcony.foundation.photos, ...news],
+                  ),
+                );
+                controller.updateBalcony(balcony);
+              },
             ),
           ),
         ],
@@ -148,11 +165,30 @@ class BalconySection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.balcony.waterProofLayer.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final balcony = inspection.balcony.copyWith(
+                  waterProofLayer: inspection.balcony.waterProofLayer.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateBalcony(balcony);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final balcony = inspection.balcony.copyWith(
+                  waterProofLayer: inspection.balcony.waterProofLayer.copyWith(
+                    photos: [
+                      ...inspection.balcony.waterProofLayer.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateBalcony(balcony);
+              },
             ),
           ),
         ],

@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -83,11 +84,27 @@ class AntDamageSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.antDamage.antDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final antDamage = inspection.antDamage.copyWith(
+                  antDamage: inspection.antDamage.antDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateAntDamage(antDamage);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final antDamage = inspection.antDamage.copyWith(
+                  antDamage: inspection.antDamage.antDamage.copyWith(
+                    photos: [...inspection.antDamage.antDamage.photos, ...news],
+                  ),
+                );
+                controller.updateAntDamage(antDamage);
+              },
             ),
           ),
         ],

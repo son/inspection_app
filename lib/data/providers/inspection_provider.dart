@@ -206,43 +206,49 @@ class InspectionNotifier extends StateNotifier<Inspection> {
     state = state.copyWith(earthquakeResistant: earthquakeResistant);
   }
 
-  void updateBlueprints(List<String> paths) async {
-    final urls = await Future.wait(paths.map(
-        (path) => ref.read(imageRepositoryProvider).uploadImage(path))).then(
-      (value) => value.whereType<String>().toList(),
-    );
-    final news = urls.map((url) => Photo(image: url)).toList();
+  Future<void> updateBlueprints(List<String> paths) async {
+    final news = await createNewPhotos(paths);
     state = state.copyWith(blueprints: [...state.blueprints, ...news]);
     await ref.read(inspectionListProvider.notifier).updateInspection(state);
   }
 
-  void deleteBlueprint(String url) async {
+  Future<void> deleteBlueprint(String url) async {
     final news = state.blueprints
         .whereNot((blueprint) => blueprint.image == url)
         .toList();
     state = state.copyWith(blueprints: news);
-    await Future.wait([
+    await (
       ref.read(imageRepositoryProvider).deleteImage(url),
       ref.read(inspectionListProvider.notifier).updateInspection(state),
-    ]);
+    ).wait;
   }
 
-  void updatePhotos(List<String> paths) async {
-    final urls = await Future.wait(paths.map(
-        (path) => ref.read(imageRepositoryProvider).uploadImage(path))).then(
-      (value) => value.whereType<String>().toList(),
-    );
-    final news = urls.map((url) => Photo(image: url)).toList();
+  Future<void> updatePhotos(List<String> paths) async {
+    final news = await createNewPhotos(paths);
     state = state.copyWith(photos: [...state.photos, ...news]);
     await ref.read(inspectionListProvider.notifier).updateInspection(state);
   }
 
-  void deletePhoto(String url) async {
+  Future<void> deletePhoto(String url) async {
     final news = state.photos.whereNot((photo) => photo.image == url).toList();
     state = state.copyWith(photos: news);
-    await Future.wait([
+    await (
       ref.read(imageRepositoryProvider).deleteImage(url),
       ref.read(inspectionListProvider.notifier).updateInspection(state),
-    ]);
+    ).wait;
+  }
+
+  Future<List<Photo>> createNewPhotos(List<String> paths) async {
+    final urls = await Future.wait(paths.map(
+        (path) => ref.read(imageRepositoryProvider).uploadImage(path))).then(
+      (value) => value.whereType<String>().toList(),
+    );
+    return urls.map((url) => Photo(image: url)).toList();
+  }
+
+  Future<void> updateSpecificPhoto(List<String> paths) async {
+    final news = await createNewPhotos(paths);
+    state = state.copyWith(blueprints: [...state.blueprints, ...news]);
+    await ref.read(inspectionListProvider.notifier).updateInspection(state);
   }
 }

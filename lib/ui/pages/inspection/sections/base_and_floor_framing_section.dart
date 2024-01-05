@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -87,11 +88,32 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.baseAndFloorFraming.damage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final baseAndFloorFraming =
+                    inspection.baseAndFloorFraming.copyWith(
+                  damage: inspection.baseAndFloorFraming.damage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateBaseAndFloorFraming(baseAndFloorFraming);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final baseAndFloorFraming =
+                    inspection.baseAndFloorFraming.copyWith(
+                  damage: inspection.baseAndFloorFraming.damage.copyWith(
+                    photos: [
+                      ...inspection.baseAndFloorFraming.damage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateBaseAndFloorFraming(baseAndFloorFraming);
+              },
             ),
           ),
         ],

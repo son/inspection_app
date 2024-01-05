@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/pages/image/images_page.dart';
@@ -32,7 +31,7 @@ class BlueprintsSectionItem extends HookConsumerWidget {
               AddImageItem(
                 onTap: () async {
                   final paths = await ImageSourceSheet.show(context);
-                  if (paths == null) return;
+                  if (paths.isEmpty) return;
                   controller.updateBlueprints(paths);
                 },
                 size: size,
@@ -47,6 +46,10 @@ class BlueprintsSectionItem extends HookConsumerWidget {
                           context: context,
                           images: blueprints.map((e) => e.image).toList(),
                           initialIndex: blueprints.indexOf(blueprint),
+                          onTapDelete: (url) {
+                            controller.deleteBlueprint(url);
+                            Navigator.of(context).pop();
+                          },
                         );
                       },
                     ),

@@ -4,6 +4,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
@@ -91,11 +92,27 @@ class RoofSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.roof.damage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final roof = inspection.roof.copyWith(
+                  damage: inspection.roof.damage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateRoof(roof);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final roof = inspection.roof.copyWith(
+                  damage: inspection.roof.damage.copyWith(
+                    photos: [...inspection.roof.damage.photos, ...news],
+                  ),
+                );
+                controller.updateRoof(roof);
+              },
             ),
           ),
         ],
@@ -143,11 +160,32 @@ class RoofSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.roof.waterProofLayerDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final roof = inspection.roof.copyWith(
+                  waterProofLayerDamage:
+                      inspection.roof.waterProofLayerDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateRoof(roof);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final roof = inspection.roof.copyWith(
+                  waterProofLayerDamage:
+                      inspection.roof.waterProofLayerDamage.copyWith(
+                    photos: [
+                      ...inspection.roof.waterProofLayerDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateRoof(roof);
+              },
             ),
           ),
         ],

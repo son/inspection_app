@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -85,11 +86,32 @@ class CeilingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
-              photos: inspection.innerWall.foundationDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              photos: inspection.ceiling.foundationDamage.photos,
+              onChange: (photos) {
+                final ceiling = inspection.ceiling.copyWith(
+                  foundationDamage:
+                      inspection.ceiling.foundationDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateCeiling(ceiling);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final ceiling = inspection.ceiling.copyWith(
+                  foundationDamage:
+                      inspection.ceiling.foundationDamage.copyWith(
+                    photos: [
+                      ...inspection.ceiling.foundationDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateCeiling(ceiling);
+              },
             ),
           ),
         ],
@@ -124,11 +146,30 @@ class CeilingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
-              photos: inspection.innerWall.foundationDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              photos: inspection.ceiling.rainCeilingLeak.photos,
+              onChange: (photos) {
+                final ceiling = inspection.ceiling.copyWith(
+                  rainCeilingLeak: inspection.ceiling.rainCeilingLeak.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateCeiling(ceiling);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final ceiling = inspection.ceiling.copyWith(
+                  rainCeilingLeak: inspection.ceiling.rainCeilingLeak.copyWith(
+                    photos: [
+                      ...inspection.ceiling.rainCeilingLeak.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateCeiling(ceiling);
+              },
             ),
           ),
         ],

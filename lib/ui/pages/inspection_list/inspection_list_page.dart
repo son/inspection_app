@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/data/providers/auth/core.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
@@ -44,7 +43,6 @@ class InspectionListPage extends HookConsumerWidget {
                       .read(inspectionListProvider.notifier)
                       .createNewInspection();
                   if (inspectionId == null) {
-                    
                     // TODO: エラー出す
                     return;
                   }

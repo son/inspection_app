@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/ui/components/confirm_dialog.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 
 class ImagesPage extends HookConsumerWidget {
@@ -9,15 +10,18 @@ class ImagesPage extends HookConsumerWidget {
     super.key,
     required this.images,
     required this.initialIndex,
+    required this.onTapDelete,
   });
 
   final List<String> images;
   final int initialIndex;
+  final Function(String) onTapDelete;
 
   static Future<void> show({
     required BuildContext context,
     required List<String> images,
     required int initialIndex,
+    required Function(String) onTapDelete,
   }) {
     return showModalBottomSheet(
       context: context,
@@ -25,7 +29,11 @@ class ImagesPage extends HookConsumerWidget {
       isScrollControlled: true,
       enableDrag: true,
       useRootNavigator: true,
-      builder: (_) => ImagesPage(images: images, initialIndex: initialIndex),
+      builder: (_) => ImagesPage(
+        images: images,
+        initialIndex: initialIndex,
+        onTapDelete: onTapDelete,
+      ),
     );
   }
 
@@ -96,8 +104,14 @@ class ImagesPage extends HookConsumerWidget {
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    // delete
+                  onTap: () async {
+                    final canGo = await ConfirmDialog.show(
+                      context: context,
+                      title: '画像を削除しますか?',
+                      caption: '削除した画像は元に戻せません。',
+                    );
+                    if (!canGo) return;
+                    onTapDelete(images[controller.page!.toInt()]);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(8),

@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -80,11 +81,27 @@ class FloorSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.floor.damage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final floor = inspection.floor.copyWith(
+                  damage: inspection.floor.damage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFloor(floor);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final floor = inspection.floor.copyWith(
+                  damage: inspection.floor.damage.copyWith(
+                    photos: [...inspection.floor.damage.photos, ...news],
+                  ),
+                );
+                controller.updateFloor(floor);
+              },
             ),
           ),
         ],
@@ -115,11 +132,27 @@ class FloorSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.floor.sinking.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final floor = inspection.floor.copyWith(
+                  sinking: inspection.floor.sinking.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFloor(floor);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final floor = inspection.floor.copyWith(
+                  sinking: inspection.floor.sinking.copyWith(
+                    photos: [...inspection.floor.sinking.photos, ...news],
+                  ),
+                );
+                controller.updateFloor(floor);
+              },
             ),
           ),
         ],
@@ -174,11 +207,27 @@ class FloorSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.floor.inclination.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final floor = inspection.floor.copyWith(
+                  inclination: inspection.floor.inclination.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFloor(floor);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final floor = inspection.floor.copyWith(
+                  inclination: inspection.floor.inclination.copyWith(
+                    photos: [...inspection.floor.inclination.photos, ...news],
+                  ),
+                );
+                controller.updateFloor(floor);
+              },
             ),
           ),
         ],

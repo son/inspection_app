@@ -4,6 +4,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -64,11 +65,30 @@ class PipingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.piping.supplyRustyWater.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final piping = inspection.piping.copyWith(
+                  supplyRustyWater: inspection.piping.supplyRustyWater.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final piping = inspection.piping.copyWith(
+                  supplyRustyWater: inspection.piping.supplyRustyWater.copyWith(
+                    photos: [
+                      ...inspection.piping.supplyRustyWater.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
             ),
           ),
         ],
@@ -102,11 +122,27 @@ class PipingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.piping.sewerStuck.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final piping = inspection.piping.copyWith(
+                  sewerStuck: inspection.piping.sewerStuck.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final piping = inspection.piping.copyWith(
+                  sewerStuck: inspection.piping.sewerStuck.copyWith(
+                    photos: [...inspection.piping.sewerStuck.photos, ...news],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
             ),
           ),
         ],
@@ -141,11 +177,30 @@ class PipingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.piping.sewerWaterLeak.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final piping = inspection.piping.copyWith(
+                  sewerWaterLeak: inspection.piping.sewerWaterLeak.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final piping = inspection.piping.copyWith(
+                  sewerWaterLeak: inspection.piping.sewerWaterLeak.copyWith(
+                    photos: [
+                      ...inspection.piping.sewerWaterLeak.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
             ),
           ),
         ],
@@ -178,11 +233,27 @@ class PipingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.piping.ductLoss.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final piping = inspection.piping.copyWith(
+                  ductLoss: inspection.piping.ductLoss.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final piping = inspection.piping.copyWith(
+                  ductLoss: inspection.piping.ductLoss.copyWith(
+                    photos: [...inspection.piping.ductLoss.photos, ...news],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
             ),
           ),
         ],

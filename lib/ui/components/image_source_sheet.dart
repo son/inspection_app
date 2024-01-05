@@ -8,8 +8,8 @@ import 'package:inspection_app/ui/components/text_styles.dart';
 class ImageSourceSheet extends HookConsumerWidget {
   const ImageSourceSheet({super.key});
 
-  static Future<List<String>?> show(BuildContext context) {
-    return showModalBottomSheet(
+  static Future<List<String>> show(BuildContext context) {
+    return showModalBottomSheet<List<String>>(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -18,7 +18,7 @@ class ImageSourceSheet extends HookConsumerWidget {
         ),
       ),
       builder: (_) => const ImageSourceSheet(),
-    );
+    ).then((value) => value ?? []);
   }
 
   @override
