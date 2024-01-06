@@ -6,8 +6,9 @@ class RoundButton extends StatelessWidget {
   const RoundButton({
     Key? key,
     required this.title,
-    required this.textColor,
-    required this.backgroundColor,
+    this.textColor = Colors.white,
+    this.backgroundColor = Colors.blueAccent,
+    this.borderColor,
     this.icon,
     this.isEnable = true,
     required this.onTap,
@@ -16,6 +17,7 @@ class RoundButton extends StatelessWidget {
   final String title;
   final Color textColor;
   final Color backgroundColor;
+  final Color? borderColor;
   final Widget? icon;
   final bool isEnable;
   final Function() onTap;
@@ -33,6 +35,10 @@ class RoundButton extends StatelessWidget {
             decoration: BoxDecoration(
               color: backgroundColor,
               borderRadius: BorderRadius.circular(40),
+              border: Border.all(
+                color: borderColor ?? backgroundColor,
+                width: 1,
+              ),
             ),
             child: Row(
               children: [

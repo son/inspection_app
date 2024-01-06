@@ -6,7 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/confirm_dialog.dart';
+import 'package:inspection_app/ui/components/notification_bar.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
+import 'package:inspection_app/ui/components/round_button.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/balcony_section.dart';
@@ -64,8 +66,12 @@ class InspectionPage extends HookConsumerWidget {
         extendBodyBehindAppBar: true,
         appBar: PrimaryAppBar(
           actions: [
-            TextButton(
-              onPressed: () async {
+            RoundButton(
+              title: '削除',
+              textColor: Colors.redAccent,
+              backgroundColor: Colors.white,
+              borderColor: Colors.black12,
+              onTap: () async {
                 final canGo = await ConfirmDialog.show(
                   context: context,
                   title: '削除しますか？',
@@ -74,29 +80,30 @@ class InspectionPage extends HookConsumerWidget {
                 if (!canGo) return;
                 await controller.deleteInspection(inspectionId);
                 Navigator.of(context).pop();
+                NotificationBar.showDelete();
               },
-              child: Text(
-                '削除',
-                style: TextStyles.n16.copyWith(color: Colors.red),
-              ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                'PDF',
-                style: TextStyles.n16.copyWith(color: Colors.blue),
-              ),
+            const SizedBox(width: 8),
+            RoundButton(
+              title: 'データ出力',
+              textColor: Colors.blueAccent,
+              backgroundColor: Colors.white,
+              borderColor: Colors.black12,
+              onTap: () async {},
             ),
-            TextButton(
-              onPressed: () async {
+            const SizedBox(width: 8),
+            RoundButton(
+              title: '保存',
+              textColor: Colors.blueAccent,
+              backgroundColor: Colors.white,
+              borderColor: Colors.black12,
+              onTap: () async {
                 final inspection = ref.read(inspectionProvider(inspectionId));
                 await controller.updateInspection(inspection);
+                NotificationBar.showSave();
               },
-              child: Text(
-                '保存',
-                style: TextStyles.n16.copyWith(color: Colors.blue),
-              ),
             ),
+            const SizedBox(width: 16),
           ],
         ),
         body: ProviderScope(

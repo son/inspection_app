@@ -24,6 +24,7 @@ import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/repositories/image_repository.dart';
+import 'package:inspection_app/ui/components/notification_bar.dart';
 
 final inspectionProvider =
     StateNotifierProvider.family<InspectionNotifier, Inspection, String>(
@@ -239,10 +240,12 @@ class InspectionNotifier extends StateNotifier<Inspection> {
   }
 
   Future<List<Photo>> createNewPhotos(List<String> paths) async {
+    final cancel = NotificationBar.showUploading();
     final urls = await Future.wait(paths.map(
         (path) => ref.read(imageRepositoryProvider).uploadImage(path))).then(
       (value) => value.whereType<String>().toList(),
     );
+    cancel();
     return urls.map((url) => Photo(image: url)).toList();
   }
 
