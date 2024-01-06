@@ -202,11 +202,27 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.foundation.damage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final foundation = inspection.foundation.copyWith(
+                  damage: inspection.foundation.damage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final foundation = inspection.foundation.copyWith(
+                  damage: inspection.foundation.damage.copyWith(
+                    photos: [...inspection.foundation.damage.photos, ...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+              },
             ),
           ),
         ],
