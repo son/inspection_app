@@ -20,4 +20,13 @@ class Concrete with _$Concrete {
 
   factory Concrete.fromJson(Map<String, dynamic> json) =>
       _$ConcreteFromJson(json);
+
+  Concrete allPassed() {
+    return copyWith(
+      compressiveStrength1:
+          compressiveStrength1.copyWith(result: Result.passed),
+      compressiveStrength2:
+          compressiveStrength2.copyWith(result: Result.passed),
+    );
+  }
 }

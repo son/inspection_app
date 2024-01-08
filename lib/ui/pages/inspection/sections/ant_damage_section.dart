@@ -27,7 +27,7 @@ class AntDamageSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateAntDamage(inspection.antDamage.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

@@ -19,4 +19,12 @@ class Roof with _$Roof {
   }) = _Roof;
 
   factory Roof.fromJson(Map<String, dynamic> json) => _$RoofFromJson(json);
+
+  Roof allPassed() {
+    return copyWith(
+      damage: damage.copyWith(result: Result.passed),
+      waterProofLayerDamage:
+          waterProofLayerDamage.copyWith(result: Result.passed),
+    );
+  }
 }

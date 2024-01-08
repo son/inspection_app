@@ -34,4 +34,25 @@ class OuterWall with _$OuterWall {
 
   factory OuterWall.fromJson(Map<String, dynamic> json) =>
       _$OuterWallFromJson(json);
+
+  OuterWall allPassed() {
+    return copyWith(
+      dryDamage: dryDamage.copyWith(result: Result.passed),
+      dryWideDamage: dryWideDamage.copyWith(result: Result.passed),
+      dryCorrosion: dryCorrosion.copyWith(result: Result.passed),
+      tileDamage: tileDamage.copyWith(result: Result.passed),
+      tileWideDamage: tileWideDamage.copyWith(result: Result.passed),
+      tileFloat: tileFloat.copyWith(result: Result.passed),
+      paintDamage: paintDamage.copyWith(result: Result.passed),
+      paintFloat: paintFloat.copyWith(result: Result.passed),
+      otherDamage: otherDamage.copyWith(result: Result.passed),
+      otherWideDamage: otherWideDamage.copyWith(result: Result.passed),
+      otherCorrosion: otherCorrosion.copyWith(result: Result.passed),
+      otherFloat: otherFloat.copyWith(result: Result.passed),
+      rainWallSealing: rainWallSealing.copyWith(result: Result.passed),
+      rainGap: rainGap.copyWith(result: Result.passed),
+      rainCeilingSealing: rainCeilingSealing.copyWith(result: Result.passed),
+      rainCeilingLeak: rainCeilingLeak.copyWith(result: Result.passed),
+    );
+  }
 }

@@ -28,7 +28,7 @@ class BalconySection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateBalcony(inspection.balcony.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

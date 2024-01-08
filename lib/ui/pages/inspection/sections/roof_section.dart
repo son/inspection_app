@@ -27,7 +27,7 @@ class RoofSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateRoof(inspection.roof.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

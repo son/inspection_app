@@ -19,4 +19,11 @@ class RoofFrame with _$RoofFrame {
 
   factory RoofFrame.fromJson(Map<String, dynamic> json) =>
       _$RoofFrameFromJson(json);
+
+  RoofFrame allPassed() {
+    return copyWith(
+      foundationDamage: foundationDamage.copyWith(result: Result.passed),
+      rainRoofFrameLeak: rainRoofFrameLeak.copyWith(result: Result.passed),
+    );
+  }
 }

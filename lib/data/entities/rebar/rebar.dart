@@ -19,4 +19,11 @@ class Rebar with _$Rebar {
   }) = _Rebar;
 
   factory Rebar.fromJson(Map<String, dynamic> json) => _$RebarFromJson(json);
+
+  Rebar allPassed() {
+    return copyWith(
+      side: side.copyWith(result: Result.passed),
+      bottom: bottom.copyWith(result: Result.passed),
+    );
+  }
 }

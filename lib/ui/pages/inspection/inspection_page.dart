@@ -9,7 +9,6 @@ import 'package:inspection_app/ui/components/confirm_dialog.dart';
 import 'package:inspection_app/ui/components/notification_bar.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/round_button.dart';
-import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/balcony_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/base_and_floor_framing_section.dart';

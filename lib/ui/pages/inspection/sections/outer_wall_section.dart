@@ -28,7 +28,7 @@ class OuterWallSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateOuterWall(inspection.outerWall.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

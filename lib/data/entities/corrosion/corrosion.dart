@@ -18,4 +18,10 @@ class Corrosion with _$Corrosion {
 
   factory Corrosion.fromJson(Map<String, dynamic> json) =>
       _$CorrosionFromJson(json);
+
+  Corrosion allPassed() {
+    return copyWith(
+      corrosion: corrosion.copyWith(result: Result.passed),
+    );
+  }
 }

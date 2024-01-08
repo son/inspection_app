@@ -27,7 +27,7 @@ class FloorSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateFloor(inspection.floor.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

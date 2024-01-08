@@ -19,6 +19,12 @@ class AntDamage with _$AntDamage {
 
   factory AntDamage.fromJson(Map<String, dynamic> json) =>
       _$AntDamageFromJson(json);
+
+  AntDamage allPassed() {
+    return copyWith(
+      antDamage: antDamage.copyWith(result: Result.passed),
+    );
+  }
 }
 
 enum AccessPanel {

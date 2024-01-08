@@ -27,7 +27,8 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateBaseAndFloorFraming(
+                inspection.baseAndFloorFraming.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

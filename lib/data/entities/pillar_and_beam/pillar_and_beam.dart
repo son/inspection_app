@@ -21,4 +21,13 @@ class PillarAndBeam with _$PillarAndBeam {
 
   factory PillarAndBeam.fromJson(Map<String, dynamic> json) =>
       _$PillarAndBeamFromJson(json);
+
+  PillarAndBeam allPassed() {
+    return copyWith(
+      pillarDamage: pillarDamage.copyWith(result: Result.passed),
+      pillarInclination: pillarInclination.copyWith(result: Result.passed),
+      beamDamage: beamDamage.copyWith(result: Result.passed),
+      beamDeflection: beamDeflection.copyWith(result: Result.passed),
+    );
+  }
 }

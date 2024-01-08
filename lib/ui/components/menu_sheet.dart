@@ -62,7 +62,7 @@ class MenuSheet extends HookConsumerWidget {
           ...<({String title, IconData icon, Function() onTap})>[
             (
               title: '全て問題なし',
-              icon: Icons.add,
+              icon: Icons.check_rounded,
               onTap: onTapAllPassed,
             ),
             (
@@ -74,10 +74,7 @@ class MenuSheet extends HookConsumerWidget {
               .map((item) => _Item(
                     title: item.title,
                     icon: item.icon,
-                    onTap: () {
-                      Navigator.of(context);
-                      item.onTap();
-                    },
+                    onTap: item.onTap,
                   ))
               .toList(),
         ],
@@ -101,7 +98,10 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: onTap,
+      onTap: () {
+        Navigator.pop(context);
+        onTap();
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Row(

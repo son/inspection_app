@@ -25,9 +25,7 @@ class LifelineSection extends HookConsumerWidget {
       title: '給排水、電気、ガス設備',
       actions: [
         MenuButton(
-          onTapAllPassed: () {
-            print('sss');
-          },
+          onTapAllPassed: () {},
           onTapNotApplicable: () {
             print('sss');
           },

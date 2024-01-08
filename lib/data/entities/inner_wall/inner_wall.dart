@@ -20,4 +20,13 @@ class InnerWall with _$InnerWall {
 
   factory InnerWall.fromJson(Map<String, dynamic> json) =>
       _$InnerWallFromJson(json);
+
+  InnerWall allPassed() {
+    return copyWith(
+      foundationDamage: foundationDamage.copyWith(result: Result.passed),
+      foundationInclination:
+          foundationInclination.copyWith(result: Result.passed),
+      rainInnerWallLeak: rainInnerWallLeak.copyWith(result: Result.passed),
+    );
+  }
 }

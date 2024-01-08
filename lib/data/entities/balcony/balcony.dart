@@ -20,4 +20,11 @@ class Balcony with _$Balcony {
 
   factory Balcony.fromJson(Map<String, dynamic> json) =>
       _$BalconyFromJson(json);
+
+  Balcony allPassed() {
+    return copyWith(
+      foundation: foundation.copyWith(result: Result.passed),
+      waterProofLayer: waterProofLayer.copyWith(result: Result.passed),
+    );
+  }
 }

@@ -30,7 +30,7 @@ class FoundationSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateFoundation(inspection.foundation.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

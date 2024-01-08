@@ -21,4 +21,14 @@ class Piping with _$Piping {
   }) = _Piping;
 
   factory Piping.fromJson(Map<String, dynamic> json) => _$PipingFromJson(json);
+
+  Piping allPassed() {
+    return copyWith(
+      supplyRustyWater: supplyRustyWater.copyWith(result: Result.passed),
+      supplyWaterLeak: supplyWaterLeak.copyWith(result: Result.passed),
+      sewerStuck: sewerStuck.copyWith(result: Result.passed),
+      sewerWaterLeak: sewerWaterLeak.copyWith(result: Result.passed),
+      ductLoss: ductLoss.copyWith(result: Result.passed),
+    );
+  }
 }

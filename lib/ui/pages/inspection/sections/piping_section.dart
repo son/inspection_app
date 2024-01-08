@@ -26,7 +26,7 @@ class PipingSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updatePiping(inspection.piping.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

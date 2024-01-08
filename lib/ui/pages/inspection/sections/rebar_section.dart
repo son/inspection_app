@@ -26,7 +26,7 @@ class RebarSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateRebar(inspection.rebar.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

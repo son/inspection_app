@@ -23,4 +23,15 @@ class Foundation with _$Foundation {
 
   factory Foundation.fromJson(Map<String, dynamic> json) =>
       _$FoundationFromJson(json);
+
+  Foundation allPassed() {
+    return copyWith(
+      crack: crack.copyWith(result: Result.passed),
+      damage: damage.copyWith(result: Result.passed),
+      concreteDeterioration:
+          concreteDeterioration.copyWith(result: Result.passed),
+      rust: rust.copyWith(result: Result.passed),
+      rebarExposure: rebarExposure.copyWith(result: Result.passed),
+    );
+  }
 }

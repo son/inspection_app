@@ -20,6 +20,13 @@ class Ceiling with _$Ceiling {
 
   factory Ceiling.fromJson(Map<String, dynamic> json) =>
       _$CeilingFromJson(json);
+
+  Ceiling allPassed() {
+    return copyWith(
+      foundationDamage: foundationDamage.copyWith(result: Result.passed),
+      rainCeilingLeak: rainCeilingLeak.copyWith(result: Result.passed),
+    );
+  }
 }
 
 enum AccessPanel {

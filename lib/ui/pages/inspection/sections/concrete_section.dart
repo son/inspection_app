@@ -26,7 +26,7 @@ class ConcreteSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateConcrete(inspection.concrete.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

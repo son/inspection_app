@@ -27,7 +27,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller
+                .updatePillarAndBeam(inspection.pillarAndBeam.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

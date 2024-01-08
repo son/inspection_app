@@ -26,7 +26,7 @@ class InnerWallSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateInnerWall(inspection.innerWall.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

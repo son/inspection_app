@@ -18,4 +18,10 @@ class BaseAndFloorFraming with _$BaseAndFloorFraming {
 
   factory BaseAndFloorFraming.fromJson(Map<String, dynamic> json) =>
       _$BaseAndFloorFramingFromJson(json);
+
+  BaseAndFloorFraming allPassed() {
+    return copyWith(
+      damage: damage.copyWith(result: Result.passed),
+    );
+  }
 }

@@ -26,7 +26,7 @@ class CorrosionSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateCorrosion(inspection.corrosion.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

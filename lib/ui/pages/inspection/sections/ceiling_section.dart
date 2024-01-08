@@ -27,7 +27,7 @@ class CeilingSection extends HookConsumerWidget {
       actions: [
         MenuButton(
           onTapAllPassed: () {
-            print('sss');
+            controller.updateCeiling(inspection.ceiling.allPassed());
           },
           onTapNotApplicable: () {
             print('sss');

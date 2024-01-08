@@ -19,4 +19,12 @@ class Floor with _$Floor {
   }) = _Floor;
 
   factory Floor.fromJson(Map<String, dynamic> json) => _$FloorFromJson(json);
+
+  Floor allPassed() {
+    return copyWith(
+      damage: damage.copyWith(result: Result.passed),
+      sinking: sinking.copyWith(result: Result.passed),
+      inclination: inclination.copyWith(result: Result.passed),
+    );
+  }
 }
