@@ -23,9 +23,9 @@ mixin _$Damage {
   Result get result => throw _privateConstructorUsedError;
   List<Direction> get directions => throw _privateConstructorUsedError;
   double? get max => throw _privateConstructorUsedError;
-  String get part => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  String get situation => throw _privateConstructorUsedError;
+  String? get part => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
+  String? get situation => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
   List<String> get details => throw _privateConstructorUsedError;
 
@@ -43,9 +43,9 @@ abstract class $DamageCopyWith<$Res> {
       {Result result,
       List<Direction> directions,
       double? max,
-      String part,
-      String content,
-      String situation,
+      String? part,
+      String? content,
+      String? situation,
       List<Photo> photos,
       List<String> details});
 }
@@ -66,9 +66,9 @@ class _$DamageCopyWithImpl<$Res, $Val extends Damage>
     Object? result = null,
     Object? directions = null,
     Object? max = freezed,
-    Object? part = null,
-    Object? content = null,
-    Object? situation = null,
+    Object? part = freezed,
+    Object? content = freezed,
+    Object? situation = freezed,
     Object? photos = null,
     Object? details = null,
   }) {
@@ -85,18 +85,18 @@ class _$DamageCopyWithImpl<$Res, $Val extends Damage>
           ? _value.max
           : max // ignore: cast_nullable_to_non_nullable
               as double?,
-      part: null == part
+      part: freezed == part
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      situation: null == situation
+              as String?,
+      situation: freezed == situation
           ? _value.situation
           : situation // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photos: null == photos
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
@@ -119,9 +119,9 @@ abstract class _$$_DamageCopyWith<$Res> implements $DamageCopyWith<$Res> {
       {Result result,
       List<Direction> directions,
       double? max,
-      String part,
-      String content,
-      String situation,
+      String? part,
+      String? content,
+      String? situation,
       List<Photo> photos,
       List<String> details});
 }
@@ -139,9 +139,9 @@ class __$$_DamageCopyWithImpl<$Res>
     Object? result = null,
     Object? directions = null,
     Object? max = freezed,
-    Object? part = null,
-    Object? content = null,
-    Object? situation = null,
+    Object? part = freezed,
+    Object? content = freezed,
+    Object? situation = freezed,
     Object? photos = null,
     Object? details = null,
   }) {
@@ -158,18 +158,18 @@ class __$$_DamageCopyWithImpl<$Res>
           ? _value.max
           : max // ignore: cast_nullable_to_non_nullable
               as double?,
-      part: null == part
+      part: freezed == part
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      situation: null == situation
+              as String?,
+      situation: freezed == situation
           ? _value.situation
           : situation // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photos: null == photos
           ? _value._photos
           : photos // ignore: cast_nullable_to_non_nullable
@@ -190,9 +190,9 @@ class _$_Damage extends _Damage {
       {this.result = Result.none,
       final List<Direction> directions = const <Direction>[],
       this.max,
-      this.part = '',
-      this.content = '',
-      this.situation = '',
+      this.part,
+      this.content,
+      this.situation,
       final List<Photo> photos = const <Photo>[],
       final List<String> details = const <String>[]})
       : _directions = directions,
@@ -218,14 +218,11 @@ class _$_Damage extends _Damage {
   @override
   final double? max;
   @override
-  @JsonKey()
-  final String part;
+  final String? part;
   @override
-  @JsonKey()
-  final String content;
+  final String? content;
   @override
-  @JsonKey()
-  final String situation;
+  final String? situation;
   final List<Photo> _photos;
   @override
   @JsonKey()
@@ -298,9 +295,9 @@ abstract class _Damage extends Damage {
       {final Result result,
       final List<Direction> directions,
       final double? max,
-      final String part,
-      final String content,
-      final String situation,
+      final String? part,
+      final String? content,
+      final String? situation,
       final List<Photo> photos,
       final List<String> details}) = _$_Damage;
   const _Damage._() : super._();
@@ -314,11 +311,11 @@ abstract class _Damage extends Damage {
   @override
   double? get max;
   @override
-  String get part;
+  String? get part;
   @override
-  String get content;
+  String? get content;
   @override
-  String get situation;
+  String? get situation;
   @override
   List<Photo> get photos;
   @override

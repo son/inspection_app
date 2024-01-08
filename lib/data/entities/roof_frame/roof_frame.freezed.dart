@@ -23,7 +23,8 @@ mixin _$RoofFrame {
   Damage get foundationDamage => throw _privateConstructorUsedError;
   Damage get rainRoofFrameLeak => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +41,8 @@ abstract class $RoofFrameCopyWith<$Res> {
       {Damage foundationDamage,
       Damage rainRoofFrameLeak,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get foundationDamage;
   $DamageCopyWith<$Res> get rainRoofFrameLeak;
@@ -62,7 +64,8 @@ class _$RoofFrameCopyWithImpl<$Res, $Val extends RoofFrame>
     Object? foundationDamage = null,
     Object? rainRoofFrameLeak = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       foundationDamage: null == foundationDamage
@@ -77,10 +80,14 @@ class _$RoofFrameCopyWithImpl<$Res, $Val extends RoofFrame>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -112,7 +119,8 @@ abstract class _$$_RoofFrameCopyWith<$Res> implements $RoofFrameCopyWith<$Res> {
       {Damage foundationDamage,
       Damage rainRoofFrameLeak,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get foundationDamage;
@@ -134,7 +142,8 @@ class __$$_RoofFrameCopyWithImpl<$Res>
     Object? foundationDamage = null,
     Object? rainRoofFrameLeak = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_RoofFrame(
       foundationDamage: null == foundationDamage
@@ -149,10 +158,14 @@ class __$$_RoofFrameCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -165,7 +178,8 @@ class _$_RoofFrame extends _RoofFrame {
       {this.foundationDamage = const Damage(),
       this.rainRoofFrameLeak = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_RoofFrame.fromJson(Map<String, dynamic> json) =>
@@ -180,12 +194,14 @@ class _$_RoofFrame extends _RoofFrame {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'RoofFrame(foundationDamage: $foundationDamage, rainRoofFrameLeak: $rainRoofFrameLeak, coverage: $coverage, remarks: $remarks)';
+    return 'RoofFrame(foundationDamage: $foundationDamage, rainRoofFrameLeak: $rainRoofFrameLeak, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -199,13 +215,15 @@ class _$_RoofFrame extends _RoofFrame {
                 other.rainRoofFrameLeak == rainRoofFrameLeak) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, foundationDamage, rainRoofFrameLeak, coverage, remarks);
+  int get hashCode => Object.hash(runtimeType, foundationDamage,
+      rainRoofFrameLeak, coverage, remarks, notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -226,7 +244,8 @@ abstract class _RoofFrame extends RoofFrame {
       {final Damage foundationDamage,
       final Damage rainRoofFrameLeak,
       final Coverage? coverage,
-      final String remarks}) = _$_RoofFrame;
+      final String? remarks,
+      final bool notApplicable}) = _$_RoofFrame;
   const _RoofFrame._() : super._();
 
   factory _RoofFrame.fromJson(Map<String, dynamic> json) =
@@ -239,7 +258,9 @@ abstract class _RoofFrame extends RoofFrame {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_RoofFrameCopyWith<_$_RoofFrame> get copyWith =>

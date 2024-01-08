@@ -6,7 +6,6 @@ import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
-import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
@@ -23,16 +22,6 @@ class EarthquakeResistantSection extends HookConsumerWidget {
 
     return Section(
       title: '耐震性に関する書類の確認',
-      actions: [
-        MenuButton(
-          onTapAllPassed: () {
-            print('sss');
-          },
-          onTapNotApplicable: () {
-            print('sss');
-          },
-        ),
-      ],
       children: [
         SectionItem(
           title: '確認方法',
@@ -120,7 +109,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.earthquakeResistant.remarks,
+            initialText: inspection.earthquakeResistant.remarks ?? '',
             onChange: (text) {
               final earthquakeResistant =
                   inspection.earthquakeResistant.copyWith(remarks: text);

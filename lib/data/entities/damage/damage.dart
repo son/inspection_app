@@ -17,9 +17,9 @@ class Damage with _$Damage {
     @Default(Result.none) Result result,
     @Default(<Direction>[]) List<Direction> directions,
     double? max,
-    @Default('') String part,
-    @Default('') String content,
-    @Default('') String situation,
+    String? part,
+    String? content,
+    String? situation,
     @Default(<Photo>[]) List<Photo> photos,
     @Default(<String>[]) List<String> details,
   }) = _Damage;

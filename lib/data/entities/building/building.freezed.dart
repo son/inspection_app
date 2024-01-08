@@ -28,7 +28,7 @@ mixin _$Building {
   String? get prefecture => throw _privateConstructorUsedError;
   Repairing get repairing => throw _privateConstructorUsedError;
   Renovation get renovation => throw _privateConstructorUsedError;
-  String get findings => throw _privateConstructorUsedError;
+  String? get findings => throw _privateConstructorUsedError;
   @DateTimeOrNullConverter()
   DateTime? get builtAt => throw _privateConstructorUsedError;
 
@@ -52,7 +52,7 @@ abstract class $BuildingCopyWith<$Res> {
       String? prefecture,
       Repairing repairing,
       Renovation renovation,
-      String findings,
+      String? findings,
       @DateTimeOrNullConverter() DateTime? builtAt});
 
   $FloorCopyWith<$Res> get floor;
@@ -82,7 +82,7 @@ class _$BuildingCopyWithImpl<$Res, $Val extends Building>
     Object? prefecture = freezed,
     Object? repairing = null,
     Object? renovation = null,
-    Object? findings = null,
+    Object? findings = freezed,
     Object? builtAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -118,10 +118,10 @@ class _$BuildingCopyWithImpl<$Res, $Val extends Building>
           ? _value.renovation
           : renovation // ignore: cast_nullable_to_non_nullable
               as Renovation,
-      findings: null == findings
+      findings: freezed == findings
           ? _value.findings
           : findings // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       builtAt: freezed == builtAt
           ? _value.builtAt
           : builtAt // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ abstract class _$$_BuildingCopyWith<$Res> implements $BuildingCopyWith<$Res> {
       String? prefecture,
       Repairing repairing,
       Renovation renovation,
-      String findings,
+      String? findings,
       @DateTimeOrNullConverter() DateTime? builtAt});
 
   @override
@@ -210,7 +210,7 @@ class __$$_BuildingCopyWithImpl<$Res>
     Object? prefecture = freezed,
     Object? repairing = null,
     Object? renovation = null,
-    Object? findings = null,
+    Object? findings = freezed,
     Object? builtAt = freezed,
   }) {
     return _then(_$_Building(
@@ -246,10 +246,10 @@ class __$$_BuildingCopyWithImpl<$Res>
           ? _value.renovation
           : renovation // ignore: cast_nullable_to_non_nullable
               as Renovation,
-      findings: null == findings
+      findings: freezed == findings
           ? _value.findings
           : findings // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       builtAt: freezed == builtAt
           ? _value.builtAt
           : builtAt // ignore: cast_nullable_to_non_nullable
@@ -271,7 +271,7 @@ class _$_Building extends _Building {
       this.prefecture,
       this.repairing = const Repairing(),
       this.renovation = const Renovation(),
-      this.findings = '',
+      this.findings,
       @DateTimeOrNullConverter() this.builtAt})
       : super._();
 
@@ -299,8 +299,7 @@ class _$_Building extends _Building {
   @JsonKey()
   final Renovation renovation;
   @override
-  @JsonKey()
-  final String findings;
+  final String? findings;
   @override
   @DateTimeOrNullConverter()
   final DateTime? builtAt;
@@ -372,7 +371,7 @@ abstract class _Building extends Building {
       final String? prefecture,
       final Repairing repairing,
       final Renovation renovation,
-      final String findings,
+      final String? findings,
       @DateTimeOrNullConverter() final DateTime? builtAt}) = _$_Building;
   const _Building._() : super._();
 
@@ -395,7 +394,7 @@ abstract class _Building extends Building {
   @override
   Renovation get renovation;
   @override
-  String get findings;
+  String? get findings;
   @override
   @DateTimeOrNullConverter()
   DateTime? get builtAt;

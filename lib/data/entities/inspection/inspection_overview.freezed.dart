@@ -27,7 +27,7 @@ mixin _$InspectionOverview {
   String? get witnessName => throw _privateConstructorUsedError;
   Building get building => throw _privateConstructorUsedError;
   Lifelines get lifeline => throw _privateConstructorUsedError;
-  String get findings => throw _privateConstructorUsedError;
+  String? get findings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $InspectionOverviewCopyWith<$Res> {
       String? witnessName,
       Building building,
       Lifelines lifeline,
-      String findings});
+      String? findings});
 
   $ScheduleCopyWith<$Res> get schedule;
   $BuildingCopyWith<$Res> get building;
@@ -76,7 +76,7 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
     Object? witnessName = freezed,
     Object? building = null,
     Object? lifeline = null,
-    Object? findings = null,
+    Object? findings = freezed,
   }) {
     return _then(_value.copyWith(
       schedule: null == schedule
@@ -107,10 +107,10 @@ class _$InspectionOverviewCopyWithImpl<$Res, $Val extends InspectionOverview>
           ? _value.lifeline
           : lifeline // ignore: cast_nullable_to_non_nullable
               as Lifelines,
-      findings: null == findings
+      findings: freezed == findings
           ? _value.findings
           : findings // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 
@@ -155,7 +155,7 @@ abstract class _$$_InspectionOverviewCopyWith<$Res>
       String? witnessName,
       Building building,
       Lifelines lifeline,
-      String findings});
+      String? findings});
 
   @override
   $ScheduleCopyWith<$Res> get schedule;
@@ -183,7 +183,7 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
     Object? witnessName = freezed,
     Object? building = null,
     Object? lifeline = null,
-    Object? findings = null,
+    Object? findings = freezed,
   }) {
     return _then(_$_InspectionOverview(
       schedule: null == schedule
@@ -214,10 +214,10 @@ class __$$_InspectionOverviewCopyWithImpl<$Res>
           ? _value.lifeline
           : lifeline // ignore: cast_nullable_to_non_nullable
               as Lifelines,
-      findings: null == findings
+      findings: freezed == findings
           ? _value.findings
           : findings // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -234,7 +234,7 @@ class _$_InspectionOverview extends _InspectionOverview {
       this.witnessName,
       this.building = const Building(),
       this.lifeline = const Lifelines(),
-      this.findings = ''})
+      this.findings})
       : super._();
 
   factory _$_InspectionOverview.fromJson(Map<String, dynamic> json) =>
@@ -258,8 +258,7 @@ class _$_InspectionOverview extends _InspectionOverview {
   @JsonKey()
   final Lifelines lifeline;
   @override
-  @JsonKey()
-  final String findings;
+  final String? findings;
 
   @override
   String toString() {
@@ -317,7 +316,7 @@ abstract class _InspectionOverview extends InspectionOverview {
       final String? witnessName,
       final Building building,
       final Lifelines lifeline,
-      final String findings}) = _$_InspectionOverview;
+      final String? findings}) = _$_InspectionOverview;
   const _InspectionOverview._() : super._();
 
   factory _InspectionOverview.fromJson(Map<String, dynamic> json) =
@@ -338,7 +337,7 @@ abstract class _InspectionOverview extends InspectionOverview {
   @override
   Lifelines get lifeline;
   @override
-  String get findings;
+  String? get findings;
   @override
   @JsonKey(ignore: true)
   _$$_InspectionOverviewCopyWith<_$_InspectionOverview> get copyWith =>

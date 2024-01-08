@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/outer_wall/outer_wall.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -31,7 +32,7 @@ class OuterWallSection extends HookConsumerWidget {
             controller.updateOuterWall(inspection.outerWall.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateOuterWall(const OuterWall(notApplicable: true));
           },
         ),
       ],
@@ -1319,7 +1320,7 @@ class OuterWallSection extends HookConsumerWidget {
           child: PrimaryTextField(
             maxLines: 100,
             textAlign: TextAlign.start,
-            initialText: inspection.outerWall.remarks,
+            initialText: inspection.outerWall.remarks ?? '',
             onChange: (text) {
               final outerWall = inspection.outerWall.copyWith(remarks: text);
               controller.updateOuterWall(outerWall);

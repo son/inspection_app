@@ -30,7 +30,7 @@ class CeilingSection extends HookConsumerWidget {
             controller.updateCeiling(inspection.ceiling.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateCeiling(const Ceiling(notApplicable: true));
           },
         ),
       ],
@@ -74,7 +74,7 @@ class CeilingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.ceiling.foundationDamage.part,
+              initialText: inspection.ceiling.foundationDamage.part ?? '',
               onChange: (text) {
                 final foundationDamage =
                     inspection.ceiling.foundationDamage.copyWith(part: text);
@@ -134,7 +134,7 @@ class CeilingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.ceiling.rainCeilingLeak.part,
+              initialText: inspection.ceiling.rainCeilingLeak.part ?? '',
               onChange: (text) {
                 final rainCeilingLeak =
                     inspection.ceiling.rainCeilingLeak.copyWith(part: text);
@@ -196,7 +196,7 @@ class CeilingSection extends HookConsumerWidget {
           axis: Axis.vertical,
           title: '備考',
           child: PrimaryTextField(
-            initialText: inspection.ceiling.remarks,
+            initialText: inspection.ceiling.remarks ?? '',
             textAlign: TextAlign.start,
             maxLines: 100,
             onChange: (remarks) {

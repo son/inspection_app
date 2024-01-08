@@ -13,7 +13,8 @@ _$_BaseAndFloorFraming _$$_BaseAndFloorFramingFromJson(
           ? const Damage()
           : Damage.fromJson(json['damage'] as Map<String, dynamic>),
       coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
+      notApplicable: json['notApplicable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_BaseAndFloorFramingToJson(
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$_BaseAndFloorFramingToJson(
       'damage': instance.damage.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
+      'notApplicable': instance.notApplicable,
     };
 
 const _$CoverageEnumMap = {

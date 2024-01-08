@@ -134,7 +134,7 @@ class DetailSection extends HookConsumerWidget {
           title: '調査所見',
           child: PrimaryTextField(
             textAlign: TextAlign.start,
-            initialText: inspection.overview.building.findings,
+            initialText: inspection.overview.building.findings ?? '',
             maxLines: 100,
             onChange: (text) {
               final building =

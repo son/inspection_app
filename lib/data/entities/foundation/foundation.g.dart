@@ -29,7 +29,8 @@ _$_Foundation _$$_FoundationFromJson(Map<String, dynamic> json) =>
           ? const Damage()
           : Damage.fromJson(json['rebarExposure'] as Map<String, dynamic>),
       coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
+      notApplicable: json['notApplicable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_FoundationToJson(_$_Foundation instance) =>
@@ -42,6 +43,7 @@ Map<String, dynamic> _$$_FoundationToJson(_$_Foundation instance) =>
       'rebarExposure': instance.rebarExposure.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
+      'notApplicable': instance.notApplicable,
     };
 
 const _$CoverageEnumMap = {

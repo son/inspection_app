@@ -19,7 +19,7 @@ class Building with _$Building {
     String? prefecture,
     @Default(Repairing()) Repairing repairing,
     @Default(Renovation()) Renovation renovation,
-    @Default('') String findings,
+    String? findings,
     @DateTimeOrNullConverter() DateTime? builtAt,
   }) = _Building;
 

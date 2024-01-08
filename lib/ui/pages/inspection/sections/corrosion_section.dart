@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -29,7 +30,7 @@ class CorrosionSection extends HookConsumerWidget {
             controller.updateCorrosion(inspection.corrosion.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateCorrosion(const Corrosion(notApplicable: true));
           },
         ),
       ],
@@ -52,7 +53,7 @@ class CorrosionSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.corrosion.corrosion.part,
+              initialText: inspection.corrosion.corrosion.part ?? '',
               onChange: (text) {
                 final corrosion =
                     inspection.corrosion.corrosion.copyWith(part: text);
@@ -113,7 +114,7 @@ class CorrosionSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.corrosion.remarks,
+            initialText: inspection.corrosion.remarks ?? '',
             onChange: (text) {
               final corrosion = inspection.corrosion.copyWith(remarks: text);
               controller.updateCorrosion(corrosion);

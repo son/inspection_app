@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/balcony/balcony.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -31,7 +32,7 @@ class BalconySection extends HookConsumerWidget {
             controller.updateBalcony(inspection.balcony.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateBalcony(const Balcony(notApplicable: true));
           },
         ),
       ],
@@ -238,7 +239,7 @@ class BalconySection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.balcony.remarks,
+            initialText: inspection.balcony.remarks ?? '',
             onChange: (text) {
               final balcony = inspection.balcony.copyWith(remarks: text);
               controller.updateBalcony(balcony);

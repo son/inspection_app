@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -29,7 +30,7 @@ class InnerWallSection extends HookConsumerWidget {
             controller.updateInnerWall(inspection.innerWall.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateInnerWall(const InnerWall(notApplicable: true));
           },
         ),
       ],
@@ -75,7 +76,7 @@ class InnerWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.innerWall.foundationDamage.part,
+              initialText: inspection.innerWall.foundationDamage.part ?? '',
               onChange: (text) {
                 final foundationDamage =
                     inspection.innerWall.foundationDamage.copyWith(part: text);
@@ -140,7 +141,8 @@ class InnerWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　壁の最も傾きがある場所',
             child: PrimaryTextField(
-              initialText: inspection.innerWall.foundationInclination.part,
+              initialText:
+                  inspection.innerWall.foundationInclination.part ?? '',
               onChange: (text) {
                 final foundationInclination = inspection
                     .innerWall.foundationInclination
@@ -181,7 +183,7 @@ class InnerWallSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.innerWall.rainInnerWallLeak.part,
+              initialText: inspection.innerWall.rainInnerWallLeak.part ?? '',
               onChange: (text) {
                 final rainInnerWallLeak =
                     inspection.innerWall.rainInnerWallLeak.copyWith(part: text);
@@ -225,7 +227,7 @@ class InnerWallSection extends HookConsumerWidget {
           axis: Axis.vertical,
           title: '備考',
           child: PrimaryTextField(
-            initialText: inspection.innerWall.remarks,
+            initialText: inspection.innerWall.remarks ?? '',
             textAlign: TextAlign.start,
             maxLines: 100,
             onChange: (remarks) {

@@ -23,7 +23,7 @@ _$_InspectionOverview _$$_InspectionOverviewFromJson(
       lifeline: json['lifeline'] == null
           ? const Lifelines()
           : Lifelines.fromJson(json['lifeline'] as Map<String, dynamic>),
-      findings: json['findings'] as String? ?? '',
+      findings: json['findings'] as String?,
     );
 
 Map<String, dynamic> _$$_InspectionOverviewToJson(

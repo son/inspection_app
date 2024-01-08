@@ -17,7 +17,8 @@ _$_Floor _$$_FloorFromJson(Map<String, dynamic> json) => _$_Floor(
           ? const Damage()
           : Damage.fromJson(json['inclination'] as Map<String, dynamic>),
       coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
+      notApplicable: json['notApplicable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_FloorToJson(_$_Floor instance) => <String, dynamic>{
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$_FloorToJson(_$_Floor instance) => <String, dynamic>{
       'inclination': instance.inclination.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
+      'notApplicable': instance.notApplicable,
     };
 
 const _$CoverageEnumMap = {

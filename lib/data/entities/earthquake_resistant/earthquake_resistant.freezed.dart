@@ -27,8 +27,9 @@ mixin _$EarthquakeResistant {
   Issuer? get issuer => throw _privateConstructorUsedError;
   EarthquakeProofSafetyRegulation? get regulation =>
       throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
+  dynamic get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,8 +49,9 @@ abstract class $EarthquakeResistantCopyWith<$Res> {
       Certificate? certificate,
       Issuer? issuer,
       EarthquakeProofSafetyRegulation? regulation,
-      String remarks,
-      List<Photo> photos});
+      String? remarks,
+      List<Photo> photos,
+      dynamic notApplicable});
 }
 
 /// @nodoc
@@ -70,8 +72,9 @@ class _$EarthquakeResistantCopyWithImpl<$Res, $Val extends EarthquakeResistant>
     Object? certificate = freezed,
     Object? issuer = freezed,
     Object? regulation = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
     Object? photos = null,
+    Object? notApplicable = freezed,
   }) {
     return _then(_value.copyWith(
       exploration: freezed == exploration
@@ -94,14 +97,18 @@ class _$EarthquakeResistantCopyWithImpl<$Res, $Val extends EarthquakeResistant>
           ? _value.regulation
           : regulation // ignore: cast_nullable_to_non_nullable
               as EarthquakeProofSafetyRegulation?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photos: null == photos
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
               as List<Photo>,
+      notApplicable: freezed == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -120,8 +127,9 @@ abstract class _$$_EarthquakeResistantCopyWith<$Res>
       Certificate? certificate,
       Issuer? issuer,
       EarthquakeProofSafetyRegulation? regulation,
-      String remarks,
-      List<Photo> photos});
+      String? remarks,
+      List<Photo> photos,
+      dynamic notApplicable});
 }
 
 /// @nodoc
@@ -140,8 +148,9 @@ class __$$_EarthquakeResistantCopyWithImpl<$Res>
     Object? certificate = freezed,
     Object? issuer = freezed,
     Object? regulation = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
     Object? photos = null,
+    Object? notApplicable = freezed,
   }) {
     return _then(_$_EarthquakeResistant(
       exploration: freezed == exploration
@@ -164,14 +173,16 @@ class __$$_EarthquakeResistantCopyWithImpl<$Res>
           ? _value.regulation
           : regulation // ignore: cast_nullable_to_non_nullable
               as EarthquakeProofSafetyRegulation?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photos: null == photos
           ? _value._photos
           : photos // ignore: cast_nullable_to_non_nullable
               as List<Photo>,
+      notApplicable:
+          freezed == notApplicable ? _value.notApplicable! : notApplicable,
     ));
   }
 }
@@ -186,8 +197,9 @@ class _$_EarthquakeResistant extends _EarthquakeResistant {
       this.certificate,
       this.issuer,
       this.regulation,
-      this.remarks = '',
-      final List<Photo> photos = const <Photo>[]})
+      this.remarks,
+      final List<Photo> photos = const <Photo>[],
+      this.notApplicable = false})
       : _photos = photos,
         super._();
 
@@ -205,8 +217,7 @@ class _$_EarthquakeResistant extends _EarthquakeResistant {
   @override
   final EarthquakeProofSafetyRegulation? regulation;
   @override
-  @JsonKey()
-  final String remarks;
+  final String? remarks;
   final List<Photo> _photos;
   @override
   @JsonKey()
@@ -217,8 +228,12 @@ class _$_EarthquakeResistant extends _EarthquakeResistant {
   }
 
   @override
+  @JsonKey()
+  final dynamic notApplicable;
+
+  @override
   String toString() {
-    return 'EarthquakeResistant(exploration: $exploration, confirmationMethod: $confirmationMethod, certificate: $certificate, issuer: $issuer, regulation: $regulation, remarks: $remarks, photos: $photos)';
+    return 'EarthquakeResistant(exploration: $exploration, confirmationMethod: $confirmationMethod, certificate: $certificate, issuer: $issuer, regulation: $regulation, remarks: $remarks, photos: $photos, notApplicable: $notApplicable)';
   }
 
   @override
@@ -236,7 +251,9 @@ class _$_EarthquakeResistant extends _EarthquakeResistant {
             (identical(other.regulation, regulation) ||
                 other.regulation == regulation) &&
             (identical(other.remarks, remarks) || other.remarks == remarks) &&
-            const DeepCollectionEquality().equals(other._photos, _photos));
+            const DeepCollectionEquality().equals(other._photos, _photos) &&
+            const DeepCollectionEquality()
+                .equals(other.notApplicable, notApplicable));
   }
 
   @JsonKey(ignore: true)
@@ -249,7 +266,8 @@ class _$_EarthquakeResistant extends _EarthquakeResistant {
       issuer,
       regulation,
       remarks,
-      const DeepCollectionEquality().hash(_photos));
+      const DeepCollectionEquality().hash(_photos),
+      const DeepCollectionEquality().hash(notApplicable));
 
   @JsonKey(ignore: true)
   @override
@@ -273,8 +291,9 @@ abstract class _EarthquakeResistant extends EarthquakeResistant {
       final Certificate? certificate,
       final Issuer? issuer,
       final EarthquakeProofSafetyRegulation? regulation,
-      final String remarks,
-      final List<Photo> photos}) = _$_EarthquakeResistant;
+      final String? remarks,
+      final List<Photo> photos,
+      final dynamic notApplicable}) = _$_EarthquakeResistant;
   const _EarthquakeResistant._() : super._();
 
   factory _EarthquakeResistant.fromJson(Map<String, dynamic> json) =
@@ -291,9 +310,11 @@ abstract class _EarthquakeResistant extends EarthquakeResistant {
   @override
   EarthquakeProofSafetyRegulation? get regulation;
   @override
-  String get remarks;
+  String? get remarks;
   @override
   List<Photo> get photos;
+  @override
+  dynamic get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_EarthquakeResistantCopyWith<_$_EarthquakeResistant> get copyWith =>

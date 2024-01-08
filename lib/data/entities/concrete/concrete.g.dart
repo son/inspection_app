@@ -17,7 +17,8 @@ _$_Concrete _$$_ConcreteFromJson(Map<String, dynamic> json) => _$_Concrete(
           : Damage.fromJson(
               json['compressiveStrength2'] as Map<String, dynamic>),
       coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
+      notApplicable: json['notApplicable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_ConcreteToJson(_$_Concrete instance) =>
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_ConcreteToJson(_$_Concrete instance) =>
       'compressiveStrength2': instance.compressiveStrength2.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
+      'notApplicable': instance.notApplicable,
     };
 
 const _$CoverageEnumMap = {

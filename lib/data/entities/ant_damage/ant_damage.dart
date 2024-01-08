@@ -14,7 +14,8 @@ class AntDamage with _$AntDamage {
     AccessPanel? accessPanel,
     @Default(Damage()) Damage antDamage,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _AntDamage;
 
   factory AntDamage.fromJson(Map<String, dynamic> json) =>

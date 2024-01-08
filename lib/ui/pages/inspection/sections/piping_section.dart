@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/piping/piping.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -29,7 +30,7 @@ class PipingSection extends HookConsumerWidget {
             controller.updatePiping(inspection.piping.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updatePiping(const Piping(notApplicable: true));
           },
         ),
       ],
@@ -53,7 +54,7 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.piping.supplyRustyWater.part,
+              initialText: inspection.piping.supplyRustyWater.part ?? '',
               onChange: (text) {
                 final supplyRustyWater =
                     inspection.piping.supplyRustyWater.copyWith(part: text);
@@ -110,7 +111,7 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.piping.sewerStuck.part,
+              initialText: inspection.piping.sewerStuck.part ?? '',
               onChange: (text) {
                 final sewerStuck =
                     inspection.piping.sewerStuck.copyWith(part: text);
@@ -165,7 +166,7 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.piping.sewerWaterLeak.part,
+              initialText: inspection.piping.sewerWaterLeak.part ?? '',
               onChange: (text) {
                 final sewerWaterLeak =
                     inspection.piping.sewerWaterLeak.copyWith(part: text);
@@ -222,7 +223,7 @@ class PipingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.piping.ductLoss.part,
+              initialText: inspection.piping.ductLoss.part ?? '',
               onChange: (text) {
                 final ductLoss =
                     inspection.piping.ductLoss.copyWith(part: text);
@@ -282,7 +283,7 @@ class PipingSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.piping.remarks,
+            initialText: inspection.piping.remarks ?? '',
             onChange: (text) {
               final piping = inspection.piping.copyWith(remarks: text);
               controller.updatePiping(piping);

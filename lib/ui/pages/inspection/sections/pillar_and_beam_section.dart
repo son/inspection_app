@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -31,7 +32,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
                 .updatePillarAndBeam(inspection.pillarAndBeam.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller
+                .updatePillarAndBeam(const PillarAndBeam(notApplicable: true));
           },
         ),
       ],
@@ -77,7 +79,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.pillarAndBeam.pillarDamage.part,
+              initialText: inspection.pillarAndBeam.pillarDamage.part ?? '',
               onChange: (text) {
                 final pillarDamage =
                     inspection.pillarAndBeam.pillarDamage.copyWith(part: text);
@@ -161,7 +163,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　柱の最も傾きがある場所',
             child: PrimaryTextField(
-              initialText: inspection.pillarAndBeam.pillarInclination.part,
+              initialText:
+                  inspection.pillarAndBeam.pillarInclination.part ?? '',
               onChange: (text) {
                 final pillarInclination = inspection
                     .pillarAndBeam.pillarInclination
@@ -244,7 +247,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.pillarAndBeam.beamDamage.part,
+              initialText: inspection.pillarAndBeam.beamDamage.part ?? '',
               onChange: (text) {
                 final beamDamage =
                     inspection.pillarAndBeam.beamDamage.copyWith(part: text);
@@ -303,7 +306,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.pillarAndBeam.beamDeflection.part,
+              initialText: inspection.pillarAndBeam.beamDeflection.part ?? '',
               onChange: (text) {
                 final beamDeflection = inspection.pillarAndBeam.beamDeflection
                     .copyWith(part: text);
@@ -369,7 +372,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
           title: '備考',
           child: PrimaryTextField(
             textAlign: TextAlign.start,
-            initialText: inspection.pillarAndBeam.remarks,
+            initialText: inspection.pillarAndBeam.remarks ?? '',
             maxLines: 100,
             onChange: (text) {
               final pillarAndBeam =

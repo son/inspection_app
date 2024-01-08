@@ -23,7 +23,8 @@ mixin _$AntDamage {
   AccessPanel? get accessPanel => throw _privateConstructorUsedError;
   Damage get antDamage => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +41,8 @@ abstract class $AntDamageCopyWith<$Res> {
       {AccessPanel? accessPanel,
       Damage antDamage,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get antDamage;
 }
@@ -61,7 +63,8 @@ class _$AntDamageCopyWithImpl<$Res, $Val extends AntDamage>
     Object? accessPanel = freezed,
     Object? antDamage = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       accessPanel: freezed == accessPanel
@@ -76,10 +79,14 @@ class _$AntDamageCopyWithImpl<$Res, $Val extends AntDamage>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -103,7 +110,8 @@ abstract class _$$_AntDamageCopyWith<$Res> implements $AntDamageCopyWith<$Res> {
       {AccessPanel? accessPanel,
       Damage antDamage,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get antDamage;
@@ -123,7 +131,8 @@ class __$$_AntDamageCopyWithImpl<$Res>
     Object? accessPanel = freezed,
     Object? antDamage = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_AntDamage(
       accessPanel: freezed == accessPanel
@@ -138,10 +147,14 @@ class __$$_AntDamageCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -154,7 +167,8 @@ class _$_AntDamage extends _AntDamage {
       {this.accessPanel,
       this.antDamage = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_AntDamage.fromJson(Map<String, dynamic> json) =>
@@ -168,12 +182,14 @@ class _$_AntDamage extends _AntDamage {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'AntDamage(accessPanel: $accessPanel, antDamage: $antDamage, coverage: $coverage, remarks: $remarks)';
+    return 'AntDamage(accessPanel: $accessPanel, antDamage: $antDamage, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -187,13 +203,15 @@ class _$_AntDamage extends _AntDamage {
                 other.antDamage == antDamage) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, accessPanel, antDamage, coverage, remarks);
+  int get hashCode => Object.hash(
+      runtimeType, accessPanel, antDamage, coverage, remarks, notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -214,7 +232,8 @@ abstract class _AntDamage extends AntDamage {
       {final AccessPanel? accessPanel,
       final Damage antDamage,
       final Coverage? coverage,
-      final String remarks}) = _$_AntDamage;
+      final String? remarks,
+      final bool notApplicable}) = _$_AntDamage;
   const _AntDamage._() : super._();
 
   factory _AntDamage.fromJson(Map<String, dynamic> json) =
@@ -227,7 +246,9 @@ abstract class _AntDamage extends AntDamage {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_AntDamageCopyWith<_$_AntDamage> get copyWith =>

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/floor/floor.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -30,7 +31,7 @@ class FloorSection extends HookConsumerWidget {
             controller.updateFloor(inspection.floor.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateFloor(const Floor(notApplicable: true));
           },
         ),
       ],
@@ -71,7 +72,7 @@ class FloorSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.floor.damage.part,
+              initialText: inspection.floor.damage.part ?? '',
               onChange: (text) {
                 final damage = inspection.floor.damage.copyWith(part: text);
                 final floor = inspection.floor.copyWith(damage: damage);
@@ -122,7 +123,7 @@ class FloorSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.floor.sinking.part,
+              initialText: inspection.floor.sinking.part ?? '',
               onChange: (text) {
                 final sinking = inspection.floor.sinking.copyWith(part: text);
                 final floor = inspection.floor.copyWith(sinking: sinking);
@@ -195,7 +196,7 @@ class FloorSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　最も傾きがある場所',
             child: PrimaryTextField(
-              initialText: inspection.floor.inclination.part,
+              initialText: inspection.floor.inclination.part ?? '',
               onChange: (text) {
                 final inclination =
                     inspection.floor.inclination.copyWith(part: text);
@@ -256,7 +257,7 @@ class FloorSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.floor.remarks,
+            initialText: inspection.floor.remarks ?? '',
             onChange: (text) {
               final floor = inspection.floor.copyWith(remarks: text);
               controller.updateFloor(floor);

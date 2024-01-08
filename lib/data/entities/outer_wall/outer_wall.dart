@@ -29,7 +29,8 @@ class OuterWall with _$OuterWall {
     @Default(Damage()) Damage rainCeilingSealing,
     @Default(Damage()) Damage rainCeilingLeak,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _OuterWall;
 
   factory OuterWall.fromJson(Map<String, dynamic> json) =>

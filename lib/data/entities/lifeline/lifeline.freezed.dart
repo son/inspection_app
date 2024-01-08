@@ -23,7 +23,8 @@ mixin _$Lifeline {
   Damage get lifelineMalfunction => throw _privateConstructorUsedError;
   Damage get otherMalfunction => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +41,8 @@ abstract class $LifelineCopyWith<$Res> {
       {Damage lifelineMalfunction,
       Damage otherMalfunction,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get lifelineMalfunction;
   $DamageCopyWith<$Res> get otherMalfunction;
@@ -62,7 +64,8 @@ class _$LifelineCopyWithImpl<$Res, $Val extends Lifeline>
     Object? lifelineMalfunction = null,
     Object? otherMalfunction = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       lifelineMalfunction: null == lifelineMalfunction
@@ -77,10 +80,14 @@ class _$LifelineCopyWithImpl<$Res, $Val extends Lifeline>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -112,7 +119,8 @@ abstract class _$$_LifelineCopyWith<$Res> implements $LifelineCopyWith<$Res> {
       {Damage lifelineMalfunction,
       Damage otherMalfunction,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get lifelineMalfunction;
@@ -134,7 +142,8 @@ class __$$_LifelineCopyWithImpl<$Res>
     Object? lifelineMalfunction = null,
     Object? otherMalfunction = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_Lifeline(
       lifelineMalfunction: null == lifelineMalfunction
@@ -149,10 +158,14 @@ class __$$_LifelineCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -165,7 +178,8 @@ class _$_Lifeline extends _Lifeline {
       {this.lifelineMalfunction = const Damage(),
       this.otherMalfunction = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_Lifeline.fromJson(Map<String, dynamic> json) =>
@@ -180,12 +194,14 @@ class _$_Lifeline extends _Lifeline {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'Lifeline(lifelineMalfunction: $lifelineMalfunction, otherMalfunction: $otherMalfunction, coverage: $coverage, remarks: $remarks)';
+    return 'Lifeline(lifelineMalfunction: $lifelineMalfunction, otherMalfunction: $otherMalfunction, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -199,13 +215,15 @@ class _$_Lifeline extends _Lifeline {
                 other.otherMalfunction == otherMalfunction) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, lifelineMalfunction, otherMalfunction, coverage, remarks);
+  int get hashCode => Object.hash(runtimeType, lifelineMalfunction,
+      otherMalfunction, coverage, remarks, notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -226,7 +244,8 @@ abstract class _Lifeline extends Lifeline {
       {final Damage lifelineMalfunction,
       final Damage otherMalfunction,
       final Coverage? coverage,
-      final String remarks}) = _$_Lifeline;
+      final String? remarks,
+      final bool notApplicable}) = _$_Lifeline;
   const _Lifeline._() : super._();
 
   factory _Lifeline.fromJson(Map<String, dynamic> json) = _$_Lifeline.fromJson;
@@ -238,7 +257,9 @@ abstract class _Lifeline extends Lifeline {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_LifelineCopyWith<_$_Lifeline> get copyWith =>

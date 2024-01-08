@@ -24,7 +24,8 @@ mixin _$Rebar {
   Damage get side => throw _privateConstructorUsedError;
   Damage get bottom => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $RebarCopyWith<$Res> {
       Damage side,
       Damage bottom,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get side;
   $DamageCopyWith<$Res> get bottom;
@@ -64,7 +66,8 @@ class _$RebarCopyWithImpl<$Res, $Val extends Rebar>
     Object? side = null,
     Object? bottom = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       exploration: null == exploration
@@ -83,10 +86,14 @@ class _$RebarCopyWithImpl<$Res, $Val extends Rebar>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -118,7 +125,8 @@ abstract class _$$_RebarCopyWith<$Res> implements $RebarCopyWith<$Res> {
       Damage side,
       Damage bottom,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get side;
@@ -139,7 +147,8 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
     Object? side = null,
     Object? bottom = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_Rebar(
       exploration: null == exploration
@@ -158,10 +167,14 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -175,7 +188,8 @@ class _$_Rebar extends _Rebar {
       this.side = const Damage(),
       this.bottom = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_Rebar.fromJson(Map<String, dynamic> json) =>
@@ -193,12 +207,14 @@ class _$_Rebar extends _Rebar {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'Rebar(exploration: $exploration, side: $side, bottom: $bottom, coverage: $coverage, remarks: $remarks)';
+    return 'Rebar(exploration: $exploration, side: $side, bottom: $bottom, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -212,13 +228,15 @@ class _$_Rebar extends _Rebar {
             (identical(other.bottom, bottom) || other.bottom == bottom) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, exploration, side, bottom, coverage, remarks);
+  int get hashCode => Object.hash(
+      runtimeType, exploration, side, bottom, coverage, remarks, notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -240,7 +258,8 @@ abstract class _Rebar extends Rebar {
       final Damage side,
       final Damage bottom,
       final Coverage? coverage,
-      final String remarks}) = _$_Rebar;
+      final String? remarks,
+      final bool notApplicable}) = _$_Rebar;
   const _Rebar._() : super._();
 
   factory _Rebar.fromJson(Map<String, dynamic> json) = _$_Rebar.fromJson;
@@ -254,7 +273,9 @@ abstract class _Rebar extends Rebar {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_RebarCopyWith<_$_Rebar> get copyWith =>

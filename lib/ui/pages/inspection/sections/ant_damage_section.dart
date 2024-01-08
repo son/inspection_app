@@ -30,7 +30,7 @@ class AntDamageSection extends HookConsumerWidget {
             controller.updateAntDamage(inspection.antDamage.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateAntDamage(const AntDamage(notApplicable: true));
           },
         ),
       ],
@@ -73,7 +73,7 @@ class AntDamageSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.antDamage.antDamage.part,
+              initialText: inspection.antDamage.antDamage.part ?? '',
               onChange: (text) {
                 final antDamage =
                     inspection.antDamage.antDamage.copyWith(part: text);
@@ -134,7 +134,7 @@ class AntDamageSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.antDamage.remarks,
+            initialText: inspection.antDamage.remarks ?? '',
             onChange: (text) {
               final antDamage = inspection.antDamage.copyWith(remarks: text);
               controller.updateAntDamage(antDamage);

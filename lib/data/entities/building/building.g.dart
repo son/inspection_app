@@ -24,7 +24,7 @@ _$_Building _$$_BuildingFromJson(Map<String, dynamic> json) => _$_Building(
       renovation: json['renovation'] == null
           ? const Renovation()
           : Renovation.fromJson(json['renovation'] as Map<String, dynamic>),
-      findings: json['findings'] as String? ?? '',
+      findings: json['findings'] as String?,
       builtAt: const DateTimeOrNullConverter().fromJson(json['builtAt']),
     );
 

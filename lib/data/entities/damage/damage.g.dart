@@ -14,9 +14,9 @@ _$_Damage _$$_DamageFromJson(Map<String, dynamic> json) => _$_Damage(
               .toList() ??
           const <Direction>[],
       max: (json['max'] as num?)?.toDouble(),
-      part: json['part'] as String? ?? '',
-      content: json['content'] as String? ?? '',
-      situation: json['situation'] as String? ?? '',
+      part: json['part'] as String?,
+      content: json['content'] as String?,
+      situation: json['situation'] as String?,
       photos: (json['photos'] as List<dynamic>?)
               ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
               .toList() ??

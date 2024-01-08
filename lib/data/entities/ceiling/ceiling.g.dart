@@ -16,7 +16,8 @@ _$_Ceiling _$$_CeilingFromJson(Map<String, dynamic> json) => _$_Ceiling(
           ? const Damage()
           : Damage.fromJson(json['rainCeilingLeak'] as Map<String, dynamic>),
       coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
+      notApplicable: json['notApplicable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_CeilingToJson(_$_Ceiling instance) =>
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$_CeilingToJson(_$_Ceiling instance) =>
       'rainCeilingLeak': instance.rainCeilingLeak.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
+      'notApplicable': instance.notApplicable,
     };
 
 const _$AccessPanelEnumMap = {

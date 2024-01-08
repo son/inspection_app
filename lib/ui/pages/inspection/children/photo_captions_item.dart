@@ -108,7 +108,7 @@ class _Item extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             child: _TextField(
-              initialText: photo.caption,
+              initialText: photo.caption ?? '',
               onChange: (text) => onChange(photo.copyWith(caption: text)),
             ),
           ),

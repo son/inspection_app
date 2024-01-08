@@ -22,7 +22,8 @@ BaseAndFloorFraming _$BaseAndFloorFramingFromJson(Map<String, dynamic> json) {
 mixin _$BaseAndFloorFraming {
   Damage get damage => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,8 @@ abstract class $BaseAndFloorFramingCopyWith<$Res> {
           BaseAndFloorFraming value, $Res Function(BaseAndFloorFraming) then) =
       _$BaseAndFloorFramingCopyWithImpl<$Res, BaseAndFloorFraming>;
   @useResult
-  $Res call({Damage damage, Coverage? coverage, String remarks});
+  $Res call(
+      {Damage damage, Coverage? coverage, String? remarks, bool notApplicable});
 
   $DamageCopyWith<$Res> get damage;
 }
@@ -56,7 +58,8 @@ class _$BaseAndFloorFramingCopyWithImpl<$Res, $Val extends BaseAndFloorFraming>
   $Res call({
     Object? damage = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       damage: null == damage
@@ -67,10 +70,14 @@ class _$BaseAndFloorFramingCopyWithImpl<$Res, $Val extends BaseAndFloorFraming>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -91,7 +98,8 @@ abstract class _$$_BaseAndFloorFramingCopyWith<$Res>
       __$$_BaseAndFloorFramingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Damage damage, Coverage? coverage, String remarks});
+  $Res call(
+      {Damage damage, Coverage? coverage, String? remarks, bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get damage;
@@ -110,7 +118,8 @@ class __$$_BaseAndFloorFramingCopyWithImpl<$Res>
   $Res call({
     Object? damage = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_BaseAndFloorFraming(
       damage: null == damage
@@ -121,10 +130,14 @@ class __$$_BaseAndFloorFramingCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -134,7 +147,10 @@ class __$$_BaseAndFloorFramingCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_BaseAndFloorFraming extends _BaseAndFloorFraming {
   const _$_BaseAndFloorFraming(
-      {this.damage = const Damage(), this.coverage, this.remarks = ''})
+      {this.damage = const Damage(),
+      this.coverage,
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_BaseAndFloorFraming.fromJson(Map<String, dynamic> json) =>
@@ -146,12 +162,14 @@ class _$_BaseAndFloorFraming extends _BaseAndFloorFraming {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'BaseAndFloorFraming(damage: $damage, coverage: $coverage, remarks: $remarks)';
+    return 'BaseAndFloorFraming(damage: $damage, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -162,12 +180,15 @@ class _$_BaseAndFloorFraming extends _BaseAndFloorFraming {
             (identical(other.damage, damage) || other.damage == damage) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, damage, coverage, remarks);
+  int get hashCode =>
+      Object.hash(runtimeType, damage, coverage, remarks, notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +209,8 @@ abstract class _BaseAndFloorFraming extends BaseAndFloorFraming {
   const factory _BaseAndFloorFraming(
       {final Damage damage,
       final Coverage? coverage,
-      final String remarks}) = _$_BaseAndFloorFraming;
+      final String? remarks,
+      final bool notApplicable}) = _$_BaseAndFloorFraming;
   const _BaseAndFloorFraming._() : super._();
 
   factory _BaseAndFloorFraming.fromJson(Map<String, dynamic> json) =
@@ -199,7 +221,9 @@ abstract class _BaseAndFloorFraming extends BaseAndFloorFraming {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_BaseAndFloorFramingCopyWith<_$_BaseAndFloorFraming> get copyWith =>

@@ -17,11 +17,12 @@ _$_EarthquakeResistant _$$_EarthquakeResistantFromJson(
       issuer: $enumDecodeNullable(_$IssuerEnumMap, json['issuer']),
       regulation: $enumDecodeNullable(
           _$EarthquakeProofSafetyRegulationEnumMap, json['regulation']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
       photos: (json['photos'] as List<dynamic>?)
               ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <Photo>[],
+      notApplicable: json['notApplicable'] ?? false,
     );
 
 Map<String, dynamic> _$$_EarthquakeResistantToJson(
@@ -36,6 +37,7 @@ Map<String, dynamic> _$$_EarthquakeResistantToJson(
           _$EarthquakeProofSafetyRegulationEnumMap[instance.regulation],
       'remarks': instance.remarks,
       'photos': instance.photos.map((e) => e.toJson()).toList(),
+      'notApplicable': instance.notApplicable,
     };
 
 const _$ConfirmationMethodEnumMap = {

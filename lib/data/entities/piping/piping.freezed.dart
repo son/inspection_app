@@ -26,7 +26,8 @@ mixin _$Piping {
   Damage get sewerWaterLeak => throw _privateConstructorUsedError;
   Damage get ductLoss => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $PipingCopyWith<$Res> {
       Damage sewerWaterLeak,
       Damage ductLoss,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get supplyRustyWater;
   $DamageCopyWith<$Res> get supplyWaterLeak;
@@ -73,7 +75,8 @@ class _$PipingCopyWithImpl<$Res, $Val extends Piping>
     Object? sewerWaterLeak = null,
     Object? ductLoss = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       supplyRustyWater: null == supplyRustyWater
@@ -100,10 +103,14 @@ class _$PipingCopyWithImpl<$Res, $Val extends Piping>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -161,7 +168,8 @@ abstract class _$$_PipingCopyWith<$Res> implements $PipingCopyWith<$Res> {
       Damage sewerWaterLeak,
       Damage ductLoss,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get supplyRustyWater;
@@ -191,7 +199,8 @@ class __$$_PipingCopyWithImpl<$Res>
     Object? sewerWaterLeak = null,
     Object? ductLoss = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_Piping(
       supplyRustyWater: null == supplyRustyWater
@@ -218,10 +227,14 @@ class __$$_PipingCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -237,7 +250,8 @@ class _$_Piping extends _Piping {
       this.sewerWaterLeak = const Damage(),
       this.ductLoss = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_Piping.fromJson(Map<String, dynamic> json) =>
@@ -261,12 +275,14 @@ class _$_Piping extends _Piping {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'Piping(supplyRustyWater: $supplyRustyWater, supplyWaterLeak: $supplyWaterLeak, sewerStuck: $sewerStuck, sewerWaterLeak: $sewerWaterLeak, ductLoss: $ductLoss, coverage: $coverage, remarks: $remarks)';
+    return 'Piping(supplyRustyWater: $supplyRustyWater, supplyWaterLeak: $supplyWaterLeak, sewerStuck: $sewerStuck, sewerWaterLeak: $sewerWaterLeak, ductLoss: $ductLoss, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -286,13 +302,23 @@ class _$_Piping extends _Piping {
                 other.ductLoss == ductLoss) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, supplyRustyWater,
-      supplyWaterLeak, sewerStuck, sewerWaterLeak, ductLoss, coverage, remarks);
+  int get hashCode => Object.hash(
+      runtimeType,
+      supplyRustyWater,
+      supplyWaterLeak,
+      sewerStuck,
+      sewerWaterLeak,
+      ductLoss,
+      coverage,
+      remarks,
+      notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -316,7 +342,8 @@ abstract class _Piping extends Piping {
       final Damage sewerWaterLeak,
       final Damage ductLoss,
       final Coverage? coverage,
-      final String remarks}) = _$_Piping;
+      final String? remarks,
+      final bool notApplicable}) = _$_Piping;
   const _Piping._() : super._();
 
   factory _Piping.fromJson(Map<String, dynamic> json) = _$_Piping.fromJson;
@@ -334,7 +361,9 @@ abstract class _Piping extends Piping {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_PipingCopyWith<_$_Piping> get copyWith =>

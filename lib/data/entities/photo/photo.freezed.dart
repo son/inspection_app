@@ -21,8 +21,8 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Photo {
   String get image => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
-  String get caption => throw _privateConstructorUsedError;
+  String? get label => throw _privateConstructorUsedError;
+  String? get caption => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $PhotoCopyWith<$Res> {
   factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
       _$PhotoCopyWithImpl<$Res, Photo>;
   @useResult
-  $Res call({String image, String label, String caption});
+  $Res call({String image, String? label, String? caption});
 }
 
 /// @nodoc
@@ -51,22 +51,22 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
   @override
   $Res call({
     Object? image = null,
-    Object? label = null,
-    Object? caption = null,
+    Object? label = freezed,
+    Object? caption = freezed,
   }) {
     return _then(_value.copyWith(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      label: null == label
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      caption: null == caption
+              as String?,
+      caption: freezed == caption
           ? _value.caption
           : caption // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -77,7 +77,7 @@ abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
       __$$_PhotoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String image, String label, String caption});
+  $Res call({String image, String? label, String? caption});
 }
 
 /// @nodoc
@@ -90,22 +90,22 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
   @override
   $Res call({
     Object? image = null,
-    Object? label = null,
-    Object? caption = null,
+    Object? label = freezed,
+    Object? caption = freezed,
   }) {
     return _then(_$_Photo(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      label: null == label
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      caption: null == caption
+              as String?,
+      caption: freezed == caption
           ? _value.caption
           : caption // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -114,8 +114,7 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
 
 @JsonSerializable(explicitToJson: true)
 class _$_Photo extends _Photo {
-  const _$_Photo({required this.image, this.label = '', this.caption = ''})
-      : super._();
+  const _$_Photo({required this.image, this.label, this.caption}) : super._();
 
   factory _$_Photo.fromJson(Map<String, dynamic> json) =>
       _$$_PhotoFromJson(json);
@@ -123,11 +122,9 @@ class _$_Photo extends _Photo {
   @override
   final String image;
   @override
-  @JsonKey()
-  final String label;
+  final String? label;
   @override
-  @JsonKey()
-  final String caption;
+  final String? caption;
 
   @override
   String toString() {
@@ -165,8 +162,8 @@ class _$_Photo extends _Photo {
 abstract class _Photo extends Photo {
   const factory _Photo(
       {required final String image,
-      final String label,
-      final String caption}) = _$_Photo;
+      final String? label,
+      final String? caption}) = _$_Photo;
   const _Photo._() : super._();
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$_Photo.fromJson;
@@ -174,9 +171,9 @@ abstract class _Photo extends Photo {
   @override
   String get image;
   @override
-  String get label;
+  String? get label;
   @override
-  String get caption;
+  String? get caption;
   @override
   @JsonKey(ignore: true)
   _$$_PhotoCopyWith<_$_Photo> get copyWith =>

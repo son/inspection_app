@@ -18,7 +18,8 @@ class Foundation with _$Foundation {
     @Default(Damage()) Damage rust,
     @Default(Damage()) Damage rebarExposure,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Foundation;
 
   factory Foundation.fromJson(Map<String, dynamic> json) =>

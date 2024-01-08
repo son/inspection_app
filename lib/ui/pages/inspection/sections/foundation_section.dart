@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/damage/damage.dart';
+import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -33,7 +34,7 @@ class FoundationSection extends HookConsumerWidget {
             controller.updateFoundation(inspection.foundation.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateFoundation(const Foundation(notApplicable: true));
           },
         ),
       ],
@@ -473,7 +474,7 @@ class FoundationSection extends HookConsumerWidget {
           axis: Axis.vertical,
           title: '備考',
           child: PrimaryTextField(
-            initialText: inspection.foundation.remarks,
+            initialText: inspection.foundation.remarks ?? '',
             textAlign: TextAlign.start,
             maxLines: 100,
             onChange: (remarks) {

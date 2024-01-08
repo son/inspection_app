@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
+import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
@@ -30,7 +31,7 @@ class RoofFrameSection extends HookConsumerWidget {
             controller.updateRoofFrame(inspection.roofFrame.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateRoofFrame(const RoofFrame(notApplicable: true));
           },
         ),
       ],
@@ -76,7 +77,7 @@ class RoofFrameSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.roofFrame.foundationDamage.part,
+              initialText: inspection.roofFrame.foundationDamage.part ?? '',
               onChange: (text) {
                 final foundationDamage =
                     inspection.roofFrame.foundationDamage.copyWith(part: text);
@@ -137,7 +138,7 @@ class RoofFrameSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.roofFrame.rainRoofFrameLeak.part,
+              initialText: inspection.roofFrame.rainRoofFrameLeak.part ?? '',
               onChange: (text) {
                 final rainRoofFrameLeak =
                     inspection.roofFrame.rainRoofFrameLeak.copyWith(part: text);
@@ -203,7 +204,7 @@ class RoofFrameSection extends HookConsumerWidget {
           title: '備考',
           child: PrimaryTextField(
             textAlign: TextAlign.start,
-            initialText: inspection.roofFrame.remarks,
+            initialText: inspection.roofFrame.remarks ?? '',
             maxLines: 100,
             onChange: (text) {
               final roofFrame = inspection.roofFrame.copyWith(remarks: text);

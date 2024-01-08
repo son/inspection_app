@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/result.dart';
+import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
@@ -30,7 +31,7 @@ class RoofSection extends HookConsumerWidget {
             controller.updateRoof(inspection.roof.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateRoof(const Roof(notApplicable: true));
           },
         ),
       ],
@@ -214,7 +215,7 @@ class RoofSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.roof.remarks,
+            initialText: inspection.roof.remarks ?? '',
             onChange: (text) {
               final roof = inspection.roof.copyWith(remarks: text);
               controller.updateRoof(roof);

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/rebar/rebar.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -29,7 +30,7 @@ class RebarSection extends HookConsumerWidget {
             controller.updateRebar(inspection.rebar.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateRebar(const Rebar(notApplicable: true));
           },
         ),
       ],
@@ -140,7 +141,7 @@ class RebarSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.rebar.remarks,
+            initialText: inspection.rebar.remarks ?? '',
             onChange: (text) {
               final rebar = inspection.rebar.copyWith(remarks: text);
               controller.updateRebar(rebar);

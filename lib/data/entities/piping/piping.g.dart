@@ -23,7 +23,8 @@ _$_Piping _$$_PipingFromJson(Map<String, dynamic> json) => _$_Piping(
           ? const Damage()
           : Damage.fromJson(json['ductLoss'] as Map<String, dynamic>),
       coverage: $enumDecodeNullable(_$CoverageEnumMap, json['coverage']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
+      notApplicable: json['notApplicable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_PipingToJson(_$_Piping instance) => <String, dynamic>{
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$_PipingToJson(_$_Piping instance) => <String, dynamic>{
       'ductLoss': instance.ductLoss.toJson(),
       'coverage': _$CoverageEnumMap[instance.coverage],
       'remarks': instance.remarks,
+      'notApplicable': instance.notApplicable,
     };
 
 const _$CoverageEnumMap = {

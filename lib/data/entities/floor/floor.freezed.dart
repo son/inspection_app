@@ -24,7 +24,8 @@ mixin _$Floor {
   Damage get sinking => throw _privateConstructorUsedError;
   Damage get inclination => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $FloorCopyWith<$Res> {
       Damage sinking,
       Damage inclination,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get damage;
   $DamageCopyWith<$Res> get sinking;
@@ -65,7 +67,8 @@ class _$FloorCopyWithImpl<$Res, $Val extends Floor>
     Object? sinking = null,
     Object? inclination = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       damage: null == damage
@@ -84,10 +87,14 @@ class _$FloorCopyWithImpl<$Res, $Val extends Floor>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -127,7 +134,8 @@ abstract class _$$_FloorCopyWith<$Res> implements $FloorCopyWith<$Res> {
       Damage sinking,
       Damage inclination,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get damage;
@@ -150,7 +158,8 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
     Object? sinking = null,
     Object? inclination = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_Floor(
       damage: null == damage
@@ -169,10 +178,14 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -186,7 +199,8 @@ class _$_Floor extends _Floor {
       this.sinking = const Damage(),
       this.inclination = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_Floor.fromJson(Map<String, dynamic> json) =>
@@ -204,12 +218,14 @@ class _$_Floor extends _Floor {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'Floor(damage: $damage, sinking: $sinking, inclination: $inclination, coverage: $coverage, remarks: $remarks)';
+    return 'Floor(damage: $damage, sinking: $sinking, inclination: $inclination, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -223,13 +239,15 @@ class _$_Floor extends _Floor {
                 other.inclination == inclination) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, damage, sinking, inclination, coverage, remarks);
+  int get hashCode => Object.hash(runtimeType, damage, sinking, inclination,
+      coverage, remarks, notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -251,7 +269,8 @@ abstract class _Floor extends Floor {
       final Damage sinking,
       final Damage inclination,
       final Coverage? coverage,
-      final String remarks}) = _$_Floor;
+      final String? remarks,
+      final bool notApplicable}) = _$_Floor;
   const _Floor._() : super._();
 
   factory _Floor.fromJson(Map<String, dynamic> json) = _$_Floor.fromJson;
@@ -265,7 +284,9 @@ abstract class _Floor extends Floor {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_FloorCopyWith<_$_Floor> get copyWith =>

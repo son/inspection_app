@@ -38,7 +38,8 @@ mixin _$OuterWall {
   Damage get rainCeilingSealing => throw _privateConstructorUsedError;
   Damage get rainCeilingLeak => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,7 +71,8 @@ abstract class $OuterWallCopyWith<$Res> {
       Damage rainCeilingSealing,
       Damage rainCeilingLeak,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get dryDamage;
   $DamageCopyWith<$Res> get dryWideDamage;
@@ -121,7 +123,8 @@ class _$OuterWallCopyWithImpl<$Res, $Val extends OuterWall>
     Object? rainCeilingSealing = null,
     Object? rainCeilingLeak = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       finishings: null == finishings
@@ -196,10 +199,14 @@ class _$OuterWallCopyWithImpl<$Res, $Val extends OuterWall>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -358,7 +365,8 @@ abstract class _$$_OuterWallCopyWith<$Res> implements $OuterWallCopyWith<$Res> {
       Damage rainCeilingSealing,
       Damage rainCeilingLeak,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get dryDamage;
@@ -423,7 +431,8 @@ class __$$_OuterWallCopyWithImpl<$Res>
     Object? rainCeilingSealing = null,
     Object? rainCeilingLeak = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_OuterWall(
       finishings: null == finishings
@@ -498,10 +507,14 @@ class __$$_OuterWallCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -529,7 +542,8 @@ class _$_OuterWall extends _OuterWall {
       this.rainCeilingSealing = const Damage(),
       this.rainCeilingLeak = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : _finishings = finishings,
         super._();
 
@@ -596,12 +610,14 @@ class _$_OuterWall extends _OuterWall {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'OuterWall(finishings: $finishings, dryDamage: $dryDamage, dryWideDamage: $dryWideDamage, dryCorrosion: $dryCorrosion, tileDamage: $tileDamage, tileWideDamage: $tileWideDamage, tileFloat: $tileFloat, paintDamage: $paintDamage, paintFloat: $paintFloat, otherDamage: $otherDamage, otherWideDamage: $otherWideDamage, otherCorrosion: $otherCorrosion, otherFloat: $otherFloat, rainWallSealing: $rainWallSealing, rainGap: $rainGap, rainCeilingSealing: $rainCeilingSealing, rainCeilingLeak: $rainCeilingLeak, coverage: $coverage, remarks: $remarks)';
+    return 'OuterWall(finishings: $finishings, dryDamage: $dryDamage, dryWideDamage: $dryWideDamage, dryCorrosion: $dryCorrosion, tileDamage: $tileDamage, tileWideDamage: $tileWideDamage, tileFloat: $tileFloat, paintDamage: $paintDamage, paintFloat: $paintFloat, otherDamage: $otherDamage, otherWideDamage: $otherWideDamage, otherCorrosion: $otherCorrosion, otherFloat: $otherFloat, rainWallSealing: $rainWallSealing, rainGap: $rainGap, rainCeilingSealing: $rainCeilingSealing, rainCeilingLeak: $rainCeilingLeak, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -644,7 +660,9 @@ class _$_OuterWall extends _OuterWall {
                 other.rainCeilingLeak == rainCeilingLeak) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
@@ -669,7 +687,8 @@ class _$_OuterWall extends _OuterWall {
         rainCeilingSealing,
         rainCeilingLeak,
         coverage,
-        remarks
+        remarks,
+        notApplicable
       ]);
 
   @JsonKey(ignore: true)
@@ -706,7 +725,8 @@ abstract class _OuterWall extends OuterWall {
       final Damage rainCeilingSealing,
       final Damage rainCeilingLeak,
       final Coverage? coverage,
-      final String remarks}) = _$_OuterWall;
+      final String? remarks,
+      final bool notApplicable}) = _$_OuterWall;
   const _OuterWall._() : super._();
 
   factory _OuterWall.fromJson(Map<String, dynamic> json) =
@@ -749,7 +769,9 @@ abstract class _OuterWall extends OuterWall {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_OuterWallCopyWith<_$_OuterWall> get copyWith =>

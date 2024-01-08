@@ -18,7 +18,7 @@ class InspectionOverview with _$InspectionOverview {
     String? witnessName,
     @Default(Building()) Building building,
     @Default(Lifelines()) Lifelines lifeline,
-    @Default('') String findings,
+    String? findings,
   }) = _InspectionOverview;
 
   factory InspectionOverview.fromJson(Map<String, dynamic> json) =>

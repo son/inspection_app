@@ -15,7 +15,8 @@ class Balcony with _$Balcony {
     @Default(Damage()) Damage waterProofLayer,
     Coverage? foundationCoverage,
     Coverage? waterProofLayerCoverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Balcony;
 
   factory Balcony.fromJson(Map<String, dynamic> json) =>

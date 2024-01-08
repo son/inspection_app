@@ -24,7 +24,8 @@ mixin _$Concrete {
   Damage get compressiveStrength1 => throw _privateConstructorUsedError;
   Damage get compressiveStrength2 => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $ConcreteCopyWith<$Res> {
       Damage compressiveStrength1,
       Damage compressiveStrength2,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get compressiveStrength1;
   $DamageCopyWith<$Res> get compressiveStrength2;
@@ -65,7 +67,8 @@ class _$ConcreteCopyWithImpl<$Res, $Val extends Concrete>
     Object? compressiveStrength1 = null,
     Object? compressiveStrength2 = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       exploration: freezed == exploration
@@ -84,10 +87,14 @@ class _$ConcreteCopyWithImpl<$Res, $Val extends Concrete>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -120,7 +127,8 @@ abstract class _$$_ConcreteCopyWith<$Res> implements $ConcreteCopyWith<$Res> {
       Damage compressiveStrength1,
       Damage compressiveStrength2,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get compressiveStrength1;
@@ -143,7 +151,8 @@ class __$$_ConcreteCopyWithImpl<$Res>
     Object? compressiveStrength1 = null,
     Object? compressiveStrength2 = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_Concrete(
       exploration: freezed == exploration
@@ -162,10 +171,14 @@ class __$$_ConcreteCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -179,7 +192,8 @@ class _$_Concrete extends _Concrete {
       this.compressiveStrength1 = const Damage(),
       this.compressiveStrength2 = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_Concrete.fromJson(Map<String, dynamic> json) =>
@@ -196,12 +210,14 @@ class _$_Concrete extends _Concrete {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'Concrete(exploration: $exploration, compressiveStrength1: $compressiveStrength1, compressiveStrength2: $compressiveStrength2, coverage: $coverage, remarks: $remarks)';
+    return 'Concrete(exploration: $exploration, compressiveStrength1: $compressiveStrength1, compressiveStrength2: $compressiveStrength2, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -217,13 +233,21 @@ class _$_Concrete extends _Concrete {
                 other.compressiveStrength2 == compressiveStrength2) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, exploration,
-      compressiveStrength1, compressiveStrength2, coverage, remarks);
+  int get hashCode => Object.hash(
+      runtimeType,
+      exploration,
+      compressiveStrength1,
+      compressiveStrength2,
+      coverage,
+      remarks,
+      notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +269,8 @@ abstract class _Concrete extends Concrete {
       final Damage compressiveStrength1,
       final Damage compressiveStrength2,
       final Coverage? coverage,
-      final String remarks}) = _$_Concrete;
+      final String? remarks,
+      final bool notApplicable}) = _$_Concrete;
   const _Concrete._() : super._();
 
   factory _Concrete.fromJson(Map<String, dynamic> json) = _$_Concrete.fromJson;
@@ -259,7 +284,9 @@ abstract class _Concrete extends Concrete {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_ConcreteCopyWith<_$_Concrete> get copyWith =>

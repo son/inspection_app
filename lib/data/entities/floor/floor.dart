@@ -15,7 +15,8 @@ class Floor with _$Floor {
     @Default(Damage()) Damage sinking,
     @Default(Damage()) Damage inclination,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Floor;
 
   factory Floor.fromJson(Map<String, dynamic> json) => _$FloorFromJson(json);

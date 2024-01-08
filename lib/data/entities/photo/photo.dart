@@ -10,8 +10,8 @@ class Photo with _$Photo {
   @JsonSerializable(explicitToJson: true)
   const factory Photo({
     required String image,
-    @Default('') String label,
-    @Default('') String caption,
+    String? label,
+    String? caption,
   }) = _Photo;
 
   factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);

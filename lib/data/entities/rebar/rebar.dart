@@ -15,7 +15,8 @@ class Rebar with _$Rebar {
     @Default(Damage()) Damage side,
     @Default(Damage()) Damage bottom,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Rebar;
 
   factory Rebar.fromJson(Map<String, dynamic> json) => _$RebarFromJson(json);

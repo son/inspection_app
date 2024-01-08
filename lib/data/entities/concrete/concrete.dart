@@ -15,7 +15,8 @@ class Concrete with _$Concrete {
     @Default(Damage()) Damage compressiveStrength1,
     @Default(Damage()) Damage compressiveStrength2,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Concrete;
 
   factory Concrete.fromJson(Map<String, dynamic> json) =>

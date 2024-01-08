@@ -17,7 +17,8 @@ _$_Balcony _$$_BalconyFromJson(Map<String, dynamic> json) => _$_Balcony(
           $enumDecodeNullable(_$CoverageEnumMap, json['foundationCoverage']),
       waterProofLayerCoverage: $enumDecodeNullable(
           _$CoverageEnumMap, json['waterProofLayerCoverage']),
-      remarks: json['remarks'] as String? ?? '',
+      remarks: json['remarks'] as String?,
+      notApplicable: json['notApplicable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_BalconyToJson(_$_Balcony instance) =>
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$_BalconyToJson(_$_Balcony instance) =>
       'waterProofLayerCoverage':
           _$CoverageEnumMap[instance.waterProofLayerCoverage],
       'remarks': instance.remarks,
+      'notApplicable': instance.notApplicable,
     };
 
 const _$CoverageEnumMap = {

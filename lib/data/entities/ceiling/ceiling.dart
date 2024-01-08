@@ -15,7 +15,8 @@ class Ceiling with _$Ceiling {
     @Default(Damage()) Damage foundationDamage,
     @Default(Damage()) Damage rainCeilingLeak,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Ceiling;
 
   factory Ceiling.fromJson(Map<String, dynamic> json) =>

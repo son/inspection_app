@@ -15,8 +15,9 @@ class EarthquakeResistant with _$EarthquakeResistant {
     Certificate? certificate,
     Issuer? issuer,
     EarthquakeProofSafetyRegulation? regulation,
-    @Default('') String remarks,
+    String? remarks,
     @Default(<Photo>[]) List<Photo> photos,
+    @Default(false) notApplicable,
   }) = _EarthquakeResistant;
 
   factory EarthquakeResistant.fromJson(Map<String, dynamic> json) =>

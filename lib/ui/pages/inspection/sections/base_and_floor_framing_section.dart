@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/base_and_floor_framing/base_and_floor_framing.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -31,7 +32,9 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
                 inspection.baseAndFloorFraming.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateBaseAndFloorFraming(
+              const BaseAndFloorFraming(notApplicable: true),
+            );
           },
         ),
       ],
@@ -77,7 +80,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.baseAndFloorFraming.damage.part,
+              initialText: inspection.baseAndFloorFraming.damage.part ?? '',
               onChange: (text) {
                 final damage =
                     inspection.baseAndFloorFraming.damage.copyWith(part: text);
@@ -144,7 +147,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.baseAndFloorFraming.remarks,
+            initialText: inspection.baseAndFloorFraming.remarks ?? '',
             onChange: (text) {
               final baseAndFloorFraming =
                   inspection.baseAndFloorFraming.copyWith(remarks: text);

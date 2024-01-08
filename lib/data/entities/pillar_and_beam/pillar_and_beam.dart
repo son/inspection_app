@@ -16,7 +16,8 @@ class PillarAndBeam with _$PillarAndBeam {
     @Default(Damage()) Damage beamDamage,
     @Default(Damage()) Damage beamDeflection,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _PillarAndBeam;
 
   factory PillarAndBeam.fromJson(Map<String, dynamic> json) =>

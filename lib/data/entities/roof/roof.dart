@@ -15,7 +15,8 @@ class Roof with _$Roof {
     @Default(Damage()) Damage damage,
     @Default(Damage()) Damage waterProofLayerDamage,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Roof;
 
   factory Roof.fromJson(Map<String, dynamic> json) => _$RoofFromJson(json);

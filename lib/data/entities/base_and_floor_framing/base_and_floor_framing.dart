@@ -13,7 +13,8 @@ class BaseAndFloorFraming with _$BaseAndFloorFraming {
   const factory BaseAndFloorFraming({
     @Default(Damage()) Damage damage,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _BaseAndFloorFraming;
 
   factory BaseAndFloorFraming.fromJson(Map<String, dynamic> json) =>

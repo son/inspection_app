@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/concrete/concrete.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -29,7 +30,7 @@ class ConcreteSection extends HookConsumerWidget {
             controller.updateConcrete(inspection.concrete.allPassed());
           },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateConcrete(const Concrete(notApplicable: true));
           },
         ),
       ],
@@ -177,7 +178,7 @@ class ConcreteSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.concrete.remarks,
+            initialText: inspection.concrete.remarks ?? '',
             onChange: (text) {
               final concrete = inspection.concrete.copyWith(remarks: text);
               controller.updateConcrete(concrete);

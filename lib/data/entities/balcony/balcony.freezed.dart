@@ -24,7 +24,8 @@ mixin _$Balcony {
   Damage get waterProofLayer => throw _privateConstructorUsedError;
   Coverage? get foundationCoverage => throw _privateConstructorUsedError;
   Coverage? get waterProofLayerCoverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $BalconyCopyWith<$Res> {
       Damage waterProofLayer,
       Coverage? foundationCoverage,
       Coverage? waterProofLayerCoverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get foundation;
   $DamageCopyWith<$Res> get waterProofLayer;
@@ -64,7 +66,8 @@ class _$BalconyCopyWithImpl<$Res, $Val extends Balcony>
     Object? waterProofLayer = null,
     Object? foundationCoverage = freezed,
     Object? waterProofLayerCoverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       foundation: null == foundation
@@ -83,10 +86,14 @@ class _$BalconyCopyWithImpl<$Res, $Val extends Balcony>
           ? _value.waterProofLayerCoverage
           : waterProofLayerCoverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -119,7 +126,8 @@ abstract class _$$_BalconyCopyWith<$Res> implements $BalconyCopyWith<$Res> {
       Damage waterProofLayer,
       Coverage? foundationCoverage,
       Coverage? waterProofLayerCoverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get foundation;
@@ -141,7 +149,8 @@ class __$$_BalconyCopyWithImpl<$Res>
     Object? waterProofLayer = null,
     Object? foundationCoverage = freezed,
     Object? waterProofLayerCoverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_Balcony(
       foundation: null == foundation
@@ -160,10 +169,14 @@ class __$$_BalconyCopyWithImpl<$Res>
           ? _value.waterProofLayerCoverage
           : waterProofLayerCoverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -177,7 +190,8 @@ class _$_Balcony extends _Balcony {
       this.waterProofLayer = const Damage(),
       this.foundationCoverage,
       this.waterProofLayerCoverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_Balcony.fromJson(Map<String, dynamic> json) =>
@@ -194,12 +208,14 @@ class _$_Balcony extends _Balcony {
   @override
   final Coverage? waterProofLayerCoverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'Balcony(foundation: $foundation, waterProofLayer: $waterProofLayer, foundationCoverage: $foundationCoverage, waterProofLayerCoverage: $waterProofLayerCoverage, remarks: $remarks)';
+    return 'Balcony(foundation: $foundation, waterProofLayer: $waterProofLayer, foundationCoverage: $foundationCoverage, waterProofLayerCoverage: $waterProofLayerCoverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -216,13 +232,15 @@ class _$_Balcony extends _Balcony {
             (identical(
                     other.waterProofLayerCoverage, waterProofLayerCoverage) ||
                 other.waterProofLayerCoverage == waterProofLayerCoverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, foundation, waterProofLayer,
-      foundationCoverage, waterProofLayerCoverage, remarks);
+      foundationCoverage, waterProofLayerCoverage, remarks, notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -244,7 +262,8 @@ abstract class _Balcony extends Balcony {
       final Damage waterProofLayer,
       final Coverage? foundationCoverage,
       final Coverage? waterProofLayerCoverage,
-      final String remarks}) = _$_Balcony;
+      final String? remarks,
+      final bool notApplicable}) = _$_Balcony;
   const _Balcony._() : super._();
 
   factory _Balcony.fromJson(Map<String, dynamic> json) = _$_Balcony.fromJson;
@@ -258,7 +277,9 @@ abstract class _Balcony extends Balcony {
   @override
   Coverage? get waterProofLayerCoverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_BalconyCopyWith<_$_Balcony> get copyWith =>

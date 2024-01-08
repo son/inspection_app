@@ -15,7 +15,8 @@ class InnerWall with _$InnerWall {
     @Default(Damage()) Damage foundationInclination,
     @Default(Damage()) Damage rainInnerWallLeak,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _InnerWall;
 
   factory InnerWall.fromJson(Map<String, dynamic> json) =>

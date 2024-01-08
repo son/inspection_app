@@ -13,7 +13,8 @@ class Corrosion with _$Corrosion {
   const factory Corrosion({
     @Default(Damage()) Damage corrosion,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Corrosion;
 
   factory Corrosion.fromJson(Map<String, dynamic> json) =>

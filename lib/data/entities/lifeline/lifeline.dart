@@ -14,9 +14,17 @@ class Lifeline with _$Lifeline {
     @Default(Damage()) Damage lifelineMalfunction,
     @Default(Damage()) Damage otherMalfunction,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Lifeline;
 
   factory Lifeline.fromJson(Map<String, dynamic> json) =>
       _$LifelineFromJson(json);
+
+  Lifeline allPassed() {
+    return copyWith(
+      lifelineMalfunction: lifelineMalfunction.copyWith(result: Result.passed),
+      otherMalfunction: otherMalfunction.copyWith(result: Result.passed),
+    );
+  }
 }

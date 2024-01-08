@@ -17,7 +17,8 @@ class Piping with _$Piping {
     @Default(Damage()) Damage sewerWaterLeak,
     @Default(Damage()) Damage ductLoss,
     Coverage? coverage,
-    @Default('') String remarks,
+    String? remarks,
+    @Default(false) bool notApplicable,
   }) = _Piping;
 
   factory Piping.fromJson(Map<String, dynamic> json) => _$PipingFromJson(json);

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/lifeline/lifeline.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
@@ -25,9 +26,11 @@ class LifelineSection extends HookConsumerWidget {
       title: '給排水、電気、ガス設備',
       actions: [
         MenuButton(
-          onTapAllPassed: () {},
+          onTapAllPassed: () {
+            controller.updateLifeline(inspection.lifeline.allPassed());
+          },
           onTapNotApplicable: () {
-            print('sss');
+            controller.updateLifeline(const Lifeline(notApplicable: true));
           },
         ),
       ],
@@ -51,7 +54,7 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　調査内容',
             child: PrimaryTextField(
-              initialText: inspection.lifeline.otherMalfunction.content,
+              initialText: inspection.lifeline.otherMalfunction.content ?? '',
               onChange: (text) {
                 final otherMalfunction = inspection.lifeline.otherMalfunction
                     .copyWith(content: text);
@@ -65,7 +68,7 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.lifeline.otherMalfunction.part,
+              initialText: inspection.lifeline.otherMalfunction.part ?? '',
               onChange: (text) {
                 final otherMalfunction =
                     inspection.lifeline.otherMalfunction.copyWith(part: text);
@@ -79,7 +82,7 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　作動不良の状況',
             child: PrimaryTextField(
-              initialText: inspection.lifeline.otherMalfunction.situation,
+              initialText: inspection.lifeline.otherMalfunction.situation ?? '',
               onChange: (text) {
                 final otherMalfunction = inspection.lifeline.otherMalfunction
                     .copyWith(situation: text);
@@ -141,7 +144,8 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　調査内容',
             child: PrimaryTextField(
-              initialText: inspection.lifeline.lifelineMalfunction.content,
+              initialText:
+                  inspection.lifeline.lifelineMalfunction.content ?? '',
               onChange: (text) {
                 final lifelineMalfunction = inspection
                     .lifeline.lifelineMalfunction
@@ -156,7 +160,7 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
             child: PrimaryTextField(
-              initialText: inspection.lifeline.lifelineMalfunction.part,
+              initialText: inspection.lifeline.lifelineMalfunction.part ?? '',
               onChange: (text) {
                 final lifelineMalfunction = inspection
                     .lifeline.lifelineMalfunction
@@ -171,7 +175,8 @@ class LifelineSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '　作動不良の状況',
             child: PrimaryTextField(
-              initialText: inspection.lifeline.lifelineMalfunction.situation,
+              initialText:
+                  inspection.lifeline.lifelineMalfunction.situation ?? '',
               onChange: (text) {
                 final lifelineMalfunction = inspection
                     .lifeline.lifelineMalfunction
@@ -238,7 +243,7 @@ class LifelineSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.lifeline.remarks,
+            initialText: inspection.lifeline.remarks ?? '',
             onChange: (text) {
               final lifeline = inspection.lifeline.copyWith(remarks: text);
               controller.updateLifeline(lifeline);

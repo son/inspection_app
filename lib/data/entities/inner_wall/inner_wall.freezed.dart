@@ -24,7 +24,8 @@ mixin _$InnerWall {
   Damage get foundationInclination => throw _privateConstructorUsedError;
   Damage get rainInnerWallLeak => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  bool get notApplicable => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $InnerWallCopyWith<$Res> {
       Damage foundationInclination,
       Damage rainInnerWallLeak,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   $DamageCopyWith<$Res> get foundationDamage;
   $DamageCopyWith<$Res> get foundationInclination;
@@ -66,7 +68,8 @@ class _$InnerWallCopyWithImpl<$Res, $Val extends InnerWall>
     Object? foundationInclination = null,
     Object? rainInnerWallLeak = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
       foundationDamage: null == foundationDamage
@@ -85,10 +88,14 @@ class _$InnerWallCopyWithImpl<$Res, $Val extends InnerWall>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -129,7 +136,8 @@ abstract class _$$_InnerWallCopyWith<$Res> implements $InnerWallCopyWith<$Res> {
       Damage foundationInclination,
       Damage rainInnerWallLeak,
       Coverage? coverage,
-      String remarks});
+      String? remarks,
+      bool notApplicable});
 
   @override
   $DamageCopyWith<$Res> get foundationDamage;
@@ -154,7 +162,8 @@ class __$$_InnerWallCopyWithImpl<$Res>
     Object? foundationInclination = null,
     Object? rainInnerWallLeak = null,
     Object? coverage = freezed,
-    Object? remarks = null,
+    Object? remarks = freezed,
+    Object? notApplicable = null,
   }) {
     return _then(_$_InnerWall(
       foundationDamage: null == foundationDamage
@@ -173,10 +182,14 @@ class __$$_InnerWallCopyWithImpl<$Res>
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
               as Coverage?,
-      remarks: null == remarks
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      notApplicable: null == notApplicable
+          ? _value.notApplicable
+          : notApplicable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -190,7 +203,8 @@ class _$_InnerWall extends _InnerWall {
       this.foundationInclination = const Damage(),
       this.rainInnerWallLeak = const Damage(),
       this.coverage,
-      this.remarks = ''})
+      this.remarks,
+      this.notApplicable = false})
       : super._();
 
   factory _$_InnerWall.fromJson(Map<String, dynamic> json) =>
@@ -208,12 +222,14 @@ class _$_InnerWall extends _InnerWall {
   @override
   final Coverage? coverage;
   @override
+  final String? remarks;
+  @override
   @JsonKey()
-  final String remarks;
+  final bool notApplicable;
 
   @override
   String toString() {
-    return 'InnerWall(foundationDamage: $foundationDamage, foundationInclination: $foundationInclination, rainInnerWallLeak: $rainInnerWallLeak, coverage: $coverage, remarks: $remarks)';
+    return 'InnerWall(foundationDamage: $foundationDamage, foundationInclination: $foundationInclination, rainInnerWallLeak: $rainInnerWallLeak, coverage: $coverage, remarks: $remarks, notApplicable: $notApplicable)';
   }
 
   @override
@@ -229,13 +245,21 @@ class _$_InnerWall extends _InnerWall {
                 other.rainInnerWallLeak == rainInnerWallLeak) &&
             (identical(other.coverage, coverage) ||
                 other.coverage == coverage) &&
-            (identical(other.remarks, remarks) || other.remarks == remarks));
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.notApplicable, notApplicable) ||
+                other.notApplicable == notApplicable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, foundationDamage,
-      foundationInclination, rainInnerWallLeak, coverage, remarks);
+  int get hashCode => Object.hash(
+      runtimeType,
+      foundationDamage,
+      foundationInclination,
+      rainInnerWallLeak,
+      coverage,
+      remarks,
+      notApplicable);
 
   @JsonKey(ignore: true)
   @override
@@ -257,7 +281,8 @@ abstract class _InnerWall extends InnerWall {
       final Damage foundationInclination,
       final Damage rainInnerWallLeak,
       final Coverage? coverage,
-      final String remarks}) = _$_InnerWall;
+      final String? remarks,
+      final bool notApplicable}) = _$_InnerWall;
   const _InnerWall._() : super._();
 
   factory _InnerWall.fromJson(Map<String, dynamic> json) =
@@ -272,7 +297,9 @@ abstract class _InnerWall extends InnerWall {
   @override
   Coverage? get coverage;
   @override
-  String get remarks;
+  String? get remarks;
+  @override
+  bool get notApplicable;
   @override
   @JsonKey(ignore: true)
   _$$_InnerWallCopyWith<_$_InnerWall> get copyWith =>
