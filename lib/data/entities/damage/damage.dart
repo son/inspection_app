@@ -28,3 +28,7 @@ class Damage with _$Damage {
 }
 
 const DAMAGE_DETAILS = {'広範囲に及ぶひび割れ', '広範囲に及ぶ欠損'};
+
+extension Max on double {
+  bool get complete => this != 0;
+}

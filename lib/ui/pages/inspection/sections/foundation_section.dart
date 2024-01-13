@@ -5,6 +5,7 @@ import 'package:inspection_app/data/entities/damage/damage.dart';
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
+import 'package:inspection_app/data/entities/status.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/image_source_sheet.dart';
@@ -28,6 +29,7 @@ class FoundationSection extends HookConsumerWidget {
 
     return Section(
       title: '基礎',
+      complete: inspection.foundation.complete,
       actions: [
         MenuButton(
           title: '「基礎」の項目全てを一括で設定します',
@@ -47,6 +49,7 @@ class FoundationSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           title: '仕上げ',
           strikeThrough: inspection.foundation.notApplicable,
+          incomplete: inspection.foundation.finishings.isEmpty,
           child: MultiDropdownField<String>(
             values: inspection.foundation.finishings
                 .map((e) => SelectionItem(value: e, name: e))
@@ -67,6 +70,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 幅0.5mm以上のひび割れ',
+          incomplete: inspection.foundation.crack.result == Result.none,
           strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.crack.result,
@@ -81,7 +85,9 @@ class FoundationSection extends HookConsumerWidget {
         if (inspection.foundation.crack.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            incomplete: inspection.foundation.crack.directions.isEmpty,
+            indent: true,
             child: MultiDropdownField<Direction>(
               values: inspection.foundation.crack.directions
                   .map((e) => SelectionItem(
@@ -105,7 +111,10 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅',
+            title: '最大ひび割れ幅',
+            incomplete:
+                inspection.foundation.crack.max?.toString().isEmpty ?? true,
+            indent: true,
             child: PrimaryTextField(
               initialText: inspection.foundation.crack.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -151,6 +160,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 深さ2mm以上の欠損',
+          incomplete: inspection.foundation.damage.result == Result.none,
           strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.damage.result,
@@ -165,7 +175,9 @@ class FoundationSection extends HookConsumerWidget {
         if (inspection.foundation.damage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.foundation.damage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.foundation.damage.directions
                   .map((e) => SelectionItem(
@@ -190,7 +202,10 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大欠損深さ',
+            title: '最大欠損深さ',
+            indent: true,
+            incomplete:
+                inspection.foundation.damage.max?.toString().isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.foundation.damage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -237,6 +252,8 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] コンクリートの著しい劣化',
+          incomplete:
+              inspection.foundation.concreteDeterioration.result == Result.none,
           strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.concreteDeterioration.result,
@@ -253,7 +270,10 @@ class FoundationSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.foundation.concreteDeterioration.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.foundation.concreteDeterioration.directions
                   .map((e) => SelectionItem(
@@ -279,7 +299,10 @@ class FoundationSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　問題箇所詳細',
+            title: '問題箇所詳細',
+            indent: true,
+            incomplete:
+                inspection.foundation.concreteDeterioration.details.isEmpty,
             child: PrimaryCheckList(
               all: DAMAGE_DETAILS,
               selecteds:
@@ -328,6 +351,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] さび汁を伴うひび割れ、欠損',
+          incomplete: inspection.foundation.rust.result == Result.none,
           strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.rust.result,
@@ -342,7 +366,9 @@ class FoundationSection extends HookConsumerWidget {
         if (inspection.foundation.rust.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.foundation.rust.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.foundation.rust.directions
                   .map((e) => SelectionItem(
@@ -393,6 +419,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 鉄筋の露出',
+          incomplete: inspection.foundation.rebarExposure.result == Result.none,
           strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.rebarExposure.result,
@@ -408,7 +435,9 @@ class FoundationSection extends HookConsumerWidget {
         if (inspection.foundation.rebarExposure.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.foundation.rebarExposure.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.foundation.rebarExposure.directions
                   .map((e) => SelectionItem(
@@ -463,6 +492,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           title: '調査できた範囲',
           strikeThrough: inspection.foundation.notApplicable,
+          incomplete: inspection.foundation.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.foundation.coverage,

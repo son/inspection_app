@@ -3,20 +3,21 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/status.dart';
 import 'package:inspection_app/data/utils/list.dart';
+import 'package:inspection_app/ui/components/status_label.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 
 class Section extends HookConsumerWidget {
   const Section({
     super.key,
     required this.title,
-    this.status,
     required this.children,
     this.padding = const EdgeInsets.all(16),
     this.actions = const [],
+    this.complete = false,
   });
 
   final String title;
-  final Status? status;
+  final bool complete;
   final List<Widget> children;
   final EdgeInsets padding;
   final List<Widget> actions;
@@ -49,15 +50,9 @@ class Section extends HookConsumerWidget {
                       title,
                       style: TextStyles.b14,
                     ),
-                    if (status != null)
-                      Text(
-                        status == Status.complete ? '入力完了' : '未入力の項目があります',
-                        style: TextStyles.n10.copyWith(
-                          color: status == Status.complete
-                              ? Colors.greenAccent
-                              : Colors.red,
-                        ),
-                      ),
+                    StatusLabel(
+                      status: complete ? Status.complete : Status.incomplete,
+                    ),
                   ],
                 ),
                 const Spacer(),

@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:inspection_app/data/entities/damage/damage.dart';
 import 'package:inspection_app/data/entities/result.dart';
-import 'package:inspection_app/data/entities/status.dart';
 
 part 'foundation.freezed.dart';
 part 'foundation.g.dart';
@@ -38,5 +37,43 @@ class Foundation with _$Foundation {
     );
   }
 
-  // bool get crackHasIncompletes => crack.result == Result.none || ;
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      crack.result,
+      damage.result,
+      concreteDeterioration.result,
+      rust.result,
+      rebarExposure.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final crackOk = crack.result == Result.passed ||
+        (crack.result == Result.failure && (crack.max?.complete ?? false));
+    final damageOk = damage.result == Result.passed ||
+        (damage.result == Result.failure && damage.directions.isNotEmpty);
+    final concreteOk = concreteDeterioration.result == Result.passed ||
+        (concreteDeterioration.result == Result.failure &&
+            concreteDeterioration.directions.isNotEmpty &&
+            (concreteDeterioration.max?.complete ?? false));
+    final rustOk = rust.result == Result.passed ||
+        (rust.result == Result.failure &&
+            rust.directions.isNotEmpty &&
+            (rust.max?.complete ?? false));
+    final rebarOk = rebarExposure.result == Result.passed ||
+        (rebarExposure.result == Result.failure &&
+            rebarExposure.directions.isNotEmpty &&
+            (rebarExposure.max?.complete ?? false));
+
+    return finishings.isNotEmpty &&
+        crackOk &&
+        damageOk &&
+        concreteOk &&
+        rustOk &&
+        rebarOk &&
+        coverage != null;
+  }
 }

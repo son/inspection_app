@@ -30,6 +30,11 @@ class TextStyles {
     fontSize: 16,
   );
 
+  static final b10 = _default.copyWith(
+    fontWeight: FontWeight.bold,
+    fontSize: 10,
+  );
+
   static final b12 = _default.copyWith(
     fontWeight: FontWeight.bold,
     fontSize: 12,

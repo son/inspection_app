@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 
@@ -9,12 +8,16 @@ class SectionItem extends StatelessWidget {
     required this.child,
     this.axis = Axis.horizontal,
     this.strikeThrough = false,
+    this.incomplete = false,
+    this.indent = false,
   });
 
   final String? title;
   final Widget child;
   final Axis axis;
   final bool strikeThrough;
+  final bool incomplete;
+  final bool indent;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,19 @@ class SectionItem extends StatelessWidget {
       child: Row(
         children: [
           if (title != null) ...[
+            if (indent) const SizedBox(width: 16),
+            if (incomplete && !strikeThrough)
+              Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: Container(
+                  height: 10,
+                  width: 10,
+                  decoration: const ShapeDecoration(
+                    shape: CircleBorder(),
+                    color: Color(0xFFFFC107),
+                  ),
+                ),
+              ),
             Text(
               title!,
               style: strikeThrough
