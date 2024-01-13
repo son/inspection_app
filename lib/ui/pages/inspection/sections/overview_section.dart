@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
@@ -11,6 +12,7 @@ class OverviewSection extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    useAutomaticKeepAlive();
     final id = ref.watch(inspectionIdProvider);
     final inspection = ref.watch(inspectionProvider(id));
     final controller = ref.read(inspectionProvider(id).notifier);

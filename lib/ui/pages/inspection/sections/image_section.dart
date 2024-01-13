@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/ui/pages/inspection/children/blueprints_section_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/exterior_section_item.dart';
@@ -10,6 +11,7 @@ class ImageSection extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    useAutomaticKeepAlive();
     return const Section(
       title: '外観・現況写真・設計図書',
       children: [
