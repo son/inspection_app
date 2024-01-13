@@ -57,6 +57,15 @@ class InspectionPage extends HookConsumerWidget {
     final controller = ref.read(inspectionListProvider.notifier);
     final scrollController = useScrollController();
 
+    useOnAppLifecycleStateChange((_, state) async {
+      if (![AppLifecycleState.inactive, AppLifecycleState.detached]
+          .contains(state)) {
+        return;
+      }
+      final inspection = ref.read(inspectionProvider(inspectionId));
+      await controller.updateInspection(inspection);
+    });
+
     return WillPopScope(
       onWillPop: () async {
         final inspection = ref.read(inspectionProvider(inspectionId));
