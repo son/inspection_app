@@ -28,6 +28,8 @@ class BalconySection extends HookConsumerWidget {
       title: 'バルコニー（共用廊下）',
       actions: [
         MenuButton(
+          notApplicable: inspection.balcony.notApplicable,
+          title: '「バルコニー（共用廊下）」の項目全てを一括で設定します',
           onTapAllPassed: () {
             controller.updateBalcony(inspection.balcony.allPassed());
           },

@@ -24,6 +24,7 @@ class Concrete with _$Concrete {
 
   Concrete allPassed() {
     return copyWith(
+      notApplicable: false,
       compressiveStrength1:
           compressiveStrength1.copyWith(result: Result.passed),
       compressiveStrength2:

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 
 class SectionItem extends StatelessWidget {
@@ -7,11 +8,13 @@ class SectionItem extends StatelessWidget {
     this.title,
     required this.child,
     this.axis = Axis.horizontal,
+    this.strikeThrough = false,
   });
 
   final String? title;
   final Widget child;
   final Axis axis;
+  final bool strikeThrough;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +29,20 @@ class SectionItem extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               title!,
-              style: TextStyles.n12,
+              style: strikeThrough
+                  ? TextStyles.n12.copyWith(
+                      decoration: TextDecoration.lineThrough,
+                      color: Colors.black38,
+                    )
+                  : TextStyles.n12.copyWith(
+                      decoration: TextDecoration.none,
+                    ),
             ),
           ],
-          child,
+          AbsorbPointer(
+            absorbing: strikeThrough,
+            child: child,
+          )
         ],
       );
     }
@@ -45,13 +58,25 @@ class SectionItem extends StatelessWidget {
           if (title != null) ...[
             Text(
               title!,
-              style: TextStyles.n12.copyWith(
-                height: multiline ? 1.5 : null,
-              ),
+              style: strikeThrough
+                  ? TextStyles.n12.copyWith(
+                      height: multiline ? 1.5 : null,
+                      decoration: TextDecoration.lineThrough,
+                      color: Colors.black38,
+                    )
+                  : TextStyles.n12.copyWith(
+                      height: multiline ? 1.5 : null,
+                      decoration: TextDecoration.none,
+                    ),
             ),
           ],
           const SizedBox(width: 16),
-          Expanded(child: child),
+          Expanded(
+            child: AbsorbPointer(
+              absorbing: strikeThrough,
+              child: child,
+            ),
+          ),
         ],
       ),
     );

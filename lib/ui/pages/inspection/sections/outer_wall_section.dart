@@ -28,6 +28,8 @@ class OuterWallSection extends HookConsumerWidget {
       title: '外壁及び軒裏',
       actions: [
         MenuButton(
+          title: '「外壁及び軒裏」の項目全てを一括で設定します',
+          notApplicable: inspection.outerWall.notApplicable,
           onTapAllPassed: () {
             controller.updateOuterWall(inspection.outerWall.allPassed());
           },

@@ -26,6 +26,8 @@ class CeilingSection extends HookConsumerWidget {
       title: '天井',
       actions: [
         MenuButton(
+          title: '「天井」の項目全てを一括で設定します',
+          notApplicable: inspection.ceiling.notApplicable,
           onTapAllPassed: () {
             controller.updateCeiling(inspection.ceiling.allPassed());
           },

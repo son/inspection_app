@@ -26,6 +26,8 @@ class PipingSection extends HookConsumerWidget {
       title: '設備配管',
       actions: [
         MenuButton(
+          title: '「設備配管」の項目全てを一括で設定します',
+          notApplicable: inspection.piping.notApplicable,
           onTapAllPassed: () {
             controller.updatePiping(inspection.piping.allPassed());
           },

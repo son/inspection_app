@@ -23,6 +23,7 @@ class Rebar with _$Rebar {
 
   Rebar allPassed() {
     return copyWith(
+      notApplicable: false,
       side: side.copyWith(result: Result.passed),
       bottom: bottom.copyWith(result: Result.passed),
     );

@@ -5,15 +5,21 @@ import 'package:inspection_app/ui/components/text_styles.dart';
 class MenuSheet extends HookConsumerWidget {
   const MenuSheet({
     super.key,
+    required this.title,
+    required this.notApplicable,
     required this.onTapAllPassed,
     required this.onTapNotApplicable,
   });
 
+  final String title;
+  final bool notApplicable;
   final Function() onTapAllPassed;
   final Function() onTapNotApplicable;
 
   static Future<void> show({
     required BuildContext context,
+    required String title,
+    required bool notApplicable,
     required Function() onTapAllPassed,
     required Function() onTapNotApplicable,
   }) {
@@ -26,6 +32,8 @@ class MenuSheet extends HookConsumerWidget {
         ),
       ),
       builder: (_) => MenuSheet(
+        title: title,
+        notApplicable: notApplicable,
         onTapAllPassed: onTapAllPassed,
         onTapNotApplicable: onTapNotApplicable,
       ),
@@ -54,22 +62,37 @@ class MenuSheet extends HookConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16),
             child: Text(
-              '「基礎」の項目全てを一括で設定します',
+              title,
               style: TextStyles.b12,
             ),
           ),
           const SizedBox(height: 16),
-          ...<({String title, IconData icon, Function() onTap})>[
+          ...<({String title, Widget icon, Function() onTap})>[
             (
               title: '全て問題なし',
-              icon: Icons.check_rounded,
+              icon: const Icon(
+                Icons.check_rounded,
+                color: Colors.blueAccent,
+              ),
               onTap: onTapAllPassed,
             ),
-            (
-              title: '該当なし',
-              icon: Icons.close_rounded,
-              onTap: onTapNotApplicable,
-            ),
+            notApplicable
+                ? (
+                    title: '該当あり',
+                    icon: const Icon(
+                      Icons.circle_outlined,
+                      color: Colors.redAccent,
+                    ),
+                    onTap: onTapNotApplicable,
+                  )
+                : (
+                    title: '該当なし',
+                    icon: const Icon(
+                      Icons.close_rounded,
+                      color: Colors.black38,
+                    ),
+                    onTap: onTapNotApplicable,
+                  ),
           ]
               .map((item) => _Item(
                     title: item.title,
@@ -91,7 +114,7 @@ class _Item extends StatelessWidget {
   });
 
   final String title;
-  final IconData icon;
+  final Widget icon;
   final Function() onTap;
 
   @override
@@ -107,10 +130,7 @@ class _Item extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              color: Colors.black87,
-            ),
+            icon,
             const SizedBox(width: 32),
             Text(
               title,

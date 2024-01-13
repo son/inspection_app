@@ -22,6 +22,7 @@ class BaseAndFloorFraming with _$BaseAndFloorFraming {
 
   BaseAndFloorFraming allPassed() {
     return copyWith(
+      notApplicable: false,
       damage: damage.copyWith(result: Result.passed),
     );
   }

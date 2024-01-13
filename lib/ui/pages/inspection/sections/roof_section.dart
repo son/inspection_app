@@ -27,6 +27,8 @@ class RoofSection extends HookConsumerWidget {
       title: '屋根',
       actions: [
         MenuButton(
+          title: '「屋根」の項目全てを一括で設定します',
+          notApplicable: inspection.roof.notApplicable,
           onTapAllPassed: () {
             controller.updateRoof(inspection.roof.allPassed());
           },

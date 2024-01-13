@@ -27,6 +27,8 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
       title: '土台、床組',
       actions: [
         MenuButton(
+          notApplicable: inspection.baseAndFloorFraming.notApplicable,
+          title: '「土台、床組」の項目全てを一括で設定します',
           onTapAllPassed: () {
             controller.updateBaseAndFloorFraming(
                 inspection.baseAndFloorFraming.allPassed());

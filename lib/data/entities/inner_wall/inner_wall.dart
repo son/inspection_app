@@ -24,6 +24,7 @@ class InnerWall with _$InnerWall {
 
   InnerWall allPassed() {
     return copyWith(
+      notApplicable: false,
       foundationDamage: foundationDamage.copyWith(result: Result.passed),
       foundationInclination:
           foundationInclination.copyWith(result: Result.passed),

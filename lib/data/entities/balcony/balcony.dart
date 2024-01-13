@@ -24,6 +24,7 @@ class Balcony with _$Balcony {
 
   Balcony allPassed() {
     return copyWith(
+      notApplicable: false,
       foundation: foundation.copyWith(result: Result.passed),
       waterProofLayer: waterProofLayer.copyWith(result: Result.passed),
     );

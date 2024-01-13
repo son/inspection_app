@@ -38,6 +38,7 @@ class OuterWall with _$OuterWall {
 
   OuterWall allPassed() {
     return copyWith(
+      notApplicable: false,
       dryDamage: dryDamage.copyWith(result: Result.passed),
       dryWideDamage: dryWideDamage.copyWith(result: Result.passed),
       dryCorrosion: dryCorrosion.copyWith(result: Result.passed),

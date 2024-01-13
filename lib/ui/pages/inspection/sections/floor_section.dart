@@ -27,6 +27,8 @@ class FloorSection extends HookConsumerWidget {
       title: '床',
       actions: [
         MenuButton(
+          title: '「床」の項目全てを一括で設定します',
+          notApplicable: inspection.floor.notApplicable,
           onTapAllPassed: () {
             controller.updateFloor(inspection.floor.allPassed());
           },

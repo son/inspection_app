@@ -26,6 +26,8 @@ class InnerWallSection extends HookConsumerWidget {
       title: '内壁',
       actions: [
         MenuButton(
+          title: '「内壁」の項目全てを一括で設定します',
+          notApplicable: inspection.innerWall.notApplicable,
           onTapAllPassed: () {
             controller.updateInnerWall(inspection.innerWall.allPassed());
           },

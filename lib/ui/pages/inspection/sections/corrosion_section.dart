@@ -26,6 +26,8 @@ class CorrosionSection extends HookConsumerWidget {
       title: '腐朽、腐食など',
       actions: [
         MenuButton(
+          title: '「腐朽、腐食など」の項目全てを一括で設定します',
+          notApplicable: inspection.corrosion.notApplicable,
           onTapAllPassed: () {
             controller.updateCorrosion(inspection.corrosion.allPassed());
           },

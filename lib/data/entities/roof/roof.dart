@@ -23,6 +23,7 @@ class Roof with _$Roof {
 
   Roof allPassed() {
     return copyWith(
+      notApplicable: false,
       damage: damage.copyWith(result: Result.passed),
       waterProofLayerDamage:
           waterProofLayerDamage.copyWith(result: Result.passed),

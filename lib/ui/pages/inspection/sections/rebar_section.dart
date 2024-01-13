@@ -26,6 +26,8 @@ class RebarSection extends HookConsumerWidget {
       title: '鉄筋探査',
       actions: [
         MenuButton(
+          title: '「鉄筋探査」の項目全てを一括で設定します',
+          notApplicable: inspection.rebar.notApplicable,
           onTapAllPassed: () {
             controller.updateRebar(inspection.rebar.allPassed());
           },

@@ -23,6 +23,7 @@ class RoofFrame with _$RoofFrame {
 
   RoofFrame allPassed() {
     return copyWith(
+      notApplicable: false,
       foundationDamage: foundationDamage.copyWith(result: Result.passed),
       rainRoofFrameLeak: rainRoofFrameLeak.copyWith(result: Result.passed),
     );

@@ -25,6 +25,7 @@ class PillarAndBeam with _$PillarAndBeam {
 
   PillarAndBeam allPassed() {
     return copyWith(
+      notApplicable: false,
       pillarDamage: pillarDamage.copyWith(result: Result.passed),
       pillarInclination: pillarInclination.copyWith(result: Result.passed),
       beamDamage: beamDamage.copyWith(result: Result.passed),

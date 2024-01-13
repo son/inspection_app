@@ -5,10 +5,14 @@ import 'package:inspection_app/ui/components/menu_sheet.dart';
 class MenuButton extends HookConsumerWidget {
   const MenuButton({
     super.key,
+    required this.title,
+    required this.notApplicable,
     required this.onTapAllPassed,
     required this.onTapNotApplicable,
   });
 
+  final String title;
+  final bool notApplicable;
   final Function() onTapAllPassed;
   final Function() onTapNotApplicable;
 
@@ -18,6 +22,8 @@ class MenuButton extends HookConsumerWidget {
 
     return GestureDetector(
       onTap: () => MenuSheet.show(
+        title: title,
+        notApplicable: notApplicable,
         context: context,
         onTapAllPassed: onTapAllPassed,
         onTapNotApplicable: onTapNotApplicable,

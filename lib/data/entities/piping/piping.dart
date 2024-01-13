@@ -25,6 +25,7 @@ class Piping with _$Piping {
 
   Piping allPassed() {
     return copyWith(
+      notApplicable: false,
       supplyRustyWater: supplyRustyWater.copyWith(result: Result.passed),
       supplyWaterLeak: supplyWaterLeak.copyWith(result: Result.passed),
       sewerStuck: sewerStuck.copyWith(result: Result.passed),

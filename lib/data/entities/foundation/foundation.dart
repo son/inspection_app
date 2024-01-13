@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:inspection_app/data/entities/damage/damage.dart';
 import 'package:inspection_app/data/entities/result.dart';
+import 'package:inspection_app/data/entities/status.dart';
 
 part 'foundation.freezed.dart';
 part 'foundation.g.dart';
@@ -27,6 +28,7 @@ class Foundation with _$Foundation {
 
   Foundation allPassed() {
     return copyWith(
+      notApplicable: false,
       crack: crack.copyWith(result: Result.passed),
       damage: damage.copyWith(result: Result.passed),
       concreteDeterioration:
@@ -35,4 +37,6 @@ class Foundation with _$Foundation {
       rebarExposure: rebarExposure.copyWith(result: Result.passed),
     );
   }
+
+  // bool get crackHasIncompletes => crack.result == Result.none || ;
 }

@@ -26,6 +26,8 @@ class LifelineSection extends HookConsumerWidget {
       title: '給排水、電気、ガス設備',
       actions: [
         MenuButton(
+          title: '「給排水、電気、ガス設備」の項目全てを一括で設定します',
+          notApplicable: inspection.lifeline.notApplicable,
           onTapAllPassed: () {
             controller.updateLifeline(inspection.lifeline.allPassed());
           },

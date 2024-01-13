@@ -23,6 +23,7 @@ class Floor with _$Floor {
 
   Floor allPassed() {
     return copyWith(
+      notApplicable: false,
       damage: damage.copyWith(result: Result.passed),
       sinking: sinking.copyWith(result: Result.passed),
       inclination: inclination.copyWith(result: Result.passed),

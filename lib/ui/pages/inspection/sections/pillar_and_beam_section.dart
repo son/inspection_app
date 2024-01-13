@@ -27,6 +27,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
       title: '柱及び梁',
       actions: [
         MenuButton(
+          title: '「柱及び梁」の項目全てを一括で設定します',
+          notApplicable: inspection.pillarAndBeam.notApplicable,
           onTapAllPassed: () {
             controller
                 .updatePillarAndBeam(inspection.pillarAndBeam.allPassed());

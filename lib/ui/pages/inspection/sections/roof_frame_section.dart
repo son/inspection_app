@@ -27,6 +27,8 @@ class RoofFrameSection extends HookConsumerWidget {
       title: '小屋組（下屋部分を含む）',
       actions: [
         MenuButton(
+          title: '「小屋組（下屋部分を含む）」の項目全てを一括で設定します',
+          notApplicable: inspection.roofFrame.notApplicable,
           onTapAllPassed: () {
             controller.updateRoofFrame(inspection.roofFrame.allPassed());
           },

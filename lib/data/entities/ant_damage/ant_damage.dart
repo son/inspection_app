@@ -23,6 +23,7 @@ class AntDamage with _$AntDamage {
 
   AntDamage allPassed() {
     return copyWith(
+      notApplicable: false,
       antDamage: antDamage.copyWith(result: Result.passed),
     );
   }

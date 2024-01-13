@@ -26,6 +26,8 @@ class ConcreteSection extends HookConsumerWidget {
       title: 'コンクリート圧縮強度',
       actions: [
         MenuButton(
+          title: '「コンクリート圧縮強度」の項目全てを一括で設定します',
+          notApplicable: inspection.concrete.notApplicable,
           onTapAllPassed: () {
             controller.updateConcrete(inspection.concrete.allPassed());
           },

@@ -23,6 +23,7 @@ class Lifeline with _$Lifeline {
 
   Lifeline allPassed() {
     return copyWith(
+      notApplicable: false,
       lifelineMalfunction: lifelineMalfunction.copyWith(result: Result.passed),
       otherMalfunction: otherMalfunction.copyWith(result: Result.passed),
     );

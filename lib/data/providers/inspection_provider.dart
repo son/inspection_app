@@ -248,10 +248,4 @@ class InspectionNotifier extends StateNotifier<Inspection> {
     cancel();
     return urls.map((url) => Photo(image: url)).toList();
   }
-
-  Future<void> updateSpecificPhoto(List<String> paths) async {
-    final news = await createNewPhotos(paths);
-    state = state.copyWith(blueprints: [...state.blueprints, ...news]);
-    await ref.read(inspectionListProvider.notifier).updateInspection(state);
-  }
 }

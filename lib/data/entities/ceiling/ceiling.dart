@@ -24,6 +24,7 @@ class Ceiling with _$Ceiling {
 
   Ceiling allPassed() {
     return copyWith(
+      notApplicable: false,
       foundationDamage: foundationDamage.copyWith(result: Result.passed),
       rainCeilingLeak: rainCeilingLeak.copyWith(result: Result.passed),
     );

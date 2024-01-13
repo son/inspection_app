@@ -22,6 +22,7 @@ class Corrosion with _$Corrosion {
 
   Corrosion allPassed() {
     return copyWith(
+      notApplicable: false,
       corrosion: corrosion.copyWith(result: Result.passed),
     );
   }

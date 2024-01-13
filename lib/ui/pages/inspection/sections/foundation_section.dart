@@ -30,11 +30,15 @@ class FoundationSection extends HookConsumerWidget {
       title: '基礎',
       actions: [
         MenuButton(
+          title: '「基礎」の項目全てを一括で設定します',
+          notApplicable: inspection.foundation.notApplicable,
           onTapAllPassed: () {
             controller.updateFoundation(inspection.foundation.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateFoundation(const Foundation(notApplicable: true));
+            controller.updateFoundation(
+              Foundation(notApplicable: !inspection.foundation.notApplicable),
+            );
           },
         ),
       ],
@@ -42,6 +46,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '仕上げ',
+          strikeThrough: inspection.foundation.notApplicable,
           child: MultiDropdownField<String>(
             values: inspection.foundation.finishings
                 .map((e) => SelectionItem(value: e, name: e))
@@ -62,6 +67,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 幅0.5mm以上のひび割れ',
+          strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.crack.result,
             onSelect: (result) {
@@ -145,6 +151,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 深さ2mm以上の欠損',
+          strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.damage.result,
             onSelect: (result) {
@@ -230,6 +237,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] コンクリートの著しい劣化',
+          strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.concreteDeterioration.result,
             onSelect: (result) {
@@ -320,6 +328,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] さび汁を伴うひび割れ、欠損',
+          strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.rust.result,
             onSelect: (result) {
@@ -384,6 +393,7 @@ class FoundationSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 鉄筋の露出',
+          strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField.result(
             result: inspection.foundation.rebarExposure.result,
             onSelect: (result) {
@@ -452,6 +462,7 @@ class FoundationSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.foundation.notApplicable,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.foundation.coverage,

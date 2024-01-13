@@ -26,6 +26,8 @@ class AntDamageSection extends HookConsumerWidget {
       title: '蟻害',
       actions: [
         MenuButton(
+          notApplicable: inspection.antDamage.notApplicable,
+          title: '「蟻害」の項目全てを一括で設定します',
           onTapAllPassed: () {
             controller.updateAntDamage(inspection.antDamage.allPassed());
           },
