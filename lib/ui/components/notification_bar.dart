@@ -13,6 +13,17 @@ class NotificationBar extends StatelessWidget {
   final String? description;
   final Widget? icon;
 
+  static Function() showError({
+    required String title,
+    String? description,
+  }) {
+    return NotificationBar.show(
+      title: title,
+      description: description,
+      icon: const Icon(Icons.error_outline_rounded, color: Colors.redAccent),
+    );
+  }
+
   static Function() showSave() {
     return NotificationBar.show(
       title: '変更を保存しました',

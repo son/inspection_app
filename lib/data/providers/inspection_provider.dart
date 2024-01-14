@@ -39,6 +39,8 @@ class InspectionNotifier extends StateNotifier<Inspection> {
   }) : super(Inspection.empty) {
     state = ref
         .read(inspectionListProvider)
+        .asData!
+        .value
         .firstWhere((i) => i.id == inspectionId);
   }
 
