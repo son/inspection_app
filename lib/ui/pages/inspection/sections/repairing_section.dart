@@ -21,9 +21,12 @@ class RepairingSection extends HookConsumerWidget {
 
     return Section(
       title: '修理履歴・リフォーム工事の有無',
+      complete: inspection.overview.building.repairing.complete &&
+          inspection.overview.building.renovation.complete,
       children: [
         SectionItem(
           title: '修理履歴',
+          incomplete: inspection.overview.building.repairing.repaired == null,
           child: DropdownField<bool>(
             value: () {
               if (inspection.overview.building.repairing.repaired == null) {
@@ -50,12 +53,14 @@ class RepairingSection extends HookConsumerWidget {
         ),
         if (inspection.overview.building.repairing.repaired ?? false) ...[
           SectionItem(
+            incomplete:
+                inspection.overview.building.repairing.parts?.isEmpty ?? true,
             axis: Axis.vertical,
             title: '部分',
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              initialText: inspection.overview.building.repairing.parts,
+              initialText: inspection.overview.building.repairing.parts ?? '',
               onChange: (text) {
                 controller.updateRepairing(inspection
                     .overview.building.repairing
@@ -65,11 +70,13 @@ class RepairingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
+            incomplete:
+                inspection.overview.building.repairing.method?.isEmpty ?? true,
             title: '修繕方法',
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              initialText: inspection.overview.building.repairing.method,
+              initialText: inspection.overview.building.repairing.method ?? '',
               onChange: (text) {
                 controller.updateRepairing(inspection
                     .overview.building.repairing
@@ -80,6 +87,8 @@ class RepairingSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査時のリフォーム工事',
+          incomplete:
+              inspection.overview.building.renovation.renovating == null,
           child: DropdownField<bool>(
             value: () {
               if (inspection.overview.building.renovation.renovating == null) {
@@ -109,10 +118,12 @@ class RepairingSection extends HookConsumerWidget {
           SectionItem(
             axis: Axis.vertical,
             title: '部分',
+            incomplete:
+                inspection.overview.building.renovation.parts?.isEmpty ?? true,
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              initialText: inspection.overview.building.renovation.parts,
+              initialText: inspection.overview.building.renovation.parts ?? '',
               onChange: (text) {
                 final renovation = inspection.overview.building.renovation
                     .copyWith(parts: text);

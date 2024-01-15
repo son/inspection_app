@@ -559,9 +559,9 @@ Repairing _$RepairingFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Repairing {
   bool? get repaired => throw _privateConstructorUsedError;
-  String get parts => throw _privateConstructorUsedError;
-  String get remarks => throw _privateConstructorUsedError;
-  String get method => throw _privateConstructorUsedError;
+  String? get parts => throw _privateConstructorUsedError;
+  String? get remarks => throw _privateConstructorUsedError;
+  String? get method => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -574,7 +574,7 @@ abstract class $RepairingCopyWith<$Res> {
   factory $RepairingCopyWith(Repairing value, $Res Function(Repairing) then) =
       _$RepairingCopyWithImpl<$Res, Repairing>;
   @useResult
-  $Res call({bool? repaired, String parts, String remarks, String method});
+  $Res call({bool? repaired, String? parts, String? remarks, String? method});
 }
 
 /// @nodoc
@@ -591,27 +591,27 @@ class _$RepairingCopyWithImpl<$Res, $Val extends Repairing>
   @override
   $Res call({
     Object? repaired = freezed,
-    Object? parts = null,
-    Object? remarks = null,
-    Object? method = null,
+    Object? parts = freezed,
+    Object? remarks = freezed,
+    Object? method = freezed,
   }) {
     return _then(_value.copyWith(
       repaired: freezed == repaired
           ? _value.repaired
           : repaired // ignore: cast_nullable_to_non_nullable
               as bool?,
-      parts: null == parts
+      parts: freezed == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
-              as String,
-      remarks: null == remarks
+              as String?,
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
-      method: null == method
+              as String?,
+      method: freezed == method
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -623,7 +623,7 @@ abstract class _$$_RepairingCopyWith<$Res> implements $RepairingCopyWith<$Res> {
       __$$_RepairingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? repaired, String parts, String remarks, String method});
+  $Res call({bool? repaired, String? parts, String? remarks, String? method});
 }
 
 /// @nodoc
@@ -638,27 +638,27 @@ class __$$_RepairingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? repaired = freezed,
-    Object? parts = null,
-    Object? remarks = null,
-    Object? method = null,
+    Object? parts = freezed,
+    Object? remarks = freezed,
+    Object? method = freezed,
   }) {
     return _then(_$_Repairing(
       repaired: freezed == repaired
           ? _value.repaired
           : repaired // ignore: cast_nullable_to_non_nullable
               as bool?,
-      parts: null == parts
+      parts: freezed == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
-              as String,
-      remarks: null == remarks
+              as String?,
+      remarks: freezed == remarks
           ? _value.remarks
           : remarks // ignore: cast_nullable_to_non_nullable
-              as String,
-      method: null == method
+              as String?,
+      method: freezed == method
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -667,8 +667,7 @@ class __$$_RepairingCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_Repairing extends _Repairing {
-  const _$_Repairing(
-      {this.repaired, this.parts = '', this.remarks = '', this.method = ''})
+  const _$_Repairing({this.repaired, this.parts, this.remarks, this.method})
       : super._();
 
   factory _$_Repairing.fromJson(Map<String, dynamic> json) =>
@@ -677,14 +676,11 @@ class _$_Repairing extends _Repairing {
   @override
   final bool? repaired;
   @override
-  @JsonKey()
-  final String parts;
+  final String? parts;
   @override
-  @JsonKey()
-  final String remarks;
+  final String? remarks;
   @override
-  @JsonKey()
-  final String method;
+  final String? method;
 
   @override
   String toString() {
@@ -725,9 +721,9 @@ class _$_Repairing extends _Repairing {
 abstract class _Repairing extends Repairing {
   const factory _Repairing(
       {final bool? repaired,
-      final String parts,
-      final String remarks,
-      final String method}) = _$_Repairing;
+      final String? parts,
+      final String? remarks,
+      final String? method}) = _$_Repairing;
   const _Repairing._() : super._();
 
   factory _Repairing.fromJson(Map<String, dynamic> json) =
@@ -736,11 +732,11 @@ abstract class _Repairing extends Repairing {
   @override
   bool? get repaired;
   @override
-  String get parts;
+  String? get parts;
   @override
-  String get remarks;
+  String? get remarks;
   @override
-  String get method;
+  String? get method;
   @override
   @JsonKey(ignore: true)
   _$$_RepairingCopyWith<_$_Repairing> get copyWith =>
@@ -754,7 +750,7 @@ Renovation _$RenovationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Renovation {
   bool? get renovating => throw _privateConstructorUsedError;
-  String get parts => throw _privateConstructorUsedError;
+  String? get parts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -768,7 +764,7 @@ abstract class $RenovationCopyWith<$Res> {
           Renovation value, $Res Function(Renovation) then) =
       _$RenovationCopyWithImpl<$Res, Renovation>;
   @useResult
-  $Res call({bool? renovating, String parts});
+  $Res call({bool? renovating, String? parts});
 }
 
 /// @nodoc
@@ -785,17 +781,17 @@ class _$RenovationCopyWithImpl<$Res, $Val extends Renovation>
   @override
   $Res call({
     Object? renovating = freezed,
-    Object? parts = null,
+    Object? parts = freezed,
   }) {
     return _then(_value.copyWith(
       renovating: freezed == renovating
           ? _value.renovating
           : renovating // ignore: cast_nullable_to_non_nullable
               as bool?,
-      parts: null == parts
+      parts: freezed == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -808,7 +804,7 @@ abstract class _$$_RenovationCopyWith<$Res>
       __$$_RenovationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? renovating, String parts});
+  $Res call({bool? renovating, String? parts});
 }
 
 /// @nodoc
@@ -823,17 +819,17 @@ class __$$_RenovationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? renovating = freezed,
-    Object? parts = null,
+    Object? parts = freezed,
   }) {
     return _then(_$_Renovation(
       renovating: freezed == renovating
           ? _value.renovating
           : renovating // ignore: cast_nullable_to_non_nullable
               as bool?,
-      parts: null == parts
+      parts: freezed == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -841,7 +837,7 @@ class __$$_RenovationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Renovation extends _Renovation {
-  const _$_Renovation({this.renovating, this.parts = ''}) : super._();
+  const _$_Renovation({this.renovating, this.parts}) : super._();
 
   factory _$_Renovation.fromJson(Map<String, dynamic> json) =>
       _$$_RenovationFromJson(json);
@@ -849,8 +845,7 @@ class _$_Renovation extends _Renovation {
   @override
   final bool? renovating;
   @override
-  @JsonKey()
-  final String parts;
+  final String? parts;
 
   @override
   String toString() {
@@ -886,7 +881,7 @@ class _$_Renovation extends _Renovation {
 }
 
 abstract class _Renovation extends Renovation {
-  const factory _Renovation({final bool? renovating, final String parts}) =
+  const factory _Renovation({final bool? renovating, final String? parts}) =
       _$_Renovation;
   const _Renovation._() : super._();
 
@@ -896,7 +891,7 @@ abstract class _Renovation extends Renovation {
   @override
   bool? get renovating;
   @override
-  String get parts;
+  String? get parts;
   @override
   @JsonKey(ignore: true)
   _$$_RenovationCopyWith<_$_Renovation> get copyWith =>

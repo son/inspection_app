@@ -30,16 +30,32 @@ class SectionItem extends StatelessWidget {
         children: [
           if (title != null) ...[
             const SizedBox(height: 16),
-            Text(
-              title!,
-              style: strikeThrough
-                  ? TextStyles.n12.copyWith(
-                      decoration: TextDecoration.lineThrough,
-                      color: Colors.black38,
-                    )
-                  : TextStyles.n12.copyWith(
-                      decoration: TextDecoration.none,
+            Row(
+              children: [
+                if (incomplete && !strikeThrough)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: Container(
+                      height: 10,
+                      width: 10,
+                      decoration: const ShapeDecoration(
+                        shape: CircleBorder(),
+                        color: Color(0xFFFFC107),
+                      ),
                     ),
+                  ),
+                Text(
+                  title!,
+                  style: strikeThrough
+                      ? TextStyles.n12.copyWith(
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.black38,
+                        )
+                      : TextStyles.n12.copyWith(
+                          decoration: TextDecoration.none,
+                        ),
+                ),
+              ],
             ),
           ],
           AbsorbPointer(

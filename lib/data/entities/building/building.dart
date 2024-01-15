@@ -60,13 +60,23 @@ class Repairing with _$Repairing {
   @JsonSerializable(explicitToJson: true)
   const factory Repairing({
     bool? repaired,
-    @Default('') String parts,
-    @Default('') String remarks,
-    @Default('') String method,
+    String? parts,
+    String? remarks,
+    String? method,
   }) = _Repairing;
 
   factory Repairing.fromJson(Map<String, dynamic> json) =>
       _$RepairingFromJson(json);
+
+  bool get complete {
+    if (repaired == null) {
+      return false;
+    }
+    if (!repaired!) {
+      return true;
+    }
+    return (parts?.isNotEmpty ?? false) && (method?.isNotEmpty ?? false);
+  }
 }
 
 @freezed
@@ -75,9 +85,19 @@ class Renovation with _$Renovation {
 
   const factory Renovation({
     bool? renovating,
-    @Default('') String parts,
+    String? parts,
   }) = _Renovation;
 
   factory Renovation.fromJson(Map<String, dynamic> json) =>
       _$RenovationFromJson(json);
+
+  bool get complete {
+    if (renovating == null) {
+      return false;
+    }
+    if (!renovating!) {
+      return true;
+    }
+    return parts?.isNotEmpty ?? false;
+  }
 }

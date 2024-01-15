@@ -62,9 +62,9 @@ Map<String, dynamic> _$$_FloorToJson(_$_Floor instance) => <String, dynamic>{
 
 _$_Repairing _$$_RepairingFromJson(Map<String, dynamic> json) => _$_Repairing(
       repaired: json['repaired'] as bool?,
-      parts: json['parts'] as String? ?? '',
-      remarks: json['remarks'] as String? ?? '',
-      method: json['method'] as String? ?? '',
+      parts: json['parts'] as String?,
+      remarks: json['remarks'] as String?,
+      method: json['method'] as String?,
     );
 
 Map<String, dynamic> _$$_RepairingToJson(_$_Repairing instance) =>
@@ -78,7 +78,7 @@ Map<String, dynamic> _$$_RepairingToJson(_$_Repairing instance) =>
 _$_Renovation _$$_RenovationFromJson(Map<String, dynamic> json) =>
     _$_Renovation(
       renovating: json['renovating'] as bool?,
-      parts: json['parts'] as String? ?? '',
+      parts: json['parts'] as String?,
     );
 
 Map<String, dynamic> _$$_RenovationToJson(_$_Renovation instance) =>
