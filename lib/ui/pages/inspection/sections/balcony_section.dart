@@ -28,6 +28,7 @@ class BalconySection extends HookConsumerWidget {
 
     return Section(
       title: 'バルコニー（共用廊下）',
+      complete: inspection.balcony.complete,
       actions: [
         MenuButton(
           notApplicable: inspection.balcony.notApplicable,
@@ -43,6 +44,7 @@ class BalconySection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
+          incomplete: inspection.balcony.foundation.result == Result.none,
           title: '[構造] 支持部材・床の\nぐらつき、ひび割れ、劣化',
           child: DropdownField.result(
             result: inspection.balcony.foundation.result,
@@ -58,7 +60,9 @@ class BalconySection extends HookConsumerWidget {
         if (inspection.balcony.foundation.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.balcony.foundation.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.balcony.foundation.directions
                   .map((e) => SelectionItem(
@@ -83,7 +87,9 @@ class BalconySection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅',
+            title: '最大ひび割れ幅',
+            indent: true,
+            incomplete: inspection.balcony.foundation.max == null,
             child: PrimaryTextField(
               initialText: inspection.balcony.foundation.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -131,6 +137,7 @@ class BalconySection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 防水層のひび割れ、劣化、欠損\n水切り金物などの不具合',
+          incomplete: inspection.balcony.waterProofLayer.result == Result.none,
           child: DropdownField.result(
             result: inspection.balcony.waterProofLayer.result,
             onSelect: (result) {
@@ -145,7 +152,9 @@ class BalconySection extends HookConsumerWidget {
         if (inspection.balcony.waterProofLayer.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.balcony.waterProofLayer.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.balcony.waterProofLayer.directions
                   .map((e) => SelectionItem(
@@ -199,6 +208,7 @@ class BalconySection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲（構造）',
+          incomplete: inspection.balcony.foundationCoverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.balcony.foundationCoverage,
@@ -219,6 +229,7 @@ class BalconySection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '調査できた範囲（雨水）',
+          incomplete: inspection.balcony.waterProofLayerCoverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.balcony.waterProofLayerCoverage,

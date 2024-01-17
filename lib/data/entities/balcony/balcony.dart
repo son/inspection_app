@@ -29,4 +29,28 @@ class Balcony with _$Balcony {
       waterProofLayer: waterProofLayer.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      foundation.result,
+      waterProofLayer.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final foundationOk = foundation.result == Result.passed ||
+        (foundation.result == Result.failure &&
+            foundation.directions.isNotEmpty);
+    final waterProofLayerOk = waterProofLayer.result == Result.passed ||
+        (waterProofLayer.result == Result.failure &&
+            waterProofLayer.directions.isNotEmpty);
+
+    return foundationOk &&
+        waterProofLayerOk &&
+        foundationCoverage != null &&
+        waterProofLayerCoverage != null;
+  }
 }
