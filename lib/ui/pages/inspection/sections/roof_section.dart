@@ -27,6 +27,7 @@ class RoofSection extends HookConsumerWidget {
 
     return Section(
       title: '屋根',
+      complete: inspection.roof.complete,
       actions: [
         MenuButton(
           title: '「屋根」の項目全てを一括で設定します',
@@ -42,6 +43,7 @@ class RoofSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '調査要否',
+          incomplete: inspection.roof.necessity == null,
           child: DropdownField<Necessity>(
             value: SelectionItem.orNull(
               value: inspection.roof.necessity,
@@ -61,6 +63,7 @@ class RoofSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 破損、ずれ、ひび割れ\n劣化、欠損、浮き、剥がれ',
+          incomplete: inspection.roof.damage.result == Result.none,
           child: DropdownField.result(
             result: inspection.roof.damage.result,
             onSelect: (result) {
@@ -74,6 +77,7 @@ class RoofSection extends HookConsumerWidget {
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
+            incomplete: inspection.roof.damage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.roof.damage.directions
                   .map((e) => SelectionItem(
@@ -124,6 +128,8 @@ class RoofSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 破損、ずれ、ひび割れ\n劣化、欠損、浮き、剥がれ',
+          incomplete:
+              inspection.roof.waterProofLayerDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.roof.waterProofLayerDamage.result,
             onSelect: (result) {
@@ -140,6 +146,8 @@ class RoofSection extends HookConsumerWidget {
           SectionItem(
             axis: Axis.horizontal,
             title: '　問題が確認された場所',
+            incomplete:
+                inspection.roof.waterProofLayerDamage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.roof.waterProofLayerDamage.directions
                   .map((e) => SelectionItem(
@@ -196,6 +204,7 @@ class RoofSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.roof.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.roof.coverage,

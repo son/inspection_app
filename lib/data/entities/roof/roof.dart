@@ -29,4 +29,28 @@ class Roof with _$Roof {
           waterProofLayerDamage.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      damage.result,
+      waterProofLayerDamage.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final damageOk = damage.result == Result.passed ||
+        (damage.result == Result.failure && damage.directions.isNotEmpty);
+    final waterProofLayerDamageOk =
+        waterProofLayerDamage.result == Result.passed ||
+            (waterProofLayerDamage.result == Result.failure &&
+                waterProofLayerDamage.directions.isNotEmpty);
+
+    return necessity != null &&
+        damageOk &&
+        waterProofLayerDamageOk &&
+        coverage != null;
+  }
 }

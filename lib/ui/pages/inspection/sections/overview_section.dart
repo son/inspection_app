@@ -21,6 +21,7 @@ class OverviewSection extends HookConsumerWidget {
       title: '調査物件情報',
       children: [
         SectionItem(
+          incomplete: inspection.udId?.isEmpty ?? true,
           title: '物件番号',
           child: PrimaryTextField(
             hintText: '入力すると報告書の全ページ左上に表示されます',
@@ -32,6 +33,7 @@ class OverviewSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '建物名称',
+          incomplete: inspection.overview.building.name?.isEmpty ?? true,
           child: PrimaryTextField(
             hintText: '建物名称',
             fixedText: '様邸',
@@ -46,6 +48,7 @@ class OverviewSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '調査依頼主',
+          incomplete: inspection.overview.clientName?.isEmpty ?? true,
           child: PrimaryTextField(
             hintText: '会社名・担当者名',
             initialText: inspection.overview.clientName ?? '',
@@ -57,6 +60,7 @@ class OverviewSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '調査立合者',
+          incomplete: inspection.overview.witnessName?.isEmpty ?? true,
           child: PrimaryTextField(
             initialText: inspection.overview.witnessName ?? '',
             hintText: '会社名・担当者名',
