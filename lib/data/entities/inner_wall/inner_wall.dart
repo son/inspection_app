@@ -31,4 +31,35 @@ class InnerWall with _$InnerWall {
       rainInnerWallLeak: rainInnerWallLeak.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      foundationDamage.result,
+      foundationInclination.result,
+      rainInnerWallLeak.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final foundationDamageOk = foundationDamage.result == Result.passed ||
+        (foundationDamage.result == Result.failure &&
+            (foundationDamage.part?.isNotEmpty ?? false) &&
+            (foundationDamage.max?.complete ?? false));
+    final foundationInclinationOk =
+        foundationInclination.result == Result.passed ||
+            (foundationInclination.result == Result.failure &&
+                (foundationInclination.part?.isNotEmpty ?? false) &&
+                (foundationInclination.max?.complete ?? false));
+    final rainInnerWallLeakOk = rainInnerWallLeak.result == Result.passed ||
+        (rainInnerWallLeak.result == Result.failure &&
+            (rainInnerWallLeak.part?.isNotEmpty ?? false));
+
+    return foundationDamageOk &&
+        foundationInclinationOk &&
+        rainInnerWallLeakOk &&
+        coverage != null;
+  }
 }

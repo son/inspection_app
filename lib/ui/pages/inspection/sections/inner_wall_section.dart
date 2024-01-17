@@ -26,6 +26,7 @@ class InnerWallSection extends HookConsumerWidget {
 
     return Section(
       title: '内壁',
+      complete: inspection.innerWall.complete,
       actions: [
         MenuButton(
           title: '「内壁」の項目全てを一括で設定します',
@@ -41,6 +42,8 @@ class InnerWallSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
+          incomplete:
+              inspection.innerWall.foundationDamage.result == Result.none,
           title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
           child: DropdownField.result(
             result: inspection.innerWall.foundationDamage.result,
@@ -56,7 +59,9 @@ class InnerWallSection extends HookConsumerWidget {
         if (inspection.innerWall.foundationDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅',
+            title: '最大ひび割れ幅',
+            indent: true,
+            incomplete: inspection.innerWall.foundationDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.innerWall.foundationDamage.max?.toString() ?? '',
@@ -78,7 +83,10 @@ class InnerWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.innerWall.foundationDamage.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.innerWall.foundationDamage.part ?? '',
               onChange: (text) {
@@ -92,7 +100,7 @@ class InnerWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
+            indent: true,
             child: PhotoCaptionsItem(
               photos: inspection.innerWall.foundationDamage.photos,
               onChange: (photos) {},
@@ -103,6 +111,8 @@ class InnerWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 6/1000以上の傾斜',
+          incomplete:
+              inspection.innerWall.foundationInclination.result == Result.none,
           child: DropdownField.result(
             result: inspection.innerWall.foundationInclination.result,
             onSelect: (result) {
@@ -119,7 +129,9 @@ class InnerWallSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　当該部分の傾斜',
+            title: '当該部分の傾斜',
+            indent: true,
+            incomplete: inspection.innerWall.foundationInclination.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.innerWall.foundationInclination.max?.toString() ??
@@ -143,7 +155,11 @@ class InnerWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　壁の最も傾きがある場所',
+            title: '壁の最も傾きがある場所',
+            indent: true,
+            incomplete:
+                inspection.innerWall.foundationInclination.part?.isEmpty ??
+                    true,
             child: PrimaryTextField(
               initialText:
                   inspection.innerWall.foundationInclination.part ?? '',
@@ -159,7 +175,6 @@ class InnerWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.innerWall.foundationInclination.photos,
               onChange: (photos) {},
@@ -170,6 +185,8 @@ class InnerWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 内壁の雨漏りの跡',
+          incomplete:
+              inspection.innerWall.rainInnerWallLeak.result == Result.none,
           child: DropdownField.result(
             result: inspection.innerWall.rainInnerWallLeak.result,
             onSelect: (result) {
@@ -185,7 +202,10 @@ class InnerWallSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            incomplete:
+                inspection.innerWall.rainInnerWallLeak.part?.isEmpty ?? true,
+            indent: true,
             child: PrimaryTextField(
               initialText: inspection.innerWall.rainInnerWallLeak.part ?? '',
               onChange: (text) {
@@ -199,7 +219,6 @@ class InnerWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            title: '　写真',
             child: PhotoCaptionsItem(
               photos: inspection.innerWall.rainInnerWallLeak.photos,
               onChange: (photos) {},
@@ -209,6 +228,7 @@ class InnerWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.innerWall.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.innerWall.coverage,
