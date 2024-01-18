@@ -26,6 +26,7 @@ class CeilingSection extends HookConsumerWidget {
 
     return Section(
       title: '天井',
+      complete: inspection.ceiling.complete,
       actions: [
         MenuButton(
           title: '「天井」の項目全てを一括で設定します',
@@ -41,6 +42,7 @@ class CeilingSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '天井点検口の有無',
+          incomplete: inspection.ceiling.accessPanel == null,
           child: DropdownField<AccessPanel>(
             value: SelectionItem.orNull(
               value: inspection.ceiling.accessPanel,
@@ -61,6 +63,7 @@ class CeilingSection extends HookConsumerWidget {
         ),
         SectionItem(
           axis: Axis.horizontal,
+          incomplete: inspection.ceiling.foundationDamage.result == Result.none,
           title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
           child: DropdownField.result(
             result: inspection.ceiling.foundationDamage.result,
@@ -76,7 +79,10 @@ class CeilingSection extends HookConsumerWidget {
         if (inspection.ceiling.foundationDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.ceiling.foundationDamage.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.ceiling.foundationDamage.part ?? '',
               onChange: (text) {
@@ -121,6 +127,7 @@ class CeilingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
+          incomplete: inspection.ceiling.rainCeilingLeak.result == Result.none,
           title: '[雨水] 天井の雨漏りの跡',
           child: DropdownField.result(
             result: inspection.ceiling.rainCeilingLeak.result,
@@ -136,7 +143,10 @@ class CeilingSection extends HookConsumerWidget {
         if (inspection.ceiling.rainCeilingLeak.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.ceiling.rainCeilingLeak.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.ceiling.rainCeilingLeak.part ?? '',
               onChange: (text) {
@@ -179,6 +189,7 @@ class CeilingSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.ceiling.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.ceiling.coverage,

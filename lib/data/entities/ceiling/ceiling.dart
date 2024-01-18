@@ -29,6 +29,30 @@ class Ceiling with _$Ceiling {
       rainCeilingLeak: rainCeilingLeak.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      foundationDamage.result,
+      rainCeilingLeak.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final foundationDamageOk = foundationDamage.result == Result.passed ||
+        (foundationDamage.result == Result.failure &&
+            (foundationDamage.part?.isNotEmpty ?? false));
+    final rainCeilingLeakOk = rainCeilingLeak.result == Result.passed ||
+        (rainCeilingLeak.result == Result.failure &&
+            (rainCeilingLeak.part?.isNotEmpty ?? false));
+
+    return accessPanel != null &&
+        foundationDamageOk &&
+        rainCeilingLeakOk &&
+        coverage != null;
+  }
 }
 
 enum AccessPanel {
