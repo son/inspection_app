@@ -27,6 +27,23 @@ class AntDamage with _$AntDamage {
       antDamage: antDamage.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      antDamage.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final antDamageOk = antDamage.result == Result.passed ||
+        (antDamage.result == Result.failure &&
+            (antDamage.part?.isNotEmpty ?? false));
+
+    return accessPanel != null && antDamageOk && coverage != null;
+  }
 }
 
 enum AccessPanel {

@@ -26,6 +26,7 @@ class AntDamageSection extends HookConsumerWidget {
 
     return Section(
       title: '蟻害',
+      complete: inspection.antDamage.complete,
       actions: [
         MenuButton(
           notApplicable: inspection.antDamage.notApplicable,
@@ -41,6 +42,7 @@ class AntDamageSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '床下点検口の有無',
+          incomplete: inspection.antDamage.accessPanel == null,
           child: DropdownField<AccessPanel>(
             value: SelectionItem.orNull(
               value: inspection.antDamage.accessPanel,
@@ -62,6 +64,7 @@ class AntDamageSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 著しい蟻害',
+          incomplete: inspection.antDamage.antDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.antDamage.antDamage.result,
             onSelect: (result) {
@@ -75,7 +78,9 @@ class AntDamageSection extends HookConsumerWidget {
         if (inspection.antDamage.antDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.antDamage.antDamage.directions.isEmpty,
             child: PrimaryTextField(
               initialText: inspection.antDamage.antDamage.part ?? '',
               onChange: (text) {
@@ -114,6 +119,7 @@ class AntDamageSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.antDamage.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.antDamage.coverage,

@@ -26,6 +26,7 @@ class CorrosionSection extends HookConsumerWidget {
 
     return Section(
       title: '腐朽、腐食など',
+      complete: inspection.corrosion.complete,
       actions: [
         MenuButton(
           title: '「腐朽、腐食など」の項目全てを一括で設定します',
@@ -42,6 +43,7 @@ class CorrosionSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 著しい腐朽、腐食など',
+          incomplete: inspection.corrosion.corrosion.result == Result.none,
           child: DropdownField.result(
             result: inspection.corrosion.corrosion.result,
             onSelect: (result) {
@@ -55,7 +57,9 @@ class CorrosionSection extends HookConsumerWidget {
         if (inspection.corrosion.corrosion.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.corrosion.corrosion.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.corrosion.corrosion.part ?? '',
               onChange: (text) {
@@ -94,6 +98,7 @@ class CorrosionSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.corrosion.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.corrosion.coverage,

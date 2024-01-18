@@ -26,4 +26,21 @@ class Corrosion with _$Corrosion {
       corrosion: corrosion.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      corrosion.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final corrosionOk = corrosion.result == Result.passed ||
+        (corrosion.result == Result.failure &&
+            (corrosion.part?.isNotEmpty ?? false));
+
+    return corrosionOk && coverage != null;
+  }
 }
