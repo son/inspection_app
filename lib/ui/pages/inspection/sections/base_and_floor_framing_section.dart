@@ -27,6 +27,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
 
     return Section(
       title: '土台、床組',
+      complete: inspection.baseAndFloorFraming.complete,
       actions: [
         MenuButton(
           notApplicable: inspection.baseAndFloorFraming.notApplicable,
@@ -46,6 +47,8 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 柱の著しいひび割れ\n劣化、欠損',
+          incomplete:
+              inspection.baseAndFloorFraming.damage.result == Result.none,
           child: DropdownField.result(
             result: inspection.baseAndFloorFraming.damage.result,
             onSelect: (result) {
@@ -60,7 +63,9 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
         if (inspection.baseAndFloorFraming.damage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅',
+            title: '最大ひび割れ幅',
+            indent: true,
+            incomplete: inspection.baseAndFloorFraming.damage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.baseAndFloorFraming.damage.max?.toString() ?? '',
@@ -82,7 +87,10 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.baseAndFloorFraming.damage.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.baseAndFloorFraming.damage.part ?? '',
               onChange: (text) {
@@ -127,6 +135,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.baseAndFloorFraming.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.baseAndFloorFraming.coverage,

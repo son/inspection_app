@@ -26,4 +26,22 @@ class BaseAndFloorFraming with _$BaseAndFloorFraming {
       damage: damage.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      damage.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final damageOk = damage.result == Result.passed ||
+        (damage.result == Result.failure &&
+            (damage.part?.isNotEmpty ?? false) &&
+            (damage.max?.complete ?? false));
+
+    return damageOk && coverage != null;
+  }
 }
