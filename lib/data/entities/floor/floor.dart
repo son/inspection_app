@@ -29,4 +29,31 @@ class Floor with _$Floor {
       inclination: inclination.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      damage.result,
+      sinking.result,
+      inclination.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final damageOk = damage.result == Result.passed ||
+        (damage.result == Result.failure &&
+            (damage.part?.isNotEmpty ?? false) &&
+            (damage.max?.complete ?? false));
+    final sinkingOk = sinking.result == Result.passed ||
+        (sinking.result == Result.failure &&
+            (sinking.part?.isNotEmpty ?? false));
+    final inclinationOk = inclination.result == Result.passed ||
+        (inclination.result == Result.failure &&
+            (inclination.part?.isNotEmpty ?? false) &&
+            (inclination.max?.complete ?? false));
+
+    return damageOk && sinkingOk && inclinationOk && coverage != null;
+  }
 }

@@ -27,6 +27,7 @@ class FloorSection extends HookConsumerWidget {
 
     return Section(
       title: '床',
+      complete: inspection.floor.complete,
       actions: [
         MenuButton(
           title: '「床」の項目全てを一括で設定します',
@@ -43,6 +44,7 @@ class FloorSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 著しいひび割れ\n劣化、欠損',
+          incomplete: inspection.floor.damage.result == Result.none,
           child: DropdownField.result(
             result: inspection.floor.damage.result,
             onSelect: (result) {
@@ -55,7 +57,9 @@ class FloorSection extends HookConsumerWidget {
         if (inspection.floor.damage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅',
+            title: '最大ひび割れ幅',
+            indent: true,
+            incomplete: inspection.floor.damage.max == null,
             child: PrimaryTextField(
               initialText: inspection.floor.damage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -74,7 +78,9 @@ class FloorSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            incomplete: inspection.floor.damage.part?.isEmpty ?? true,
+            indent: true,
             child: PrimaryTextField(
               initialText: inspection.floor.damage.part ?? '',
               onChange: (text) {
@@ -112,6 +118,7 @@ class FloorSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
+          incomplete: inspection.floor.sinking.result == Result.none,
           title: '[構造] 著しい沈み',
           child: DropdownField.result(
             result: inspection.floor.sinking.result,
@@ -125,7 +132,9 @@ class FloorSection extends HookConsumerWidget {
         if (inspection.floor.sinking.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.floor.sinking.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.floor.sinking.part ?? '',
               onChange: (text) {
@@ -164,6 +173,7 @@ class FloorSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 6/1000以上の傾斜',
+          incomplete: inspection.floor.inclination.result == Result.none,
           child: DropdownField.result(
             result: inspection.floor.inclination.result,
             onSelect: (result) {
@@ -177,7 +187,9 @@ class FloorSection extends HookConsumerWidget {
         if (inspection.floor.inclination.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　当該部分の傾斜',
+            title: '当該部分の傾斜',
+            indent: true,
+            incomplete: inspection.floor.inclination.max == null,
             child: PrimaryTextField(
               initialText: inspection.floor.inclination.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -198,7 +210,9 @@ class FloorSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最も傾きがある場所',
+            title: '最も傾きがある場所',
+            indent: true,
+            incomplete: inspection.floor.inclination.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.floor.inclination.part ?? '',
               onChange: (text) {
@@ -238,6 +252,7 @@ class FloorSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.floor.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.floor.coverage,
