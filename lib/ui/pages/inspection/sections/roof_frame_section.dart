@@ -27,6 +27,7 @@ class RoofFrameSection extends HookConsumerWidget {
 
     return Section(
       title: '小屋組（下屋部分を含む）',
+      complete: inspection.roofFrame.complete,
       actions: [
         MenuButton(
           title: '「小屋組（下屋部分を含む）」の項目全てを一括で設定します',
@@ -42,6 +43,8 @@ class RoofFrameSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
+          incomplete:
+              inspection.roofFrame.foundationDamage.result == Result.none,
           title: '[構造] ひび割れ、欠損',
           child: DropdownField.result(
             result: inspection.roofFrame.foundationDamage.result,
@@ -57,7 +60,9 @@ class RoofFrameSection extends HookConsumerWidget {
         if (inspection.roofFrame.foundationDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅、欠損深さ',
+            title: '最大ひび割れ幅、欠損深さ',
+            indent: true,
+            incomplete: inspection.roofFrame.foundationDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.roofFrame.foundationDamage.max?.toString() ?? '',
@@ -79,7 +84,10 @@ class RoofFrameSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.roofFrame.foundationDamage.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.roofFrame.foundationDamage.part ?? '',
               onChange: (text) {
@@ -124,6 +132,8 @@ class RoofFrameSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
+          incomplete:
+              inspection.roofFrame.rainRoofFrameLeak.result == Result.none,
           title: '[雨水] 小屋組の雨漏りの跡',
           child: DropdownField.result(
             result: inspection.roofFrame.rainRoofFrameLeak.result,
@@ -140,7 +150,10 @@ class RoofFrameSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.roofFrame.rainRoofFrameLeak.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.roofFrame.rainRoofFrameLeak.part ?? '',
               onChange: (text) {
@@ -185,6 +198,7 @@ class RoofFrameSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.roofFrame.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.roofFrame.coverage,

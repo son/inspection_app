@@ -145,7 +145,8 @@ class RoofSection extends HookConsumerWidget {
         if (inspection.roof.waterProofLayerDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
             incomplete:
                 inspection.roof.waterProofLayerDamage.directions.isEmpty,
             child: MultiDropdownField<Direction>(

@@ -28,4 +28,26 @@ class RoofFrame with _$RoofFrame {
       rainRoofFrameLeak: rainRoofFrameLeak.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      foundationDamage.result,
+      rainRoofFrameLeak.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final foundationDamageOk = foundationDamage.result == Result.passed ||
+        (foundationDamage.result == Result.failure &&
+            (foundationDamage.part?.isNotEmpty ?? false) &&
+            (foundationDamage.max?.complete ?? false));
+    final rainRoofFrameLeakOk = rainRoofFrameLeak.result == Result.passed ||
+        (rainRoofFrameLeak.result == Result.failure &&
+            (rainRoofFrameLeak.part?.isNotEmpty ?? false));
+
+    return foundationDamageOk && rainRoofFrameLeakOk && coverage != null;
+  }
 }
