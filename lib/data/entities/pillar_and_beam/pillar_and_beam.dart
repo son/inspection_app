@@ -32,4 +32,40 @@ class PillarAndBeam with _$PillarAndBeam {
       beamDeflection: beamDeflection.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      pillarDamage.result,
+      pillarInclination.result,
+      beamDamage.result,
+      beamDeflection.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final pillarDamageOk = pillarDamage.result == Result.passed ||
+        (pillarDamage.result == Result.failure &&
+            (pillarDamage.part?.isNotEmpty ?? false) &&
+            (pillarDamage.max?.complete ?? false));
+    final pillarInclinationOk = pillarInclination.result == Result.passed ||
+        (pillarInclination.result == Result.failure &&
+            (pillarInclination.part?.isNotEmpty ?? false) &&
+            (pillarInclination.max?.complete ?? false));
+    final beamDamageOk = beamDamage.result == Result.passed ||
+        (beamDamage.result == Result.failure &&
+            (beamDamage.part?.isNotEmpty ?? false) &&
+            (beamDamage.max?.complete ?? false));
+    final beamDeflectionOk = beamDeflection.result == Result.passed ||
+        (beamDeflection.result == Result.failure &&
+            (beamDeflection.part?.isNotEmpty ?? false));
+
+    return pillarDamageOk &&
+        pillarInclinationOk &&
+        beamDamageOk &&
+        beamDeflectionOk &&
+        coverage != null;
+  }
 }

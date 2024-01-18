@@ -27,6 +27,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
 
     return Section(
       title: '柱及び梁',
+      complete: inspection.pillarAndBeam.complete,
       actions: [
         MenuButton(
           title: '「柱及び梁」の項目全てを一括で設定します',
@@ -44,6 +45,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
+          incomplete:
+              inspection.pillarAndBeam.pillarDamage.result == Result.none,
           title: '[構造] 柱の著しいひび割れ\n劣化、欠損',
           child: DropdownField.result(
             result: inspection.pillarAndBeam.pillarDamage.result,
@@ -59,7 +62,9 @@ class PillarAndBeamSection extends HookConsumerWidget {
         if (inspection.pillarAndBeam.pillarDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅、欠損深さ',
+            title: '最大ひび割れ幅、欠損深さ',
+            indent: true,
+            incomplete: inspection.pillarAndBeam.pillarDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.pillarAndBeam.pillarDamage.max?.toString() ?? '',
@@ -81,7 +86,10 @@ class PillarAndBeamSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.pillarAndBeam.pillarDamage.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.pillarAndBeam.pillarDamage.part ?? '',
               onChange: (text) {
@@ -125,6 +133,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 6/1000以上の傾斜',
+          incomplete:
+              inspection.pillarAndBeam.pillarInclination.result == Result.none,
           child: DropdownField.result(
             result: inspection.pillarAndBeam.pillarInclination.result,
             onSelect: (result) {
@@ -141,7 +151,9 @@ class PillarAndBeamSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　当該部分の傾斜',
+            title: '当該部分の傾斜',
+            indent: true,
+            incomplete: inspection.pillarAndBeam.pillarInclination.max == null,
             child: PrimaryTextField(
               fixedText: '/1000',
               initialText:
@@ -165,7 +177,11 @@ class PillarAndBeamSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　柱の最も傾きがある場所',
+            title: '柱の最も傾きがある場所',
+            indent: true,
+            incomplete:
+                inspection.pillarAndBeam.pillarInclination.part?.isEmpty ??
+                    true,
             child: PrimaryTextField(
               initialText:
                   inspection.pillarAndBeam.pillarInclination.part ?? '',
@@ -212,6 +228,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
+          incomplete: inspection.pillarAndBeam.beamDamage.result == Result.none,
           title: '[構造] 梁の著しいひび割れ、劣化、欠損',
           child: DropdownField.result(
             result: inspection.pillarAndBeam.beamDamage.result,
@@ -227,7 +244,9 @@ class PillarAndBeamSection extends HookConsumerWidget {
         if (inspection.pillarAndBeam.beamDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅、欠損深さ',
+            title: '最大ひび割れ幅、欠損深さ',
+            indent: true,
+            incomplete: inspection.pillarAndBeam.beamDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.pillarAndBeam.beamDamage.max?.toString() ?? '',
@@ -249,7 +268,10 @@ class PillarAndBeamSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.pillarAndBeam.beamDamage.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.pillarAndBeam.beamDamage.part ?? '',
               onChange: (text) {
@@ -293,6 +315,8 @@ class PillarAndBeamSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 梁の著しい たわみ',
+          incomplete:
+              inspection.pillarAndBeam.beamDeflection.result == Result.none,
           child: DropdownField.result(
             result: inspection.pillarAndBeam.beamDeflection.result,
             onSelect: (result) {
@@ -308,7 +332,10 @@ class PillarAndBeamSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.pillarAndBeam.beamDeflection.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.pillarAndBeam.beamDeflection.part ?? '',
               onChange: (text) {
@@ -353,6 +380,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.pillarAndBeam.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.pillarAndBeam.coverage,
