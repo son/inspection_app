@@ -24,9 +24,11 @@ class EarthquakeResistantSection extends HookConsumerWidget {
 
     return Section(
       title: '耐震性に関する書類の確認',
+      complete: inspection.earthquakeResistant.complete,
       children: [
         SectionItem(
           title: '確認方法',
+          incomplete: inspection.earthquakeResistant.confirmationMethod == null,
           child: DropdownField<ConfirmationMethod>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.confirmationMethod,
@@ -47,6 +49,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '書類',
+          incomplete: inspection.earthquakeResistant.certificate == null,
           child: DropdownField<Certificate>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.certificate,
@@ -67,6 +70,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '発行者',
+          incomplete: inspection.earthquakeResistant.issuer == null,
           child: DropdownField<Issuer>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.issuer,
@@ -87,6 +91,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '安全上耐震関係規定に準ずる基準',
+          incomplete: inspection.earthquakeResistant.regulation == null,
           child: DropdownField<EarthquakeProofSafetyRegulation>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.regulation,

@@ -28,6 +28,7 @@ class OuterWallSection extends HookConsumerWidget {
 
     return Section(
       title: '外壁及び軒裏',
+      complete: inspection.outerWall.complete,
       actions: [
         MenuButton(
           title: '「外壁及び軒裏」の項目全てを一括で設定します',
@@ -44,8 +45,9 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '仕上げ',
+          incomplete: inspection.outerWall.finishings.isEmpty,
           child: MultiDropdownField<String>(
-            values: inspection.foundation.finishings
+            values: inspection.outerWall.finishings
                 .map((e) => SelectionItem(
                       value: e,
                       name: e,
@@ -58,13 +60,14 @@ class OuterWallSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (finishings) {
-              controller.updateFoundation(
-                  inspection.foundation.copyWith(finishings: finishings));
+              controller.updateOuterWall(
+                  inspection.outerWall.copyWith(finishings: finishings));
             },
           ),
         ),
         SectionItem(
           axis: Axis.horizontal,
+          incomplete: inspection.outerWall.dryDamage.result == Result.none,
           title: '[乾式] ひび割れ、欠損、浮き\nはらみ、剥落',
           child: DropdownField.result(
             result: inspection.outerWall.dryDamage.result,
@@ -80,7 +83,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.dryDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.dryDamage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.dryDamage.directions
                   .map((e) => SelectionItem(
@@ -105,7 +110,9 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅・欠損深さ',
+            title: '最大ひび割れ幅・欠損深さ',
+            incomplete: inspection.outerWall.dryDamage.max == null,
+            indent: true,
             child: PrimaryTextField(
               initialText: inspection.outerWall.dryDamage.max?.toString() ?? '',
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -153,6 +160,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[乾式] 複数にまたがる\nひび割れ、欠損',
+          incomplete: inspection.outerWall.dryWideDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.dryWideDamage.result,
             onSelect: (result) {
@@ -167,7 +175,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.dryWideDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.dryWideDamage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.dryWideDamage.directions
                   .map((e) => SelectionItem(
@@ -192,7 +202,9 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅・欠損深さ',
+            title: '最大ひび割れ幅・欠損深さ',
+            incomplete: inspection.outerWall.dryWideDamage.max == null,
+            indent: true,
             child: PrimaryTextField(
               initialText:
                   inspection.outerWall.dryWideDamage.max?.toString() ?? '',
@@ -244,6 +256,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[乾式] 金属の著しいさび\n化学的侵食',
+          incomplete: inspection.outerWall.dryCorrosion.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.dryCorrosion.result,
             onSelect: (result) {
@@ -258,7 +271,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.dryCorrosion.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.dryCorrosion.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.dryCorrosion.directions
                   .map((e) => SelectionItem(
@@ -313,6 +328,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[タイル] ひび割れ、欠損、浮き\nはらみ、剥落',
+          incomplete: inspection.outerWall.tileDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.tileDamage.result,
             onSelect: (result) {
@@ -327,7 +343,8 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.tileDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.tileDamage.directions
                   .map((e) => SelectionItem(
@@ -352,7 +369,9 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅・欠損深さ',
+            title: '最大ひび割れ幅・欠損深さ',
+            indent: true,
+            incomplete: inspection.outerWall.tileDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.outerWall.tileDamage.max?.toString() ?? '',
@@ -404,6 +423,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[タイル] 複数にまたがる\nひび割れ、欠損',
+          incomplete: inspection.outerWall.tileWideDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.tileWideDamage.result,
             onSelect: (result) {
@@ -418,7 +438,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.tileWideDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.tileWideDamage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.tileWideDamage.directions
                   .map((e) => SelectionItem(
@@ -443,7 +465,9 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅・欠損深さ',
+            title: '最大ひび割れ幅・欠損深さ',
+            indent: true,
+            incomplete: inspection.outerWall.tileWideDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.outerWall.tileWideDamage.max?.toString() ?? '',
@@ -495,6 +519,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[タイル] 仕上げ材の著しい浮き',
+          incomplete: inspection.outerWall.tileFloat.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.tileFloat.result,
             onSelect: (result) {
@@ -509,7 +534,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.tileFloat.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.tileFloat.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.tileFloat.directions
                   .map((e) => SelectionItem(
@@ -561,6 +588,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[塗壁] ひび割れ、欠損、浮き\nはらみ、剥落',
+          incomplete: inspection.outerWall.paintDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.paintDamage.result,
             onSelect: (result) {
@@ -575,7 +603,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.paintDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            incomplete: inspection.outerWall.paintDamage.directions.isEmpty,
+            indent: true,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.paintDamage.directions
                   .map((e) => SelectionItem(
@@ -630,6 +660,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[塗壁] 仕上げ材の著しい浮き',
+          incomplete: inspection.outerWall.paintFloat.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.paintFloat.result,
             onSelect: (result) {
@@ -644,7 +675,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.paintFloat.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.paintFloat.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.paintFloat.directions
                   .map((e) => SelectionItem(
@@ -699,13 +732,14 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] ひび割れ、欠損、浮き\nはらみ、剥落',
+          incomplete: inspection.outerWall.otherDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.otherDamage.result,
             onSelect: (result) {
               final otherDamage =
                   inspection.outerWall.otherDamage.copyWith(result: result);
               final outerWall =
-                  inspection.outerWall.copyWith(paintFloat: otherDamage);
+                  inspection.outerWall.copyWith(otherDamage: otherDamage);
               controller.updateOuterWall(outerWall);
             },
           ),
@@ -713,7 +747,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.otherDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.otherDamage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.otherDamage.directions
                   .map((e) => SelectionItem(
@@ -738,7 +774,9 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅・欠損深さ',
+            title: '最大ひび割れ幅・欠損深さ',
+            indent: true,
+            incomplete: inspection.outerWall.otherDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.outerWall.otherDamage.max?.toString() ?? '',
@@ -790,6 +828,8 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] 複数にまたがる\nひび割れ、欠損',
+          incomplete:
+              inspection.outerWall.otherWideDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.otherWideDamage.result,
             onSelect: (result) {
@@ -804,7 +844,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.otherWideDamage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.otherWideDamage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.otherWideDamage.directions
                   .map((e) => SelectionItem(
@@ -829,7 +871,9 @@ class OuterWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　最大ひび割れ幅・欠損深さ',
+            title: '最大ひび割れ幅・欠損深さ',
+            indent: true,
+            incomplete: inspection.outerWall.otherWideDamage.max == null,
             child: PrimaryTextField(
               initialText:
                   inspection.outerWall.otherWideDamage.max?.toString() ?? '',
@@ -883,6 +927,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] 金属の著しいさび\n化学的侵食',
+          incomplete: inspection.outerWall.otherCorrosion.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.otherCorrosion.result,
             onSelect: (result) {
@@ -897,7 +942,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.otherCorrosion.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.otherCorrosion.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.otherCorrosion.directions
                   .map((e) => SelectionItem(
@@ -952,6 +999,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] 仕上げ材の著しい浮き',
+          incomplete: inspection.outerWall.otherFloat.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.otherFloat.result,
             onSelect: (result) {
@@ -966,7 +1014,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.otherFloat.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.otherFloat.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.otherFloat.directions
                   .map((e) => SelectionItem(
@@ -1021,6 +1071,8 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 外壁シーリング材\nの破断、欠損',
+          incomplete:
+              inspection.outerWall.rainWallSealing.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.rainWallSealing.result,
             onSelect: (result) {
@@ -1035,7 +1087,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.rainWallSealing.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.rainWallSealing.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.rainWallSealing.directions
                   .map((e) => SelectionItem(
@@ -1092,6 +1146,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 建具の周囲の隙間\n開閉不良',
+          incomplete: inspection.outerWall.rainGap.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.rainGap.result,
             onSelect: (result) {
@@ -1105,7 +1160,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.rainGap.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.outerWall.rainGap.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.rainGap.directions
                   .map((e) => SelectionItem(
@@ -1157,6 +1214,8 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 軒裏天井のシーリング材\nの破断、欠損',
+          incomplete:
+              inspection.outerWall.rainCeilingSealing.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.rainCeilingSealing.result,
             onSelect: (result) {
@@ -1172,7 +1231,10 @@ class OuterWallSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.outerWall.rainCeilingSealing.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.rainCeilingSealing.directions
                   .map((e) => SelectionItem(
@@ -1230,6 +1292,8 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 軒裏天井の雨漏りの跡',
+          incomplete:
+              inspection.outerWall.rainCeilingLeak.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.rainCeilingLeak.result,
             onSelect: (result) {
@@ -1244,7 +1308,9 @@ class OuterWallSection extends HookConsumerWidget {
         if (inspection.outerWall.rainCeilingLeak.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            incomplete: inspection.outerWall.rainCeilingLeak.directions.isEmpty,
+            indent: true,
             child: MultiDropdownField<Direction>(
               values: inspection.outerWall.rainCeilingLeak.directions
                   .map((e) => SelectionItem(
@@ -1300,6 +1366,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.outerWall.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.outerWall.coverage,

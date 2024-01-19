@@ -14,6 +14,7 @@ import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
 import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
+// TODO: 写真じゃない！！！！！！！！！！！！！
 class ConcreteSection extends HookConsumerWidget {
   const ConcreteSection({super.key});
 
@@ -41,6 +42,7 @@ class ConcreteSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '圧縮強度調査の有無',
+          incomplete: inspection.concrete.exploration == null,
           child: DropdownField<bool>(
             value: () {
               if (inspection.concrete.exploration == null) return null;
@@ -61,121 +63,129 @@ class ConcreteSection extends HookConsumerWidget {
             },
           ),
         ),
-        SectionItem(
-          axis: Axis.horizontal,
-          title: 'コンクリート圧縮強度１',
-          child: DropdownField.result(
-            result: inspection.concrete.compressiveStrength1.result,
-            onSelect: (result) {
-              final compressiveStrength = inspection
-                  .concrete.compressiveStrength1
-                  .copyWith(result: result);
-              final concrete = inspection.concrete
-                  .copyWith(compressiveStrength1: compressiveStrength);
-              controller.updateConcrete(concrete);
-            },
-          ),
-        ),
-        if (inspection.concrete.compressiveStrength1.result ==
-            Result.failure) ...[
+        if (inspection.concrete.exploration ?? false) ...[
           SectionItem(
-            axis: Axis.vertical,
-            child: PhotoCaptionsItem(
-              photos: inspection.concrete.compressiveStrength1.photos,
-              onChange: (photos) {
-                final concrete = inspection.concrete.copyWith(
-                  compressiveStrength1:
-                      inspection.concrete.compressiveStrength1.copyWith(
-                    photos: [...photos],
-                  ),
-                );
+            axis: Axis.horizontal,
+            incomplete:
+                inspection.concrete.compressiveStrength1.result == Result.none,
+            title: 'コンクリート圧縮強度１',
+            child: DropdownField.result(
+              result: inspection.concrete.compressiveStrength1.result,
+              onSelect: (result) {
+                final compressiveStrength = inspection
+                    .concrete.compressiveStrength1
+                    .copyWith(result: result);
+                final concrete = inspection.concrete
+                    .copyWith(compressiveStrength1: compressiveStrength);
                 controller.updateConcrete(concrete);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
-                final news = await controller.createNewPhotos(paths);
-                final concrete = inspection.concrete.copyWith(
-                  compressiveStrength1:
-                      inspection.concrete.compressiveStrength1.copyWith(
-                    photos: [
-                      ...inspection.concrete.compressiveStrength1.photos,
-                      ...news
-                    ],
-                  ),
-                );
+            ),
+          ),
+          if (inspection.concrete.compressiveStrength1.result ==
+              Result.failure) ...[
+            SectionItem(
+              axis: Axis.vertical,
+              child: PhotoCaptionsItem(
+                photos: inspection.concrete.compressiveStrength1.photos,
+                onChange: (photos) {
+                  final concrete = inspection.concrete.copyWith(
+                    compressiveStrength1:
+                        inspection.concrete.compressiveStrength1.copyWith(
+                      photos: [...photos],
+                    ),
+                  );
+                  controller.updateConcrete(concrete);
+                },
+                onTapAdd: () async {
+                  final paths = await ImageSourceSheet.show(context);
+                  if (paths.isEmpty) return;
+                  final news = await controller.createNewPhotos(paths);
+                  final concrete = inspection.concrete.copyWith(
+                    compressiveStrength1:
+                        inspection.concrete.compressiveStrength1.copyWith(
+                      photos: [
+                        ...inspection.concrete.compressiveStrength1.photos,
+                        ...news
+                      ],
+                    ),
+                  );
+                  controller.updateConcrete(concrete);
+                },
+              ),
+            ),
+          ],
+          SectionItem(
+            axis: Axis.horizontal,
+            incomplete:
+                inspection.concrete.compressiveStrength2.result == Result.none,
+            title: 'コンクリート圧縮強度２',
+            child: DropdownField.result(
+              result: inspection.concrete.compressiveStrength2.result,
+              onSelect: (result) {
+                final compressiveStrength = inspection
+                    .concrete.compressiveStrength2
+                    .copyWith(result: result);
+                final concrete = inspection.concrete
+                    .copyWith(compressiveStrength2: compressiveStrength);
+                controller.updateConcrete(concrete);
+              },
+            ),
+          ),
+          if (inspection.concrete.compressiveStrength2.result ==
+              Result.failure) ...[
+            SectionItem(
+              axis: Axis.vertical,
+              child: PhotoCaptionsItem(
+                photos: inspection.concrete.compressiveStrength2.photos,
+                onChange: (photos) {
+                  final concrete = inspection.concrete.copyWith(
+                    compressiveStrength2:
+                        inspection.concrete.compressiveStrength2.copyWith(
+                      photos: [...photos],
+                    ),
+                  );
+                  controller.updateConcrete(concrete);
+                },
+                onTapAdd: () async {
+                  final paths = await ImageSourceSheet.show(context);
+                  if (paths.isEmpty) return;
+                  final news = await controller.createNewPhotos(paths);
+                  final concrete = inspection.concrete.copyWith(
+                    compressiveStrength2:
+                        inspection.concrete.compressiveStrength2.copyWith(
+                      photos: [
+                        ...inspection.concrete.compressiveStrength2.photos,
+                        ...news
+                      ],
+                    ),
+                  );
+                  controller.updateConcrete(concrete);
+                },
+              ),
+            ),
+          ],
+          SectionItem(
+            title: '調査できた範囲',
+            incomplete: inspection.concrete.coverage == null,
+            child: DropdownField<Coverage>(
+              value: SelectionItem.orNull(
+                value: inspection.concrete.coverage,
+                name: inspection.concrete.coverage?.label,
+              ),
+              all: Coverage.values
+                  .map((value) => SelectionItem(
+                        value: value,
+                        name: value.label,
+                      ))
+                  .toList(),
+              onSelect: (coverage) {
+                final concrete =
+                    inspection.concrete.copyWith(coverage: coverage);
                 controller.updateConcrete(concrete);
               },
             ),
           ),
         ],
-        SectionItem(
-          axis: Axis.horizontal,
-          title: 'コンクリート圧縮強度１',
-          child: DropdownField.result(
-            result: inspection.concrete.compressiveStrength2.result,
-            onSelect: (result) {
-              final compressiveStrength = inspection
-                  .concrete.compressiveStrength2
-                  .copyWith(result: result);
-              final concrete = inspection.concrete
-                  .copyWith(compressiveStrength2: compressiveStrength);
-              controller.updateConcrete(concrete);
-            },
-          ),
-        ),
-        if (inspection.concrete.compressiveStrength2.result ==
-            Result.failure) ...[
-          SectionItem(
-            axis: Axis.vertical,
-            child: PhotoCaptionsItem(
-              photos: inspection.concrete.compressiveStrength2.photos,
-              onChange: (photos) {
-                final concrete = inspection.concrete.copyWith(
-                  compressiveStrength2:
-                      inspection.concrete.compressiveStrength2.copyWith(
-                    photos: [...photos],
-                  ),
-                );
-                controller.updateConcrete(concrete);
-              },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
-                final news = await controller.createNewPhotos(paths);
-                final concrete = inspection.concrete.copyWith(
-                  compressiveStrength2:
-                      inspection.concrete.compressiveStrength2.copyWith(
-                    photos: [
-                      ...inspection.concrete.compressiveStrength2.photos,
-                      ...news
-                    ],
-                  ),
-                );
-                controller.updateConcrete(concrete);
-              },
-            ),
-          ),
-        ],
-        SectionItem(
-          title: '調査できた範囲',
-          child: DropdownField<Coverage>(
-            value: SelectionItem.orNull(
-              value: inspection.concrete.coverage,
-              name: inspection.concrete.coverage?.label,
-            ),
-            all: Coverage.values
-                .map((value) => SelectionItem(
-                      value: value,
-                      name: value.label,
-                    ))
-                .toList(),
-            onSelect: (coverage) {
-              final concrete = inspection.concrete.copyWith(coverage: coverage);
-              controller.updateConcrete(concrete);
-            },
-          ),
-        ),
         SectionItem(
           axis: Axis.vertical,
           title: '備考',

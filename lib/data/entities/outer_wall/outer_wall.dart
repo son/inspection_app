@@ -57,4 +57,101 @@ class OuterWall with _$OuterWall {
       rainCeilingLeak: rainCeilingLeak.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      dryDamage.result,
+      dryWideDamage.result,
+      dryCorrosion.result,
+      tileDamage.result,
+      tileWideDamage.result,
+      tileFloat.result,
+      paintDamage.result,
+      paintFloat.result,
+      otherDamage.result,
+      otherWideDamage.result,
+      otherCorrosion.result,
+      otherFloat.result,
+      rainWallSealing.result,
+      rainGap.result,
+      rainCeilingSealing.result,
+      rainCeilingLeak.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final dryDamageOk = dryDamage.result == Result.passed ||
+        (dryDamage.result == Result.failure &&
+            (dryDamage.directions.isNotEmpty) &&
+            (dryDamage.max?.complete ?? false));
+    final dryWideDamageOk = dryWideDamage.result == Result.passed ||
+        (dryWideDamage.result == Result.failure &&
+            (dryWideDamage.directions.isNotEmpty) &&
+            (dryWideDamage.max?.complete ?? false));
+    final dryCorrosionOk = dryCorrosion.result == Result.passed ||
+        (dryCorrosion.result == Result.failure &&
+            (dryCorrosion.directions.isNotEmpty));
+    final tileDamageOk = tileDamage.result == Result.passed ||
+        (tileDamage.result == Result.failure &&
+            (tileDamage.directions.isNotEmpty) &&
+            (tileDamage.max?.complete ?? false));
+    final tileWideDamageOk = tileWideDamage.result == Result.passed ||
+        (tileWideDamage.result == Result.failure &&
+            (tileWideDamage.directions.isNotEmpty) &&
+            (tileWideDamage.max?.complete ?? false));
+    final tileFloatOk = tileFloat.result == Result.passed ||
+        (tileFloat.result == Result.failure &&
+            tileWideDamage.directions.isNotEmpty);
+    final paintDamageOk = paintDamage.result == Result.passed ||
+        (paintDamage.result == Result.failure &&
+            paintDamage.directions.isNotEmpty);
+    final paintFloatOk = paintFloat.result == Result.passed ||
+        (paintFloat.result == Result.failure &&
+            paintFloat.directions.isNotEmpty);
+    final otherDamageOk = otherDamage.result == Result.passed ||
+        (otherDamage.result == Result.failure &&
+            (otherDamage.directions.isNotEmpty) &&
+            (otherDamage.max?.complete ?? false));
+    final otherWideDamageOk = otherWideDamage.result == Result.passed ||
+        (otherWideDamage.result == Result.failure &&
+            (otherWideDamage.directions.isNotEmpty) &&
+            (otherWideDamage.max?.complete ?? false));
+    final otherCorrosionOk = otherCorrosion.result == Result.passed ||
+        (otherCorrosion.result == Result.failure &&
+            (otherCorrosion.directions.isNotEmpty));
+    final otherFloatOk = otherFloat.result == Result.passed ||
+        (otherFloat.result == Result.failure &&
+            otherFloat.directions.isNotEmpty);
+    final rainWallSealingOk = rainWallSealing.result == Result.passed ||
+        (rainWallSealing.result == Result.failure &&
+            rainWallSealing.directions.isNotEmpty);
+    final rainGapOk = rainGap.result == Result.passed ||
+        (rainGap.result == Result.failure && rainGap.directions.isNotEmpty);
+    final rainCeilingSealingOk = rainCeilingSealing.result == Result.passed ||
+        (rainCeilingSealing.result == Result.failure &&
+            rainCeilingSealing.directions.isNotEmpty);
+    final rainCeilingLeakOk = rainCeilingLeak.result == Result.passed ||
+        (rainCeilingLeak.result == Result.failure &&
+            rainCeilingLeak.directions.isNotEmpty);
+    return dryDamageOk &&
+        dryWideDamageOk &&
+        dryCorrosionOk &&
+        tileDamageOk &&
+        tileWideDamageOk &&
+        tileFloatOk &&
+        paintDamageOk &&
+        paintFloatOk &&
+        otherDamageOk &&
+        otherWideDamageOk &&
+        otherCorrosionOk &&
+        otherFloatOk &&
+        rainWallSealingOk &&
+        rainGapOk &&
+        rainCeilingSealingOk &&
+        rainCeilingLeakOk &&
+        coverage != null;
+  }
 }

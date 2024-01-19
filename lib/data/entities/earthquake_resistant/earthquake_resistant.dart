@@ -10,18 +10,21 @@ class EarthquakeResistant with _$EarthquakeResistant {
 
   @JsonSerializable(explicitToJson: true)
   const factory EarthquakeResistant({
-    bool? exploration,
     ConfirmationMethod? confirmationMethod,
     Certificate? certificate,
     Issuer? issuer,
     EarthquakeProofSafetyRegulation? regulation,
     String? remarks,
     @Default(<Photo>[]) List<Photo> photos,
-    @Default(false) notApplicable,
   }) = _EarthquakeResistant;
 
   factory EarthquakeResistant.fromJson(Map<String, dynamic> json) =>
       _$EarthquakeResistantFromJson(json);
+
+  bool get complete {
+    return [confirmationMethod, certificate, issuer, regulation]
+        .every((doc) => doc != null);
+  }
 }
 
 enum ConfirmationMethod {
