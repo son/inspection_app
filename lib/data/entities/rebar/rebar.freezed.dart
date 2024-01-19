@@ -20,7 +20,7 @@ Rebar _$RebarFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Rebar {
-  bool get exploration => throw _privateConstructorUsedError;
+  bool? get exploration => throw _privateConstructorUsedError;
   Damage get side => throw _privateConstructorUsedError;
   Damage get bottom => throw _privateConstructorUsedError;
   Coverage? get coverage => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $RebarCopyWith<$Res> {
       _$RebarCopyWithImpl<$Res, Rebar>;
   @useResult
   $Res call(
-      {bool exploration,
+      {bool? exploration,
       Damage side,
       Damage bottom,
       Coverage? coverage,
@@ -62,7 +62,7 @@ class _$RebarCopyWithImpl<$Res, $Val extends Rebar>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exploration = null,
+    Object? exploration = freezed,
     Object? side = null,
     Object? bottom = null,
     Object? coverage = freezed,
@@ -70,10 +70,10 @@ class _$RebarCopyWithImpl<$Res, $Val extends Rebar>
     Object? notApplicable = null,
   }) {
     return _then(_value.copyWith(
-      exploration: null == exploration
+      exploration: freezed == exploration
           ? _value.exploration
           : exploration // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       side: null == side
           ? _value.side
           : side // ignore: cast_nullable_to_non_nullable
@@ -121,7 +121,7 @@ abstract class _$$_RebarCopyWith<$Res> implements $RebarCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {bool exploration,
+      {bool? exploration,
       Damage side,
       Damage bottom,
       Coverage? coverage,
@@ -143,7 +143,7 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exploration = null,
+    Object? exploration = freezed,
     Object? side = null,
     Object? bottom = null,
     Object? coverage = freezed,
@@ -151,10 +151,10 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
     Object? notApplicable = null,
   }) {
     return _then(_$_Rebar(
-      exploration: null == exploration
+      exploration: freezed == exploration
           ? _value.exploration
           : exploration // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       side: null == side
           ? _value.side
           : side // ignore: cast_nullable_to_non_nullable
@@ -184,7 +184,7 @@ class __$$_RebarCopyWithImpl<$Res> extends _$RebarCopyWithImpl<$Res, _$_Rebar>
 @JsonSerializable(explicitToJson: true)
 class _$_Rebar extends _Rebar {
   const _$_Rebar(
-      {this.exploration = false,
+      {this.exploration,
       this.side = const Damage(),
       this.bottom = const Damage(),
       this.coverage,
@@ -196,8 +196,7 @@ class _$_Rebar extends _Rebar {
       _$$_RebarFromJson(json);
 
   @override
-  @JsonKey()
-  final bool exploration;
+  final bool? exploration;
   @override
   @JsonKey()
   final Damage side;
@@ -254,7 +253,7 @@ class _$_Rebar extends _Rebar {
 
 abstract class _Rebar extends Rebar {
   const factory _Rebar(
-      {final bool exploration,
+      {final bool? exploration,
       final Damage side,
       final Damage bottom,
       final Coverage? coverage,
@@ -265,7 +264,7 @@ abstract class _Rebar extends Rebar {
   factory _Rebar.fromJson(Map<String, dynamic> json) = _$_Rebar.fromJson;
 
   @override
-  bool get exploration;
+  bool? get exploration;
   @override
   Damage get side;
   @override

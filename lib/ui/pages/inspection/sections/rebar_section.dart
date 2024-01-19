@@ -26,6 +26,7 @@ class RebarSection extends HookConsumerWidget {
 
     return Section(
       title: '鉄筋探査',
+      complete: inspection.rebar.complete,
       actions: [
         MenuButton(
           title: '「鉄筋探査」の項目全てを一括で設定します',
@@ -42,10 +43,15 @@ class RebarSection extends HookConsumerWidget {
         SectionItem(
           title: '鉄筋探査の有無',
           child: DropdownField<bool>(
-            value: SelectionItem(
-              value: inspection.rebar.exploration,
-              name: inspection.rebar.exploration ? 'あり（小規模住宅で基礎に劣化事象あり）' : 'なし',
-            ),
+            value: () {
+              if (inspection.rebar.exploration == null) return null;
+              return SelectionItem(
+                value: inspection.rebar.exploration!,
+                name: inspection.rebar.exploration!
+                    ? 'あり（小規模住宅で基礎に劣化事象あり）'
+                    : 'なし',
+              );
+            }(),
             all: [false, true]
                 .map((value) => SelectionItem(
                       value: value,
@@ -58,87 +64,108 @@ class RebarSection extends HookConsumerWidget {
             },
           ),
         ),
-        SectionItem(
-          axis: Axis.horizontal,
-          title: '基礎の鉄筋本数、間隔（立上り）',
-          child: DropdownField.result(
-            result: inspection.rebar.side.result,
-            onSelect: (result) {
-              final side = inspection.rebar.side.copyWith(result: result);
-              final rebar = inspection.rebar.copyWith(side: side);
-              controller.updateRebar(rebar);
-            },
-          ),
-        ),
-        if (inspection.rebar.side.result == Result.failure) ...[
+        if (inspection.rebar.exploration ?? false) ...[
           SectionItem(
-            axis: Axis.vertical,
-            title: '　写真',
-            child: PhotoCaptionsItem(
-              photos: inspection.rebar.side.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
-            ),
-          ),
-        ],
-        SectionItem(
-          axis: Axis.horizontal,
-          title: '基礎の鉄筋本数、間隔（立上り）',
-          child: DropdownField.result(
-            result: inspection.rebar.bottom.result,
-            onSelect: (result) {
-              final bottom = inspection.rebar.bottom.copyWith(result: result);
-              final rebar = inspection.rebar.copyWith(bottom: bottom);
-              controller.updateRebar(rebar);
-            },
-          ),
-        ),
-        if (inspection.rebar.bottom.result == Result.failure) ...[
-          SectionItem(
-            axis: Axis.vertical,
-            child: PhotoCaptionsItem(
-              photos: inspection.rebar.bottom.photos,
-              onChange: (photos) {
-                final rebar = inspection.rebar.copyWith(
-                  bottom: inspection.rebar.bottom.copyWith(
-                    photos: [...photos],
-                  ),
-                );
-                controller.updateRebar(rebar);
-              },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
-                final news = await controller.createNewPhotos(paths);
-                final rebar = inspection.rebar.copyWith(
-                  bottom: inspection.rebar.bottom.copyWith(
-                    photos: [...inspection.rebar.bottom.photos, ...news],
-                  ),
-                );
+            axis: Axis.horizontal,
+            incomplete: inspection.rebar.side.result == Result.none,
+            title: '基礎の鉄筋本数、間隔（立上り）',
+            child: DropdownField.result(
+              result: inspection.rebar.side.result,
+              onSelect: (result) {
+                final side = inspection.rebar.side.copyWith(result: result);
+                final rebar = inspection.rebar.copyWith(side: side);
                 controller.updateRebar(rebar);
               },
             ),
           ),
-        ],
-        SectionItem(
-          title: '調査できた範囲',
-          child: DropdownField<Coverage>(
-            value: SelectionItem.orNull(
-              value: inspection.rebar.coverage,
-              name: inspection.rebar.coverage?.label,
+          if (inspection.rebar.side.result == Result.failure) ...[
+            SectionItem(
+              axis: Axis.vertical,
+              child: PhotoCaptionsItem(
+                photos: inspection.rebar.side.photos,
+                onChange: (photos) {
+                  final rebar = inspection.rebar.copyWith(
+                    side: inspection.rebar.side.copyWith(
+                      photos: [...photos],
+                    ),
+                  );
+                  controller.updateRebar(rebar);
+                },
+                onTapAdd: () async {
+                  final paths = await ImageSourceSheet.show(context);
+                  if (paths.isEmpty) return;
+                  final news = await controller.createNewPhotos(paths);
+                  final rebar = inspection.rebar.copyWith(
+                    side: inspection.rebar.side.copyWith(
+                      photos: [...inspection.rebar.side.photos, ...news],
+                    ),
+                  );
+                  controller.updateRebar(rebar);
+                },
+              ),
             ),
-            all: Coverage.values
-                .map((value) => SelectionItem(
-                      value: value,
-                      name: value.label,
-                    ))
-                .toList(),
-            onSelect: (coverage) {
-              final rebar = inspection.rebar.copyWith(coverage: coverage);
-              controller.updateRebar(rebar);
-            },
+          ],
+          SectionItem(
+            axis: Axis.horizontal,
+            title: '基礎の鉄筋本数、間隔（底盤）',
+            incomplete: inspection.rebar.bottom.result == Result.none,
+            child: DropdownField.result(
+              result: inspection.rebar.bottom.result,
+              onSelect: (result) {
+                final bottom = inspection.rebar.bottom.copyWith(result: result);
+                final rebar = inspection.rebar.copyWith(bottom: bottom);
+                controller.updateRebar(rebar);
+              },
+            ),
           ),
-        ),
+          if (inspection.rebar.bottom.result == Result.failure) ...[
+            SectionItem(
+              axis: Axis.vertical,
+              child: PhotoCaptionsItem(
+                photos: inspection.rebar.bottom.photos,
+                onChange: (photos) {
+                  final rebar = inspection.rebar.copyWith(
+                    bottom: inspection.rebar.bottom.copyWith(
+                      photos: [...photos],
+                    ),
+                  );
+                  controller.updateRebar(rebar);
+                },
+                onTapAdd: () async {
+                  final paths = await ImageSourceSheet.show(context);
+                  if (paths.isEmpty) return;
+                  final news = await controller.createNewPhotos(paths);
+                  final rebar = inspection.rebar.copyWith(
+                    bottom: inspection.rebar.bottom.copyWith(
+                      photos: [...inspection.rebar.bottom.photos, ...news],
+                    ),
+                  );
+                  controller.updateRebar(rebar);
+                },
+              ),
+            ),
+          ],
+          SectionItem(
+            title: '調査できた範囲',
+            incomplete: inspection.rebar.coverage == null,
+            child: DropdownField<Coverage>(
+              value: SelectionItem.orNull(
+                value: inspection.rebar.coverage,
+                name: inspection.rebar.coverage?.label,
+              ),
+              all: Coverage.values
+                  .map((value) => SelectionItem(
+                        value: value,
+                        name: value.label,
+                      ))
+                  .toList(),
+              onSelect: (coverage) {
+                final rebar = inspection.rebar.copyWith(coverage: coverage);
+                controller.updateRebar(rebar);
+              },
+            ),
+          ),
+        ],
         SectionItem(
           axis: Axis.vertical,
           title: '備考',

@@ -28,4 +28,27 @@ class Lifeline with _$Lifeline {
       otherMalfunction: otherMalfunction.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      lifelineMalfunction.result,
+      otherMalfunction.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final lifelineMalfunctionOk = lifelineMalfunction.result == Result.passed ||
+        (lifelineMalfunction.result == Result.failure &&
+            (lifelineMalfunction.part?.isNotEmpty ?? false) &&
+            (lifelineMalfunction.content?.isNotEmpty ?? false) &&
+            (lifelineMalfunction.situation?.isNotEmpty ?? false));
+    final otherMalfunctionOk = otherMalfunction.result == Result.passed ||
+        (otherMalfunction.result == Result.failure &&
+            (otherMalfunction.part?.isNotEmpty ?? false) &&
+            (otherMalfunction.situation?.isNotEmpty ?? false));
+    return lifelineMalfunctionOk && otherMalfunctionOk && coverage != null;
+  }
 }

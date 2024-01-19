@@ -33,4 +33,41 @@ class Piping with _$Piping {
       ductLoss: ductLoss.copyWith(result: Result.passed),
     );
   }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    final results = [
+      supplyRustyWater.result,
+      supplyWaterLeak.result,
+      sewerStuck.result,
+      sewerWaterLeak.result,
+      ductLoss.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final supplyRustyWaterOk = supplyRustyWater.result == Result.passed ||
+        (supplyRustyWater.result == Result.failure &&
+            (supplyRustyWater.part?.isNotEmpty ?? false));
+    final supplyWaterLeakOk = supplyWaterLeak.result == Result.passed ||
+        (supplyWaterLeak.result == Result.failure &&
+            (supplyWaterLeak.part?.isNotEmpty ?? false));
+    final sewerStuckOk = sewerStuck.result == Result.passed ||
+        (sewerStuck.result == Result.failure &&
+            (sewerStuck.part?.isNotEmpty ?? false));
+    final sewerWaterLeakOk = sewerWaterLeak.result == Result.passed ||
+        (sewerWaterLeak.result == Result.failure &&
+            (sewerWaterLeak.part?.isNotEmpty ?? false));
+    final ductLossOk = ductLoss.result == Result.passed ||
+        (ductLoss.result == Result.failure &&
+            (ductLoss.part?.isNotEmpty ?? false));
+    return supplyRustyWaterOk &&
+        supplyWaterLeakOk &&
+        sewerStuckOk &&
+        sewerWaterLeakOk &&
+        ductLossOk &&
+        coverage != null;
+  }
 }

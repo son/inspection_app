@@ -11,7 +11,7 @@ class Rebar with _$Rebar {
 
   @JsonSerializable(explicitToJson: true)
   const factory Rebar({
-    @Default(false) bool exploration,
+    bool? exploration,
     @Default(Damage()) Damage side,
     @Default(Damage()) Damage bottom,
     Coverage? coverage,
@@ -27,5 +27,36 @@ class Rebar with _$Rebar {
       side: side.copyWith(result: Result.passed),
       bottom: bottom.copyWith(result: Result.passed),
     );
+  }
+
+  bool get complete {
+    if (notApplicable) {
+      return true;
+    }
+    if (exploration == null) {
+      return false;
+    }
+    if (exploration == false) {
+      return true;
+    }
+
+    final results = [
+      side.result,
+      bottom.result,
+    ];
+    if (results.any((result) => result == Result.none)) {
+      return false;
+    }
+    final sideOk = side.result == Result.passed ||
+        (side.result == Result.failure &&
+            (side.part?.isNotEmpty ?? false) &&
+            (side.content?.isNotEmpty ?? false) &&
+            (side.situation?.isNotEmpty ?? false));
+    final bottomOk = bottom.result == Result.passed ||
+        (bottom.result == Result.failure &&
+            (bottom.part?.isNotEmpty ?? false) &&
+            (bottom.content?.isNotEmpty ?? false) &&
+            (bottom.situation?.isNotEmpty ?? false));
+    return sideOk && bottomOk && coverage != null;
   }
 }

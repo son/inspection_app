@@ -26,6 +26,7 @@ class PipingSection extends HookConsumerWidget {
 
     return Section(
       title: '設備配管',
+      complete: inspection.piping.complete,
       actions: [
         MenuButton(
           title: '「設備配管」の項目全てを一括で設定します',
@@ -42,6 +43,7 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[給水・給湯管] 発錆による赤水',
+          incomplete: inspection.piping.supplyRustyWater.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.supplyRustyWater.result,
             onSelect: (result) {
@@ -56,7 +58,10 @@ class PipingSection extends HookConsumerWidget {
         if (inspection.piping.supplyRustyWater.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            incomplete:
+                inspection.piping.supplyRustyWater.part?.isEmpty ?? true,
+            indent: true,
             child: PrimaryTextField(
               initialText: inspection.piping.supplyRustyWater.part ?? '',
               onChange: (text) {
@@ -99,7 +104,69 @@ class PipingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
+          title: '[給水・給湯管] 漏水',
+          incomplete: inspection.piping.supplyWaterLeak.result == Result.none,
+          child: DropdownField.result(
+            result: inspection.piping.supplyWaterLeak.result,
+            onSelect: (result) {
+              final supplyWaterLeak =
+                  inspection.piping.supplyWaterLeak.copyWith(result: result);
+              final piping =
+                  inspection.piping.copyWith(supplyWaterLeak: supplyWaterLeak);
+              controller.updatePiping(piping);
+            },
+          ),
+        ),
+        if (inspection.piping.supplyWaterLeak.result == Result.failure) ...[
+          SectionItem(
+            axis: Axis.horizontal,
+            title: '問題が確認された場所',
+            incomplete: inspection.piping.supplyWaterLeak.part?.isEmpty ?? true,
+            indent: true,
+            child: PrimaryTextField(
+              initialText: inspection.piping.supplyWaterLeak.part ?? '',
+              onChange: (text) {
+                final supplyWaterLeak =
+                    inspection.piping.supplyWaterLeak.copyWith(part: text);
+                final piping = inspection.piping
+                    .copyWith(supplyWaterLeak: supplyWaterLeak);
+                controller.updatePiping(piping);
+              },
+            ),
+          ),
+          SectionItem(
+            axis: Axis.vertical,
+            child: PhotoCaptionsItem(
+              photos: inspection.piping.supplyRustyWater.photos,
+              onChange: (photos) {
+                final piping = inspection.piping.copyWith(
+                  supplyRustyWater: inspection.piping.supplyRustyWater.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
+              onTapAdd: () async {
+                final paths = await ImageSourceSheet.show(context);
+                if (paths.isEmpty) return;
+                final news = await controller.createNewPhotos(paths);
+                final piping = inspection.piping.copyWith(
+                  supplyRustyWater: inspection.piping.supplyRustyWater.copyWith(
+                    photos: [
+                      ...inspection.piping.supplyRustyWater.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updatePiping(piping);
+              },
+            ),
+          ),
+        ],
+        SectionItem(
+          axis: Axis.horizontal,
           title: '[排水管] 排水の滞留',
+          incomplete: inspection.piping.sewerStuck.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.sewerStuck.result,
             onSelect: (result) {
@@ -113,7 +180,9 @@ class PipingSection extends HookConsumerWidget {
         if (inspection.piping.sewerStuck.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.piping.sewerStuck.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.piping.sewerStuck.part ?? '',
               onChange: (text) {
@@ -154,6 +223,7 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[排水管] 漏水',
+          incomplete: inspection.piping.sewerWaterLeak.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.sewerWaterLeak.result,
             onSelect: (result) {
@@ -168,7 +238,9 @@ class PipingSection extends HookConsumerWidget {
         if (inspection.piping.sewerWaterLeak.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete: inspection.piping.sewerWaterLeak.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.piping.sewerWaterLeak.part ?? '',
               onChange: (text) {
@@ -211,7 +283,8 @@ class PipingSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
-          title: '[排水管] 換気ダクトの脱落',
+          title: '[換気ダクト] 換気ダクトの脱落',
+          incomplete: inspection.piping.ductLoss.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.ductLoss.result,
             onSelect: (result) {
@@ -225,7 +298,9 @@ class PipingSection extends HookConsumerWidget {
         if (inspection.piping.ductLoss.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            incomplete: inspection.piping.ductLoss.part?.isEmpty ?? true,
+            indent: true,
             child: PrimaryTextField(
               initialText: inspection.piping.ductLoss.part ?? '',
               onChange: (text) {
@@ -264,6 +339,7 @@ class PipingSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.piping.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.piping.coverage,

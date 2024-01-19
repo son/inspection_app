@@ -41,6 +41,8 @@ class LifelineSection extends HookConsumerWidget {
       children: [
         SectionItem(
           axis: Axis.horizontal,
+          incomplete:
+              inspection.lifeline.otherMalfunction.result == Result.none,
           title: 'キッチンコンロ、換気扇\nパッケージ、エアコンの設備機器の作動不良',
           child: DropdownField.result(
             result: inspection.lifeline.otherMalfunction.result,
@@ -56,7 +58,9 @@ class LifelineSection extends HookConsumerWidget {
         if (inspection.lifeline.otherMalfunction.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　調査内容',
+            title: '調査内容',
+            indent: true,
+            incomplete: inspection.lifeline.otherMalfunction.content == null,
             child: PrimaryTextField(
               initialText: inspection.lifeline.otherMalfunction.content ?? '',
               onChange: (text) {
@@ -70,7 +74,10 @@ class LifelineSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.lifeline.otherMalfunction.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.lifeline.otherMalfunction.part ?? '',
               onChange: (text) {
@@ -84,7 +91,10 @@ class LifelineSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　作動不良の状況',
+            title: '作動不良の状況',
+            indent: true,
+            incomplete:
+                inspection.lifeline.otherMalfunction.situation?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.lifeline.otherMalfunction.situation ?? '',
               onChange: (text) {
@@ -129,6 +139,8 @@ class LifelineSection extends HookConsumerWidget {
         ],
         SectionItem(
           axis: Axis.horizontal,
+          incomplete:
+              inspection.lifeline.lifelineMalfunction.result == Result.none,
           title: '給排水、電気、ガス設備の作動不良',
           child: DropdownField.result(
             result: inspection.lifeline.lifelineMalfunction.result,
@@ -146,23 +158,10 @@ class LifelineSection extends HookConsumerWidget {
             Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　調査内容',
-            child: PrimaryTextField(
-              initialText:
-                  inspection.lifeline.lifelineMalfunction.content ?? '',
-              onChange: (text) {
-                final lifelineMalfunction = inspection
-                    .lifeline.lifelineMalfunction
-                    .copyWith(content: text);
-                final lifeline = inspection.lifeline
-                    .copyWith(lifelineMalfunction: lifelineMalfunction);
-                controller.updateLifeline(lifeline);
-              },
-            ),
-          ),
-          SectionItem(
-            axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
+            incomplete:
+                inspection.lifeline.lifelineMalfunction.part?.isEmpty ?? true,
             child: PrimaryTextField(
               initialText: inspection.lifeline.lifelineMalfunction.part ?? '',
               onChange: (text) {
@@ -177,7 +176,11 @@ class LifelineSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.horizontal,
-            title: '　作動不良の状況',
+            title: '作動不良の状況',
+            indent: true,
+            incomplete:
+                inspection.lifeline.lifelineMalfunction.situation?.isEmpty ??
+                    true,
             child: PrimaryTextField(
               initialText:
                   inspection.lifeline.lifelineMalfunction.situation ?? '',
@@ -224,6 +227,7 @@ class LifelineSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          incomplete: inspection.lifeline.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.lifeline.coverage,

@@ -7,7 +7,7 @@ part of 'rebar.dart';
 // **************************************************************************
 
 _$_Rebar _$$_RebarFromJson(Map<String, dynamic> json) => _$_Rebar(
-      exploration: json['exploration'] as bool? ?? false,
+      exploration: json['exploration'] as bool?,
       side: json['side'] == null
           ? const Damage()
           : Damage.fromJson(json['side'] as Map<String, dynamic>),
