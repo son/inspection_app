@@ -7,7 +7,6 @@ import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -112,9 +111,7 @@ class RoofFrameSection extends HookConsumerWidget {
                 );
                 controller.updateRoofFrame(roofFrame);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final roofFrame = inspection.roofFrame.copyWith(
                   foundationDamage:
@@ -178,9 +175,7 @@ class RoofFrameSection extends HookConsumerWidget {
                 );
                 controller.updateRoofFrame(roofFrame);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final roofFrame = inspection.roofFrame.copyWith(
                   rainRoofFrameLeak:

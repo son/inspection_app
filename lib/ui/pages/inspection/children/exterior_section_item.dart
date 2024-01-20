@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/providers/image_pick_provider.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/image_source_sheet.dart';
+import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
 import 'package:inspection_app/ui/pages/image/images_page.dart';
 import 'package:inspection_app/ui/pages/inspection/children/image_item.dart';
 import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
@@ -28,13 +29,33 @@ class ExteriorSectionItem extends HookConsumerWidget {
             spacing: padding,
             runSpacing: padding,
             children: [
-              AddImageItem(
-                onTap: () async {
-                  final paths = await ImageSourceSheet.show(context);
-                  if (paths.isEmpty) return;
-                  controller.updatePhotos(paths);
-                },
-                size: size,
+              MenuTapGesture(
+                items: [
+                  MenuItem(
+                    title: 'カメラで写真を撮る',
+                    icon: const Icon(Icons.camera_rounded),
+                    onTap: () async {
+                      final image =
+                          await ref.read(cameraImagePickProvider)(context);
+                      if (image == null) return;
+                      controller.updatePhotos([image]);
+                    },
+                  ),
+                  MenuItem(
+                    title: 'アルバムから画像を選択する',
+                    icon: const Icon(Icons.photo),
+                    onTap: () async {
+                      final images =
+                          await ref.read(photoImagePickProvider)(context);
+                      if (images.isEmpty) return;
+                      controller.updatePhotos(images);
+                    },
+                  ),
+                ],
+                child: AddImageItem(
+                  onTap: () {},
+                  size: size,
+                ),
               ),
               ...photos
                   .map(

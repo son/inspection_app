@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/photo/photo.dart';
+import 'package:inspection_app/data/providers/image_pick_provider.dart';
+import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
 
 class PhotoCaptionsItem extends StatelessWidget {
@@ -15,7 +17,7 @@ class PhotoCaptionsItem extends StatelessWidget {
 
   final List<Photo> photos;
   final Function(List<Photo>) onChange;
-  final Function() onTapAdd;
+  final Function(List<String>) onTapAdd;
 
   @override
   Widget build(BuildContext context) {
@@ -118,16 +120,34 @@ class _Item extends StatelessWidget {
   }
 }
 
-class _AddItem extends StatelessWidget {
+class _AddItem extends HookConsumerWidget {
   const _AddItem({required this.onTap});
 
-  final Function() onTap;
+  final Function(List<String>) onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: onTap,
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MenuTapGesture(
+      items: [
+        MenuItem(
+          title: 'カメラで写真を撮る',
+          icon: const Icon(Icons.camera_rounded),
+          onTap: () async {
+            final image = await ref.read(cameraImagePickProvider)(context);
+            if (image == null) return;
+            onTap([image]);
+          },
+        ),
+        MenuItem(
+          title: 'アルバムから画像を選択する',
+          icon: const Icon(Icons.photo),
+          onTap: () async {
+            final images = await ref.read(photoImagePickProvider)(context);
+            if (images.isEmpty) return;
+            onTap(images);
+          },
+        ),
+      ],
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(

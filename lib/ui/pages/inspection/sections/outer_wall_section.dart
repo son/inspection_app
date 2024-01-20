@@ -7,7 +7,6 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
@@ -143,9 +142,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   dryDamage: inspection.outerWall.dryDamage.copyWith(
@@ -236,9 +233,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   dryWideDamage: inspection.outerWall.dryWideDamage.copyWith(
@@ -308,9 +303,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   dryCorrosion: inspection.outerWall.dryCorrosion.copyWith(
@@ -403,9 +396,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   tileDamage: inspection.outerWall.tileDamage.copyWith(
@@ -499,9 +490,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   tileWideDamage: inspection.outerWall.tileWideDamage.copyWith(
@@ -571,9 +560,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   tileFloat: inspection.outerWall.tileFloat.copyWith(
@@ -640,9 +627,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   paintDamage: inspection.outerWall.paintDamage.copyWith(
@@ -712,9 +697,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   paintFloat: inspection.outerWall.paintFloat.copyWith(
@@ -808,9 +791,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   otherDamage: inspection.outerWall.otherDamage.copyWith(
@@ -906,9 +887,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   otherWideDamage:
@@ -979,9 +958,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   otherCorrosion: inspection.outerWall.otherCorrosion.copyWith(
@@ -1051,9 +1028,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   otherFloat: inspection.outerWall.otherFloat.copyWith(
@@ -1125,9 +1100,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   rainWallSealing:
@@ -1197,9 +1170,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   rainGap: inspection.outerWall.rainGap.copyWith(
@@ -1271,9 +1242,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   rainCeilingSealing:
@@ -1346,9 +1315,7 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final outerWall = inspection.outerWall.copyWith(
                   rainCeilingLeak:

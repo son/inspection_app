@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/confirm_dialog.dart';
+import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
 import 'package:inspection_app/ui/components/notification_bar.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/round_button.dart';
@@ -94,12 +95,26 @@ class InspectionPage extends HookConsumerWidget {
               },
             ),
             const SizedBox(width: 8),
-            RoundButton(
-              title: 'データ出力',
-              textColor: Colors.blueAccent,
-              backgroundColor: Colors.white,
-              borderColor: Colors.black12,
-              onTap: () async {},
+            MenuTapGesture(
+              items: [
+                MenuItem(
+                  icon: const Icon(Icons.downhill_skiing),
+                  title: 'PDFに出力PDFに出力',
+                  onTap: () async {},
+                ),
+                MenuItem(
+                  icon: const Icon(Icons.file_download),
+                  title: 'xlsxに出力',
+                  onTap: () async {},
+                ),
+              ],
+              child: RoundButton(
+                title: 'データ出力',
+                textColor: Colors.blueAccent,
+                backgroundColor: Colors.white,
+                borderColor: Colors.black12,
+                onTap: () async {},
+              ),
             ),
             const SizedBox(width: 8),
             RoundButton(

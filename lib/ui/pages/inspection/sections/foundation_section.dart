@@ -8,7 +8,6 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_check_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
@@ -144,9 +143,7 @@ class FoundationSection extends HookConsumerWidget {
                 );
                 controller.updateFoundation(foundation);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final foundation = inspection.foundation.copyWith(
                   crack: inspection.foundation.crack.copyWith(
@@ -236,9 +233,7 @@ class FoundationSection extends HookConsumerWidget {
                 );
                 controller.updateFoundation(foundation);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final foundation = inspection.foundation.copyWith(
                   damage: inspection.foundation.damage.copyWith(
@@ -331,9 +326,7 @@ class FoundationSection extends HookConsumerWidget {
                 );
                 controller.updateFoundation(foundation);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final foundation = inspection.foundation.copyWith(
                   concreteDeterioration:
@@ -403,9 +396,7 @@ class FoundationSection extends HookConsumerWidget {
                 );
                 controller.updateFoundation(foundation);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final foundation = inspection.foundation.copyWith(
                   rust: inspection.foundation.rust.copyWith(
@@ -473,9 +464,7 @@ class FoundationSection extends HookConsumerWidget {
                 );
                 controller.updateFoundation(foundation);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final foundation = inspection.foundation.copyWith(
                   rebarExposure: inspection.foundation.rebarExposure.copyWith(

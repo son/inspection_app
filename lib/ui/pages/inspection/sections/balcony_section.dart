@@ -7,7 +7,6 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
@@ -120,9 +119,7 @@ class BalconySection extends HookConsumerWidget {
                 );
                 controller.updateBalcony(balcony);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final balcony = inspection.balcony.copyWith(
                   foundation: inspection.balcony.foundation.copyWith(
@@ -189,9 +186,7 @@ class BalconySection extends HookConsumerWidget {
                 );
                 controller.updateBalcony(balcony);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final balcony = inspection.balcony.copyWith(
                   waterProofLayer: inspection.balcony.waterProofLayer.copyWith(

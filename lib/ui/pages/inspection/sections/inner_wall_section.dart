@@ -100,11 +100,30 @@ class InnerWallSection extends HookConsumerWidget {
           ),
           SectionItem(
             axis: Axis.vertical,
-            indent: true,
             child: PhotoCaptionsItem(
               photos: inspection.innerWall.foundationDamage.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final innerWall = inspection.innerWall.copyWith(
+                  foundationDamage:
+                      inspection.innerWall.foundationDamage.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+              },
+              onTapAdd: (paths) async {
+                final news = await controller.createNewPhotos(paths);
+                final innerWall = inspection.innerWall.copyWith(
+                  foundationDamage:
+                      inspection.innerWall.foundationDamage.copyWith(
+                    photos: [
+                      ...inspection.innerWall.foundationDamage.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+              },
             ),
           ),
         ],
@@ -177,8 +196,28 @@ class InnerWallSection extends HookConsumerWidget {
             axis: Axis.vertical,
             child: PhotoCaptionsItem(
               photos: inspection.innerWall.foundationInclination.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final innerWall = inspection.innerWall.copyWith(
+                  foundationInclination:
+                      inspection.innerWall.foundationInclination.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+              },
+              onTapAdd: (paths) async {
+                final news = await controller.createNewPhotos(paths);
+                final innerWall = inspection.innerWall.copyWith(
+                  foundationInclination:
+                      inspection.innerWall.foundationInclination.copyWith(
+                    photos: [
+                      ...inspection.innerWall.foundationInclination.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+              },
             ),
           ),
         ],
@@ -221,8 +260,28 @@ class InnerWallSection extends HookConsumerWidget {
             axis: Axis.vertical,
             child: PhotoCaptionsItem(
               photos: inspection.innerWall.rainInnerWallLeak.photos,
-              onChange: (photos) {},
-              onTapAdd: () {},
+              onChange: (photos) {
+                final innerWall = inspection.innerWall.copyWith(
+                  rainInnerWallLeak:
+                      inspection.innerWall.rainInnerWallLeak.copyWith(
+                    photos: [...photos],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+              },
+              onTapAdd: (paths) async {
+                final news = await controller.createNewPhotos(paths);
+                final innerWall = inspection.innerWall.copyWith(
+                  rainInnerWallLeak:
+                      inspection.innerWall.rainInnerWallLeak.copyWith(
+                    photos: [
+                      ...inspection.innerWall.rainInnerWallLeak.photos,
+                      ...news
+                    ],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+              },
             ),
           ),
         ],

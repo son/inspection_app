@@ -7,7 +7,6 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/image_source_sheet.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -115,9 +114,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
                 );
                 controller.updateBaseAndFloorFraming(baseAndFloorFraming);
               },
-              onTapAdd: () async {
-                final paths = await ImageSourceSheet.show(context);
-                if (paths.isEmpty) return;
+              onTapAdd: (paths) async {
                 final news = await controller.createNewPhotos(paths);
                 final baseAndFloorFraming =
                     inspection.baseAndFloorFraming.copyWith(
