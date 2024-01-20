@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -126,6 +127,19 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateBaseAndFloorFraming(baseAndFloorFraming);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.baseAndFloorFraming.damage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final baseAndFloorFraming =
+                    inspection.baseAndFloorFraming.copyWith(
+                  damage: inspection.baseAndFloorFraming.damage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateBaseAndFloorFraming(baseAndFloorFraming);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

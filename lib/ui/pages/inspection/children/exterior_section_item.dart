@@ -38,7 +38,7 @@ class ExteriorSectionItem extends HookConsumerWidget {
                       final image =
                           await ref.read(cameraImagePickProvider)(context);
                       if (image == null) return;
-                      controller.updatePhotos([image]);
+                      controller.updateExteriorImages([image]);
                     },
                   ),
                   MenuItem(
@@ -48,7 +48,7 @@ class ExteriorSectionItem extends HookConsumerWidget {
                       final images =
                           await ref.read(photoImagePickProvider)(context);
                       if (images.isEmpty) return;
-                      controller.updatePhotos(images);
+                      controller.updateExteriorImages(images);
                     },
                   ),
                 ],
@@ -68,10 +68,13 @@ class ExteriorSectionItem extends HookConsumerWidget {
                           images: photos.map((e) => e.image).toList(),
                           initialIndex: photos.indexOf(photo),
                           onTapDelete: (url) {
-                            controller.deletePhoto(url);
+                            controller.deleteExterior(url);
                             Navigator.of(context).pop();
                           },
                         );
+                      },
+                      onTapDelete: () {
+                        controller.deleteExterior(photo.image);
                       },
                     ),
                   )

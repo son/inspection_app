@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -110,6 +111,18 @@ class FloorSection extends HookConsumerWidget {
                 );
                 controller.updateFloor(floor);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.floor.damage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final floor = inspection.floor.copyWith(
+                  damage: inspection.floor.damage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFloor(floor);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -161,6 +174,18 @@ class FloorSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateFloor(floor);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.floor.sinking.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final floor = inspection.floor.copyWith(
+                  sinking: inspection.floor.sinking.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFloor(floor);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -239,6 +264,18 @@ class FloorSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateFloor(floor);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.floor.inclination.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final floor = inspection.floor.copyWith(
+                  inclination: inspection.floor.inclination.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFloor(floor);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

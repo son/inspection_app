@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -96,6 +97,18 @@ class PipingSection extends HookConsumerWidget {
                 );
                 controller.updatePiping(piping);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.piping.supplyRustyWater.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final piping = inspection.piping.copyWith(
+                  supplyRustyWater: inspection.piping.supplyRustyWater.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePiping(piping);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -155,6 +168,18 @@ class PipingSection extends HookConsumerWidget {
                 );
                 controller.updatePiping(piping);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.piping.supplyRustyWater.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final piping = inspection.piping.copyWith(
+                  supplyRustyWater: inspection.piping.supplyRustyWater.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePiping(piping);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -209,6 +234,18 @@ class PipingSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updatePiping(piping);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.piping.sewerStuck.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final piping = inspection.piping.copyWith(
+                  sewerStuck: inspection.piping.sewerStuck.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePiping(piping);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -269,6 +306,18 @@ class PipingSection extends HookConsumerWidget {
                 );
                 controller.updatePiping(piping);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.piping.sewerWaterLeak.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final piping = inspection.piping.copyWith(
+                  sewerWaterLeak: inspection.piping.sewerWaterLeak.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePiping(piping);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -322,6 +371,18 @@ class PipingSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updatePiping(piping);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.piping.ductLoss.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final piping = inspection.piping.copyWith(
+                  ductLoss: inspection.piping.ductLoss.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePiping(piping);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

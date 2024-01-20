@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -124,6 +125,19 @@ class InnerWallSection extends HookConsumerWidget {
                 );
                 controller.updateInnerWall(innerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.innerWall.foundationDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final innerWall = inspection.innerWall.copyWith(
+                  foundationDamage:
+                      inspection.innerWall.foundationDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -218,6 +232,19 @@ class InnerWallSection extends HookConsumerWidget {
                 );
                 controller.updateInnerWall(innerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.innerWall.foundationInclination.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final innerWall = inspection.innerWall.copyWith(
+                  foundationInclination:
+                      inspection.innerWall.foundationInclination.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -281,6 +308,19 @@ class InnerWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateInnerWall(innerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.innerWall.rainInnerWallLeak.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final innerWall = inspection.innerWall.copyWith(
+                  rainInnerWallLeak:
+                      inspection.innerWall.rainInnerWallLeak.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateInnerWall(innerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

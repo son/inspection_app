@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -141,6 +142,15 @@ class EarthquakeResistantSection extends HookConsumerWidget {
                 photos: [...inspection.earthquakeResistant.photos, ...news],
               );
               controller.updateEarthquakeResistant(earthquakeResistant);
+            },
+            onTapDelete: (photo) async {
+              final news = inspection.earthquakeResistant.photos
+                  .whereNot((p) => p.image == photo.image)
+                  .toList();
+              final earthquakeResistant =
+                  inspection.earthquakeResistant.copyWith(photos: [...news]);
+              controller.updateEarthquakeResistant(earthquakeResistant);
+              await controller.deletePhoto(photo);
             },
           ),
         ),

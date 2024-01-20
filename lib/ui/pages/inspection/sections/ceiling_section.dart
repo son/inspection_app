@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -119,6 +120,19 @@ class CeilingSection extends HookConsumerWidget {
                 );
                 controller.updateCeiling(ceiling);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.ceiling.foundationDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final ceiling = inspection.ceiling.copyWith(
+                  foundationDamage:
+                      inspection.ceiling.foundationDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateCeiling(ceiling);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -178,6 +192,18 @@ class CeilingSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateCeiling(ceiling);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.ceiling.rainCeilingLeak.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final ceiling = inspection.ceiling.copyWith(
+                  rainCeilingLeak: inspection.ceiling.rainCeilingLeak.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateCeiling(ceiling);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

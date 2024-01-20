@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -110,6 +111,18 @@ class AntDamageSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateAntDamage(antDamage);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.antDamage.antDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final antDamage = inspection.antDamage.copyWith(
+                  antDamage: inspection.antDamage.antDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateAntDamage(antDamage);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

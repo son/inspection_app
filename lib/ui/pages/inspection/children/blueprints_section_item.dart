@@ -38,7 +38,7 @@ class BlueprintsSectionItem extends HookConsumerWidget {
                       final image =
                           await ref.read(cameraImagePickProvider)(context);
                       if (image == null) return;
-                      controller.updatePhotos([image]);
+                      controller.updateExteriorImages([image]);
                     },
                   ),
                   MenuItem(
@@ -48,7 +48,7 @@ class BlueprintsSectionItem extends HookConsumerWidget {
                       final images =
                           await ref.read(photoImagePickProvider)(context);
                       if (images.isEmpty) return;
-                      controller.updatePhotos(images);
+                      controller.updateExteriorImages(images);
                     },
                   ),
                 ],
@@ -72,6 +72,9 @@ class BlueprintsSectionItem extends HookConsumerWidget {
                             Navigator.of(context).pop();
                           },
                         );
+                      },
+                      onTapDelete: () {
+                        controller.deleteExterior(blueprint.image);
                       },
                     ),
                   )

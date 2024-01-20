@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -108,6 +109,19 @@ class ConcreteSection extends HookConsumerWidget {
                   );
                   controller.updateConcrete(concrete);
                 },
+                onTapDelete: (photo) async {
+                  final news = inspection.concrete.compressiveStrength1.photos
+                      .whereNot((p) => p.image == photo.image)
+                      .toList();
+                  final concrete = inspection.concrete.copyWith(
+                    compressiveStrength1:
+                        inspection.concrete.compressiveStrength1.copyWith(
+                      photos: [...news],
+                    ),
+                  );
+                  controller.updateConcrete(concrete);
+                  await controller.deletePhoto(photo);
+                },
               ),
             ),
           ],
@@ -155,6 +169,19 @@ class ConcreteSection extends HookConsumerWidget {
                     ),
                   );
                   controller.updateConcrete(concrete);
+                },
+                onTapDelete: (photo) async {
+                  final news = inspection.concrete.compressiveStrength2.photos
+                      .whereNot((p) => p.image == photo.image)
+                      .toList();
+                  final concrete = inspection.concrete.copyWith(
+                    compressiveStrength2:
+                        inspection.concrete.compressiveStrength2.copyWith(
+                      photos: [...news],
+                    ),
+                  );
+                  controller.updateConcrete(concrete);
+                  await controller.deletePhoto(photo);
                 },
               ),
             ),

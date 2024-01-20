@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -124,6 +125,18 @@ class PillarAndBeamSection extends HookConsumerWidget {
                 );
                 controller.updatePillarAndBeam(pillarAndBeam);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.pillarAndBeam.pillarDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final pillarAndBeam = inspection.pillarAndBeam.copyWith(
+                  pillarDamage: inspection.pillarAndBeam.pillarDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePillarAndBeam(pillarAndBeam);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -218,6 +231,19 @@ class PillarAndBeamSection extends HookConsumerWidget {
                 );
                 controller.updatePillarAndBeam(pillarAndBeam);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.pillarAndBeam.pillarInclination.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final pillarAndBeam = inspection.pillarAndBeam.copyWith(
+                  pillarInclination:
+                      inspection.pillarAndBeam.pillarInclination.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePillarAndBeam(pillarAndBeam);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -302,6 +328,18 @@ class PillarAndBeamSection extends HookConsumerWidget {
                 );
                 controller.updatePillarAndBeam(pillarAndBeam);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.pillarAndBeam.beamDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final pillarAndBeam = inspection.pillarAndBeam.copyWith(
+                  beamDamage: inspection.pillarAndBeam.beamDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePillarAndBeam(pillarAndBeam);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -365,6 +403,19 @@ class PillarAndBeamSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updatePillarAndBeam(pillarAndBeam);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.pillarAndBeam.beamDeflection.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final pillarAndBeam = inspection.pillarAndBeam.copyWith(
+                  beamDeflection:
+                      inspection.pillarAndBeam.beamDeflection.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updatePillarAndBeam(pillarAndBeam);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

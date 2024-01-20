@@ -142,9 +142,11 @@ class MenuItem extends StatelessWidget {
     required this.title,
     required this.onTap,
     this.icon,
+    this.destructive = false,
   });
   final String title;
   final Widget? icon;
+  final bool destructive;
   final Function() onTap;
 
   @override
@@ -167,7 +169,9 @@ class MenuItem extends StatelessWidget {
               ),
             Text(
               title,
-              style: TextStyles.b14,
+              style: TextStyles.b14.copyWith(
+                color: destructive ? Colors.redAccent : Colors.black87,
+              ),
             ),
           ],
         ),

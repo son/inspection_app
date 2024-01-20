@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -152,6 +153,18 @@ class FoundationSection extends HookConsumerWidget {
                 );
                 controller.updateFoundation(foundation);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.foundation.crack.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final foundation = inspection.foundation.copyWith(
+                  crack: inspection.foundation.crack.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -241,6 +254,18 @@ class FoundationSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateFoundation(foundation);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.foundation.crack.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final foundation = inspection.foundation.copyWith(
+                  crack: inspection.foundation.crack.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -339,6 +364,19 @@ class FoundationSection extends HookConsumerWidget {
                 );
                 controller.updateFoundation(foundation);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.foundation.concreteDeterioration.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final foundation = inspection.foundation.copyWith(
+                  concreteDeterioration:
+                      inspection.foundation.concreteDeterioration.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -404,6 +442,18 @@ class FoundationSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateFoundation(foundation);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.foundation.rust.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final foundation = inspection.foundation.copyWith(
+                  rust: inspection.foundation.rust.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -475,6 +525,18 @@ class FoundationSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateFoundation(foundation);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.foundation.rebarExposure.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final foundation = inspection.foundation.copyWith(
+                  rebarExposure: inspection.foundation.rebarExposure.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateFoundation(foundation);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

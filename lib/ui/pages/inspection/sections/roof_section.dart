@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -75,7 +76,8 @@ class RoofSection extends HookConsumerWidget {
         if (inspection.roof.damage.result == Result.failure) ...[
           SectionItem(
             axis: Axis.horizontal,
-            title: '　問題が確認された場所',
+            title: '問題が確認された場所',
+            indent: true,
             incomplete: inspection.roof.damage.directions.isEmpty,
             child: MultiDropdownField<Direction>(
               values: inspection.roof.damage.directions
@@ -118,6 +120,18 @@ class RoofSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateRoof(roof);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.roof.damage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final roof = inspection.roof.copyWith(
+                  damage: inspection.roof.damage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateRoof(roof);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -194,6 +208,19 @@ class RoofSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateRoof(roof);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.roof.waterProofLayerDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final roof = inspection.roof.copyWith(
+                  waterProofLayerDamage:
+                      inspection.roof.waterProofLayerDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateRoof(roof);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

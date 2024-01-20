@@ -6,6 +6,7 @@ import 'package:inspection_app/data/entities/photo/photo.dart';
 import 'package:inspection_app/data/providers/image_pick_provider.dart';
 import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
+import 'package:inspection_app/ui/pages/image/images_page.dart';
 
 class PhotoCaptionsItem extends StatelessWidget {
   const PhotoCaptionsItem({
@@ -13,11 +14,13 @@ class PhotoCaptionsItem extends StatelessWidget {
     required this.photos,
     required this.onChange,
     required this.onTapAdd,
+    required this.onTapDelete,
   });
 
   final List<Photo> photos;
   final Function(List<Photo>) onChange;
   final Function(List<String>) onTapAdd;
+  final Function(Photo) onTapDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,17 @@ class PhotoCaptionsItem extends StatelessWidget {
                         newPhotos[index] = photo;
                         onChange(newPhotos);
                       },
+                      onTap: () {
+                        ImagesPage.show(
+                          context: context,
+                          images: photos.map((e) => e.image).toList(),
+                          initialIndex: photos.indexOf(photo),
+                          onTapDelete: (url) {
+                            Navigator.of(context).pop();
+                            onTapDelete(photo);
+                          },
+                        );
+                      },
                     ))
                 .toList(),
           ],
@@ -56,11 +70,13 @@ class _Item extends StatelessWidget {
     required this.photo,
     required this.onChange,
     required this.size,
+    required this.onTap,
   });
 
   final Photo photo;
   final double size;
   final Function(Photo) onChange;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -69,39 +85,42 @@ class _Item extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: CachedNetworkImage(
-              imageUrl: photo.image,
-              fit: BoxFit.cover,
-              width: size,
-              height: size,
-              placeholder: (_, __) => Container(
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Center(
-                  child: SizedBox(
-                    width: 26,
-                    height: 26,
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.transparent,
-                      color: Colors.white,
+          GestureDetector(
+            onTap: onTap,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CachedNetworkImage(
+                imageUrl: photo.image,
+                fit: BoxFit.cover,
+                width: size,
+                height: size,
+                placeholder: (_, __) => Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: SizedBox(
+                      width: 26,
+                      height: 26,
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.transparent,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              errorWidget: (_, __, ___) => Container(
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.error_outline_rounded,
-                    color: Colors.white,
-                    size: 40,
+                errorWidget: (_, __, ___) => Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.error_outline_rounded,
+                      color: Colors.white,
+                      size: 40,
+                    ),
                   ),
                 ),
               ),

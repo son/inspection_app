@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -128,6 +129,18 @@ class BalconySection extends HookConsumerWidget {
                 );
                 controller.updateBalcony(balcony);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.balcony.foundation.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final balcony = inspection.balcony.copyWith(
+                  foundation: inspection.balcony.foundation.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateBalcony(balcony);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -197,6 +210,18 @@ class BalconySection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateBalcony(balcony);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.balcony.foundation.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final balcony = inspection.balcony.copyWith(
+                  waterProofLayer: inspection.balcony.waterProofLayer.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateBalcony(balcony);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

@@ -226,13 +226,13 @@ class InspectionNotifier extends StateNotifier<Inspection> {
     ).wait;
   }
 
-  Future<void> updatePhotos(List<String> paths) async {
+  Future<void> updateExteriorImages(List<String> paths) async {
     final news = await createNewPhotos(paths);
     state = state.copyWith(photos: [...state.photos, ...news]);
     await ref.read(inspectionListProvider.notifier).updateInspection(state);
   }
 
-  Future<void> deletePhoto(String url) async {
+  Future<void> deleteExterior(String url) async {
     final news = state.photos.whereNot((photo) => photo.image == url).toList();
     state = state.copyWith(photos: news);
     await (
@@ -249,5 +249,12 @@ class InspectionNotifier extends StateNotifier<Inspection> {
     );
     cancel();
     return urls.map((url) => Photo(image: url)).toList();
+  }
+
+  Future<void> deletePhoto(Photo photo) async {
+    await (
+      ref.read(imageRepositoryProvider).deleteImage(photo.image),
+      ref.read(inspectionListProvider.notifier).updateInspection(state),
+    ).wait;
   }
 }

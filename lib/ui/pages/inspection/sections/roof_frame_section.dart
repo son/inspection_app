@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -124,6 +125,19 @@ class RoofFrameSection extends HookConsumerWidget {
                 );
                 controller.updateRoofFrame(roofFrame);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.roofFrame.foundationDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final roofFrame = inspection.roofFrame.copyWith(
+                  foundationDamage:
+                      inspection.roofFrame.foundationDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateRoofFrame(roofFrame);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -187,6 +201,19 @@ class RoofFrameSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateRoofFrame(roofFrame);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.roofFrame.rainRoofFrameLeak.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final roofFrame = inspection.roofFrame.copyWith(
+                  rainRoofFrameLeak:
+                      inspection.roofFrame.rainRoofFrameLeak.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateRoofFrame(roofFrame);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -89,6 +90,18 @@ class CorrosionSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateCorrosion(corrosion);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.corrosion.corrosion.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final corrosion = inspection.corrosion.copyWith(
+                  corrosion: inspection.corrosion.corrosion.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateCorrosion(corrosion);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

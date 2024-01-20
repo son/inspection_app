@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -131,6 +132,19 @@ class LifelineSection extends HookConsumerWidget {
                 );
                 controller.updateLifeline(lifeline);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.lifeline.otherMalfunction.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final lifeline = inspection.lifeline.copyWith(
+                  otherMalfunction:
+                      inspection.lifeline.otherMalfunction.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateLifeline(lifeline);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -216,6 +230,19 @@ class LifelineSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateLifeline(lifeline);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.lifeline.lifelineMalfunction.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final lifeline = inspection.lifeline.copyWith(
+                  lifelineMalfunction:
+                      inspection.lifeline.lifelineMalfunction.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateLifeline(lifeline);
+                await controller.deletePhoto(photo);
               },
             ),
           ),

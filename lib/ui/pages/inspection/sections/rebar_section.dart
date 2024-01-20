@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -99,6 +100,18 @@ class RebarSection extends HookConsumerWidget {
                   );
                   controller.updateRebar(rebar);
                 },
+                onTapDelete: (photo) async {
+                  final news = inspection.rebar.side.photos
+                      .whereNot((p) => p.image == photo.image)
+                      .toList();
+                  final rebar = inspection.rebar.copyWith(
+                    side: inspection.rebar.side.copyWith(
+                      photos: [...news],
+                    ),
+                  );
+                  controller.updateRebar(rebar);
+                  await controller.deletePhoto(photo);
+                },
               ),
             ),
           ],
@@ -136,6 +149,18 @@ class RebarSection extends HookConsumerWidget {
                     ),
                   );
                   controller.updateRebar(rebar);
+                },
+                onTapDelete: (photo) async {
+                  final news = inspection.rebar.bottom.photos
+                      .whereNot((p) => p.image == photo.image)
+                      .toList();
+                  final rebar = inspection.rebar.copyWith(
+                    bottom: inspection.rebar.bottom.copyWith(
+                      photos: [...news],
+                    ),
+                  );
+                  controller.updateRebar(rebar);
+                  await controller.deletePhoto(photo);
                 },
               ),
             ),

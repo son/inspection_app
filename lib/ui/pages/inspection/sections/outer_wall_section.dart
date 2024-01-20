@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -151,6 +152,18 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.dryDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  dryDamage: inspection.outerWall.dryDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -245,6 +258,18 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.dryWideDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  dryWideDamage: inspection.outerWall.dryWideDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -314,6 +339,18 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.dryCorrosion.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  dryCorrosion: inspection.outerWall.dryCorrosion.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -407,6 +444,18 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.tileDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  tileDamage: inspection.outerWall.tileDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -502,6 +551,18 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.tileWideDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  tileWideDamage: inspection.outerWall.tileWideDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -568,6 +629,18 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.tileFloat.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  tileFloat: inspection.outerWall.tileFloat.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -639,6 +712,18 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.paintDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  paintDamage: inspection.outerWall.paintDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -708,6 +793,18 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.paintFloat.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  paintFloat: inspection.outerWall.paintFloat.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -802,6 +899,18 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.otherDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  otherDamage: inspection.outerWall.otherDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -900,6 +1009,19 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.otherWideDamage.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  otherWideDamage:
+                      inspection.outerWall.otherWideDamage.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -970,6 +1092,18 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.otherCorrosion.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  otherCorrosion: inspection.outerWall.otherCorrosion.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -1039,6 +1173,18 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.otherFloat.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  otherFloat: inspection.outerWall.otherFloat.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -1113,6 +1259,19 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.rainWallSealing.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  rainWallSealing:
+                      inspection.outerWall.rainWallSealing.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -1178,6 +1337,18 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.rainGap.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  rainGap: inspection.outerWall.rainGap.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
@@ -1255,6 +1426,19 @@ class OuterWallSection extends HookConsumerWidget {
                 );
                 controller.updateOuterWall(outerWall);
               },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.rainCeilingSealing.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  rainCeilingSealing:
+                      inspection.outerWall.rainCeilingSealing.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
+              },
             ),
           ),
         ],
@@ -1327,6 +1511,19 @@ class OuterWallSection extends HookConsumerWidget {
                   ),
                 );
                 controller.updateOuterWall(outerWall);
+              },
+              onTapDelete: (photo) async {
+                final news = inspection.outerWall.rainCeilingLeak.photos
+                    .whereNot((p) => p.image == photo.image)
+                    .toList();
+                final outerWall = inspection.outerWall.copyWith(
+                  rainCeilingLeak:
+                      inspection.outerWall.rainCeilingLeak.copyWith(
+                    photos: [...news],
+                  ),
+                );
+                controller.updateOuterWall(outerWall);
+                await controller.deletePhoto(photo);
               },
             ),
           ),
