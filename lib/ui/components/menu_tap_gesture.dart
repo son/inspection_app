@@ -12,9 +12,11 @@ class MenuTapGesture extends StatelessWidget {
     super.key,
     required this.child,
     required this.items,
+    this.title,
   });
   final Widget child;
   final List<MenuItem> items;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class MenuTapGesture extends StatelessWidget {
           context: context,
           items: items,
           anchorPoint: detail.globalPosition,
+          title: title,
         );
       },
       child: AbsorbPointer(
@@ -34,21 +37,31 @@ class MenuTapGesture extends StatelessWidget {
 }
 
 class _Menu extends HookConsumerWidget {
-  const _Menu._({required this.items, required this.anchorPoint});
+  const _Menu._({
+    required this.items,
+    required this.anchorPoint,
+    this.title,
+  });
   final List<MenuItem> items;
   final Offset anchorPoint;
+  final String? title;
 
   static Future<void> show({
     required BuildContext context,
     required List<MenuItem> items,
     required Offset anchorPoint,
+    String? title,
   }) {
     return showDialog(
       context: context,
       barrierColor: Colors.transparent,
       anchorPoint: anchorPoint,
       builder: (context) {
-        return _Menu._(items: items, anchorPoint: anchorPoint);
+        return _Menu._(
+          items: items,
+          anchorPoint: anchorPoint,
+          title: title,
+        );
       },
     );
   }
@@ -58,9 +71,14 @@ class _Menu extends HookConsumerWidget {
     final menuSize = useState(const Size(100, 50));
 
     return Stack(
+      clipBehavior: Clip.none,
       children: [
         Positioned(
-          top: anchorPoint.dy - 50,
+          top: min(
+            anchorPoint.dy - 50,
+            (MediaQuery.sizeOf(context).height - kToolbarHeight) -
+                (menuSize.value.height + 50),
+          ),
           left: () {
             final l = (anchorPoint.dx - 16) - (menuSize.value.width / 2);
             final r = MediaQuery.sizeOf(context).width -
@@ -87,9 +105,19 @@ class _Menu extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
-                children: items
+                children: [
+                  if (title != null)
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        title!,
+                        style: TextStyles.b10,
+                      ),
+                    ),
+                  ...items,
+                ]
                     .map<Widget>(
-                      (e) => e,
+                      (e) => Flexible(child: e),
                     )
                     .toList()
                     .interleave(
@@ -130,7 +158,7 @@ class MenuItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           children: [
             if (icon != null)
               Padding(

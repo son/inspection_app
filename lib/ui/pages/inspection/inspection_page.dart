@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -25,6 +26,8 @@ import 'package:inspection_app/ui/pages/inspection/sections/piping_section.dart'
 import 'package:inspection_app/ui/pages/inspection/sections/rebar_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_frame_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_section.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 import 'children/section_title.dart';
 import 'sections/address_section.dart';
@@ -98,13 +101,13 @@ class InspectionPage extends HookConsumerWidget {
             MenuTapGesture(
               items: [
                 MenuItem(
-                  icon: const Icon(Icons.downhill_skiing),
-                  title: 'PDFに出力PDFに出力',
+                  icon: const Icon(LineIcons.pdfFile),
+                  title: 'PDF で出力',
                   onTap: () async {},
                 ),
                 MenuItem(
-                  icon: const Icon(Icons.file_download),
-                  title: 'xlsxに出力',
+                  icon: const Icon(EvaIcons.list),
+                  title: 'xlsx で出力',
                   onTap: () async {},
                 ),
               ],

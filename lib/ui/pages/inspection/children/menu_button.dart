@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/ui/components/menu_sheet.dart';
+import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
 
 class MenuButton extends HookConsumerWidget {
   const MenuButton({
@@ -20,14 +20,27 @@ class MenuButton extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const dotSize = 3.0;
 
-    return GestureDetector(
-      onTap: () => MenuSheet.show(
-        title: title,
-        notApplicable: notApplicable,
-        context: context,
-        onTapAllPassed: onTapAllPassed,
-        onTapNotApplicable: onTapNotApplicable,
-      ),
+    return MenuTapGesture(
+      title: title,
+      items: [
+        MenuItem(
+          icon: const Icon(Icons.check_rounded, color: Colors.blueAccent),
+          title: '全て問題なしに設定',
+          onTap: onTapAllPassed,
+        ),
+        notApplicable
+            ? MenuItem(
+                icon:
+                    const Icon(Icons.circle_outlined, color: Colors.redAccent),
+                title: '該当ありに設定',
+                onTap: onTapNotApplicable,
+              )
+            : MenuItem(
+                icon: const Icon(Icons.close_rounded, color: Colors.black38),
+                title: '該当なしに設定',
+                onTap: onTapNotApplicable,
+              ),
+      ],
       child: Container(
         height: 24,
         width: 24,
