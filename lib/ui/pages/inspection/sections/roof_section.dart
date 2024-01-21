@@ -9,7 +9,7 @@ import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
-import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
+import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
@@ -29,7 +29,7 @@ class RoofSection extends HookConsumerWidget {
       title: '屋根',
       complete: inspection.roof.complete,
       actions: [
-        MenuButton(
+        SectionMenuButton(
           title: '「屋根」の項目全てを一括で設定します',
           notApplicable: inspection.roof.notApplicable,
           onTapAllPassed: () {

@@ -8,7 +8,7 @@ import 'package:inspection_app/data/entities/selection_item/selection_item.dart'
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
-import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
+import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
@@ -28,7 +28,7 @@ class CorrosionSection extends HookConsumerWidget {
       title: '腐朽、腐食など',
       complete: inspection.corrosion.complete,
       actions: [
-        MenuButton(
+        SectionMenuButton(
           title: '「腐朽、腐食など」の項目全てを一括で設定します',
           notApplicable: inspection.corrosion.notApplicable,
           onTapAllPassed: () {

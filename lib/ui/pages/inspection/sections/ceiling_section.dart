@@ -8,7 +8,7 @@ import 'package:inspection_app/data/entities/selection_item/selection_item.dart'
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
-import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
+import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
@@ -28,7 +28,7 @@ class CeilingSection extends HookConsumerWidget {
       title: '天井',
       complete: inspection.ceiling.complete,
       actions: [
-        MenuButton(
+        SectionMenuButton(
           title: '「天井」の項目全てを一括で設定します',
           notApplicable: inspection.ceiling.notApplicable,
           onTapAllPassed: () {

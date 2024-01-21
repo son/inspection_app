@@ -12,7 +12,7 @@ import 'package:inspection_app/ui/components/dropdown_field.dart';
 import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
 import 'package:inspection_app/ui/components/primary_check_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
-import 'package:inspection_app/ui/pages/inspection/children/menu_button.dart';
+import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
@@ -32,7 +32,7 @@ class FoundationSection extends HookConsumerWidget {
       title: '基礎',
       complete: inspection.foundation.complete,
       actions: [
-        MenuButton(
+        SectionMenuButton(
           title: '「基礎」の項目全てを一括で設定します',
           notApplicable: inspection.foundation.notApplicable,
           onTapAllPassed: () {

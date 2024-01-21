@@ -1,84 +1,90 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/providers/inspection_list_provider.dart';
+import 'package:inspection_app/ui/components/confirm_dialog.dart';
 import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
+import 'package:inspection_app/ui/components/notification_bar.dart';
+import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
 class MenuButton extends HookConsumerWidget {
-  const MenuButton({
-    super.key,
-    required this.title,
-    required this.notApplicable,
-    required this.onTapAllPassed,
-    required this.onTapNotApplicable,
-  });
-
-  final String title;
-  final bool notApplicable;
-  final Function() onTapAllPassed;
-  final Function() onTapNotApplicable;
+  const MenuButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const dotSize = 3.0;
 
+    final id = ref.watch(inspectionIdProvider);
+    final controller = ref.read(inspectionListProvider.notifier);
+
     return MenuTapGesture(
-      title: title,
       items: [
         MenuItem(
-          icon: const Icon(Icons.check_rounded, color: Colors.blueAccent),
-          title: '全て問題なしに設定',
-          onTap: onTapAllPassed,
+          icon: const Icon(Icons.report, color: Color(0xFFFFC107)),
+          title: '不具合・不備を報告する',
+          onTap: () {},
         ),
-        notApplicable
-            ? MenuItem(
-                icon:
-                    const Icon(Icons.circle_outlined, color: Colors.redAccent),
-                title: '該当ありに設定',
-                onTap: onTapNotApplicable,
-              )
-            : MenuItem(
-                icon: const Icon(Icons.close_rounded, color: Colors.black38),
-                title: '該当なしに設定',
-                onTap: onTapNotApplicable,
-              ),
+        MenuItem(
+          icon: const Icon(Icons.delete, color: Colors.redAccent),
+          title: '削除する',
+          destructive: true,
+          onTap: () async {
+            final canGo = await ConfirmDialog.show(
+              context: context,
+              title: '削除しますか？',
+              caption: '削除したデータは復元できません。',
+            );
+            if (!canGo) return;
+            await controller.deleteInspection(id);
+            Navigator.of(context).pop();
+            NotificationBar.showDelete();
+          },
+        ),
       ],
-      child: Container(
-        height: 24,
-        width: 24,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: Colors.black26, width: 1),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: dotSize,
-              width: dotSize,
-              decoration: const ShapeDecoration(
-                shape: StadiumBorder(),
-                color: Colors.black26,
-              ),
+      child: Row(
+        children: [
+          Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Colors.black12, width: 1),
             ),
-            const SizedBox(width: 2),
-            Container(
-              height: dotSize,
-              width: dotSize,
-              decoration: const ShapeDecoration(
-                shape: StadiumBorder(),
-                color: Colors.black26,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: dotSize,
+                  width: dotSize,
+                  decoration: const ShapeDecoration(
+                    shape: StadiumBorder(),
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(width: 2),
+                Container(
+                  height: dotSize,
+                  width: dotSize,
+                  decoration: const ShapeDecoration(
+                    shape: StadiumBorder(),
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(width: 2),
+                Container(
+                  height: dotSize,
+                  width: dotSize,
+                  decoration: const ShapeDecoration(
+                    shape: StadiumBorder(),
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: 2),
-            Container(
-              height: dotSize,
-              width: dotSize,
-              decoration: const ShapeDecoration(
-                shape: StadiumBorder(),
-                color: Colors.black26,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

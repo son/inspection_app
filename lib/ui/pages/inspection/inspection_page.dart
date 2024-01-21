@@ -7,9 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/confirm_dialog.dart';
 import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
-import 'package:inspection_app/ui/components/notification_bar.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/round_button.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.dart';
@@ -28,6 +26,7 @@ import 'package:inspection_app/ui/pages/inspection/sections/roof_frame_section.d
 import 'package:inspection_app/ui/pages/inspection/sections/roof_section.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'children/menu_button.dart';
 import 'children/section_title.dart';
 import 'sections/address_section.dart';
 import 'sections/context_section.dart';
@@ -75,69 +74,46 @@ class InspectionPage extends HookConsumerWidget {
         await controller.updateInspection(inspection);
         return true;
       },
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: PrimaryAppBar(
-          actions: [
-            RoundButton(
-              title: '削除',
-              textColor: Colors.redAccent,
-              backgroundColor: Colors.white,
-              borderColor: Colors.black12,
-              onTap: () async {
-                final canGo = await ConfirmDialog.show(
-                  context: context,
-                  title: '削除しますか？',
-                  caption: '削除したデータは復元できません。',
-                );
-                if (!canGo) return;
-                await controller.deleteInspection(inspectionId);
-                Navigator.of(context).pop();
-                NotificationBar.showDelete();
-              },
-            ),
-            const SizedBox(width: 8),
-            MenuTapGesture(
-              items: [
-                MenuItem(
-                  icon: const Icon(LineIcons.pdfFile),
-                  title: 'PDF で出力',
-                  onTap: () async {},
+      child: ProviderScope(
+        overrides: [
+          inspectionIdProvider.overrideWithValue(inspectionId),
+        ],
+        child: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: PrimaryAppBar(
+            actions: [
+              MenuTapGesture(
+                items: [
+                  MenuItem(
+                    icon: const Icon(LineIcons.pdfFile),
+                    title: 'PDF で出力',
+                    onTap: () async {},
+                  ),
+                  MenuItem(
+                    icon: const Icon(LineIcons.fileCsv),
+                    title: 'CSV で出力',
+                    onTap: () async {},
+                  ),
+                  MenuItem(
+                    icon: const Icon(EvaIcons.gridOutline),
+                    title: 'xlsx で出力',
+                    onTap: () async {},
+                  ),
+                ],
+                child: RoundButton(
+                  title: 'データ出力',
+                  textColor: Colors.blueAccent,
+                  backgroundColor: Colors.white,
+                  borderColor: Colors.black12,
+                  onTap: () {},
                 ),
-                MenuItem(
-                  icon: const Icon(EvaIcons.list),
-                  title: 'xlsx で出力',
-                  onTap: () async {},
-                ),
-              ],
-              child: RoundButton(
-                title: 'データ出力',
-                textColor: Colors.blueAccent,
-                backgroundColor: Colors.white,
-                borderColor: Colors.black12,
-                onTap: () {},
               ),
-            ),
-            const SizedBox(width: 8),
-            RoundButton(
-              title: '保存',
-              textColor: Colors.blueAccent,
-              backgroundColor: Colors.white,
-              borderColor: Colors.black12,
-              onTap: () async {
-                final inspection = ref.read(inspectionProvider(inspectionId));
-                await controller.updateInspection(inspection);
-                NotificationBar.showSave();
-              },
-            ),
-            const SizedBox(width: 16),
-          ],
-        ),
-        body: ProviderScope(
-          overrides: [
-            inspectionIdProvider.overrideWithValue(inspectionId),
-          ],
-          child: Scrollbar(
+              const SizedBox(width: 8),
+              const MenuButton(),
+              const SizedBox(width: 16),
+            ],
+          ),
+          body: Scrollbar(
             controller: scrollController,
             child: ListView(
               controller: scrollController,
