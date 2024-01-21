@@ -49,6 +49,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 柱の著しいひび割れ\n劣化、欠損',
+          strikeThrough: inspection.baseAndFloorFraming.notApplicable,
           incomplete:
               inspection.baseAndFloorFraming.damage.result == Result.none,
           child: DropdownField.result(
@@ -148,6 +149,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.baseAndFloorFraming.notApplicable,
           incomplete: inspection.baseAndFloorFraming.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

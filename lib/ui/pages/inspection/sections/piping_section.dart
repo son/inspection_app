@@ -45,6 +45,7 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[給水・給湯管] 発錆による赤水',
+          strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.supplyRustyWater.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.supplyRustyWater.result,
@@ -117,6 +118,7 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[給水・給湯管] 漏水',
+          strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.supplyWaterLeak.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.supplyWaterLeak.result,
@@ -188,6 +190,7 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[排水管] 排水の滞留',
+          strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.sewerStuck.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.sewerStuck.result,
@@ -255,6 +258,7 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[排水管] 漏水',
+          strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.sewerWaterLeak.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.sewerWaterLeak.result,
@@ -326,6 +330,7 @@ class PipingSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[換気ダクト] 換気ダクトの脱落',
+          strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.ductLoss.result == Result.none,
           child: DropdownField.result(
             result: inspection.piping.ductLoss.result,
@@ -391,6 +396,7 @@ class PipingSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

@@ -44,6 +44,7 @@ class CeilingSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '天井点検口の有無',
+          strikeThrough: inspection.ceiling.notApplicable,
           incomplete: inspection.ceiling.accessPanel == null,
           child: DropdownField<AccessPanel>(
             value: SelectionItem.orNull(
@@ -65,6 +66,7 @@ class CeilingSection extends HookConsumerWidget {
         ),
         SectionItem(
           axis: Axis.horizontal,
+          strikeThrough: inspection.ceiling.notApplicable,
           incomplete: inspection.ceiling.foundationDamage.result == Result.none,
           title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
           child: DropdownField.result(
@@ -142,6 +144,7 @@ class CeilingSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           incomplete: inspection.ceiling.rainCeilingLeak.result == Result.none,
           title: '[雨水] 天井の雨漏りの跡',
+          strikeThrough: inspection.ceiling.notApplicable,
           child: DropdownField.result(
             result: inspection.ceiling.rainCeilingLeak.result,
             onSelect: (result) {
@@ -212,6 +215,7 @@ class CeilingSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.ceiling.notApplicable,
           incomplete: inspection.ceiling.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

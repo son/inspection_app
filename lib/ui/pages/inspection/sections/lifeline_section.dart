@@ -26,6 +26,7 @@ class LifelineSection extends HookConsumerWidget {
 
     return Section(
       title: '給排水、電気、ガス設備',
+      complete: inspection.lifeline.complete,
       actions: [
         MenuButton(
           title: '「給排水、電気、ガス設備」の項目全てを一括で設定します',
@@ -45,6 +46,7 @@ class LifelineSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           incomplete:
               inspection.lifeline.otherMalfunction.result == Result.none,
+          strikeThrough: inspection.lifeline.notApplicable,
           title: 'キッチンコンロ、換気扇\nパッケージ、エアコンの設備機器の作動不良',
           child: DropdownField.result(
             result: inspection.lifeline.otherMalfunction.result,
@@ -155,6 +157,7 @@ class LifelineSection extends HookConsumerWidget {
           incomplete:
               inspection.lifeline.lifelineMalfunction.result == Result.none,
           title: '給排水、電気、ガス設備の作動不良',
+          strikeThrough: inspection.lifeline.notApplicable,
           child: DropdownField.result(
             result: inspection.lifeline.lifelineMalfunction.result,
             onSelect: (result) {
@@ -251,6 +254,7 @@ class LifelineSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.lifeline.notApplicable,
           incomplete: inspection.lifeline.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

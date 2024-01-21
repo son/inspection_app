@@ -47,6 +47,7 @@ class InnerWallSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           incomplete:
               inspection.innerWall.foundationDamage.result == Result.none,
+          strikeThrough: inspection.innerWall.notApplicable,
           title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
           child: DropdownField.result(
             result: inspection.innerWall.foundationDamage.result,
@@ -146,6 +147,7 @@ class InnerWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 6/1000以上の傾斜',
+          strikeThrough: inspection.innerWall.notApplicable,
           incomplete:
               inspection.innerWall.foundationInclination.result == Result.none,
           child: DropdownField.result(
@@ -253,6 +255,7 @@ class InnerWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 内壁の雨漏りの跡',
+          strikeThrough: inspection.innerWall.notApplicable,
           incomplete:
               inspection.innerWall.rainInnerWallLeak.result == Result.none,
           child: DropdownField.result(
@@ -329,6 +332,7 @@ class InnerWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.innerWall.notApplicable,
           incomplete: inspection.innerWall.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

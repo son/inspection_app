@@ -48,6 +48,7 @@ class RoofFrameSection extends HookConsumerWidget {
           incomplete:
               inspection.roofFrame.foundationDamage.result == Result.none,
           title: '[構造] ひび割れ、欠損',
+          strikeThrough: inspection.roofFrame.notApplicable,
           child: DropdownField.result(
             result: inspection.roofFrame.foundationDamage.result,
             onSelect: (result) {
@@ -148,6 +149,7 @@ class RoofFrameSection extends HookConsumerWidget {
           incomplete:
               inspection.roofFrame.rainRoofFrameLeak.result == Result.none,
           title: '[雨水] 小屋組の雨漏りの跡',
+          strikeThrough: inspection.roofFrame.notApplicable,
           child: DropdownField.result(
             result: inspection.roofFrame.rainRoofFrameLeak.result,
             onSelect: (result) {
@@ -222,6 +224,7 @@ class RoofFrameSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.roofFrame.notApplicable,
           incomplete: inspection.roofFrame.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

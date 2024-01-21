@@ -48,6 +48,7 @@ class BalconySection extends HookConsumerWidget {
           axis: Axis.horizontal,
           incomplete: inspection.balcony.foundation.result == Result.none,
           title: '[構造] 支持部材・床の\nぐらつき、ひび割れ、劣化',
+          strikeThrough: inspection.balcony.notApplicable,
           child: DropdownField.result(
             result: inspection.balcony.foundation.result,
             onSelect: (result) {
@@ -149,6 +150,7 @@ class BalconySection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 防水層のひび割れ、劣化、欠損\n水切り金物などの不具合',
+          strikeThrough: inspection.balcony.notApplicable,
           incomplete: inspection.balcony.waterProofLayer.result == Result.none,
           child: DropdownField.result(
             result: inspection.balcony.waterProofLayer.result,
@@ -230,6 +232,7 @@ class BalconySection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲（構造）',
+          strikeThrough: inspection.balcony.notApplicable,
           incomplete: inspection.balcony.foundationCoverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
@@ -251,6 +254,7 @@ class BalconySection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '調査できた範囲（雨水）',
+          strikeThrough: inspection.balcony.notApplicable,
           incomplete: inspection.balcony.waterProofLayerCoverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

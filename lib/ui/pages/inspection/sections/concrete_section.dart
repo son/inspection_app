@@ -46,6 +46,7 @@ class ConcreteSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '圧縮強度調査の有無',
+          strikeThrough: inspection.concrete.notApplicable,
           incomplete: inspection.concrete.exploration == null,
           child: DropdownField<bool>(
             value: () {

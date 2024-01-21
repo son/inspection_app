@@ -44,6 +44,7 @@ class RebarSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '鉄筋探査の有無',
+          strikeThrough: inspection.rebar.notApplicable,
           child: DropdownField<bool>(
             value: () {
               if (inspection.rebar.exploration == null) return null;

@@ -45,6 +45,7 @@ class CorrosionSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 著しい腐朽、腐食など',
+          strikeThrough: inspection.corrosion.notApplicable,
           incomplete: inspection.corrosion.corrosion.result == Result.none,
           child: DropdownField.result(
             result: inspection.corrosion.corrosion.result,
@@ -110,6 +111,7 @@ class CorrosionSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.corrosion.notApplicable,
           incomplete: inspection.corrosion.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

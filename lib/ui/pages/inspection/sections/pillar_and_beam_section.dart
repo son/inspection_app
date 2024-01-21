@@ -50,6 +50,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
           incomplete:
               inspection.pillarAndBeam.pillarDamage.result == Result.none,
           title: '[構造] 柱の著しいひび割れ\n劣化、欠損',
+          strikeThrough: inspection.pillarAndBeam.notApplicable,
           child: DropdownField.result(
             result: inspection.pillarAndBeam.pillarDamage.result,
             onSelect: (result) {
@@ -145,6 +146,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 6/1000以上の傾斜',
+          strikeThrough: inspection.pillarAndBeam.notApplicable,
           incomplete:
               inspection.pillarAndBeam.pillarInclination.result == Result.none,
           child: DropdownField.result(
@@ -253,6 +255,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           incomplete: inspection.pillarAndBeam.beamDamage.result == Result.none,
           title: '[構造] 梁の著しいひび割れ、劣化、欠損',
+          strikeThrough: inspection.pillarAndBeam.notApplicable,
           child: DropdownField.result(
             result: inspection.pillarAndBeam.beamDamage.result,
             onSelect: (result) {
@@ -348,6 +351,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 梁の著しい たわみ',
+          strikeThrough: inspection.pillarAndBeam.notApplicable,
           incomplete:
               inspection.pillarAndBeam.beamDeflection.result == Result.none,
           child: DropdownField.result(
@@ -424,6 +428,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.pillarAndBeam.notApplicable,
           incomplete: inspection.pillarAndBeam.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

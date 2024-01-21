@@ -46,6 +46,7 @@ class FloorSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 著しいひび割れ\n劣化、欠損',
+          strikeThrough: inspection.floor.notApplicable,
           incomplete: inspection.floor.damage.result == Result.none,
           child: DropdownField.result(
             result: inspection.floor.damage.result,
@@ -132,6 +133,7 @@ class FloorSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           incomplete: inspection.floor.sinking.result == Result.none,
           title: '[構造] 著しい沈み',
+          strikeThrough: inspection.floor.notApplicable,
           child: DropdownField.result(
             result: inspection.floor.sinking.result,
             onSelect: (result) {
@@ -195,6 +197,7 @@ class FloorSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 6/1000以上の傾斜',
+          strikeThrough: inspection.floor.notApplicable,
           incomplete: inspection.floor.inclination.result == Result.none,
           child: DropdownField.result(
             result: inspection.floor.inclination.result,
@@ -284,6 +287,7 @@ class FloorSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.floor.notApplicable,
           incomplete: inspection.floor.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

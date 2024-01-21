@@ -44,6 +44,7 @@ class AntDamageSection extends HookConsumerWidget {
       children: [
         SectionItem(
           title: '床下点検口の有無',
+          strikeThrough: inspection.antDamage.notApplicable,
           incomplete: inspection.antDamage.accessPanel == null,
           child: DropdownField<AccessPanel>(
             value: SelectionItem.orNull(
@@ -66,6 +67,7 @@ class AntDamageSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[構造] 著しい蟻害',
+          strikeThrough: inspection.antDamage.notApplicable,
           incomplete: inspection.antDamage.antDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.antDamage.antDamage.result,
@@ -131,6 +133,7 @@ class AntDamageSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.antDamage.notApplicable,
           incomplete: inspection.antDamage.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(
