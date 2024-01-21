@@ -36,7 +36,9 @@ class InnerWallSection extends HookConsumerWidget {
             controller.updateInnerWall(inspection.innerWall.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateInnerWall(const InnerWall(notApplicable: true));
+            controller.updateInnerWall(
+              InnerWall(notApplicable: !inspection.innerWall.notApplicable),
+            );
           },
         ),
       ],

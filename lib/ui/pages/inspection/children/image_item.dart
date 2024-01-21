@@ -82,7 +82,7 @@ class ImageItem extends StatelessWidget {
                   Icons.close_rounded,
                   size: 18,
                 ),
-                title: 'とじる',
+                title: '戻る',
                 onTap: () {},
               ),
             ],

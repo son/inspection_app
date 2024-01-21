@@ -34,7 +34,9 @@ class LifelineSection extends HookConsumerWidget {
             controller.updateLifeline(inspection.lifeline.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateLifeline(const Lifeline(notApplicable: true));
+            controller.updateLifeline(Lifeline(
+              notApplicable: !inspection.lifeline.notApplicable,
+            ));
           },
         ),
       ],

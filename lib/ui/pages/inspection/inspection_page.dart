@@ -26,7 +26,6 @@ import 'package:inspection_app/ui/pages/inspection/sections/piping_section.dart'
 import 'package:inspection_app/ui/pages/inspection/sections/rebar_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_frame_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/roof_section.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 import 'children/section_title.dart';
@@ -116,7 +115,7 @@ class InspectionPage extends HookConsumerWidget {
                 textColor: Colors.blueAccent,
                 backgroundColor: Colors.white,
                 borderColor: Colors.black12,
-                onTap: () async {},
+                onTap: () {},
               ),
             ),
             const SizedBox(width: 8),

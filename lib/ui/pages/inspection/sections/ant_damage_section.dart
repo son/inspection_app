@@ -35,7 +35,9 @@ class AntDamageSection extends HookConsumerWidget {
             controller.updateAntDamage(inspection.antDamage.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateAntDamage(const AntDamage(notApplicable: true));
+            controller.updateAntDamage(AntDamage(
+              notApplicable: !inspection.antDamage.notApplicable,
+            ));
           },
         ),
       ],

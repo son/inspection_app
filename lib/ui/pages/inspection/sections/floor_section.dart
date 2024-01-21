@@ -36,7 +36,9 @@ class FloorSection extends HookConsumerWidget {
             controller.updateFloor(inspection.floor.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateFloor(const Floor(notApplicable: true));
+            controller.updateFloor(Floor(
+              notApplicable: !inspection.floor.notApplicable,
+            ));
           },
         ),
       ],

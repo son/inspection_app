@@ -34,6 +34,10 @@ class Roof with _$Roof {
     if (notApplicable) {
       return true;
     }
+    if (necessity == Necessity.apartmentUnitsPlan) {
+      return true;
+    }
+
     final results = [
       damage.result,
       waterProofLayerDamage.result,

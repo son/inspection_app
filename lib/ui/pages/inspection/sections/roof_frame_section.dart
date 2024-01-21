@@ -36,7 +36,9 @@ class RoofFrameSection extends HookConsumerWidget {
             controller.updateRoofFrame(inspection.roofFrame.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateRoofFrame(const RoofFrame(notApplicable: true));
+            controller.updateRoofFrame(
+              RoofFrame(notApplicable: !inspection.roofFrame.notApplicable),
+            );
           },
         ),
       ],

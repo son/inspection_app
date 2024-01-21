@@ -38,7 +38,9 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           },
           onTapNotApplicable: () {
             controller.updateBaseAndFloorFraming(
-              const BaseAndFloorFraming(notApplicable: true),
+              BaseAndFloorFraming(
+                notApplicable: !inspection.baseAndFloorFraming.notApplicable,
+              ),
             );
           },
         ),

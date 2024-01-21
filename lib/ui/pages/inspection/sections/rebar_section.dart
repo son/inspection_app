@@ -35,7 +35,9 @@ class RebarSection extends HookConsumerWidget {
             controller.updateRebar(inspection.rebar.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateRebar(const Rebar(notApplicable: true));
+            controller.updateRebar(Rebar(
+              notApplicable: !inspection.rebar.notApplicable,
+            ));
           },
         ),
       ],

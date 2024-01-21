@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/ui/components/confirm_dialog.dart';
+import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 
 class ImagesPage extends HookConsumerWidget {
@@ -102,17 +102,28 @@ class ImagesPage extends HookConsumerWidget {
             bottom: MediaQuery.paddingOf(context).bottom + 32,
             child: Row(
               children: [
-                GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () async {
-                    final canGo = await ConfirmDialog.show(
-                      context: context,
-                      title: '画像を削除しますか?',
-                      caption: '削除した画像は元に戻せません。',
-                    );
-                    if (!canGo) return;
-                    onTapDelete(images[controller.page!.toInt()]);
-                  },
+                MenuTapGesture(
+                  items: [
+                    MenuItem(
+                      icon: const Icon(
+                        Icons.delete_rounded,
+                        color: Colors.redAccent,
+                        size: 18,
+                      ),
+                      title: '削除する',
+                      destructive: true,
+                      onTap: () =>
+                          onTapDelete(images[controller.page!.toInt()]),
+                    ),
+                    MenuItem(
+                      icon: const Icon(
+                        Icons.close_rounded,
+                        size: 18,
+                      ),
+                      title: '戻る',
+                      onTap: () {},
+                    ),
+                  ],
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: const ShapeDecoration(

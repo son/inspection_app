@@ -35,7 +35,9 @@ class CorrosionSection extends HookConsumerWidget {
             controller.updateCorrosion(inspection.corrosion.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateCorrosion(const Corrosion(notApplicable: true));
+            controller.updateCorrosion(Corrosion(
+              notApplicable: !inspection.corrosion.notApplicable,
+            ));
           },
         ),
       ],

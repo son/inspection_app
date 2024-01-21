@@ -35,7 +35,9 @@ class PipingSection extends HookConsumerWidget {
             controller.updatePiping(inspection.piping.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updatePiping(const Piping(notApplicable: true));
+            controller.updatePiping(Piping(
+              notApplicable: !inspection.piping.notApplicable,
+            ));
           },
         ),
       ],

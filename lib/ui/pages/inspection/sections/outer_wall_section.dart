@@ -37,7 +37,9 @@ class OuterWallSection extends HookConsumerWidget {
             controller.updateOuterWall(inspection.outerWall.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateOuterWall(const OuterWall(notApplicable: true));
+            controller.updateOuterWall(
+              OuterWall(notApplicable: !inspection.outerWall.notApplicable),
+            );
           },
         ),
       ],
@@ -46,6 +48,7 @@ class OuterWallSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           title: '仕上げ',
           incomplete: inspection.outerWall.finishings.isEmpty,
+          strikeThrough: inspection.outerWall.notApplicable,
           child: MultiDropdownField<String>(
             values: inspection.outerWall.finishings
                 .map((e) => SelectionItem(
@@ -69,6 +72,7 @@ class OuterWallSection extends HookConsumerWidget {
           axis: Axis.horizontal,
           incomplete: inspection.outerWall.dryDamage.result == Result.none,
           title: '[乾式] ひび割れ、欠損、浮き\nはらみ、剥落',
+          strikeThrough: inspection.outerWall.notApplicable,
           child: DropdownField.result(
             result: inspection.outerWall.dryDamage.result,
             onSelect: (result) {
@@ -170,6 +174,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[乾式] 複数にまたがる\nひび割れ、欠損',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.dryWideDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.dryWideDamage.result,
@@ -276,6 +281,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[乾式] 金属の著しいさび\n化学的侵食',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.dryCorrosion.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.dryCorrosion.result,
@@ -358,6 +364,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[タイル] ひび割れ、欠損、浮き\nはらみ、剥落',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.tileDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.tileDamage.result,
@@ -463,6 +470,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[タイル] 複数にまたがる\nひび割れ、欠損',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.tileWideDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.tileWideDamage.result,
@@ -569,6 +577,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[タイル] 仕上げ材の著しい浮き',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.tileFloat.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.tileFloat.result,
@@ -648,6 +657,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[塗壁] ひび割れ、欠損、浮き\nはらみ、剥落',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.paintDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.paintDamage.result,
@@ -730,6 +740,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[塗壁] 仕上げ材の著しい浮き',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.paintFloat.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.paintFloat.result,
@@ -812,6 +823,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] ひび割れ、欠損、浮き\nはらみ、剥落',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.otherDamage.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.otherDamage.result,
@@ -918,6 +930,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] 複数にまたがる\nひび割れ、欠損',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete:
               inspection.outerWall.otherWideDamage.result == Result.none,
           child: DropdownField.result(
@@ -1028,6 +1041,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] 金属の著しいさび\n化学的侵食',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.otherCorrosion.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.otherCorrosion.result,
@@ -1110,6 +1124,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[その他] 仕上げ材の著しい浮き',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.otherFloat.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.otherFloat.result,
@@ -1192,6 +1207,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 外壁シーリング材\nの破断、欠損',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete:
               inspection.outerWall.rainWallSealing.result == Result.none,
           child: DropdownField.result(
@@ -1278,6 +1294,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 建具の周囲の隙間\n開閉不良',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.rainGap.result == Result.none,
           child: DropdownField.result(
             result: inspection.outerWall.rainGap.result,
@@ -1356,6 +1373,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 軒裏天井のシーリング材\nの破断、欠損',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete:
               inspection.outerWall.rainCeilingSealing.result == Result.none,
           child: DropdownField.result(
@@ -1445,6 +1463,7 @@ class OuterWallSection extends HookConsumerWidget {
         SectionItem(
           axis: Axis.horizontal,
           title: '[雨水] 軒裏天井の雨漏りの跡',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete:
               inspection.outerWall.rainCeilingLeak.result == Result.none,
           child: DropdownField.result(
@@ -1530,6 +1549,7 @@ class OuterWallSection extends HookConsumerWidget {
         ],
         SectionItem(
           title: '調査できた範囲',
+          strikeThrough: inspection.outerWall.notApplicable,
           incomplete: inspection.outerWall.coverage == null,
           child: DropdownField<Coverage>(
             value: SelectionItem.orNull(

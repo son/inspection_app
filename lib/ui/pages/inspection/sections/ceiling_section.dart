@@ -35,7 +35,9 @@ class CeilingSection extends HookConsumerWidget {
             controller.updateCeiling(inspection.ceiling.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateCeiling(const Ceiling(notApplicable: true));
+            controller.updateCeiling(
+              Ceiling(notApplicable: !inspection.ceiling.notApplicable),
+            );
           },
         ),
       ],

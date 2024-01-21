@@ -35,7 +35,11 @@ class ConcreteSection extends HookConsumerWidget {
             controller.updateConcrete(inspection.concrete.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateConcrete(const Concrete(notApplicable: true));
+            controller.updateConcrete(
+              Concrete(
+                notApplicable: !inspection.concrete.notApplicable,
+              ),
+            );
           },
         ),
       ],

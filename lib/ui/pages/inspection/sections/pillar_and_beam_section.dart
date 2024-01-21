@@ -37,8 +37,10 @@ class PillarAndBeamSection extends HookConsumerWidget {
                 .updatePillarAndBeam(inspection.pillarAndBeam.allPassed());
           },
           onTapNotApplicable: () {
-            controller
-                .updatePillarAndBeam(const PillarAndBeam(notApplicable: true));
+            controller.updatePillarAndBeam(
+              PillarAndBeam(
+                  notApplicable: !inspection.pillarAndBeam.notApplicable),
+            );
           },
         ),
       ],

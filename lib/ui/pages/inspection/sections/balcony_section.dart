@@ -37,7 +37,9 @@ class BalconySection extends HookConsumerWidget {
             controller.updateBalcony(inspection.balcony.allPassed());
           },
           onTapNotApplicable: () {
-            controller.updateBalcony(const Balcony(notApplicable: true));
+            controller.updateBalcony(
+              Balcony(notApplicable: !inspection.balcony.notApplicable),
+            );
           },
         ),
       ],
