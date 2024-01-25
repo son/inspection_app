@@ -24,8 +24,12 @@ mixin _$Inspection {
   String get userId => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime? get inspectionCreatedAt => throw _privateConstructorUsedError;
   String? get udId => throw _privateConstructorUsedError;
+  Address get address => throw _privateConstructorUsedError;
+  Detail get detail => throw _privateConstructorUsedError;
+  Situation get situation => throw _privateConstructorUsedError;
+  Repairing get repairing => throw _privateConstructorUsedError;
+  Renovation get renovation => throw _privateConstructorUsedError;
   InspectionOverview get overview => throw _privateConstructorUsedError;
   List<Photo> get photos => throw _privateConstructorUsedError;
   List<Photo> get blueprints => throw _privateConstructorUsedError;
@@ -39,7 +43,7 @@ mixin _$Inspection {
   PillarAndBeam get pillarAndBeam => throw _privateConstructorUsedError;
   BaseAndFloorFraming get baseAndFloorFraming =>
       throw _privateConstructorUsedError;
-  Floor get floor => throw _privateConstructorUsedError;
+  yuka.Floor get floor => throw _privateConstructorUsedError;
   AntDamage get antDamage => throw _privateConstructorUsedError;
   Corrosion get corrosion => throw _privateConstructorUsedError;
   Piping get piping => throw _privateConstructorUsedError;
@@ -65,8 +69,12 @@ abstract class $InspectionCopyWith<$Res> {
       {String id,
       String userId,
       @DateTimeConverter() DateTime createdAt,
-      DateTime? inspectionCreatedAt,
       String? udId,
+      Address address,
+      Detail detail,
+      Situation situation,
+      Repairing repairing,
+      Renovation renovation,
       InspectionOverview overview,
       List<Photo> photos,
       List<Photo> blueprints,
@@ -79,7 +87,7 @@ abstract class $InspectionCopyWith<$Res> {
       RoofFrame roofFrame,
       PillarAndBeam pillarAndBeam,
       BaseAndFloorFraming baseAndFloorFraming,
-      Floor floor,
+      yuka.Floor floor,
       AntDamage antDamage,
       Corrosion corrosion,
       Piping piping,
@@ -88,6 +96,11 @@ abstract class $InspectionCopyWith<$Res> {
       Concrete concrete,
       EarthquakeResistant earthquakeResistant});
 
+  $AddressCopyWith<$Res> get address;
+  $DetailCopyWith<$Res> get detail;
+  $SituationCopyWith<$Res> get situation;
+  $RepairingCopyWith<$Res> get repairing;
+  $RenovationCopyWith<$Res> get renovation;
   $InspectionOverviewCopyWith<$Res> get overview;
   $FoundationCopyWith<$Res> get foundation;
   $OuterWallCopyWith<$Res> get outerWall;
@@ -124,8 +137,12 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
     Object? id = null,
     Object? userId = null,
     Object? createdAt = null,
-    Object? inspectionCreatedAt = freezed,
     Object? udId = freezed,
+    Object? address = null,
+    Object? detail = null,
+    Object? situation = null,
+    Object? repairing = null,
+    Object? renovation = null,
     Object? overview = null,
     Object? photos = null,
     Object? blueprints = null,
@@ -160,14 +177,30 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      inspectionCreatedAt: freezed == inspectionCreatedAt
-          ? _value.inspectionCreatedAt
-          : inspectionCreatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       udId: freezed == udId
           ? _value.udId
           : udId // ignore: cast_nullable_to_non_nullable
               as String?,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
+      detail: null == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as Detail,
+      situation: null == situation
+          ? _value.situation
+          : situation // ignore: cast_nullable_to_non_nullable
+              as Situation,
+      repairing: null == repairing
+          ? _value.repairing
+          : repairing // ignore: cast_nullable_to_non_nullable
+              as Repairing,
+      renovation: null == renovation
+          ? _value.renovation
+          : renovation // ignore: cast_nullable_to_non_nullable
+              as Renovation,
       overview: null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -219,7 +252,7 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
-              as Floor,
+              as yuka.Floor,
       antDamage: null == antDamage
           ? _value.antDamage
           : antDamage // ignore: cast_nullable_to_non_nullable
@@ -249,6 +282,46 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
           : earthquakeResistant // ignore: cast_nullable_to_non_nullable
               as EarthquakeResistant,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res> get address {
+    return $AddressCopyWith<$Res>(_value.address, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DetailCopyWith<$Res> get detail {
+    return $DetailCopyWith<$Res>(_value.detail, (value) {
+      return _then(_value.copyWith(detail: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SituationCopyWith<$Res> get situation {
+    return $SituationCopyWith<$Res>(_value.situation, (value) {
+      return _then(_value.copyWith(situation: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RepairingCopyWith<$Res> get repairing {
+    return $RepairingCopyWith<$Res>(_value.repairing, (value) {
+      return _then(_value.copyWith(repairing: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RenovationCopyWith<$Res> get renovation {
+    return $RenovationCopyWith<$Res>(_value.renovation, (value) {
+      return _then(_value.copyWith(renovation: value) as $Val);
+    });
   }
 
   @override
@@ -410,8 +483,12 @@ abstract class _$$_InspectionCopyWith<$Res>
       {String id,
       String userId,
       @DateTimeConverter() DateTime createdAt,
-      DateTime? inspectionCreatedAt,
       String? udId,
+      Address address,
+      Detail detail,
+      Situation situation,
+      Repairing repairing,
+      Renovation renovation,
       InspectionOverview overview,
       List<Photo> photos,
       List<Photo> blueprints,
@@ -424,7 +501,7 @@ abstract class _$$_InspectionCopyWith<$Res>
       RoofFrame roofFrame,
       PillarAndBeam pillarAndBeam,
       BaseAndFloorFraming baseAndFloorFraming,
-      Floor floor,
+      yuka.Floor floor,
       AntDamage antDamage,
       Corrosion corrosion,
       Piping piping,
@@ -433,6 +510,16 @@ abstract class _$$_InspectionCopyWith<$Res>
       Concrete concrete,
       EarthquakeResistant earthquakeResistant});
 
+  @override
+  $AddressCopyWith<$Res> get address;
+  @override
+  $DetailCopyWith<$Res> get detail;
+  @override
+  $SituationCopyWith<$Res> get situation;
+  @override
+  $RepairingCopyWith<$Res> get repairing;
+  @override
+  $RenovationCopyWith<$Res> get renovation;
   @override
   $InspectionOverviewCopyWith<$Res> get overview;
   @override
@@ -485,8 +572,12 @@ class __$$_InspectionCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = null,
     Object? createdAt = null,
-    Object? inspectionCreatedAt = freezed,
     Object? udId = freezed,
+    Object? address = null,
+    Object? detail = null,
+    Object? situation = null,
+    Object? repairing = null,
+    Object? renovation = null,
     Object? overview = null,
     Object? photos = null,
     Object? blueprints = null,
@@ -521,14 +612,30 @@ class __$$_InspectionCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      inspectionCreatedAt: freezed == inspectionCreatedAt
-          ? _value.inspectionCreatedAt
-          : inspectionCreatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       udId: freezed == udId
           ? _value.udId
           : udId // ignore: cast_nullable_to_non_nullable
               as String?,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
+      detail: null == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as Detail,
+      situation: null == situation
+          ? _value.situation
+          : situation // ignore: cast_nullable_to_non_nullable
+              as Situation,
+      repairing: null == repairing
+          ? _value.repairing
+          : repairing // ignore: cast_nullable_to_non_nullable
+              as Repairing,
+      renovation: null == renovation
+          ? _value.renovation
+          : renovation // ignore: cast_nullable_to_non_nullable
+              as Renovation,
       overview: null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -580,7 +687,7 @@ class __$$_InspectionCopyWithImpl<$Res>
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
-              as Floor,
+              as yuka.Floor,
       antDamage: null == antDamage
           ? _value.antDamage
           : antDamage // ignore: cast_nullable_to_non_nullable
@@ -621,8 +728,12 @@ class _$_Inspection extends _Inspection {
       {required this.id,
       required this.userId,
       @DateTimeConverter() required this.createdAt,
-      this.inspectionCreatedAt,
       this.udId,
+      this.address = const Address(),
+      this.detail = const Detail(),
+      this.situation = const Situation(),
+      this.repairing = const Repairing(),
+      this.renovation = const Renovation(),
       this.overview = const InspectionOverview(),
       final List<Photo> photos = const <Photo>[],
       final List<Photo> blueprints = const <Photo>[],
@@ -635,7 +746,7 @@ class _$_Inspection extends _Inspection {
       this.roofFrame = const RoofFrame(),
       this.pillarAndBeam = const PillarAndBeam(),
       this.baseAndFloorFraming = const BaseAndFloorFraming(),
-      this.floor = const Floor(),
+      this.floor = const yuka.Floor(),
       this.antDamage = const AntDamage(),
       this.corrosion = const Corrosion(),
       this.piping = const Piping(),
@@ -658,9 +769,22 @@ class _$_Inspection extends _Inspection {
   @DateTimeConverter()
   final DateTime createdAt;
   @override
-  final DateTime? inspectionCreatedAt;
-  @override
   final String? udId;
+  @override
+  @JsonKey()
+  final Address address;
+  @override
+  @JsonKey()
+  final Detail detail;
+  @override
+  @JsonKey()
+  final Situation situation;
+  @override
+  @JsonKey()
+  final Repairing repairing;
+  @override
+  @JsonKey()
+  final Renovation renovation;
   @override
   @JsonKey()
   final InspectionOverview overview;
@@ -711,7 +835,7 @@ class _$_Inspection extends _Inspection {
   final BaseAndFloorFraming baseAndFloorFraming;
   @override
   @JsonKey()
-  final Floor floor;
+  final yuka.Floor floor;
   @override
   @JsonKey()
   final AntDamage antDamage;
@@ -736,7 +860,7 @@ class _$_Inspection extends _Inspection {
 
   @override
   String toString() {
-    return 'Inspection(id: $id, userId: $userId, createdAt: $createdAt, inspectionCreatedAt: $inspectionCreatedAt, udId: $udId, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
+    return 'Inspection(id: $id, userId: $userId, createdAt: $createdAt, udId: $udId, address: $address, detail: $detail, situation: $situation, repairing: $repairing, renovation: $renovation, overview: $overview, photos: $photos, blueprints: $blueprints, foundation: $foundation, outerWall: $outerWall, roof: $roof, balcony: $balcony, innerWall: $innerWall, ceiling: $ceiling, roofFrame: $roofFrame, pillarAndBeam: $pillarAndBeam, baseAndFloorFraming: $baseAndFloorFraming, floor: $floor, antDamage: $antDamage, corrosion: $corrosion, piping: $piping, lifeline: $lifeline, rebar: $rebar, concrete: $concrete, earthquakeResistant: $earthquakeResistant)';
   }
 
   @override
@@ -748,9 +872,15 @@ class _$_Inspection extends _Inspection {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.inspectionCreatedAt, inspectionCreatedAt) ||
-                other.inspectionCreatedAt == inspectionCreatedAt) &&
             (identical(other.udId, udId) || other.udId == udId) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            (identical(other.situation, situation) ||
+                other.situation == situation) &&
+            (identical(other.repairing, repairing) ||
+                other.repairing == repairing) &&
+            (identical(other.renovation, renovation) ||
+                other.renovation == renovation) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
             const DeepCollectionEquality().equals(other._photos, _photos) &&
@@ -793,8 +923,12 @@ class _$_Inspection extends _Inspection {
         id,
         userId,
         createdAt,
-        inspectionCreatedAt,
         udId,
+        address,
+        detail,
+        situation,
+        repairing,
+        renovation,
         overview,
         const DeepCollectionEquality().hash(_photos),
         const DeepCollectionEquality().hash(_blueprints),
@@ -836,8 +970,12 @@ abstract class _Inspection extends Inspection {
       {required final String id,
       required final String userId,
       @DateTimeConverter() required final DateTime createdAt,
-      final DateTime? inspectionCreatedAt,
       final String? udId,
+      final Address address,
+      final Detail detail,
+      final Situation situation,
+      final Repairing repairing,
+      final Renovation renovation,
       final InspectionOverview overview,
       final List<Photo> photos,
       final List<Photo> blueprints,
@@ -850,7 +988,7 @@ abstract class _Inspection extends Inspection {
       final RoofFrame roofFrame,
       final PillarAndBeam pillarAndBeam,
       final BaseAndFloorFraming baseAndFloorFraming,
-      final Floor floor,
+      final yuka.Floor floor,
       final AntDamage antDamage,
       final Corrosion corrosion,
       final Piping piping,
@@ -871,9 +1009,17 @@ abstract class _Inspection extends Inspection {
   @DateTimeConverter()
   DateTime get createdAt;
   @override
-  DateTime? get inspectionCreatedAt;
-  @override
   String? get udId;
+  @override
+  Address get address;
+  @override
+  Detail get detail;
+  @override
+  Situation get situation;
+  @override
+  Repairing get repairing;
+  @override
+  Renovation get renovation;
   @override
   InspectionOverview get overview;
   @override
@@ -899,7 +1045,7 @@ abstract class _Inspection extends Inspection {
   @override
   BaseAndFloorFraming get baseAndFloorFraming;
   @override
-  Floor get floor;
+  yuka.Floor get floor;
   @override
   AntDamage get antDamage;
   @override

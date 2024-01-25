@@ -21,7 +21,7 @@ class MenuButton extends HookConsumerWidget {
     return MenuTapGesture(
       items: [
         MenuItem(
-          icon: const Icon(Icons.report, color: Color(0xFFFFC107)),
+          icon: const Icon(Icons.warning_rounded, color: Colors.black87),
           title: '不具合・不備を報告する',
           onTap: () {},
         ),

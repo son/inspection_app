@@ -9,6 +9,7 @@ class Address with _$Address {
 
   @JsonSerializable(explicitToJson: true)
   const factory Address({
+    String? name,
     String? postCode,
     String? prefecture,
     String? municipality,
@@ -20,7 +21,14 @@ class Address with _$Address {
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
 
-  static const empty = Address._();
+  bool get complete {
+    return (name?.isNotEmpty ?? false) &&
+        (postCode?.isNotEmpty ?? false) &&
+        (prefecture?.isNotEmpty ?? false) &&
+        (municipality?.isNotEmpty ?? false) &&
+        (roomNumber?.isNotEmpty ?? false) &&
+        (addressType != null);
+  }
 }
 
 enum AddressType {

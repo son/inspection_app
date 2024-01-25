@@ -24,13 +24,15 @@ class AddressSection extends HookConsumerWidget {
 
     return Section(
       title: '物件所在地',
+      complete: inspection.address.complete,
       children: [
         SectionItem(
           title: '住所標記方法',
+          incomplete: inspection.address.addressType == null,
           child: DropdownField<AddressType>(
             value: SelectionItem.orNull(
-              value: inspection.overview.building.address.addressType,
-              name: inspection.overview.building.address.addressType?.label,
+              value: inspection.address.addressType,
+              name: inspection.address.addressType?.label,
             ),
             all: AddressType.values
                 .map((value) => SelectionItem(
@@ -39,17 +41,15 @@ class AddressSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (addressType) {
-              final address = inspection.overview.building.address
-                  .copyWith(addressType: addressType);
-              final building =
-                  inspection.overview.building.copyWith(address: address);
-              final overview = inspection.overview.copyWith(building: building);
-              controller.updateOverview(overview);
+              controller.updateAddress(
+                inspection.address.copyWith(addressType: addressType),
+              );
             },
           ),
         ),
         SectionItem(
           title: '郵便番号',
+          incomplete: inspection.address.postCode?.isEmpty ?? true,
           child: PrimaryTextField(
             hintText: 'xxxxxxx (ハイフンなし)',
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -57,21 +57,19 @@ class AddressSection extends HookConsumerWidget {
               decimal: true,
             ),
             onChange: (text) {
-              final address =
-                  inspection.overview.building.address.copyWith(postCode: text);
-              final building =
-                  inspection.overview.building.copyWith(address: address);
-              final overview = inspection.overview.copyWith(building: building);
-              controller.updateOverview(overview);
+              controller.updateAddress(
+                inspection.address.copyWith(postCode: text),
+              );
             },
           ),
         ),
         SectionItem(
           title: '都道府県',
+          incomplete: inspection.address.prefecture == null,
           child: DropdownField<String>(
             value: SelectionItem.orNull(
-              value: inspection.overview.building.prefecture,
-              name: inspection.overview.building.prefecture,
+              value: inspection.address.prefecture,
+              name: inspection.address.prefecture,
             ),
             all: PREFECTURES
                 .map((value) => SelectionItem(
@@ -80,53 +78,48 @@ class AddressSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (value) {
-              controller.updatePrefecture(value);
+              controller.updateAddress(
+                inspection.address.copyWith(prefecture: value),
+              );
             },
           ),
         ),
         SectionItem(
           title: '市区町村・番地',
+          incomplete: inspection.address.municipality?.isEmpty ?? true,
           child: PrimaryTextField(
             hintText: '市区町村　番地',
-            initialText:
-                inspection.overview.building.address.municipality ?? '',
+            initialText: inspection.address.municipality ?? '',
             onChange: (text) {
-              final address = inspection.overview.building.address
-                  .copyWith(municipality: text);
-              final building =
-                  inspection.overview.building.copyWith(address: address);
-              final overview = inspection.overview.copyWith(building: building);
-              controller.updateOverview(overview);
+              controller.updateAddress(
+                inspection.address.copyWith(municipality: text),
+              );
             },
           ),
         ),
         SectionItem(
           title: '建物名',
+          incomplete: inspection.address.name?.isEmpty ?? true,
           child: PrimaryTextField(
             hintText: 'マンションなどの名称',
-            initialText: inspection.overview.building.name ?? '',
+            initialText: inspection.address.name ?? '',
             onChange: (text) {
-              final address = inspection.overview.building.address
-                  .copyWith(buildingName: text);
-              final building =
-                  inspection.overview.building.copyWith(address: address);
-              final overview = inspection.overview.copyWith(building: building);
-              controller.updateOverview(overview);
+              controller.updateAddress(
+                inspection.address.copyWith(name: text),
+              );
             },
           ),
         ),
         SectionItem(
           title: '部屋番号',
+          incomplete: inspection.address.roomNumber?.isEmpty ?? true,
           child: PrimaryTextField(
             fixedText: '号室',
-            initialText: inspection.overview.building.address.roomNumber ?? '',
+            initialText: inspection.address.roomNumber ?? '',
             onChange: (text) {
-              final address = inspection.overview.building.address
-                  .copyWith(roomNumber: text);
-              final building =
-                  inspection.overview.building.copyWith(address: address);
-              final overview = inspection.overview.copyWith(building: building);
-              controller.updateOverview(overview);
+              controller.updateAddress(
+                inspection.address.copyWith(roomNumber: text),
+              );
             },
           ),
         ),

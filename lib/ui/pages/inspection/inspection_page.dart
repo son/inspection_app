@@ -5,11 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/status.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/menu_tap_gesture.dart';
 import 'package:inspection_app/ui/components/primary_app_bar.dart';
 import 'package:inspection_app/ui/components/round_button.dart';
+import 'package:inspection_app/ui/components/status_label.dart';
+import 'package:inspection_app/ui/components/text_styles.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/ant_damage_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/balcony_section.dart';
 import 'package:inspection_app/ui/pages/inspection/sections/base_and_floor_framing_section.dart';
@@ -29,7 +32,7 @@ import 'package:line_icons/line_icons.dart';
 import 'children/menu_button.dart';
 import 'children/section_title.dart';
 import 'sections/address_section.dart';
-import 'sections/context_section.dart';
+import 'sections/situation_section.dart';
 import 'sections/detail_section.dart';
 import 'sections/earthquake_resistant_section.dart';
 import 'sections/foundation_section.dart';
@@ -57,6 +60,7 @@ class InspectionPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(inspectionListProvider.notifier);
+    final inspection = ref.watch(inspectionProvider(inspectionId));
     final scrollController = useScrollController();
 
     useOnAppLifecycleStateChange((_, state) async {
@@ -81,6 +85,20 @@ class InspectionPage extends HookConsumerWidget {
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: PrimaryAppBar(
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  inspection.overview.buildingName ?? '建物名称不明',
+                  style: TextStyles.b14,
+                ),
+                const StatusLabel(
+                  status: Status.complete,
+                ),
+              ],
+            ),
+            backgroundColor: const Color(0xFFF2F7FF),
+            withBorder: true,
             actions: [
               MenuTapGesture(
                 items: [
@@ -132,7 +150,7 @@ class InspectionPage extends HookConsumerWidget {
                 SizedBox(height: 16),
                 DetailSection(),
                 SizedBox(height: 16),
-                ContextSection(),
+                SituationSection(),
                 SizedBox(height: 16),
                 RepairingSection(),
                 SizedBox(height: 16),

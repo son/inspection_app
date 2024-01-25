@@ -12,10 +12,22 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String,
       createdAt:
           const DateTimeConverter().fromJson(json['createdAt'] as Object),
-      inspectionCreatedAt: json['inspectionCreatedAt'] == null
-          ? null
-          : DateTime.parse(json['inspectionCreatedAt'] as String),
       udId: json['udId'] as String?,
+      address: json['address'] == null
+          ? const Address()
+          : Address.fromJson(json['address'] as Map<String, dynamic>),
+      detail: json['detail'] == null
+          ? const Detail()
+          : Detail.fromJson(json['detail'] as Map<String, dynamic>),
+      situation: json['situation'] == null
+          ? const Situation()
+          : Situation.fromJson(json['situation'] as Map<String, dynamic>),
+      repairing: json['repairing'] == null
+          ? const Repairing()
+          : Repairing.fromJson(json['repairing'] as Map<String, dynamic>),
+      renovation: json['renovation'] == null
+          ? const Renovation()
+          : Renovation.fromJson(json['renovation'] as Map<String, dynamic>),
       overview: json['overview'] == null
           ? const InspectionOverview()
           : InspectionOverview.fromJson(
@@ -58,7 +70,7 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
           : BaseAndFloorFraming.fromJson(
               json['baseAndFloorFraming'] as Map<String, dynamic>),
       floor: json['floor'] == null
-          ? const Floor()
+          ? const yuka.Floor()
           : Floor.fromJson(json['floor'] as Map<String, dynamic>),
       antDamage: json['antDamage'] == null
           ? const AntDamage()
@@ -89,8 +101,12 @@ Map<String, dynamic> _$$_InspectionToJson(_$_Inspection instance) =>
       'id': instance.id,
       'userId': instance.userId,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
-      'inspectionCreatedAt': instance.inspectionCreatedAt?.toIso8601String(),
       'udId': instance.udId,
+      'address': instance.address.toJson(),
+      'detail': instance.detail.toJson(),
+      'situation': instance.situation.toJson(),
+      'repairing': instance.repairing.toJson(),
+      'renovation': instance.renovation.toJson(),
       'overview': instance.overview.toJson(),
       'photos': instance.photos.map((e) => e.toJson()).toList(),
       'blueprints': instance.blueprints.map((e) => e.toJson()).toList(),

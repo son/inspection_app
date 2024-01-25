@@ -1,9 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inspection_app/data/entities/address/address.dart';
 import 'package:inspection_app/data/entities/ant_damage/ant_damage.dart';
 import 'package:inspection_app/data/entities/balcony/balcony.dart';
 import 'package:inspection_app/data/entities/base_and_floor_framing/base_and_floor_framing.dart';
-import 'package:inspection_app/data/entities/building/building.dart';
+import 'package:inspection_app/data/entities/detail/detail.dart';
 import 'package:inspection_app/data/entities/ceiling/ceiling.dart';
 import 'package:inspection_app/data/entities/concrete/concrete.dart';
 import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
@@ -19,9 +20,11 @@ import 'package:inspection_app/data/entities/photo/photo.dart';
 import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dart';
 import 'package:inspection_app/data/entities/piping/piping.dart';
 import 'package:inspection_app/data/entities/rebar/rebar.dart';
+import 'package:inspection_app/data/entities/repairing/repairing.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
+import 'package:inspection_app/data/entities/situation/situation.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/repositories/image_repository.dart';
 import 'package:inspection_app/ui/components/notification_bar.dart';
@@ -57,88 +60,28 @@ class InspectionNotifier extends StateNotifier<Inspection> {
     );
   }
 
-  void updatePrefecture(String prefecture) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(
-        building: state.overview.building.copyWith(prefecture: prefecture),
-      ),
-    );
-  }
-
-  void updateHousingType(HousingType type) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(housingType: type),
-    );
-  }
-
-  void updateStructureType(StructureType type) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(
-        building: state.overview.building.copyWith(structureType: type),
-      ),
-    );
-  }
-
-  void updateGround(int ground) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(
-        building: state.overview.building.copyWith(
-          floor: state.overview.building.floor.copyWith(ground: ground),
-        ),
-      ),
-    );
-  }
-
-  void updateUnderGround(int underground) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(
-        building: state.overview.building.copyWith(
-          floor: state.overview.building.floor.copyWith(
-            underground: underground,
-          ),
-        ),
-      ),
-    );
+  void updateDetail(Detail detail) {
+    state = state.copyWith(detail: detail);
   }
 
   void updateOverview(InspectionOverview overview) {
     state = state.copyWith(overview: overview);
   }
 
-  void updateWeather(Weather weather) {
-    state = state.copyWith(overview: state.overview.copyWith(weather: weather));
+  void updateAddress(Address address) {
+    state = state.copyWith(address: address);
   }
 
-  void updateInspectionCreatedAt(DateTime inspectionCreatedAt) {
-    state = state.copyWith(inspectionCreatedAt: inspectionCreatedAt);
-  }
-
-  void updateSchedule(Schedule schedule) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(schedule: schedule),
-    );
-  }
-
-  void updateLifelines(Lifelines lifeline) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(lifeline: lifeline),
-    );
+  void updateSituation(Situation situation) {
+    state = state.copyWith(situation: situation);
   }
 
   void updateRepairing(Repairing repairing) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(
-        building: state.overview.building.copyWith(repairing: repairing),
-      ),
-    );
+    state = state.copyWith(repairing: repairing);
   }
 
   void updateRenovation(Renovation renovation) {
-    state = state.copyWith(
-      overview: state.overview.copyWith(
-        building: state.overview.building.copyWith(renovation: renovation),
-      ),
-    );
+    state = state.copyWith(renovation: renovation);
   }
 
   void updateFoundation(Foundation foundation) {

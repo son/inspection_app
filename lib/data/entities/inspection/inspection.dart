@@ -1,12 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:inspection_app/data/entities/address/address.dart';
 import 'package:inspection_app/data/entities/ant_damage/ant_damage.dart';
 import 'package:inspection_app/data/entities/balcony/balcony.dart';
 import 'package:inspection_app/data/entities/base_and_floor_framing/base_and_floor_framing.dart';
 import 'package:inspection_app/data/entities/ceiling/ceiling.dart';
 import 'package:inspection_app/data/entities/concrete/concrete.dart';
 import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
+import 'package:inspection_app/data/entities/detail/detail.dart';
 import 'package:inspection_app/data/entities/earthquake_resistant/earthquake_resistant.dart';
-import 'package:inspection_app/data/entities/floor/floor.dart';
+import 'package:inspection_app/data/entities/floor/floor.dart' as yuka;
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
 import 'package:inspection_app/data/entities/json_supports.dart';
@@ -16,8 +18,10 @@ import 'package:inspection_app/data/entities/photo/photo.dart';
 import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dart';
 import 'package:inspection_app/data/entities/piping/piping.dart';
 import 'package:inspection_app/data/entities/rebar/rebar.dart';
+import 'package:inspection_app/data/entities/repairing/repairing.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
+import 'package:inspection_app/data/entities/situation/situation.dart';
 
 import 'inspection_overview.dart';
 
@@ -33,8 +37,12 @@ class Inspection with _$Inspection {
     required String id,
     required String userId,
     @DateTimeConverter() required DateTime createdAt,
-    DateTime? inspectionCreatedAt,
     String? udId,
+    @Default(Address()) Address address,
+    @Default(Detail()) Detail detail,
+    @Default(Situation()) Situation situation,
+    @Default(Repairing()) Repairing repairing,
+    @Default(Renovation()) Renovation renovation,
     @Default(InspectionOverview()) InspectionOverview overview,
     @Default(<Photo>[]) List<Photo> photos,
     @Default(<Photo>[]) List<Photo> blueprints,
@@ -47,7 +55,7 @@ class Inspection with _$Inspection {
     @Default(RoofFrame()) RoofFrame roofFrame,
     @Default(PillarAndBeam()) PillarAndBeam pillarAndBeam,
     @Default(BaseAndFloorFraming()) BaseAndFloorFraming baseAndFloorFraming,
-    @Default(Floor()) Floor floor,
+    @Default(yuka.Floor()) yuka.Floor floor,
     @Default(AntDamage()) AntDamage antDamage,
     @Default(Corrosion()) Corrosion corrosion,
     @Default(Piping()) Piping piping,

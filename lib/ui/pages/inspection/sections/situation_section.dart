@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
+import 'package:inspection_app/data/entities/situation/situation.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/data/utils/date_utils.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
@@ -14,8 +14,8 @@ import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
 import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
 
-class ContextSection extends HookConsumerWidget {
-  const ContextSection({super.key});
+class SituationSection extends HookConsumerWidget {
+  const SituationSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,13 +26,15 @@ class ContextSection extends HookConsumerWidget {
 
     return Section(
       title: '調査時の状況',
+      complete: inspection.situation.complete,
       children: [
         SectionItem(
           title: '天候',
+          incomplete: inspection.situation.weather == null,
           child: DropdownField<Weather>(
             value: SelectionItem.orNull(
-              value: inspection.overview.weather,
-              name: inspection.overview.weather?.name,
+              value: inspection.situation.weather,
+              name: inspection.situation.weather?.name,
             ),
             all: Weather.values
                 .map((value) => SelectionItem(
@@ -41,14 +43,16 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (weather) {
-              controller.updateWeather(weather);
+              controller.updateSituation(
+                  inspection.situation.copyWith(weather: weather));
             },
           ),
         ),
         SectionItem(
           title: '報告書作成日',
+          incomplete: inspection.situation.createdAt == null,
           child: PrimaryField(
-            text: inspection.inspectionCreatedAt?.ymd() ?? '',
+            text: inspection.situation.createdAt?.ymd() ?? '',
             onTap: () async {
               final date = await DatePicker.showDatePicker(
                 context,
@@ -58,14 +62,17 @@ class ContextSection extends HookConsumerWidget {
                 locale: LocaleType.jp,
               );
               if (date == null) return;
-              controller.updateInspectionCreatedAt(date);
+              controller.updateSituation(
+                inspection.situation.copyWith(createdAt: date),
+              );
             },
           ),
         ),
         SectionItem(
           title: '調査日',
+          incomplete: inspection.situation.schedule.startedAt == null,
           child: PrimaryField(
-            text: inspection.overview.schedule.startedAt?.ymd() ?? '',
+            text: inspection.situation.schedule.startedAt?.ymd() ?? '',
             onTap: () async {
               final date = await DatePicker.showDatePicker(
                 context,
@@ -75,18 +82,24 @@ class ContextSection extends HookConsumerWidget {
                 locale: LocaleType.jp,
               );
               if (date == null) return;
-              controller.updateSchedule(
-                  inspection.overview.schedule.copyWith(startedAt: date));
+              controller.updateSituation(
+                inspection.situation.copyWith(
+                  schedule:
+                      inspection.situation.schedule.copyWith(startedAt: date),
+                ),
+              );
             },
           ),
         ),
         SectionItem(
           title: '調査時間',
+          incomplete: inspection.situation.schedule.startedAt == null ||
+              inspection.situation.schedule.endedAt == null,
           child: Row(
             children: [
               Expanded(
                 child: PrimaryField(
-                  text: inspection.overview.schedule.startedAt?.hm() ?? '',
+                  text: inspection.situation.schedule.startedAt?.hm() ?? '',
                   onTap: () async {
                     final date = await DatePicker.showTimePicker(
                       context,
@@ -96,8 +109,12 @@ class ContextSection extends HookConsumerWidget {
                       locale: LocaleType.jp,
                     );
                     if (date == null) return;
-                    controller.updateSchedule(
-                        inspection.overview.schedule.copyWith(startedAt: date));
+                    controller.updateSituation(
+                      inspection.situation.copyWith(
+                        schedule: inspection.situation.schedule
+                            .copyWith(startedAt: date),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -109,7 +126,7 @@ class ContextSection extends HookConsumerWidget {
               SizedBox(
                 width: 80,
                 child: PrimaryField(
-                  text: inspection.overview.schedule.endedAt?.hm() ?? '',
+                  text: inspection.situation.schedule.endedAt?.hm() ?? '',
                   onTap: () async {
                     final date = await DatePicker.showTimePicker(
                       context,
@@ -119,8 +136,12 @@ class ContextSection extends HookConsumerWidget {
                       locale: LocaleType.jp,
                     );
                     if (date == null) return;
-                    controller.updateSchedule(
-                        inspection.overview.schedule.copyWith(endedAt: date));
+                    controller.updateSituation(
+                      inspection.situation.copyWith(
+                        schedule: inspection.situation.schedule
+                            .copyWith(endedAt: date),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -129,13 +150,17 @@ class ContextSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '電気',
+          incomplete: inspection.situation.lifeline.electricity == null,
           child: DropdownField<bool>(
             value: () {
-              if (inspection.overview.lifeline.electricity == null) return null;
+              if (inspection.situation.lifeline.electricity == null) {
+                return null;
+              }
               return SelectionItem(
-                value: inspection.overview.lifeline.electricity!,
-                name:
-                    inspection.overview.lifeline.electricity! ? '通電あり' : '通電なし',
+                value: inspection.situation.lifeline.electricity!,
+                name: inspection.situation.lifeline.electricity!
+                    ? '通電あり'
+                    : '通電なし',
               );
             }(),
             all: [false, true]
@@ -145,19 +170,22 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              controller.updateLifelines(
-                  inspection.overview.lifeline.copyWith(electricity: isOn));
+              controller.updateSituation(inspection.situation.copyWith(
+                lifeline:
+                    inspection.situation.lifeline.copyWith(electricity: isOn),
+              ));
             },
           ),
         ),
         SectionItem(
           title: '水道',
+          incomplete: inspection.situation.lifeline.water == null,
           child: DropdownField<bool>(
             value: () {
-              if (inspection.overview.lifeline.water == null) return null;
+              if (inspection.situation.lifeline.water == null) return null;
               return SelectionItem(
-                value: inspection.overview.lifeline.water!,
-                name: inspection.overview.lifeline.water! ? '開栓あり' : '開栓なし',
+                value: inspection.situation.lifeline.water!,
+                name: inspection.situation.lifeline.water! ? '開栓あり' : '開栓なし',
               );
             }(),
             all: [false, true]
@@ -167,19 +195,21 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              controller.updateLifelines(
-                  inspection.overview.lifeline.copyWith(water: isOn));
+              controller.updateSituation(inspection.situation.copyWith(
+                lifeline: inspection.situation.lifeline.copyWith(water: isOn),
+              ));
             },
           ),
         ),
         SectionItem(
           title: 'ガス',
+          incomplete: inspection.situation.lifeline.gas == null,
           child: DropdownField<bool>(
             value: () {
-              if (inspection.overview.lifeline.gas == null) return null;
+              if (inspection.situation.lifeline.gas == null) return null;
               return SelectionItem(
-                value: inspection.overview.lifeline.gas!,
-                name: inspection.overview.lifeline.gas! ? '開栓あり' : '開栓なし',
+                value: inspection.situation.lifeline.gas!,
+                name: inspection.situation.lifeline.gas! ? '開栓あり' : '開栓なし',
               );
             }(),
             all: [false, true]
@@ -189,8 +219,9 @@ class ContextSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (isOn) {
-              controller.updateLifelines(
-                  inspection.overview.lifeline.copyWith(gas: isOn));
+              controller.updateSituation(inspection.situation.copyWith(
+                lifeline: inspection.situation.lifeline.copyWith(gas: isOn),
+              ));
             },
           ),
         ),
@@ -200,10 +231,11 @@ class ContextSection extends HookConsumerWidget {
           child: PrimaryTextField(
             textAlign: TextAlign.start,
             maxLines: 100,
-            initialText: inspection.overview.findings ?? '',
+            initialText: inspection.situation.findings ?? '',
             onChange: (text) {
-              controller
-                  .updateOverview(inspection.overview.copyWith(findings: text));
+              controller.updateSituation(
+                inspection.situation.copyWith(findings: text),
+              );
             },
           ),
         ),

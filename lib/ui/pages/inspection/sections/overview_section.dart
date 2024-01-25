@@ -19,6 +19,7 @@ class OverviewSection extends HookConsumerWidget {
 
     return Section(
       title: '調査物件情報',
+      complete: inspection.overview.complete,
       children: [
         SectionItem(
           incomplete: inspection.udId?.isEmpty ?? true,
@@ -33,15 +34,13 @@ class OverviewSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '建物名称',
-          incomplete: inspection.overview.building.name?.isEmpty ?? true,
+          incomplete: inspection.overview.buildingName?.isEmpty ?? true,
           child: PrimaryTextField(
             hintText: '建物名称',
             fixedText: '様邸',
-            initialText: inspection.overview.building.name ?? '',
+            initialText: inspection.overview.buildingName ?? '',
             onChange: (text) {
-              final building =
-                  inspection.overview.building.copyWith(name: text);
-              final overview = inspection.overview.copyWith(building: building);
+              final overview = inspection.overview.copyWith(buildingName: text);
               controller.updateOverview(overview);
             },
           ),

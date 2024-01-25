@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inspection_app/data/entities/building/building.dart';
-import 'package:inspection_app/data/entities/inspection/inspection_overview.dart';
+import 'package:inspection_app/data/entities/detail/detail.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
@@ -30,8 +29,8 @@ class DetailSection extends HookConsumerWidget {
           title: '調査区分',
           child: DropdownField<HousingType>(
             value: SelectionItem.orNull(
-              value: inspection.overview.housingType,
-              name: inspection.overview.housingType?.name,
+              value: inspection.detail.housingType,
+              name: inspection.detail.housingType?.name,
             ),
             all: HousingType.values
                 .map((value) => SelectionItem(
@@ -40,7 +39,9 @@ class DetailSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (type) {
-              controller.updateHousingType(type);
+              controller.updateDetail(
+                inspection.detail.copyWith(housingType: type),
+              );
             },
           ),
         ),
@@ -48,8 +49,8 @@ class DetailSection extends HookConsumerWidget {
           title: '構造種別',
           child: DropdownField<StructureType>(
             value: SelectionItem.orNull(
-              value: inspection.overview.building.structureType,
-              name: inspection.overview.building.structureType?.name,
+              value: inspection.detail.structureType,
+              name: inspection.detail.structureType?.name,
             ),
             all: StructureType.values
                 .map((value) => SelectionItem(
@@ -58,15 +59,16 @@ class DetailSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (type) {
-              controller.updateStructureType(type);
+              controller.updateDetail(
+                inspection.detail.copyWith(structureType: type),
+              );
             },
           ),
         ),
         SectionItem(
           title: '延床面積',
           child: PrimaryTextField(
-            initialText:
-                inspection.overview.building.totalFloorArea?.toString() ?? '',
+            initialText: inspection.detail.totalFloorArea?.toString() ?? '',
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: const TextInputType.numberWithOptions(
               decimal: true,
@@ -75,10 +77,9 @@ class DetailSection extends HookConsumerWidget {
             onChange: (text) {
               final totalFloorArea = double.tryParse(text);
               if (totalFloorArea == null) return;
-              final building = inspection.overview.building
-                  .copyWith(totalFloorArea: totalFloorArea);
-              final overview = inspection.overview.copyWith(building: building);
-              controller.updateOverview(overview);
+              controller.updateDetail(
+                inspection.detail.copyWith(totalFloorArea: totalFloorArea),
+              );
             },
           ),
         ),
@@ -90,9 +91,7 @@ class DetailSection extends HookConsumerWidget {
               SizedBox(
                 width: 100,
                 child: PrimaryTextField(
-                  initialText:
-                      inspection.overview.building.floor.ground?.toString() ??
-                          '',
+                  initialText: inspection.detail.floor.ground?.toString() ?? '',
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
@@ -103,7 +102,11 @@ class DetailSection extends HookConsumerWidget {
                   onChange: (text) {
                     final ground = int.tryParse(text);
                     if (ground == null) return;
-                    controller.updateGround(ground);
+                    controller.updateDetail(
+                      inspection.detail.copyWith(
+                        floor: inspection.detail.floor.copyWith(ground: ground),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -111,9 +114,8 @@ class DetailSection extends HookConsumerWidget {
               SizedBox(
                 width: 100,
                 child: PrimaryTextField(
-                  initialText: inspection.overview.building.floor.underground
-                          ?.toString() ??
-                      '',
+                  initialText:
+                      inspection.detail.floor.underground?.toString() ?? '',
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
@@ -124,7 +126,10 @@ class DetailSection extends HookConsumerWidget {
                   onChange: (text) {
                     final underground = int.tryParse(text);
                     if (underground == null) return;
-                    controller.updateUnderGround(underground);
+                    controller.updateDetail(inspection.detail.copyWith(
+                        floor: inspection.detail.floor.copyWith(
+                      underground: underground,
+                    )));
                   },
                 ),
               ),
@@ -136,13 +141,12 @@ class DetailSection extends HookConsumerWidget {
           title: '調査所見',
           child: PrimaryTextField(
             textAlign: TextAlign.start,
-            initialText: inspection.overview.building.findings ?? '',
+            initialText: inspection.detail.findings ?? '',
             maxLines: 100,
             onChange: (text) {
-              final building =
-                  inspection.overview.building.copyWith(findings: text);
-              final overview = inspection.overview.copyWith(building: building);
-              controller.updateOverview(overview);
+              controller.updateDetail(
+                inspection.detail.copyWith(findings: text),
+              );
             },
           ),
         ),

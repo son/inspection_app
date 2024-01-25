@@ -30,7 +30,7 @@ class InspectionListPage extends HookConsumerWidget {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: const PrimaryAppBar(title: ''),
+      appBar: const PrimaryAppBar(),
       body: RefreshIndicator(
         onRefresh: () {
           return ref.read(inspectionListProvider.notifier).refresh();

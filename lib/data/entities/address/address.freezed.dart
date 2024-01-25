@@ -20,6 +20,7 @@ Address _$AddressFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Address {
+  String? get name => throw _privateConstructorUsedError;
   String? get postCode => throw _privateConstructorUsedError;
   String? get prefecture => throw _privateConstructorUsedError;
   String? get municipality => throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ abstract class $AddressCopyWith<$Res> {
       _$AddressCopyWithImpl<$Res, Address>;
   @useResult
   $Res call(
-      {String? postCode,
+      {String? name,
+      String? postCode,
       String? prefecture,
       String? municipality,
       String? buildingName,
@@ -59,6 +61,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = freezed,
     Object? postCode = freezed,
     Object? prefecture = freezed,
     Object? municipality = freezed,
@@ -67,6 +70,10 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
     Object? addressType = freezed,
   }) {
     return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       postCode: freezed == postCode
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
@@ -103,7 +110,8 @@ abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? postCode,
+      {String? name,
+      String? postCode,
       String? prefecture,
       String? municipality,
       String? buildingName,
@@ -121,6 +129,7 @@ class __$$_AddressCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = freezed,
     Object? postCode = freezed,
     Object? prefecture = freezed,
     Object? municipality = freezed,
@@ -129,6 +138,10 @@ class __$$_AddressCopyWithImpl<$Res>
     Object? addressType = freezed,
   }) {
     return _then(_$_Address(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       postCode: freezed == postCode
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
@@ -162,7 +175,8 @@ class __$$_AddressCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_Address extends _Address {
   const _$_Address(
-      {this.postCode,
+      {this.name,
+      this.postCode,
       this.prefecture,
       this.municipality,
       this.buildingName,
@@ -173,6 +187,8 @@ class _$_Address extends _Address {
   factory _$_Address.fromJson(Map<String, dynamic> json) =>
       _$$_AddressFromJson(json);
 
+  @override
+  final String? name;
   @override
   final String? postCode;
   @override
@@ -188,7 +204,7 @@ class _$_Address extends _Address {
 
   @override
   String toString() {
-    return 'Address(postCode: $postCode, prefecture: $prefecture, municipality: $municipality, buildingName: $buildingName, roomNumber: $roomNumber, addressType: $addressType)';
+    return 'Address(name: $name, postCode: $postCode, prefecture: $prefecture, municipality: $municipality, buildingName: $buildingName, roomNumber: $roomNumber, addressType: $addressType)';
   }
 
   @override
@@ -196,6 +212,7 @@ class _$_Address extends _Address {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Address &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.postCode, postCode) ||
                 other.postCode == postCode) &&
             (identical(other.prefecture, prefecture) ||
@@ -212,7 +229,7 @@ class _$_Address extends _Address {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, postCode, prefecture,
+  int get hashCode => Object.hash(runtimeType, name, postCode, prefecture,
       municipality, buildingName, roomNumber, addressType);
 
   @JsonKey(ignore: true)
@@ -231,7 +248,8 @@ class _$_Address extends _Address {
 
 abstract class _Address extends Address {
   const factory _Address(
-      {final String? postCode,
+      {final String? name,
+      final String? postCode,
       final String? prefecture,
       final String? municipality,
       final String? buildingName,
@@ -241,6 +259,8 @@ abstract class _Address extends Address {
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 
+  @override
+  String? get name;
   @override
   String? get postCode;
   @override

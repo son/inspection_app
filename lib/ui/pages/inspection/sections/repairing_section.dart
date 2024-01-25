@@ -21,22 +21,19 @@ class RepairingSection extends HookConsumerWidget {
 
     return Section(
       title: '修理履歴・リフォーム工事の有無',
-      complete: inspection.overview.building.repairing.complete &&
-          inspection.overview.building.renovation.complete,
+      complete: inspection.repairing.complete && inspection.renovation.complete,
       children: [
         SectionItem(
           title: '修理履歴',
-          incomplete: inspection.overview.building.repairing.repaired == null,
+          incomplete: inspection.repairing.repaired == null,
           child: DropdownField<bool>(
             value: () {
-              if (inspection.overview.building.repairing.repaired == null) {
+              if (inspection.repairing.repaired == null) {
                 return null;
               }
               return SelectionItem(
-                value: inspection.overview.building.repairing.repaired!,
-                name: inspection.overview.building.repairing.repaired!
-                    ? 'あり'
-                    : 'なし',
+                value: inspection.repairing.repaired!,
+                name: inspection.repairing.repaired! ? 'あり' : 'なし',
               );
             }(),
             all: [true, false]
@@ -46,59 +43,52 @@ class RepairingSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (repaired) {
-              controller.updateRepairing(inspection.overview.building.repairing
-                  .copyWith(repaired: repaired));
+              controller.updateRepairing(
+                  inspection.repairing.copyWith(repaired: repaired));
             },
           ),
         ),
-        if (inspection.overview.building.repairing.repaired ?? false) ...[
+        if (inspection.repairing.repaired ?? false) ...[
           SectionItem(
-            incomplete:
-                inspection.overview.building.repairing.parts?.isEmpty ?? true,
+            incomplete: inspection.repairing.parts?.isEmpty ?? true,
             axis: Axis.vertical,
             title: '部分',
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              initialText: inspection.overview.building.repairing.parts ?? '',
+              initialText: inspection.repairing.parts ?? '',
               onChange: (text) {
-                controller.updateRepairing(inspection
-                    .overview.building.repairing
-                    .copyWith(parts: text));
+                controller.updateRepairing(
+                    inspection.repairing.copyWith(parts: text));
               },
             ),
           ),
           SectionItem(
             axis: Axis.vertical,
-            incomplete:
-                inspection.overview.building.repairing.method?.isEmpty ?? true,
+            incomplete: inspection.repairing.method?.isEmpty ?? true,
             title: '修繕方法',
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              initialText: inspection.overview.building.repairing.method ?? '',
+              initialText: inspection.repairing.method ?? '',
               onChange: (text) {
-                controller.updateRepairing(inspection
-                    .overview.building.repairing
-                    .copyWith(method: text));
+                controller.updateRepairing(
+                    inspection.repairing.copyWith(method: text));
               },
             ),
           ),
         ],
         SectionItem(
           title: '調査時のリフォーム工事',
-          incomplete:
-              inspection.overview.building.renovation.renovating == null,
+          incomplete: inspection.renovation.renovating == null,
           child: DropdownField<bool>(
             value: () {
-              if (inspection.overview.building.renovation.renovating == null) {
+              if (inspection.renovation.renovating == null) {
                 return null;
               }
               return SelectionItem(
-                value: inspection.overview.building.renovation.renovating!,
-                name: inspection.overview.building.renovation.renovating!
-                    ? '工事中'
-                    : '工事中ではない',
+                value: inspection.renovation.renovating!,
+                name: inspection.renovation.renovating! ? '工事中' : '工事中ではない',
               );
             }(),
             all: [true, false]
@@ -108,25 +98,22 @@ class RepairingSection extends HookConsumerWidget {
                     ))
                 .toList(),
             onSelect: (renovating) {
-              controller.updateRenovation(inspection
-                  .overview.building.renovation
-                  .copyWith(renovating: renovating));
+              controller.updateRenovation(
+                  inspection.renovation.copyWith(renovating: renovating));
             },
           ),
         ),
-        if (inspection.overview.building.renovation.renovating ?? false)
+        if (inspection.renovation.renovating ?? false)
           SectionItem(
             axis: Axis.vertical,
             title: '部分',
-            incomplete:
-                inspection.overview.building.renovation.parts?.isEmpty ?? true,
+            incomplete: inspection.renovation.parts?.isEmpty ?? true,
             child: PrimaryTextField(
               textAlign: TextAlign.start,
               maxLines: 100,
-              initialText: inspection.overview.building.renovation.parts ?? '',
+              initialText: inspection.renovation.parts ?? '',
               onChange: (text) {
-                final renovation = inspection.overview.building.renovation
-                    .copyWith(parts: text);
+                final renovation = inspection.renovation.copyWith(parts: text);
                 controller.updateRenovation(renovation);
               },
             ),

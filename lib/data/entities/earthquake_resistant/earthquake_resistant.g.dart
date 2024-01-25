@@ -9,7 +9,6 @@ part of 'earthquake_resistant.dart';
 _$_EarthquakeResistant _$$_EarthquakeResistantFromJson(
         Map<String, dynamic> json) =>
     _$_EarthquakeResistant(
-      exploration: json['exploration'] as bool?,
       confirmationMethod: $enumDecodeNullable(
           _$ConfirmationMethodEnumMap, json['confirmationMethod']),
       certificate:
@@ -22,13 +21,11 @@ _$_EarthquakeResistant _$$_EarthquakeResistantFromJson(
               ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <Photo>[],
-      notApplicable: json['notApplicable'] ?? false,
     );
 
 Map<String, dynamic> _$$_EarthquakeResistantToJson(
         _$_EarthquakeResistant instance) =>
     <String, dynamic>{
-      'exploration': instance.exploration,
       'confirmationMethod':
           _$ConfirmationMethodEnumMap[instance.confirmationMethod],
       'certificate': _$CertificateEnumMap[instance.certificate],
@@ -37,7 +34,6 @@ Map<String, dynamic> _$$_EarthquakeResistantToJson(
           _$EarthquakeProofSafetyRegulationEnumMap[instance.regulation],
       'remarks': instance.remarks,
       'photos': instance.photos.map((e) => e.toJson()).toList(),
-      'notApplicable': instance.notApplicable,
     };
 
 const _$ConfirmationMethodEnumMap = {
