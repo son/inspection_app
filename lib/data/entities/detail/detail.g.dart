@@ -13,8 +13,8 @@ _$_Detail _$$_DetailFromJson(Map<String, dynamic> json) => _$_Detail(
           $enumDecodeNullable(_$StructureTypeEnumMap, json['structureType']),
       totalFloorArea: (json['totalFloorArea'] as num?)?.toDouble(),
       floor: json['floor'] == null
-          ? const Floor()
-          : Floor.fromJson(json['floor'] as Map<String, dynamic>),
+          ? const Floors()
+          : Floors.fromJson(json['floor'] as Map<String, dynamic>),
       findings: json['findings'] as String?,
       builtAt: const DateTimeOrNullConverter().fromJson(json['builtAt']),
     );
@@ -42,12 +42,12 @@ const _$StructureTypeEnumMap = {
   StructureType.mixed: 'mixed',
 };
 
-_$_Floor _$$_FloorFromJson(Map<String, dynamic> json) => _$_Floor(
+_$_Floors _$$_FloorsFromJson(Map<String, dynamic> json) => _$_Floors(
       ground: json['ground'] as int?,
       underground: json['underground'] as int?,
     );
 
-Map<String, dynamic> _$$_FloorToJson(_$_Floor instance) => <String, dynamic>{
+Map<String, dynamic> _$$_FloorsToJson(_$_Floors instance) => <String, dynamic>{
       'ground': instance.ground,
       'underground': instance.underground,
     };

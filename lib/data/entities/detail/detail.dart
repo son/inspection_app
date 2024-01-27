@@ -13,12 +13,21 @@ class Detail with _$Detail {
     HousingType? housingType,
     StructureType? structureType,
     double? totalFloorArea,
-    @Default(Floor()) Floor floor,
+    @Default(Floors()) Floors floor,
     String? findings,
     @DateTimeOrNullConverter() DateTime? builtAt,
   }) = _Detail;
 
   factory Detail.fromJson(Map<String, dynamic> json) => _$DetailFromJson(json);
+
+  bool get complete {
+    return housingType != null &&
+        structureType != null &&
+        totalFloorArea != null &&
+        floor.ground != null &&
+        floor.underground != null &&
+        builtAt != null;
+  }
 }
 
 enum HousingType {
@@ -46,14 +55,14 @@ enum StructureType {
 }
 
 @freezed
-class Floor with _$Floor {
-  const Floor._();
+class Floors with _$Floors {
+  const Floors._();
 
   @JsonSerializable(explicitToJson: true)
-  const factory Floor({
+  const factory Floors({
     int? ground,
     int? underground,
-  }) = _Floor;
+  }) = _Floors;
 
-  factory Floor.fromJson(Map<String, dynamic> json) => _$FloorFromJson(json);
+  factory Floors.fromJson(Map<String, dynamic> json) => _$FloorsFromJson(json);
 }

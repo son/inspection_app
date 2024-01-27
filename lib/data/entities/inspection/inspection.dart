@@ -8,7 +8,7 @@ import 'package:inspection_app/data/entities/concrete/concrete.dart';
 import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
 import 'package:inspection_app/data/entities/detail/detail.dart';
 import 'package:inspection_app/data/entities/earthquake_resistant/earthquake_resistant.dart';
-import 'package:inspection_app/data/entities/floor/floor.dart' as yuka;
+import 'package:inspection_app/data/entities/floor/floor.dart';
 import 'package:inspection_app/data/entities/foundation/foundation.dart';
 import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
 import 'package:inspection_app/data/entities/json_supports.dart';
@@ -55,7 +55,7 @@ class Inspection with _$Inspection {
     @Default(RoofFrame()) RoofFrame roofFrame,
     @Default(PillarAndBeam()) PillarAndBeam pillarAndBeam,
     @Default(BaseAndFloorFraming()) BaseAndFloorFraming baseAndFloorFraming,
-    @Default(yuka.Floor()) yuka.Floor floor,
+    @Default(Floor()) Floor floor,
     @Default(AntDamage()) AntDamage antDamage,
     @Default(Corrosion()) Corrosion corrosion,
     @Default(Piping()) Piping piping,

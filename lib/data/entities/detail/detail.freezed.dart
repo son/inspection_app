@@ -23,7 +23,7 @@ mixin _$Detail {
   HousingType? get housingType => throw _privateConstructorUsedError;
   StructureType? get structureType => throw _privateConstructorUsedError;
   double? get totalFloorArea => throw _privateConstructorUsedError;
-  Floor get floor => throw _privateConstructorUsedError;
+  Floors get floor => throw _privateConstructorUsedError;
   String? get findings => throw _privateConstructorUsedError;
   @DateTimeOrNullConverter()
   DateTime? get builtAt => throw _privateConstructorUsedError;
@@ -42,11 +42,11 @@ abstract class $DetailCopyWith<$Res> {
       {HousingType? housingType,
       StructureType? structureType,
       double? totalFloorArea,
-      Floor floor,
+      Floors floor,
       String? findings,
       @DateTimeOrNullConverter() DateTime? builtAt});
 
-  $FloorCopyWith<$Res> get floor;
+  $FloorsCopyWith<$Res> get floor;
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$DetailCopyWithImpl<$Res, $Val extends Detail>
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
-              as Floor,
+              as Floors,
       findings: freezed == findings
           ? _value.findings
           : findings // ignore: cast_nullable_to_non_nullable
@@ -99,8 +99,8 @@ class _$DetailCopyWithImpl<$Res, $Val extends Detail>
 
   @override
   @pragma('vm:prefer-inline')
-  $FloorCopyWith<$Res> get floor {
-    return $FloorCopyWith<$Res>(_value.floor, (value) {
+  $FloorsCopyWith<$Res> get floor {
+    return $FloorsCopyWith<$Res>(_value.floor, (value) {
       return _then(_value.copyWith(floor: value) as $Val);
     });
   }
@@ -116,12 +116,12 @@ abstract class _$$_DetailCopyWith<$Res> implements $DetailCopyWith<$Res> {
       {HousingType? housingType,
       StructureType? structureType,
       double? totalFloorArea,
-      Floor floor,
+      Floors floor,
       String? findings,
       @DateTimeOrNullConverter() DateTime? builtAt});
 
   @override
-  $FloorCopyWith<$Res> get floor;
+  $FloorsCopyWith<$Res> get floor;
 }
 
 /// @nodoc
@@ -157,7 +157,7 @@ class __$$_DetailCopyWithImpl<$Res>
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
-              as Floor,
+              as Floors,
       findings: freezed == findings
           ? _value.findings
           : findings // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ class _$_Detail extends _Detail {
       {this.housingType,
       this.structureType,
       this.totalFloorArea,
-      this.floor = const Floor(),
+      this.floor = const Floors(),
       this.findings,
       @DateTimeOrNullConverter() this.builtAt})
       : super._();
@@ -194,7 +194,7 @@ class _$_Detail extends _Detail {
   final double? totalFloorArea;
   @override
   @JsonKey()
-  final Floor floor;
+  final Floors floor;
   @override
   final String? findings;
   @override
@@ -247,7 +247,7 @@ abstract class _Detail extends Detail {
       {final HousingType? housingType,
       final StructureType? structureType,
       final double? totalFloorArea,
-      final Floor floor,
+      final Floors floor,
       final String? findings,
       @DateTimeOrNullConverter() final DateTime? builtAt}) = _$_Detail;
   const _Detail._() : super._();
@@ -261,7 +261,7 @@ abstract class _Detail extends Detail {
   @override
   double? get totalFloorArea;
   @override
-  Floor get floor;
+  Floors get floor;
   @override
   String? get findings;
   @override
@@ -273,32 +273,32 @@ abstract class _Detail extends Detail {
       throw _privateConstructorUsedError;
 }
 
-Floor _$FloorFromJson(Map<String, dynamic> json) {
-  return _Floor.fromJson(json);
+Floors _$FloorsFromJson(Map<String, dynamic> json) {
+  return _Floors.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Floor {
+mixin _$Floors {
   int? get ground => throw _privateConstructorUsedError;
   int? get underground => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FloorCopyWith<Floor> get copyWith => throw _privateConstructorUsedError;
+  $FloorsCopyWith<Floors> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FloorCopyWith<$Res> {
-  factory $FloorCopyWith(Floor value, $Res Function(Floor) then) =
-      _$FloorCopyWithImpl<$Res, Floor>;
+abstract class $FloorsCopyWith<$Res> {
+  factory $FloorsCopyWith(Floors value, $Res Function(Floors) then) =
+      _$FloorsCopyWithImpl<$Res, Floors>;
   @useResult
   $Res call({int? ground, int? underground});
 }
 
 /// @nodoc
-class _$FloorCopyWithImpl<$Res, $Val extends Floor>
-    implements $FloorCopyWith<$Res> {
-  _$FloorCopyWithImpl(this._value, this._then);
+class _$FloorsCopyWithImpl<$Res, $Val extends Floors>
+    implements $FloorsCopyWith<$Res> {
+  _$FloorsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -325,18 +325,19 @@ class _$FloorCopyWithImpl<$Res, $Val extends Floor>
 }
 
 /// @nodoc
-abstract class _$$_FloorCopyWith<$Res> implements $FloorCopyWith<$Res> {
-  factory _$$_FloorCopyWith(_$_Floor value, $Res Function(_$_Floor) then) =
-      __$$_FloorCopyWithImpl<$Res>;
+abstract class _$$_FloorsCopyWith<$Res> implements $FloorsCopyWith<$Res> {
+  factory _$$_FloorsCopyWith(_$_Floors value, $Res Function(_$_Floors) then) =
+      __$$_FloorsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? ground, int? underground});
 }
 
 /// @nodoc
-class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
-    implements _$$_FloorCopyWith<$Res> {
-  __$$_FloorCopyWithImpl(_$_Floor _value, $Res Function(_$_Floor) _then)
+class __$$_FloorsCopyWithImpl<$Res>
+    extends _$FloorsCopyWithImpl<$Res, _$_Floors>
+    implements _$$_FloorsCopyWith<$Res> {
+  __$$_FloorsCopyWithImpl(_$_Floors _value, $Res Function(_$_Floors) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -345,7 +346,7 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
     Object? ground = freezed,
     Object? underground = freezed,
   }) {
-    return _then(_$_Floor(
+    return _then(_$_Floors(
       ground: freezed == ground
           ? _value.ground
           : ground // ignore: cast_nullable_to_non_nullable
@@ -361,11 +362,11 @@ class __$$_FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res, _$_Floor>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_Floor extends _Floor {
-  const _$_Floor({this.ground, this.underground}) : super._();
+class _$_Floors extends _Floors {
+  const _$_Floors({this.ground, this.underground}) : super._();
 
-  factory _$_Floor.fromJson(Map<String, dynamic> json) =>
-      _$$_FloorFromJson(json);
+  factory _$_Floors.fromJson(Map<String, dynamic> json) =>
+      _$$_FloorsFromJson(json);
 
   @override
   final int? ground;
@@ -374,14 +375,14 @@ class _$_Floor extends _Floor {
 
   @override
   String toString() {
-    return 'Floor(ground: $ground, underground: $underground)';
+    return 'Floors(ground: $ground, underground: $underground)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Floor &&
+            other is _$_Floors &&
             (identical(other.ground, ground) || other.ground == ground) &&
             (identical(other.underground, underground) ||
                 other.underground == underground));
@@ -394,22 +395,23 @@ class _$_Floor extends _Floor {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FloorCopyWith<_$_Floor> get copyWith =>
-      __$$_FloorCopyWithImpl<_$_Floor>(this, _$identity);
+  _$$_FloorsCopyWith<_$_Floors> get copyWith =>
+      __$$_FloorsCopyWithImpl<_$_Floors>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FloorToJson(
+    return _$$_FloorsToJson(
       this,
     );
   }
 }
 
-abstract class _Floor extends Floor {
-  const factory _Floor({final int? ground, final int? underground}) = _$_Floor;
-  const _Floor._() : super._();
+abstract class _Floors extends Floors {
+  const factory _Floors({final int? ground, final int? underground}) =
+      _$_Floors;
+  const _Floors._() : super._();
 
-  factory _Floor.fromJson(Map<String, dynamic> json) = _$_Floor.fromJson;
+  factory _Floors.fromJson(Map<String, dynamic> json) = _$_Floors.fromJson;
 
   @override
   int? get ground;
@@ -417,6 +419,6 @@ abstract class _Floor extends Floor {
   int? get underground;
   @override
   @JsonKey(ignore: true)
-  _$$_FloorCopyWith<_$_Floor> get copyWith =>
+  _$$_FloorsCopyWith<_$_Floors> get copyWith =>
       throw _privateConstructorUsedError;
 }

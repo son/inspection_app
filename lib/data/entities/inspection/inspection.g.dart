@@ -70,7 +70,7 @@ _$_Inspection _$$_InspectionFromJson(Map<String, dynamic> json) =>
           : BaseAndFloorFraming.fromJson(
               json['baseAndFloorFraming'] as Map<String, dynamic>),
       floor: json['floor'] == null
-          ? const yuka.Floor()
+          ? const Floor()
           : Floor.fromJson(json['floor'] as Map<String, dynamic>),
       antDamage: json['antDamage'] == null
           ? const AntDamage()

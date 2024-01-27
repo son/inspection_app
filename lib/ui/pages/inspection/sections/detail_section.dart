@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/detail/detail.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/primary_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/inspection_page.dart';
+import 'package:inspection_app/data/utils/date_utils.dart';
 
 import '../children/section_item.dart';
 
@@ -24,9 +27,11 @@ class DetailSection extends HookConsumerWidget {
 
     return Section(
       title: '物件詳細',
+      complete: inspection.detail.complete,
       children: [
         SectionItem(
           title: '調査区分',
+          incomplete: inspection.detail.housingType == null,
           child: DropdownField<HousingType>(
             value: SelectionItem.orNull(
               value: inspection.detail.housingType,
@@ -47,6 +52,7 @@ class DetailSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '構造種別',
+          incomplete: inspection.detail.structureType == null,
           child: DropdownField<StructureType>(
             value: SelectionItem.orNull(
               value: inspection.detail.structureType,
@@ -67,6 +73,7 @@ class DetailSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '延床面積',
+          incomplete: inspection.detail.totalFloorArea == null,
           child: PrimaryTextField(
             initialText: inspection.detail.totalFloorArea?.toString() ?? '',
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -85,6 +92,8 @@ class DetailSection extends HookConsumerWidget {
         ),
         SectionItem(
           title: '階数',
+          incomplete: inspection.detail.floor.ground == null ||
+              inspection.detail.floor.underground == null,
           child: Row(
             children: [
               const Spacer(),
@@ -137,6 +146,26 @@ class DetailSection extends HookConsumerWidget {
           ),
         ),
         SectionItem(
+          title: '建築時期',
+          incomplete: inspection.detail.builtAt == null,
+          child: PrimaryField(
+            text: inspection.detail.builtAt?.ymd() ?? '',
+            onTap: () async {
+              final date = await DatePicker.showDatePicker(
+                context,
+                showTitleActions: true,
+                maxTime: DateTime.now(),
+                currentTime: DateTime.now(),
+                locale: LocaleType.jp,
+              );
+              if (date == null) return;
+              controller.updateDetail(
+                inspection.detail.copyWith(builtAt: date),
+              );
+            },
+          ),
+        ),
+        SectionItem(
           axis: Axis.vertical,
           title: '調査所見',
           child: PrimaryTextField(
@@ -150,59 +179,6 @@ class DetailSection extends HookConsumerWidget {
             },
           ),
         ),
-        // TODO: 建築時期
-        // SectionItem(
-        //   title: '建築時期',
-        //   child: Row(
-        //     children: [
-        //       const Spacer(),
-        //       SizedBox(
-        //         width: 100,
-        //         child: DropdownField<int>(
-        //           rightText: '年',
-        //           value: SelectionItem(
-        //             value: inspection.overview.building.floor.ground,
-        //             name:
-        //                 '${inspection.overview.building.floor.ground} 階',
-        //           ),
-        //           all: List.generate(63, (index) => index + 1)
-        //               .map((value) => SelectionItem(
-        //                     value: value,
-        //                     name: '$value 階',
-        //                   ))
-        //               .toList(),
-        //           onSelect: (value) {
-        //             ref
-        //                 .read(inspectionProvider.notifier)
-        //                 .updateGround(value);
-        //           },
-        //         ),
-        //       ),
-        //       SizedBox(
-        //         width: 100,
-        //         child: DropdownField<int>(
-        //           value: SelectionItem(
-        //             value:
-        //                 inspection.overview.building.floor.underground,
-        //             name:
-        //                 '${inspection.overview.building.floor.underground} 月',
-        //           ),
-        //           all: List.generate(4, (index) => index)
-        //               .map((value) => SelectionItem(
-        //                     value: value,
-        //                     name: '$value 月',
-        //                   ))
-        //               .toList(),
-        //           onSelect: (value) {
-        //             ref
-        //                 .read(inspectionProvider.notifier)
-        //                 .updateUnderGround(value);
-        //           },
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
       ],
     );
   }

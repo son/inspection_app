@@ -43,7 +43,7 @@ mixin _$Inspection {
   PillarAndBeam get pillarAndBeam => throw _privateConstructorUsedError;
   BaseAndFloorFraming get baseAndFloorFraming =>
       throw _privateConstructorUsedError;
-  yuka.Floor get floor => throw _privateConstructorUsedError;
+  Floor get floor => throw _privateConstructorUsedError;
   AntDamage get antDamage => throw _privateConstructorUsedError;
   Corrosion get corrosion => throw _privateConstructorUsedError;
   Piping get piping => throw _privateConstructorUsedError;
@@ -87,7 +87,7 @@ abstract class $InspectionCopyWith<$Res> {
       RoofFrame roofFrame,
       PillarAndBeam pillarAndBeam,
       BaseAndFloorFraming baseAndFloorFraming,
-      yuka.Floor floor,
+      Floor floor,
       AntDamage antDamage,
       Corrosion corrosion,
       Piping piping,
@@ -252,7 +252,7 @@ class _$InspectionCopyWithImpl<$Res, $Val extends Inspection>
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
-              as yuka.Floor,
+              as Floor,
       antDamage: null == antDamage
           ? _value.antDamage
           : antDamage // ignore: cast_nullable_to_non_nullable
@@ -501,7 +501,7 @@ abstract class _$$_InspectionCopyWith<$Res>
       RoofFrame roofFrame,
       PillarAndBeam pillarAndBeam,
       BaseAndFloorFraming baseAndFloorFraming,
-      yuka.Floor floor,
+      Floor floor,
       AntDamage antDamage,
       Corrosion corrosion,
       Piping piping,
@@ -687,7 +687,7 @@ class __$$_InspectionCopyWithImpl<$Res>
       floor: null == floor
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
-              as yuka.Floor,
+              as Floor,
       antDamage: null == antDamage
           ? _value.antDamage
           : antDamage // ignore: cast_nullable_to_non_nullable
@@ -746,7 +746,7 @@ class _$_Inspection extends _Inspection {
       this.roofFrame = const RoofFrame(),
       this.pillarAndBeam = const PillarAndBeam(),
       this.baseAndFloorFraming = const BaseAndFloorFraming(),
-      this.floor = const yuka.Floor(),
+      this.floor = const Floor(),
       this.antDamage = const AntDamage(),
       this.corrosion = const Corrosion(),
       this.piping = const Piping(),
@@ -835,7 +835,7 @@ class _$_Inspection extends _Inspection {
   final BaseAndFloorFraming baseAndFloorFraming;
   @override
   @JsonKey()
-  final yuka.Floor floor;
+  final Floor floor;
   @override
   @JsonKey()
   final AntDamage antDamage;
@@ -988,7 +988,7 @@ abstract class _Inspection extends Inspection {
       final RoofFrame roofFrame,
       final PillarAndBeam pillarAndBeam,
       final BaseAndFloorFraming baseAndFloorFraming,
-      final yuka.Floor floor,
+      final Floor floor,
       final AntDamage antDamage,
       final Corrosion corrosion,
       final Piping piping,
@@ -1045,7 +1045,7 @@ abstract class _Inspection extends Inspection {
   @override
   BaseAndFloorFraming get baseAndFloorFraming;
   @override
-  yuka.Floor get floor;
+  Floor get floor;
   @override
   AntDamage get antDamage;
   @override
