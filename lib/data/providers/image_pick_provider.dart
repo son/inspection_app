@@ -11,13 +11,19 @@ final photoImagePickProvider =
   return (BuildContext context) async {
     final denied = await Permission.photos.isPermanentlyDenied;
     if (denied) {
-      await PermissionDialog.show(context);
+      await PermissionDialog.show(
+        context: context,
+        title: '設定アプリを開いて「写真」・「カメラ」の使用を許可してください',
+      );
       return [];
     }
 
     final status = await Permission.photos.request();
     if (!status.isGranted && !status.isLimited) {
-      await PermissionDialog.show(context);
+      await PermissionDialog.show(
+        context: context,
+        title: '設定アプリを開いて「写真」・「カメラ」の使用を許可してください',
+      );
       return [];
     }
 
@@ -32,13 +38,19 @@ final cameraImagePickProvider =
   return (BuildContext context) async {
     final denied = await Permission.photos.isPermanentlyDenied;
     if (denied) {
-      await PermissionDialog.show(context);
+      await PermissionDialog.show(
+        context: context,
+        title: '設定アプリを開いて「写真」・「カメラ」の使用を許可してください',
+      );
       return null;
     }
 
     final status = await Permission.photos.request();
     if (!status.isGranted && !status.isLimited) {
-      await PermissionDialog.show(context);
+      await PermissionDialog.show(
+        context: context,
+        title: '設定アプリを開いて「写真」・「カメラ」の使用を許可してください',
+      );
       return null;
     }
 

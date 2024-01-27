@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/address/address.dart';
 import 'package:inspection_app/data/entities/ant_damage/ant_damage.dart';
@@ -28,6 +29,8 @@ import 'package:inspection_app/data/entities/situation/situation.dart';
 import 'package:inspection_app/data/providers/inspection_list_provider.dart';
 import 'package:inspection_app/data/repositories/image_repository.dart';
 import 'package:inspection_app/ui/components/notification_bar.dart';
+
+import 'address/core.dart';
 
 final inspectionProvider =
     StateNotifierProvider.family<InspectionNotifier, Inspection, String>(
@@ -185,7 +188,7 @@ class InspectionNotifier extends StateNotifier<Inspection> {
   }
 
   Future<List<Photo>> createNewPhotos(List<String> paths) async {
-    final cancel = NotificationBar.showUploading();
+    final cancel = NotificationBar.showLoader(title: '画像をアップロードしています');
     final urls = await Future.wait(paths.map(
         (path) => ref.read(imageRepositoryProvider).uploadImage(path))).then(
       (value) => value.whereType<String>().toList(),
@@ -199,5 +202,17 @@ class InspectionNotifier extends StateNotifier<Inspection> {
       ref.read(imageRepositoryProvider).deleteImage(photo.image),
       ref.read(inspectionListProvider.notifier).updateInspection(state),
     ).wait;
+  }
+
+  Future<void> fillAddress(BuildContext context) async {
+    final place = await ref.read(addressProvider)(context);
+    state = state.copyWith(
+      address: state.address.copyWith(
+        postCode: place?.postalCode?.replaceAll('-', ''),
+        prefecture: place?.administrativeArea,
+        municipality:
+            '${place?.locality ?? ''} ${place?.thoroughfare ?? ''} ${place?.subThoroughfare ?? ''}',
+      ),
+    );
   }
 }

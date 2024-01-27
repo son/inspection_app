@@ -4,12 +4,17 @@ import 'package:inspection_app/ui/components/round_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionDialog extends HookConsumerWidget {
-  const PermissionDialog._();
+  const PermissionDialog._({required this.title});
+  final String title;
 
-  static Future<void> show(BuildContext context) => showDialog(
+  static Future<void> show({
+    required BuildContext context,
+    required String title,
+  }) =>
+      showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (_) => const PermissionDialog._(),
+        builder: (_) => PermissionDialog._(title: title),
       );
 
   @override
@@ -37,10 +42,10 @@ class PermissionDialog extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                '設定アプリを開いて「写真」・「カメラ」の使用を許可してください',
+              Text(
+                title,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   decoration: TextDecoration.none,
                   color: Colors.grey,
                   fontWeight: FontWeight.w700,

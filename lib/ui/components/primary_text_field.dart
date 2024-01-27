@@ -12,6 +12,7 @@ class PrimaryTextField extends HookConsumerWidget {
     this.leftText = '',
     this.hintText = '',
     this.fixedText = '',
+    this.fillText = '',
     this.maxLines = 1,
     this.textAlign = TextAlign.end,
     this.keyboardType = TextInputType.text,
@@ -23,6 +24,7 @@ class PrimaryTextField extends HookConsumerWidget {
   final String leftText;
   final String hintText;
   final String fixedText;
+  final String fillText;
   final int maxLines;
   final TextAlign textAlign;
   final TextInputType keyboardType;
@@ -36,6 +38,13 @@ class PrimaryTextField extends HookConsumerWidget {
       controller.text = initialText;
       return null;
     }, []);
+
+    useEffect(() {
+      if (fillText.isNotEmpty) {
+        controller.text = fillText;
+      }
+      return null;
+    }, [fillText]);
 
     const border = OutlineInputBorder(
       borderSide: BorderSide(color: Colors.white),

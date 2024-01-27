@@ -50,6 +50,8 @@
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>現況写真などを選択するために写真を開きます</string>
     <key>NSCameraUsageDescription</key>
-    <string>>現況写真などを撮影するためにカメラを使用します</string>
+    <string>現況写真などを撮影するためにカメラを使用します</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>現在住所を取得するために位置情報機能を使用します</string>
 </dict>
 </plist>

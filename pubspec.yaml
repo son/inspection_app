@@ -14,6 +14,10 @@ dependencies:
   flutter_hooks: ^0.20.1
   hooks_riverpod: ^2.1.1
 
+  # location
+  geolocator: ^10.1.0
+  geocoding: ^2.1.1
+
   # util
   collection: ^1.17.2
   uuid: ^4.2.1

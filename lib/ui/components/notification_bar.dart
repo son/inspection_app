@@ -38,9 +38,9 @@ class NotificationBar extends StatelessWidget {
     );
   }
 
-  static Function() showUploading() {
+  static Function() showLoader({required String title}) {
     return NotificationBar.show(
-      title: '画像をアップロードしています',
+      title: title,
       icon: const Padding(
         padding: EdgeInsets.only(right: 4),
         child: SizedBox(
