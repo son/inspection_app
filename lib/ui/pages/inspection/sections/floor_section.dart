@@ -7,7 +7,7 @@ import 'package:inspection_app/data/entities/floor/floor.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -48,7 +48,7 @@ class FloorSection extends HookConsumerWidget {
           title: '[構造] 著しいひび割れ\n劣化、欠損',
           strikeThrough: inspection.floor.notApplicable,
           incomplete: inspection.floor.damage.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.floor.damage.result,
             onSelect: (result) {
               final damage = inspection.floor.damage.copyWith(result: result);
@@ -134,7 +134,7 @@ class FloorSection extends HookConsumerWidget {
           incomplete: inspection.floor.sinking.result == Result.none,
           title: '[構造] 著しい沈み',
           strikeThrough: inspection.floor.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.floor.sinking.result,
             onSelect: (result) {
               final sinking = inspection.floor.sinking.copyWith(result: result);
@@ -199,7 +199,7 @@ class FloorSection extends HookConsumerWidget {
           title: '[構造] 6/1000以上の傾斜',
           strikeThrough: inspection.floor.notApplicable,
           incomplete: inspection.floor.inclination.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.floor.inclination.result,
             onSelect: (result) {
               final inclination =
@@ -289,7 +289,7 @@ class FloorSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.floor.notApplicable,
           incomplete: inspection.floor.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.floor.coverage,
               name: inspection.floor.coverage?.label,

@@ -6,7 +6,7 @@ import 'package:inspection_app/data/entities/corrosion/corrosion.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -47,7 +47,7 @@ class CorrosionSection extends HookConsumerWidget {
           title: '[構造] 著しい腐朽、腐食など',
           strikeThrough: inspection.corrosion.notApplicable,
           incomplete: inspection.corrosion.corrosion.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.corrosion.corrosion.result,
             onSelect: (result) {
               final corrosion =
@@ -113,7 +113,7 @@ class CorrosionSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.corrosion.notApplicable,
           incomplete: inspection.corrosion.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.corrosion.coverage,
               name: inspection.corrosion.coverage?.label,

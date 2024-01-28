@@ -7,7 +7,7 @@ import 'package:inspection_app/data/entities/pillar_and_beam/pillar_and_beam.dar
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -51,7 +51,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
               inspection.pillarAndBeam.pillarDamage.result == Result.none,
           title: '[構造] 柱の著しいひび割れ\n劣化、欠損',
           strikeThrough: inspection.pillarAndBeam.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.pillarAndBeam.pillarDamage.result,
             onSelect: (result) {
               final pillarDamage = inspection.pillarAndBeam.pillarDamage
@@ -149,7 +149,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
           strikeThrough: inspection.pillarAndBeam.notApplicable,
           incomplete:
               inspection.pillarAndBeam.pillarInclination.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.pillarAndBeam.pillarInclination.result,
             onSelect: (result) {
               final pillarInclination = inspection
@@ -256,7 +256,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
           incomplete: inspection.pillarAndBeam.beamDamage.result == Result.none,
           title: '[構造] 梁の著しいひび割れ、劣化、欠損',
           strikeThrough: inspection.pillarAndBeam.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.pillarAndBeam.beamDamage.result,
             onSelect: (result) {
               final beamDamage =
@@ -354,7 +354,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
           strikeThrough: inspection.pillarAndBeam.notApplicable,
           incomplete:
               inspection.pillarAndBeam.beamDeflection.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.pillarAndBeam.beamDeflection.result,
             onSelect: (result) {
               final beamDeflection = inspection.pillarAndBeam.beamDeflection
@@ -430,7 +430,7 @@ class PillarAndBeamSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.pillarAndBeam.notApplicable,
           incomplete: inspection.pillarAndBeam.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.pillarAndBeam.coverage,
               name: inspection.pillarAndBeam.coverage?.label,

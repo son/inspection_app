@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_item.dart';
@@ -26,7 +26,7 @@ class RepairingSection extends HookConsumerWidget {
         SectionItem(
           title: '修理履歴',
           incomplete: inspection.repairing.repaired == null,
-          child: DropdownField<bool>(
+          child: MenuField<bool>(
             value: () {
               if (inspection.repairing.repaired == null) {
                 return null;
@@ -81,7 +81,7 @@ class RepairingSection extends HookConsumerWidget {
         SectionItem(
           title: '調査時のリフォーム工事',
           incomplete: inspection.renovation.renovating == null,
-          child: DropdownField<bool>(
+          child: MenuField<bool>(
             value: () {
               if (inspection.renovation.renovating == null) {
                 return null;

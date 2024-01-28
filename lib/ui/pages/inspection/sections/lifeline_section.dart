@@ -6,7 +6,7 @@ import 'package:inspection_app/data/entities/lifeline/lifeline.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -48,7 +48,7 @@ class LifelineSection extends HookConsumerWidget {
               inspection.lifeline.otherMalfunction.result == Result.none,
           strikeThrough: inspection.lifeline.notApplicable,
           title: 'キッチンコンロ、換気扇\nパッケージ、エアコンの設備機器の作動不良',
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.lifeline.otherMalfunction.result,
             onSelect: (result) {
               final otherMalfunction =
@@ -158,7 +158,7 @@ class LifelineSection extends HookConsumerWidget {
               inspection.lifeline.lifelineMalfunction.result == Result.none,
           title: '給排水、電気、ガス設備の作動不良',
           strikeThrough: inspection.lifeline.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.lifeline.lifelineMalfunction.result,
             onSelect: (result) {
               final lifelineMalfunction = inspection
@@ -256,7 +256,7 @@ class LifelineSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.lifeline.notApplicable,
           incomplete: inspection.lifeline.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.lifeline.coverage,
               name: inspection.lifeline.coverage?.label,

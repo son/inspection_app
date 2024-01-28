@@ -6,7 +6,7 @@ import 'package:inspection_app/data/entities/piping/piping.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -47,7 +47,7 @@ class PipingSection extends HookConsumerWidget {
           title: '[給水・給湯管] 発錆による赤水',
           strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.supplyRustyWater.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.piping.supplyRustyWater.result,
             onSelect: (result) {
               final supplyRustyWater =
@@ -120,7 +120,7 @@ class PipingSection extends HookConsumerWidget {
           title: '[給水・給湯管] 漏水',
           strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.supplyWaterLeak.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.piping.supplyWaterLeak.result,
             onSelect: (result) {
               final supplyWaterLeak =
@@ -192,7 +192,7 @@ class PipingSection extends HookConsumerWidget {
           title: '[排水管] 排水の滞留',
           strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.sewerStuck.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.piping.sewerStuck.result,
             onSelect: (result) {
               final sewerStuck =
@@ -260,7 +260,7 @@ class PipingSection extends HookConsumerWidget {
           title: '[排水管] 漏水',
           strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.sewerWaterLeak.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.piping.sewerWaterLeak.result,
             onSelect: (result) {
               final sewerWaterLeak =
@@ -332,7 +332,7 @@ class PipingSection extends HookConsumerWidget {
           title: '[換気ダクト] 換気ダクトの脱落',
           strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.ductLoss.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.piping.ductLoss.result,
             onSelect: (result) {
               final ductLoss =
@@ -398,7 +398,7 @@ class PipingSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.piping.notApplicable,
           incomplete: inspection.piping.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.piping.coverage,
               name: inspection.piping.coverage?.label,

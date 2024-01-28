@@ -7,7 +7,7 @@ import 'package:inspection_app/data/entities/base_and_floor_framing/base_and_flo
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -52,7 +52,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           strikeThrough: inspection.baseAndFloorFraming.notApplicable,
           incomplete:
               inspection.baseAndFloorFraming.damage.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.baseAndFloorFraming.damage.result,
             onSelect: (result) {
               final damage = inspection.baseAndFloorFraming.damage
@@ -151,7 +151,7 @@ class BaseAndFloorFramingSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.baseAndFloorFraming.notApplicable,
           incomplete: inspection.baseAndFloorFraming.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.baseAndFloorFraming.coverage,
               name: inspection.baseAndFloorFraming.coverage?.label,

@@ -99,36 +99,33 @@ class _Menu extends HookConsumerWidget {
                 ),
               ],
             ),
-            child: SizeCalculator(
-              onChange: (size) {
-                menuSize.value = size;
-              },
-              child: SizedBox(
-                width: menuSize.value?.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (title != null)
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          title!,
-                          style: TextStyles.b10,
+            child: SingleChildScrollView(
+              child: SizeCalculator(
+                onChange: (size) {
+                  menuSize.value = size;
+                },
+                child: SizedBox(
+                  width: menuSize.value?.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (title != null)
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Text(
+                            title!,
+                            style: TextStyles.b10,
+                          ),
                         ),
+                      ...items,
+                    ].interleave(
+                      Container(
+                        color: Colors.black26,
+                        height: 0.5,
                       ),
-                    ...items,
-                  ]
-                      .map<Widget>(
-                        (e) => e,
-                      )
-                      .toList()
-                      .interleave(
-                        Container(
-                          color: Colors.black26,
-                          height: 0.5,
-                        ),
-                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

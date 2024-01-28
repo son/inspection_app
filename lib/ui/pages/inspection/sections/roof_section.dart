@@ -6,8 +6,8 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof/roof.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
+import 'package:inspection_app/ui/components/multi_menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -47,7 +47,7 @@ class RoofSection extends HookConsumerWidget {
           title: '調査要否',
           incomplete: inspection.roof.necessity == null,
           strikeThrough: inspection.roof.notApplicable,
-          child: DropdownField<Necessity>(
+          child: MenuField<Necessity>(
             value: SelectionItem.orNull(
               value: inspection.roof.necessity,
               name: inspection.roof.necessity?.label,
@@ -69,7 +69,7 @@ class RoofSection extends HookConsumerWidget {
             title: '[雨水] 破損、ずれ、ひび割れ\n劣化、欠損、浮き、剥がれ',
             strikeThrough: inspection.roof.notApplicable,
             incomplete: inspection.roof.damage.result == Result.none,
-            child: DropdownField.result(
+            child: MenuField.result(
               result: inspection.roof.damage.result,
               onSelect: (result) {
                 final damage = inspection.roof.damage.copyWith(result: result);
@@ -84,7 +84,7 @@ class RoofSection extends HookConsumerWidget {
               title: '問題が確認された場所',
               indent: true,
               incomplete: inspection.roof.damage.directions.isEmpty,
-              child: MultiDropdownField<Direction>(
+              child: MultiMenuField<Direction>(
                 values: inspection.roof.damage.directions
                     .map((e) => SelectionItem(
                           value: e,
@@ -147,7 +147,7 @@ class RoofSection extends HookConsumerWidget {
             strikeThrough: inspection.roof.notApplicable,
             incomplete:
                 inspection.roof.waterProofLayerDamage.result == Result.none,
-            child: DropdownField.result(
+            child: MenuField.result(
               result: inspection.roof.waterProofLayerDamage.result,
               onSelect: (result) {
                 final waterProofLayerDamage = inspection
@@ -167,7 +167,7 @@ class RoofSection extends HookConsumerWidget {
               indent: true,
               incomplete:
                   inspection.roof.waterProofLayerDamage.directions.isEmpty,
-              child: MultiDropdownField<Direction>(
+              child: MultiMenuField<Direction>(
                 values: inspection.roof.waterProofLayerDamage.directions
                     .map((e) => SelectionItem(
                           value: e,
@@ -236,7 +236,7 @@ class RoofSection extends HookConsumerWidget {
             title: '調査できた範囲',
             strikeThrough: inspection.roof.notApplicable,
             incomplete: inspection.roof.coverage == null,
-            child: DropdownField<Coverage>(
+            child: MenuField<Coverage>(
               value: SelectionItem.orNull(
                 value: inspection.roof.coverage,
                 name: inspection.roof.coverage?.label,

@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/earthquake_resistant/earthquake_resistant.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
@@ -29,7 +29,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '確認方法',
           incomplete: inspection.earthquakeResistant.confirmationMethod == null,
-          child: DropdownField<ConfirmationMethod>(
+          child: MenuField<ConfirmationMethod>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.confirmationMethod,
               name: inspection.earthquakeResistant.confirmationMethod?.label,
@@ -50,7 +50,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '書類',
           incomplete: inspection.earthquakeResistant.certificate == null,
-          child: DropdownField<Certificate>(
+          child: MenuField<Certificate>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.certificate,
               name: inspection.earthquakeResistant.certificate?.label,
@@ -71,7 +71,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '発行者',
           incomplete: inspection.earthquakeResistant.issuer == null,
-          child: DropdownField<Issuer>(
+          child: MenuField<Issuer>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.issuer,
               name: inspection.earthquakeResistant.issuer?.label,
@@ -92,7 +92,7 @@ class EarthquakeResistantSection extends HookConsumerWidget {
         SectionItem(
           title: '安全上耐震関係規定に準ずる基準',
           incomplete: inspection.earthquakeResistant.regulation == null,
-          child: DropdownField<EarthquakeProofSafetyRegulation>(
+          child: MenuField<EarthquakeProofSafetyRegulation>(
             value: SelectionItem.orNull(
               value: inspection.earthquakeResistant.regulation,
               name: inspection.earthquakeResistant.regulation?.label,

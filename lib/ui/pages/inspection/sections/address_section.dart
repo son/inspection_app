@@ -6,7 +6,7 @@ import 'package:inspection_app/data/entities/address/address.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/entities/values/prefecture.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/action_button.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
@@ -37,7 +37,7 @@ class AddressSection extends HookConsumerWidget {
         SectionItem(
           title: '住所標記方法',
           incomplete: inspection.address.addressType == null,
-          child: DropdownField<AddressType>(
+          child: MenuField<AddressType>(
             value: SelectionItem.orNull(
               value: inspection.address.addressType,
               name: inspection.address.addressType?.label,
@@ -76,7 +76,7 @@ class AddressSection extends HookConsumerWidget {
         SectionItem(
           title: '都道府県',
           incomplete: inspection.address.prefecture == null,
-          child: DropdownField<String>(
+          child: MenuField<String>(
             value: SelectionItem.orNull(
               value: inspection.address.prefecture,
               name: inspection.address.prefecture,

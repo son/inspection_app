@@ -7,8 +7,8 @@ import 'package:inspection_app/data/entities/balcony/balcony.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
-import 'package:inspection_app/ui/components/multi_dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
+import 'package:inspection_app/ui/components/multi_menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -49,7 +49,7 @@ class BalconySection extends HookConsumerWidget {
           incomplete: inspection.balcony.foundation.result == Result.none,
           title: '[構造] 支持部材・床の\nぐらつき、ひび割れ、劣化',
           strikeThrough: inspection.balcony.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.balcony.foundation.result,
             onSelect: (result) {
               final foundation =
@@ -66,7 +66,7 @@ class BalconySection extends HookConsumerWidget {
             title: '問題が確認された場所',
             indent: true,
             incomplete: inspection.balcony.foundation.directions.isEmpty,
-            child: MultiDropdownField<Direction>(
+            child: MultiMenuField<Direction>(
               values: inspection.balcony.foundation.directions
                   .map((e) => SelectionItem(
                         value: e,
@@ -152,7 +152,7 @@ class BalconySection extends HookConsumerWidget {
           title: '[雨水] 防水層のひび割れ、劣化、欠損\n水切り金物などの不具合',
           strikeThrough: inspection.balcony.notApplicable,
           incomplete: inspection.balcony.waterProofLayer.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.balcony.waterProofLayer.result,
             onSelect: (result) {
               final waterProofLayer =
@@ -169,7 +169,7 @@ class BalconySection extends HookConsumerWidget {
             title: '問題が確認された場所',
             indent: true,
             incomplete: inspection.balcony.waterProofLayer.directions.isEmpty,
-            child: MultiDropdownField<Direction>(
+            child: MultiMenuField<Direction>(
               values: inspection.balcony.waterProofLayer.directions
                   .map((e) => SelectionItem(
                         value: e,
@@ -234,7 +234,7 @@ class BalconySection extends HookConsumerWidget {
           title: '調査できた範囲（構造）',
           strikeThrough: inspection.balcony.notApplicable,
           incomplete: inspection.balcony.foundationCoverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.balcony.foundationCoverage,
               name: inspection.balcony.foundationCoverage?.label,
@@ -256,7 +256,7 @@ class BalconySection extends HookConsumerWidget {
           title: '調査できた範囲（雨水）',
           strikeThrough: inspection.balcony.notApplicable,
           incomplete: inspection.balcony.waterProofLayerCoverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.balcony.waterProofLayerCoverage,
               name: inspection.balcony.waterProofLayerCoverage?.label,

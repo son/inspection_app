@@ -6,7 +6,7 @@ import 'package:inspection_app/data/entities/ceiling/ceiling.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -46,7 +46,7 @@ class CeilingSection extends HookConsumerWidget {
           title: '天井点検口の有無',
           strikeThrough: inspection.ceiling.notApplicable,
           incomplete: inspection.ceiling.accessPanel == null,
-          child: DropdownField<AccessPanel>(
+          child: MenuField<AccessPanel>(
             value: SelectionItem.orNull(
               value: inspection.ceiling.accessPanel,
               name: inspection.ceiling.accessPanel?.label,
@@ -69,7 +69,7 @@ class CeilingSection extends HookConsumerWidget {
           strikeThrough: inspection.ceiling.notApplicable,
           incomplete: inspection.ceiling.foundationDamage.result == Result.none,
           title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.ceiling.foundationDamage.result,
             onSelect: (result) {
               final foundationDamage =
@@ -145,7 +145,7 @@ class CeilingSection extends HookConsumerWidget {
           incomplete: inspection.ceiling.rainCeilingLeak.result == Result.none,
           title: '[雨水] 天井の雨漏りの跡',
           strikeThrough: inspection.ceiling.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.ceiling.rainCeilingLeak.result,
             onSelect: (result) {
               final rainCeilingLeak =
@@ -217,7 +217,7 @@ class CeilingSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.ceiling.notApplicable,
           incomplete: inspection.ceiling.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.ceiling.coverage,
               name: inspection.ceiling.coverage?.label,

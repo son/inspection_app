@@ -6,7 +6,7 @@ import 'package:inspection_app/data/entities/rebar/rebar.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -45,7 +45,7 @@ class RebarSection extends HookConsumerWidget {
         SectionItem(
           title: '鉄筋探査の有無',
           strikeThrough: inspection.rebar.notApplicable,
-          child: DropdownField<bool>(
+          child: MenuField<bool>(
             value: () {
               if (inspection.rebar.exploration == null) return null;
               return SelectionItem(
@@ -72,7 +72,7 @@ class RebarSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             incomplete: inspection.rebar.side.result == Result.none,
             title: '基礎の鉄筋本数、間隔（立上り）',
-            child: DropdownField.result(
+            child: MenuField.result(
               result: inspection.rebar.side.result,
               onSelect: (result) {
                 final side = inspection.rebar.side.copyWith(result: result);
@@ -122,7 +122,7 @@ class RebarSection extends HookConsumerWidget {
             axis: Axis.horizontal,
             title: '基礎の鉄筋本数、間隔（底盤）',
             incomplete: inspection.rebar.bottom.result == Result.none,
-            child: DropdownField.result(
+            child: MenuField.result(
               result: inspection.rebar.bottom.result,
               onSelect: (result) {
                 final bottom = inspection.rebar.bottom.copyWith(result: result);
@@ -171,7 +171,7 @@ class RebarSection extends HookConsumerWidget {
           SectionItem(
             title: '調査できた範囲',
             incomplete: inspection.rebar.coverage == null,
-            child: DropdownField<Coverage>(
+            child: MenuField<Coverage>(
               value: SelectionItem.orNull(
                 value: inspection.rebar.coverage,
                 name: inspection.rebar.coverage?.label,

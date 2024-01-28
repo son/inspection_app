@@ -6,7 +6,7 @@ import 'package:inspection_app/data/entities/selection_item/selection_item.dart'
 import 'package:inspection_app/data/entities/situation/situation.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
 import 'package:inspection_app/data/utils/date_utils.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/components/text_styles.dart';
@@ -31,7 +31,7 @@ class SituationSection extends HookConsumerWidget {
         SectionItem(
           title: '天候',
           incomplete: inspection.situation.weather == null,
-          child: DropdownField<Weather>(
+          child: MenuField<Weather>(
             value: SelectionItem.orNull(
               value: inspection.situation.weather,
               name: inspection.situation.weather?.name,
@@ -151,7 +151,7 @@ class SituationSection extends HookConsumerWidget {
         SectionItem(
           title: '電気',
           incomplete: inspection.situation.lifeline.electricity == null,
-          child: DropdownField<bool>(
+          child: MenuField<bool>(
             value: () {
               if (inspection.situation.lifeline.electricity == null) {
                 return null;
@@ -180,7 +180,7 @@ class SituationSection extends HookConsumerWidget {
         SectionItem(
           title: '水道',
           incomplete: inspection.situation.lifeline.water == null,
-          child: DropdownField<bool>(
+          child: MenuField<bool>(
             value: () {
               if (inspection.situation.lifeline.water == null) return null;
               return SelectionItem(
@@ -204,7 +204,7 @@ class SituationSection extends HookConsumerWidget {
         SectionItem(
           title: 'ガス',
           incomplete: inspection.situation.lifeline.gas == null,
-          child: DropdownField<bool>(
+          child: MenuField<bool>(
             value: () {
               if (inspection.situation.lifeline.gas == null) return null;
               return SelectionItem(

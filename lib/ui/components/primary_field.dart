@@ -17,7 +17,7 @@ class PrimaryField extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 14),
         child: Row(
           children: [
             const Spacer(),

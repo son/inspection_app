@@ -7,7 +7,7 @@ import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/roof_frame/roof_frame.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -49,7 +49,7 @@ class RoofFrameSection extends HookConsumerWidget {
               inspection.roofFrame.foundationDamage.result == Result.none,
           title: '[構造] ひび割れ、欠損',
           strikeThrough: inspection.roofFrame.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.roofFrame.foundationDamage.result,
             onSelect: (result) {
               final foundationDamage = inspection.roofFrame.foundationDamage
@@ -150,7 +150,7 @@ class RoofFrameSection extends HookConsumerWidget {
               inspection.roofFrame.rainRoofFrameLeak.result == Result.none,
           title: '[雨水] 小屋組の雨漏りの跡',
           strikeThrough: inspection.roofFrame.notApplicable,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.roofFrame.rainRoofFrameLeak.result,
             onSelect: (result) {
               final rainRoofFrameLeak = inspection.roofFrame.rainRoofFrameLeak
@@ -226,7 +226,7 @@ class RoofFrameSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.roofFrame.notApplicable,
           incomplete: inspection.roofFrame.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.roofFrame.coverage,
               name: inspection.roofFrame.coverage?.label,

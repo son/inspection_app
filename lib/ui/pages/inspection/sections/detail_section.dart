@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inspection_app/data/entities/detail/detail.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section.dart';
@@ -32,7 +32,7 @@ class DetailSection extends HookConsumerWidget {
         SectionItem(
           title: '調査区分',
           incomplete: inspection.detail.housingType == null,
-          child: DropdownField<HousingType>(
+          child: MenuField<HousingType>(
             value: SelectionItem.orNull(
               value: inspection.detail.housingType,
               name: inspection.detail.housingType?.name,
@@ -53,7 +53,7 @@ class DetailSection extends HookConsumerWidget {
         SectionItem(
           title: '構造種別',
           incomplete: inspection.detail.structureType == null,
-          child: DropdownField<StructureType>(
+          child: MenuField<StructureType>(
             value: SelectionItem.orNull(
               value: inspection.detail.structureType,
               name: inspection.detail.structureType?.name,

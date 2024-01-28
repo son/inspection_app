@@ -26,7 +26,6 @@ dependencies:
   # ui
   cupertino_icons: ^1.0.2
   google_fonts: ^6.0.0
-  dropdown_button2: ^2.3.9
   flutter_datetime_picker_plus: ^2.1.0
   image_picker: ^1.0.4
   cached_network_image: ^3.3.0

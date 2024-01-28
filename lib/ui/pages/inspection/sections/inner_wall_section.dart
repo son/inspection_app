@@ -7,7 +7,7 @@ import 'package:inspection_app/data/entities/inner_wall/inner_wall.dart';
 import 'package:inspection_app/data/entities/result.dart';
 import 'package:inspection_app/data/entities/selection_item/selection_item.dart';
 import 'package:inspection_app/data/providers/inspection_provider.dart';
-import 'package:inspection_app/ui/components/dropdown_field.dart';
+import 'package:inspection_app/ui/components/menu_field.dart';
 import 'package:inspection_app/ui/components/primary_text_field.dart';
 import 'package:inspection_app/ui/pages/inspection/children/section_menu_button.dart';
 import 'package:inspection_app/ui/pages/inspection/children/photo_captions_item.dart';
@@ -49,7 +49,7 @@ class InnerWallSection extends HookConsumerWidget {
               inspection.innerWall.foundationDamage.result == Result.none,
           strikeThrough: inspection.innerWall.notApplicable,
           title: '[構造] ひび割れ、欠損\n浮き、はらみ、剥落',
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.innerWall.foundationDamage.result,
             onSelect: (result) {
               final foundationDamage = inspection.innerWall.foundationDamage
@@ -150,7 +150,7 @@ class InnerWallSection extends HookConsumerWidget {
           strikeThrough: inspection.innerWall.notApplicable,
           incomplete:
               inspection.innerWall.foundationInclination.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.innerWall.foundationInclination.result,
             onSelect: (result) {
               final foundationInclination = inspection
@@ -258,7 +258,7 @@ class InnerWallSection extends HookConsumerWidget {
           strikeThrough: inspection.innerWall.notApplicable,
           incomplete:
               inspection.innerWall.rainInnerWallLeak.result == Result.none,
-          child: DropdownField.result(
+          child: MenuField.result(
             result: inspection.innerWall.rainInnerWallLeak.result,
             onSelect: (result) {
               final rainInnerWallLeak = inspection.innerWall.rainInnerWallLeak
@@ -334,7 +334,7 @@ class InnerWallSection extends HookConsumerWidget {
           title: '調査できた範囲',
           strikeThrough: inspection.innerWall.notApplicable,
           incomplete: inspection.innerWall.coverage == null,
-          child: DropdownField<Coverage>(
+          child: MenuField<Coverage>(
             value: SelectionItem.orNull(
               value: inspection.innerWall.coverage,
               name: inspection.innerWall.coverage?.label,
