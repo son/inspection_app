@@ -26,7 +26,7 @@ class AddressSection extends HookConsumerWidget {
     return Section(
       title: '物件所在地',
       complete: inspection.address.complete,
-      actions: [
+      actionsExpandedOnly: [
         ActionButton(
           title: '現在地を自動入力',
           onTap: () => controller.fillAddress(context),

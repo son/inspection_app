@@ -13,6 +13,7 @@ class Section extends HookConsumerWidget {
     required this.children,
     this.padding = const EdgeInsets.all(16),
     this.actions = const [],
+    this.actionsExpandedOnly = const [],
     this.complete = false,
   });
 
@@ -21,6 +22,7 @@ class Section extends HookConsumerWidget {
   final List<Widget> children;
   final EdgeInsets padding;
   final List<Widget> actions;
+  final List<Widget> actionsExpandedOnly;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,6 +58,12 @@ class Section extends HookConsumerWidget {
                   ],
                 ),
                 const Spacer(),
+                if (actionsExpandedOnly.isNotEmpty && expanded.value) ...[
+                  ...actionsExpandedOnly
+                      .interleave(const SizedBox(width: 8))
+                      .toList(),
+                  const SizedBox(width: 8),
+                ],
                 if (actions.isNotEmpty) ...[
                   ...actions.interleave(const SizedBox(width: 8)).toList(),
                   const SizedBox(width: 8),
