@@ -54,7 +54,17 @@ class MenuField<T> extends StatelessWidget {
     return MenuTapGesture(
       items: all
           .map((e) => MenuItem(
+                icon: e.value == value?.value
+                    ? const Icon(
+                        Icons.check,
+                        color: Colors.black87,
+                      )
+                    : const SizedBox(
+                        height: 24,
+                        width: 24,
+                      ),
                 title: e.name,
+                bold: e.value == value?.value,
                 onTap: () => onSelect(e.value),
               ))
           .toList(),

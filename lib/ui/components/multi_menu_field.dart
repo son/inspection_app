@@ -26,7 +26,17 @@ class MultiMenuField<T> extends StatelessWidget {
     return MenuTapGesture(
       items: all
           .map((e) => MenuItem(
+                icon: values.map((e) => e.value).contains(e.value)
+                    ? const Icon(
+                        Icons.check,
+                        color: Colors.black87,
+                      )
+                    : const SizedBox(
+                        height: 24,
+                        width: 24,
+                      ),
                 title: e.name,
+                bold: values.map((e) => e.value).contains(e.value),
                 onTap: () {
                   final raws = values.map((e) => e.value).toList();
                   raws.contains(e.value)

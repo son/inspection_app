@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:inspection_app/data/entities/detail/detail.dart';
 
 part 'inspection_overview.freezed.dart';
 part 'inspection_overview.g.dart';
