@@ -32,6 +32,7 @@ import 'package:line_icons/line_icons.dart';
 import 'children/menu_button.dart';
 import 'children/section_title.dart';
 import 'sections/address_section.dart';
+import 'sections/inspector_section.dart';
 import 'sections/situation_section.dart';
 import 'sections/detail_section.dart';
 import 'sections/earthquake_resistant_section.dart';
@@ -142,6 +143,9 @@ class InspectionPage extends HookConsumerWidget {
                 bottom: MediaQuery.paddingOf(context).bottom + 16,
               ),
               children: const [
+                SizedBox(height: 16),
+                InspectorSection(),
+                SizedBox(height: 32),
                 SectionTitle(title: '基本情報'),
                 SizedBox(height: 16),
                 OverviewSection(),

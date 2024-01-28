@@ -13,7 +13,6 @@ class MenuField<T> extends StatelessWidget {
     required this.onSelect,
     this.leftText = '',
     this.rightText = '',
-    this.unselectedText = '未入力',
     this.color = Colors.black87,
   });
 
@@ -23,7 +22,6 @@ class MenuField<T> extends StatelessWidget {
   final String leftText;
   final String rightText;
   final Color color;
-  final String unselectedText;
 
   static MenuField result({
     required Result result,
@@ -69,8 +67,8 @@ class MenuField<T> extends StatelessWidget {
               ))
           .toList(),
       child: PrimaryField(
-        text:
-            '$leftText${value?.name == null ? unselectedText : value?.name ?? ''}$rightText',
+        text: '$leftText${value?.name ?? ''}$rightText',
+        color: color,
         onTap: () {},
       ),
     );

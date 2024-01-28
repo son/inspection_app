@@ -6,9 +6,11 @@ class PrimaryField extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
+    this.color = Colors.black87,
   });
 
   final String text;
+  final Color color;
   final Function() onTap;
 
   @override
@@ -23,9 +25,11 @@ class PrimaryField extends StatelessWidget {
             const Spacer(),
             Text(
               text.isNotEmpty ? text : '未入力',
-              style: text.isNotEmpty
-                  ? TextStyles.n14
-                  : TextStyles.n14.copyWith(
+              style: text.isNotEmpty && text != '未調査'
+                  ? TextStyles.b14.copyWith(
+                      color: color,
+                    )
+                  : TextStyles.b14.copyWith(
                       color: Colors.grey,
                     ),
               textAlign: TextAlign.end,
