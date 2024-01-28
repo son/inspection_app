@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -68,7 +69,7 @@ class _Menu extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final menuSize = useState(const Size(100, 50));
+    final menuSize = useState<Size?>(null);
 
     return Stack(
       clipBehavior: Clip.none,
@@ -77,12 +78,12 @@ class _Menu extends HookConsumerWidget {
           top: min(
             anchorPoint.dy - 50,
             (MediaQuery.sizeOf(context).height - kToolbarHeight) -
-                (menuSize.value.height + 50),
+                (menuSize.value?.height ?? 0 + 50),
           ),
           left: () {
-            final l = (anchorPoint.dx - 16) - (menuSize.value.width / 2);
+            final l = (anchorPoint.dx - 16) - (menuSize.value?.width ?? 0 / 2);
             final r = MediaQuery.sizeOf(context).width -
-                (menuSize.value.width + 16 * 2);
+                (menuSize.value?.width ?? 0 + 16 * 2);
             return min(max(l, 16.0), r);
           }(),
           child: Container(
@@ -102,31 +103,33 @@ class _Menu extends HookConsumerWidget {
               onChange: (size) {
                 menuSize.value = size;
               },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (title != null)
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        title!,
-                        style: TextStyles.b10,
+              child: SizedBox(
+                width: menuSize.value?.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (title != null)
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          title!,
+                          style: TextStyles.b10,
+                        ),
                       ),
-                    ),
-                  ...items,
-                ]
-                    .map<Widget>(
-                      (e) => Flexible(child: e),
-                    )
-                    .toList()
-                    .interleave(
-                      Container(
-                        color: Colors.black26,
-                        width: menuSize.value.width,
-                        height: 0.5,
+                    ...items,
+                  ]
+                      .map<Widget>(
+                        (e) => e,
+                      )
+                      .toList()
+                      .interleave(
+                        Container(
+                          color: Colors.black26,
+                          height: 0.5,
+                        ),
                       ),
-                    ),
+                ),
               ),
             ),
           ),
@@ -151,9 +154,9 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () {
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () {
         Navigator.pop(context);
         onTap();
       },
